@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <style>
+      body {
+          font-family: Arial, sans-serif;
+          background:#fff;
+          margin:0;
+          padding:0;
+      }
+      .form-container {
+          max-width:420px;
+          margin:60px auto;
+          padding:20px;
+      }
+      .tab {
+          display:flex;
+          justify-content:center;
+          margin-bottom:20px;
+          border-bottom:1px solid #ddd;
+      }
+      .tab button {
+          flex:1;
+          padding:12px;
+          font-size:18px;
+          border:0;
+          background:none;
+          cursor:pointer;
+      }
+      .tab button.active {
+          border-bottom:2px solid #000;
+          font-weight:bold;
+      }
+      .input-box {
+          margin-bottom:12px;
+      }
+      .input-box input {
+          width:100%;
+          padding:12px;
+          border:1px solid #ccc;
+          border-radius:4px;
+          font-size:15px;
+      }
+      .link {
+          font-size:14px;
+          color:#007bff;
+          cursor:pointer;
+          display:inline-block;
+          margin-bottom:10px;
+      }
+      .btn-block {
+          width:100%;
+          padding:12px;
+          background:#000;
+          color:#fff;
+          border:0;
+          border-radius:4px;
+          font-size:16px;
+          cursor:pointer;
+          margin-top:8px;
+      }
+      .center-text {
+          text-align:center;
+          margin-top:15px;
+          font-size:14px;
+      }
+  </style>
+</head>
+<body>
+<div class="form-container">
+  <div class="tab">
+    <button id="tabLogin" class="active" onclick="showForm('loginForm')">Đăng nhập</button>
+    <button id="tabRegister" onclick="showForm('registerForm')">Đăng ký</button>
+  </div>
+
+  <!-- Login Form -->
+  <div id="loginForm">
+    <div class="input-box"><input type="text" id="loginEmail" placeholder="Số điện thoại hoặc Email"></div>
+    <div class="input-box"><input type="password" id="loginPass" placeholder="Mật khẩu"></div>
+
+    <a class="link">Bạn quên mật khẩu?</a>
+    <button class="btn-block" onclick="loginUser()">Đăng nhập</button>
+
+    <div class="center-text">
+      Bạn chưa có tài khoản?
+      <span class="link" onclick="showForm('registerForm')">Đăng ký ngay</span>
+    </div>
+  </div>
+
+  <!-- Register Form -->
+  <div id="registerForm" style="display:none;">
+    <div class="input-box"><input type="text" id="regName" placeholder="Họ tên"></div>
+    <div class="input-box"><input type="text" id="regEmail" placeholder="Email hoặc SĐT"></div>
+    <div class="input-box"><input type="password" id="regPass" placeholder="Mật khẩu"></div>
+
+    <button class="btn-block" onclick="registerUser()">Đăng ký</button>
+
+    <div class="center-text">
+      Đã có tài khoản?
+      <span class="link" onclick="showForm('loginForm')">Đăng nhập</span>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  // Switch form
+  function showForm(form) {
+    document.getElementById('loginForm').style.display = form === 'loginForm' ? 'block' : 'none';
+    document.getElementById('registerForm').style.display = form === 'registerForm' ? 'block' : 'none';
+    document.getElementById('tabLogin').classList.toggle('active', form === 'loginForm');
+    document.getElementById('tabRegister').classList.toggle('active', form === 'registerForm');
+  }
+
+  // Register
+  function registerUser() {
+    const user = {
+      name: document.getElementById('regName').value,
+      email: document.getElementById('regEmail').value,
+      password: document.getElementById('regPass').value
+    };
+
+    if (!user.name || !user.email || !user.password) return alert("Vui lòng nhập đầy đủ!");
+
+    localStorage.setItem("user", JSON.stringify(user));
+    alert("Đăng ký thành công!");
+    showForm('loginForm');
+  }
+
+  // Login
+  function loginUser() {
+    const email = loginEmail.value;
+    const pass = loginPass.value;
+    const user = JSON.parse(localStorage.getItem("user"));
+
+    if (!user) return alert("Chưa có tài khoản, hãy đăng ký!");
+    if (email === user.email && pass === user.password) alert("Đăng nhập thành công!");
+    else alert("Sai thông tin!");
+  }
+</script>
+</body>
+</html>
