@@ -118,3 +118,160 @@ h2{
     cursor: pointer;
     z-index: 100;
 }
+
+
+/* ===== WOMEN COLLECTION ===== */
+
+.collection{
+    width: 100%;
+    /* Xóa padding top và bottom để banner sát cạnh */
+    padding: 0 20px;
+    box-sizing: border-box;
+
+    background: #f7f7f7;
+    color: #fff;
+}
+
+/* Banner Top Collection */
+.collection-box.top-banner{
+    width: 100%;
+    margin: 0 ;
+    display: flex;
+    gap: 0;
+    align-items: stretch;
+    position: relative;
+    height: 300px;
+    padding: 0;
+    background-color: black;
+}
+
+.collection-box.top-banner img{
+    width: 35% ;
+    height: 100%;
+    object-fit: contain;
+    object-position: center;
+    position: static;
+    padding: 20px 0;
+    background-color: black;
+}
+
+.collection-info{
+    width:65%;
+    justify-content: center;
+    align-items: flex-start;
+
+    padding: 60px 80px;
+    background-color: white;
+    color: black;
+    display: flex;
+    flex-direction: column;
+    z-index: 2;
+    position: static;
+    height: auto;
+    box-sizing: border-box;
+
+}
+
+.collection-title-vi{
+    font-size: 32px;
+    font-weight: bold;
+    margin-bottom: 0;
+    line-height: 1.2;
+}
+
+.collection-title-en{
+    font-size: 32px;
+    font-weight: normal;
+    margin-bottom: 0;
+}
+
+.collection-box.top-banner .explore-btn{
+    padding: 10px 40px;
+
+    border: 1px solid black;
+    width: 250px;
+    border-radius: 0;
+    background: transparent;
+    color: black;
+    cursor: pointer;
+    margin-top: 25px;
+    font-weight: bold;
+    text-align: center;
+}
+
+/* Danh sách 4 sản phẩm dưới banner */
+.product-list-four-items{
+    width: 100%;
+    margin: 0 ;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    background-color: black;
+    padding: 0 ;
+    box-sizing: border-box;
+    border-top: 1px solid #1a1a1a;
+}
+
+.collection-item.product-discount-item{
+    position: relative;
+    text-align: center;
+    color: white;
+    padding: 20px 0;
+    border-right: 1px solid #1a1a1a;
+}
+
+.collection-item.product-discount-item img{
+    width: 100%;
+    /* Chiều cao tự động để giữ tỉ lệ, hoặc dùng 350px để khớp với ảnh */
+    height: 350px;
+    object-fit: cover;
+    border-radius: 0;
+}
+
+.discount-percent{
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: red;
+    color: white;
+    padding: 5px 10px;
+    font-weight: bold;
+    z-index: 10;
+}
+
+.item-details{
+    padding-top: 10px;
+}
+
+.deal-tag{
+    background-color: red;
+    color: white;
+    padding: 3px 6px;
+    font-size: 10px;
+    font-weight: bold;
+    display: inline-block;
+    margin-bottom: 5px;
+}
+
+.product-discount-item h4{
+    font-size: 14px;
+    font-weight: normal;
+    margin: 5px 0;
+}
+
+.price-info{
+    margin-top: 5px;
+}
+
+.new-price{
+    color: white; /* Đổi lại màu trắng */
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.old-price{
+    text-decoration: line-through;
+    opacity: 0.5; /* Giảm độ mờ */
+    margin-left: 4px;
+    color: white;
+}
