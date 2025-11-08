@@ -1,45 +1,63 @@
+*{
+    box-sizing: border-box;
+}
 body {
     font-family: Arial, sans-serif;
     margin: 0;
     background: #000;
 }
 .navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: auto;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px 30px;
+    padding: 10px;
     background-color: #333;
     color: white;
+    z-index: 1000;
 }
-.nav-right {
+.logo{
+    display: flex;
+    height: 100%;
+    align-items: center;
+}
+.nav-center{
     display: flex;
     align-items: center;
     gap: 20px;
 }
+.nav-right {
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
 .nav-right i{
     cursor: pointer;
+    margin: 0;
+    padding: 0;
 }
 .navbar a {
     color: white;
     margin: 0 10px;
     text-decoration: none;
 }
-.search-box{
+.menu{
     position: relative;
 }
-.search-box input{
-    outline: none;
-    padding: 10px 35px 10px 15px;
-    border-radius: 20px;
+.menu:hover .sub-menu{
+    display: block;
 }
-.search-box i{
+.sub-menu{
     position: absolute;
-    right: 10px;
-    top: 50%;
-    transform: translateY(-50%);
-    color: #666;
-    pointer-events: none;
+    display: none;
+
 }
+
 .banner{
     position: relative;
     width: calc(100% - 40px);
@@ -110,14 +128,7 @@ h2{
     text-decoration: line-through;
     opacity: 0.5;
 }
-#scrollTopBtn {
-    position: fixed;
-    border: none;
-    border-radius: 50%;
-    padding: 10px 15px;
-    cursor: pointer;
-    z-index: 100;
-}
+
 
 
 /* ===== WOMEN COLLECTION ===== */
@@ -274,4 +285,20 @@ h2{
     opacity: 0.5; /* Giảm độ mờ */
     margin-left: 4px;
     color: white;
+}
+.scroll-button{
+    display: flex;
+    justify-content: flex-end;
+}
+#scrollTopBtn {
+    background-color: grey;
+    position: fixed;
+    border: none;
+    border-radius: 50%;
+    width: 28px;
+    height: 28px;
+    bottom: 20px;
+    right: 20px;
+    cursor: pointer;
+    z-index: 1000;
 }

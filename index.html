@@ -9,21 +9,28 @@
 <body>
 <!-- demo -->
 <header class="navbar">
-    <a href="index.html" class="logo">
-        <h2>Fashion Store</h2>
-    </a>
-    <nav>
+    <div class="logo">
+        <a href="index.html">
+            <h2>Fashion Store</h2>
+        </a>
+    </div>
+    <nav class="nav-center">
         <a href="#">Hàng mới</a>
-        <a href="#">Sản phẩm</a>
-        <a href="#">Khuyến mãi</a>
+        <div class="menu">
+            <a href="#">Sản phẩm</a>
+            <ul class="sub-menu">
+                <li><a href="#">Túi</a></li>
+                <li><a href="#">Phụ kiện</a></li>
+            </ul>
+        </div>
+        <a href="#">Bộ sưu tập</a>
         <a href="#">Giới thiệu</a>
     </nav>
     <div class="nav-right">
-        <div class="search-box">
-            <input type="search" placeholder="Search">
-            <i class="fa-solid fa-magnifying-glass"></i>
-        </div>
-        <i class="fa-solid fa-user"></i>
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <a href="login.html">
+         <i class="fa-solid fa-user"></i>
+        </a>
         <i class="fa-solid fa-shopping-cart"></i>
     </div>
 </header>
@@ -192,6 +199,10 @@
     </div>
 </section>
 
-<button id="scrollTopBtn" title="Go to top"><i class="fa-solid fa-arrow-up"></i></button>
+<div class="scroll-button">
+    <button id="scrollTopBtn" title="Go to top">
+        <i class="fa-solid fa-arrow-up"></i>
+    </button>
+</div>
 </body>
 </html>
