@@ -131,165 +131,121 @@ h2{
 
 
 
-/* ===== WOMEN COLLECTION ===== */
-
+/*Bo su tap*/
 .collection{
-    width: 100%;
-    /* Xóa padding top và bottom để banner sát cạnh */
+    background: #000;
+    padding: 40px 0;
+}
+
+.collection-title{
+    text-align: center;
+    font-size: 26px;
+    font-weight: 700;
+    margin-bottom: 25px;
+    color: white;
+}
+
+.collection-box{
+    display: flex;
+    gap: 20px;
+    justify-content: center;
     padding: 0 20px;
     box-sizing: border-box;
 
-    background: #f7f7f7;
-    color: #fff;
 }
 
-/* Banner Top Collection */
-.collection-box.top-banner{
-    width: 100%;
-    margin: 0 ;
-    display: flex;
-    gap: 0;
-    align-items: stretch;
+.item{
+    width: 50%;
     position: relative;
     height: 300px;
-    padding: 0;
-    background-color: black;
 }
 
-.collection-box.top-banner img{
-    width: 35% ;
-    height: 100%;
-    object-fit: contain;
-    object-position: center;
-    position: static;
-    padding: 20px 0;
-    background-color: black;
-}
-
-.collection-info{
-    width:65%;
-    justify-content: center;
-    align-items: flex-start;
-
-    padding: 60px 80px;
-    background-color: white;
-    color: black;
-    display: flex;
-    flex-direction: column;
-    z-index: 2;
-    position: static;
-    height: auto;
-    box-sizing: border-box;
-
-}
-
-.collection-title-vi{
-    font-size: 32px;
-    font-weight: bold;
-    margin-bottom: 0;
-    line-height: 1.2;
-}
-
-.collection-title-en{
-    font-size: 32px;
-    font-weight: normal;
-    margin-bottom: 0;
-}
-
-.collection-box.top-banner .explore-btn{
-    padding: 10px 40px;
-
-    border: 1px solid black;
-    width: 250px;
-    border-radius: 0;
-    background: transparent;
-    color: black;
-    cursor: pointer;
-    margin-top: 25px;
-    font-weight: bold;
-    text-align: center;
-}
-
-/* Danh sách 4 sản phẩm dưới banner */
-.product-list-four-items{
+.item img{
     width: 100%;
-    margin: 0 ;
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 0;
-    background-color: black;
-    padding: 0 ;
-    box-sizing: border-box;
-    border-top: 1px solid #1a1a1a;
+    height: 300px;
+    object-fit: fill;
+    display: block;
 }
 
-.collection-item.product-discount-item{
-    position: relative;
-    text-align: center;
-    color: white;
-    padding: 20px 0;
-    border-right: 1px solid #1a1a1a;
-}
-
-.collection-item.product-discount-item img{
-    width: 100%;
-    /* Chiều cao tự động để giữ tỉ lệ, hoặc dùng 350px để khớp với ảnh */
-    height: 350px;
-    object-fit: cover;
-    border-radius: 0;
-}
-
-.discount-percent{
+.item-title{
     position: absolute;
-    top: 0;
-    left: 0;
-    background-color: red;
-    color: white;
-    padding: 5px 10px;
-    font-weight: bold;
-    z-index: 10;
+    top: 45%;
+    left: 75%;
+    color: #000000;
+    font-size: 26px;
+    font-weight: 700;
+    z-index: 2;
+    margin: 0;
 }
 
-.item-details{
-    padding-top: 10px;
-}
-
-.deal-tag{
-    background-color: red;
-    color: white;
-    padding: 3px 6px;
-    font-size: 10px;
-    font-weight: bold;
-    display: inline-block;
-    margin-bottom: 5px;
-}
-
-.product-discount-item h4{
+.item-link{
+    position: absolute;
+    top: 55%;
+    left: 75%;
     font-size: 14px;
-    font-weight: normal;
-    margin: 5px 0;
+    color: #000;
+    z-index: 2;
 }
 
-.price-info{
-    margin-top: 5px;
-}
-
-.new-price{
-    color: white; /* Đổi lại màu trắng */
-    font-weight: bold;
-    font-size: 16px;
-}
-
-.old-price{
-    text-decoration: line-through;
-    opacity: 0.5; /* Giảm độ mờ */
-    margin-left: 4px;
+.footer{
+    width: 100%;
+    background: black;
     color: white;
+    padding: 40px 0;
+    font-size: 14px;
+    border-top: 1px solid #1A1A1A;
 }
-.scroll-button{
+.footer-container{
+    width: 80%;
+    margin: auto;
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
+    gap: 60px;
+    flex-wrap: wrap;
 }
+
+.footer-col{
+    min-width: 200px;
+}
+
+.footer-col h3{
+    margin-bottom: 15px;
+    font-size: 15px;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+
+.footer-col ul li{
+    margin: 6px 0;
+    cursor: pointer;
+    transition: 0.25s;
+}
+
+.footer-col p{
+    margin: 6px, 0;
+}
+
+.footer-icons{
+    display: flex;
+    gap: 15px;
+    font-size: 20px;
+    margin-top: 10px;
+}
+.footer-icons i{
+    cursor: pointer;
+    transition: 0.25s;
+}
+
+.footer-col ul li:hover{
+    color: #BFBFBF;
+}
+
+.footer-icons i:hover{
+    color: #CCCCCC;
+}
+
+
 #scrollTopBtn {
     background-color: grey;
     position: fixed;
