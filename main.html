@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>HeaderFooter</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"/>
+</head>
+<body>
+
+<div id="header-placeholder"></div>
+
+<main>
+    <h1>Nội dung chính của trang...</h1>
+    <p>Các sản phẩm, banner, v.v...</p>
+</main>
+
+
+<div id="footer-placeholder"></div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+
+        function loadHTML(file, elementId) {
+            fetch(file)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error("Không thể tải file: " + response.statusText);
+                    }
+                    return response.text();
+                })
+                .then(data => {
+                    document.getElementById(elementId).innerHTML = data;
+                })
+                .catch(error => {
+                    console.error("Lỗi khi tải file HTML:", error);
+                });
+        }
+
+        loadHTML("header.html", "header-placeholder");
+
+        loadHTML("footer.html", "footer-placeholder");
+    });
+</script>
+</body>
+</html>
