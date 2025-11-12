@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Giới thiệu - Fashion Store</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <STYLE>
+        body{
+            padding-top: 80px;
+        }
+
+        .about-us{
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .breadcrumbs{
+            font-size:14px;
+            color: #888;
+            margin-bottom: 25px;
+
+            border-bottom: 1px solid #333;
+            padding-bottom: 10px;
+        }
+        .breadcrumbs a{
+            text-decoration: none;
+            color: #f0f0f0;
+        }
+
+        .breadcrumbs a:hover{
+            text-decoration: underline;
+        }
+
+        .content{
+            background-color: black;
+            padding: 20px;
+        }
+
+        .content h1 {
+            font-size: 36px;
+            font-weight: bold;
+            color: white;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #333;
+            padding-bottom: 10px;
+        }
+        .content h2{
+            font-size: 28px;
+            font-weight: bold;
+            color: white;
+            text-align: left;
+
+            margin-top: 10px;
+            margin-bottom: 15px;
+        }
+
+        .content p{
+            font-size: 16px;
+            margin-bottom: 20px;
+            line-height: 1.6;
+            color: #ccc;
+        }
+
+        .content img{
+            width: 100%;
+            height: auto;
+            display: block;
+            margin: 20px auto;
+            border-radius: 5px;
+         }
+
+
+    </STYLE>
+
+</head>
+<body>
+
+<div id="header-placeholder"></div>
+
+<main class="about-us">
+    <nav class="breadcrumbs">
+        <a href="#">Trang chủ</a> / <span>Giới thiệu</span>
+    </nav>
+
+    <div class="content">
+        <h1>GIỚI THIỆU</h1>
+
+        <p>Chào mừng bạn đến với Fashion Store! Chúng tôi tin rằng một chiếc túi xách không chỉ là một phụ kiện đơn thuần, mà là một người bạn đồng hành, một tuyên ngôn về cá tính và phong cách sống của mỗi người. Được thành lập vào năm 2024, Fashion Store khởi đầu với một mục tiêu đơn giản: mang đến những mẫu túi xách chất lượng cao, hợp xu hướng với mức giá phải chăng.</p>
+
+        <img src="img/Introduce.jpg" alt="fashion store"/>
+
+        <h2>Sứ mệnh của chúng tôi</h2>
+        <p>Sứ mệnh của chúng tôi là truyền cảm hứng tự tin và giúp bạn thể hiện bản thân qua từng chiếc túi bạn chọn. Chúng tôi không chỉ bán túi xách; chúng tôi bán sự tự tin, tính tổ chức, và niềm vui khi tìm được một thiết kế hoàn hảo cho mọi dịp.</p>
+
+        <h2>Giá trị cốt lõi</h2>
+        <p>Tại Fashion Store, chúng tôi cam kết về chất lượng trên từng đường kim mũi chỉ, dịch vụ khách hàng tận tâm và luôn cập nhật những xu hướng túi xách mới nhất từ cổ điển đến hiện đại. Sự hài lòng của bạn là ưu tiên hàng đầu của chúng tôi.</p>
+    </div>
+
+</main>
+
+<div id="footer-placeholder"></div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+
+        function loadHTML(file, elementId) {
+            fetch(file)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error("Không thể tải file: " + response.statusText);
+                    }
+                    return response.text();
+                })
+                .then(data => {
+                    document.getElementById(elementId).innerHTML = data;
+                })
+                .catch(error => {
+                    console.error("Lỗi khi tải file HTML:", error);
+                });
+        }
+
+        // Tải header.html và footer.html
+        loadHTML("header.html", "header-placeholder");
+        loadHTML("footer.html", "footer-placeholder");
+    });
+</script>
+
+</body>
+</html>
