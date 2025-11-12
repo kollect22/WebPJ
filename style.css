@@ -58,6 +58,7 @@ body {
 .sub-menu{
     position: absolute;
     display: none;
+    width: 100px;
     top: 100%;
     left: 0;
     background-color: #333;
@@ -65,7 +66,7 @@ body {
     margin: 0;
 
  }
-.menu:hover .sub-menu{
+.menu:hover .sub-menu, .sub-menu:hover{
     display: block;
 }
 .sub-menu li{
@@ -214,10 +215,10 @@ h2{
     color: #000;
     z-index: 2;
 }
-
+/* footer */
 .footer{
     width: 100%;
-    background: black;
+    background: #333333;
     color: white;
     padding: 40px 0;
     font-size: 14px;
