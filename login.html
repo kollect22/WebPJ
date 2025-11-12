@@ -6,11 +6,28 @@
   <style>
       body {
           font-family: Arial, sans-serif;
-          background:#fff;
+          background:#f5f5f5;
           margin:0;
           padding:0;
+          display: flex;
+          min-height: 100vh;
+          flex-direction: column;
+          padding-top: 80px;
       }
-      .form-container {
+      .main-content{
+          flex: 1; 
+          display: flex;
+          justify-content: center; 
+          align-items: center; 
+      }
+      .outer-box {
+          background: #fff;
+          box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+          border-radius: 12px;
+          padding: 20px 30px 35px;
+          width: 420px;
+      }
+          .form-container {
           max-width:420px;
           margin:60px auto;
           padding:20px;
@@ -18,7 +35,7 @@
       .tab {
           display:flex;
           justify-content:center;
-          margin-bottom:20px;
+          margin-bottom:30px;
           border-bottom:1px solid #ddd;
       }
       .tab button {
@@ -37,7 +54,7 @@
           margin-bottom:12px;
       }
       .input-box input {
-          width:100%;
+          width:358px;
           padding:12px;
           border:1px solid #ccc;
           border-radius:4px;
@@ -69,8 +86,11 @@
   </style>
 </head>
 <body>
-<div class="form-container">
-  <div class="tab">
+<div id="header-placeholder"></div>
+<div class="main-content">
+  <div class="outer-box">
+    <div class="form-container">
+      <div class="tab">
     <button id="tabLogin" class="active" onclick="showForm('loginForm')">Đăng nhập</button>
     <button id="tabRegister" onclick="showForm('registerForm')">Đăng ký</button>
   </div>
@@ -101,8 +121,9 @@
       Đã có tài khoản?
       <span class="link" onclick="showForm('loginForm')">Đăng nhập</span>
     </div>
+   </div>
   </div>
-
+</div>
 </div>
 
 <script>
@@ -140,5 +161,32 @@
     else alert("Sai thông tin!");
   }
 </script>
+
+<div id="footer-placeholder"></div>
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+
+    function loadHTML(file, elementId) {
+      fetch(file)
+        .then(response => {
+          if (!response.ok) {
+            throw new Error("Không thể tải file: " + response.statusText);
+          }
+          return response.text();
+        })
+        .then(data => {
+          document.getElementById(elementId).innerHTML = data;
+        })
+        .catch(error => {
+          console.error("Lỗi khi tải file HTML:", error);
+        });
+    }
+
+    loadHTML("header.html", "header-placeholder");
+
+    loadHTML("footer.html", "footer-placeholder");
+  });
+</script>
+
 </body>
 </html>
