@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"/>
+    <style>
+        body{
+            font-family: Arial, sans-serif;
+            color: white;
+        }
+        .breadcrumb {
+            padding: 20px;
+            color: white;
+        }
+        a {
+            text-decoration: none;
+            color: white;
+        }
+        li{
+            list-style: none;
+        }
+        .sidebar {
+            width: 350px;
+            margin: 10px;
+            padding: 20px;
+            color: white;
+            text-decoration: none;
+            border: white 1px solid;
+            border-radius: 10px;
+        }
+        .categories h3{
+            border-bottom: white 1px solid;
+            padding-bottom: 10px;
+        }
+        .categories-list {
+            padding-left: 20px;
+        }
+        .categories-list li {
+            margin-bottom: 10px;
+            border-bottom: white 1px solid;
+        }
+        .categories-list li:last-child {
+            margin-bottom: 0;
+            border-bottom: none;
+        }
+        .main-content{
+            display: flex;
+
+        }
+        .filter{
+            width: 100%;
+            justify-content: flex-end;
+        }
+
+    </style>
+</head>
+<body>
+<div id="header"></div>
+
+<section class="banner">
+    <img src="img/banner.jpg" alt="banner quảng cáo"/>
+    <div class="banner-text">
+        <h2>Ưu đãi Haloween</h2>
+        <button>Xem ngay</button>
+    </div>
+</section>
+<div class="breadcrumb">
+    🏠 <a href="index.html">Trang chủ</a> / Sản phẩm
+</div>
+<aside class="sidebar">
+    <div class="categories">
+        <h3>Danh mục</h3>
+        <ul class="categories-list">
+            <li><a href="#">Túi xách</a></li>
+            <li><a href="#">Phụ kiện</a></li>
+        </ul>
+    </div>
+</aside>
+
+<section class="main-content">
+    <div class="filter">
+        <button class="filter-btn">
+        <i class="fa-solid fa-filter">Lọc</i>
+        </button>
+        <div class="sort-wrapper">
+            <span>Sắp xếp</span>
+            <select id="sortSelect">
+                <option value="default">Thứ tự mặc định</option>
+                <option value="priceAsc">Giá tăng dần</option>
+                <option value="priceDesc">Giá giảm dần</option>
+                <option value="newest">Mới nhất</option>
+            </select>
+        </div>
+    </div>
+</section>
+
+<div id="footer"></div>
+
+<script src="script.js"></script></body>
+</html>
