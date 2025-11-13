@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Title</title>
+  <title>Giỏ hàng & Thanh toán</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"/>
   <style>
       body {
@@ -25,7 +25,7 @@
 
       .cart-items {
           flex: 2;
-          min-height: 800px;
+          min-height: 600px;
       }
 
       .cart-summary {
@@ -34,20 +34,14 @@
           border-left: 1px solid #eee;
           background-color: #fff;
           box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
-          position: static;
-          top: auto;
-          align-self: auto;
-          height: auto;
+          position: relative;
       }
+
       h2 {
           font-size: 18px;
           font-weight: bold;
           margin-bottom: 20px;
           color: #000;
-      }
-
-      .cart-summary h2:first-of-type {
-          margin-top: 0;
       }
 
       .cart-item {
@@ -98,22 +92,12 @@
           color: #999;
           text-decoration: line-through;
           margin-left: 10px;
-          font-weight: normal;
       }
 
       .item-info {
           font-size: 14px;
           color: #555;
           margin-bottom: 5px;
-      }
-
-      .item-remove {
-          position: absolute;
-          top: 15px;
-          right: 0;
-          cursor: pointer;
-          color: #999;
-          font-size: 20px;
       }
 
       .quantity-control {
@@ -130,8 +114,6 @@
           padding: 5px 10px;
           cursor: pointer;
           font-size: 16px;
-          color: #000;
-          outline: none;
       }
 
       .quantity-control input {
@@ -140,7 +122,6 @@
           border: none;
           padding: 5px 0;
           font-size: 14px;
-          outline: none;
       }
 
       .summary-row {
@@ -158,25 +139,10 @@
           margin-top: 15px;
       }
 
-      .summary-row span:last-child {
-          font-weight: bold;
-          color: #000;
-      }
-
-      .summary-row.order-total span:last-child {
-          font-size: 22px;
-          color: #000;
-      }
       .discount-code {
           margin-top: 20px;
           padding-top: 10px;
           border-top: 1px solid #eee;
-      }
-
-      .discount-code p {
-          font-size: 14px;
-          color: #555;
-          margin-bottom: 10px;
       }
 
       .discount-input-group {
@@ -187,7 +153,6 @@
           flex-grow: 1;
           padding: 10px;
           border: 1px solid #ccc;
-          outline: none;
       }
 
       .discount-input-group button {
@@ -211,7 +176,6 @@
           display: flex;
           justify-content: center;
           align-items: center;
-          padding: 0;
       }
 
       .cart-actions-content {
@@ -222,14 +186,12 @@
           align-items: center;
           padding: 15px 20px;
       }
-
       .cart-total-footer {
           font-size: 18px;
           font-weight: bold;
           color: #000;
           line-height: 1.2;
       }
-
       .cart-actions-buttons button {
           padding: 15px 30px;
           font-size: 16px;
@@ -251,8 +213,74 @@
           color: #fff;
       }
 
-  </style>
+      /* -------- FORM THANH TOÁN -------- */
+      .checkout-form-container {
+          display: none;
+          flex-direction: column;
+          gap: 25px;
+          margin-top: 20px;
+          background-color: #f9f9f9;
+          padding: 15px 20px;
+          border-radius: 12px; 
+          border: 1px solid #ddd;
+          box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+      }
 
+      .checkout-form-section h3 {
+          font-size: 18px;
+          font-weight: bold;
+          color: #000;
+          margin-bottom: 15px;
+      }
+
+      .input-group-half {
+          display: flex;
+          gap: 10px;
+          margin-bottom: 10px;
+      }
+
+      .input-group-half input, .input-full input, .input-full textarea, select {
+          flex: 1;
+          padding: 8px;
+          border: 1px solid #ccc;
+          font-size: 14px;
+          box-sizing: border-box;
+      }
+
+      .input-full textarea {
+          resize: vertical;
+          min-height: 70px;
+          margin-bottom: 10px;
+      }
+
+      .radio-option {
+          display: flex;
+          align-items: center;
+          margin-bottom: 5px;
+      }
+
+      .radio-option input[type="radio"] {
+          margin-right: 10px;
+          accent-color: #4b0082;
+      }
+
+      .shipping-box-placeholder {
+          width: 100%;
+          height: 80px;
+          background-color: #f7f7f7;
+          border: 1px dashed #ccc;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          margin-top: 10px;
+      }
+
+      .shipping-box-placeholder i {
+          font-size: 35px;
+          color: #aaa;
+      }
+
+  </style>
 </head>
 <body>
 <div id="header-placeholder"></div>
@@ -268,18 +296,17 @@
         <div class="item-details">
           <div class="item-name">TÚI XÁCH THỜI TRANG</div>
           <div class="item-price">
-            <span class="current-price">922,500₫</span>
-            <span class="item-price-old">2,050,000₫</span>
+            <span class="current-price">922,500VNĐ</span>
+            <span class="item-price-old">2,050,000VNĐ</span>
           </div>
           <div class="item-info">Màu sắc: **BLACK**</div>
           <div class="item-info">Kích thước: **No Size**</div>
           <div class="quantity-control">
-            <button class="quantity-minus" onclick="updateQuantity(this, -1)">-</button>
-            <input type="text" value="1" min="1" readonly class="quantity-input">
-            <button class="quantity-plus" onclick="updateQuantity(this, 1)">+</button>
+            <button onclick="updateQuantity(this, -1)">-</button>
+            <input type="text" value="1" readonly class="quantity-input">
+            <button onclick="updateQuantity(this, 1)">+</button>
           </div>
         </div>
-        <span class="item-remove" title="Xóa sản phẩm">×</span>
       </div>
 
       <div class="cart-item" data-price="382500" data-quantity="1">
@@ -289,50 +316,40 @@
         <div class="item-details">
           <div class="item-name">TÚI XÁCH MODEL</div>
           <div class="item-price">
-            <span class="current-price">382,500₫</span>
-            <span class="item-price-old">850,000₫</span>
+            <span class="current-price">382,500VNĐ</span>
+            <span class="item-price-old">850,000VNĐ</span>
           </div>
           <div class="item-info">Màu sắc: **WHITE**</div>
           <div class="item-info">Kích thước: **No Size**</div>
           <div class="quantity-control">
-            <button class="quantity-minus" onclick="updateQuantity(this, -1)">-</button>
-            <input type="text" value="1" min="1" readonly class="quantity-input">
-            <button class="quantity-plus" onclick="updateQuantity(this, 1)">+</button>
+            <button onclick="updateQuantity(this, -1)">-</button>
+            <input type="text" value="1" readonly class="quantity-input">
+            <button onclick="updateQuantity(this, 1)">+</button>
           </div>
         </div>
-        <span class="item-remove" title="Xóa sản phẩm">×</span>
       </div>
-
-      <p style="margin-top: 50px; font-style: italic;"></p>
-      <div class="cart-item" data-price="922500" data-quantity="1">... (Sản phẩm 3) ...</div>
-      <div class="cart-item" data-price="382500" data-quantity="1">... (Sản phẩm 4) ...</div>
-      <div class="cart-item" data-price="922500" data-quantity="1">... (Sản phẩm 5) ...</div>
-      <div class="cart-item" data-price="382500" data-quantity="1">... (Sản phẩm 6) ...</div>
-      <div class="cart-item" data-price="922500" data-quantity="1">... (Sản phẩm 7) ...</div>
-      <div class="cart-item" data-price="382500" data-quantity="1">... (Sản phẩm 8) ...</div>
     </div>
   </div>
 
   <div class="cart-summary">
     <h2>TẠM TÍNH</h2>
-
     <div class="summary-details">
       <div class="summary-row">
         <span>Giá bán:</span>
-        <span id="original-total">2,900,000₫</span>
+        <span id="original-total">2,900,000VNĐ</span>
       </div>
       <div class="summary-row">
         <span>Giảm giá:</span>
-        <span id="discount-amount">-1,595,000₫</span>
+        <span id="discount-amount">-1,595,000VNĐ</span>
       </div>
       <div class="summary-row">
         <span>Phí vận chuyển:</span>
-        <span id="shipping-fee">29,000₫</span>
+        <span id="shipping-fee">29,000VNĐ</span>
       </div>
 
       <div class="summary-row order-total">
         <span>Đơn hàng:</span>
-        <span id="order-total">1,334,000₫</span>
+        <span id="order-total">1,334,000VNĐ</span>
       </div>
     </div>
 
@@ -346,20 +363,48 @@
 
     <div class="summary-row total">
       <span>TẠM TÍNH:</span>
-      <span id="final-total" style="color: black;">1,334,000₫</span>
+      <span id="final-total" style="color: black;">1,334,000VNĐ</span>
+    </div>
+
+    <!-- FORM THÔNG TIN ẨN BÊN PHẢI -->
+    <div class="checkout-form-container" id="checkoutForm">
+      <div class="checkout-form-section">
+        <h3>THÔNG TIN NGƯỜI MUA</h3>
+        <div class="input-group-half">
+          <input type="text" placeholder="Họ và tên">
+          <input type="tel" placeholder="Số điện thoại">
+        </div>
+        <div class="input-full"><input type="email" placeholder="Email"></div>
+        <div class="input-full"><input type="text" placeholder="Địa chỉ nhận hàng"></div>
+        <div class="input-group-half">
+          <select><option>Chọn Tỉnh / thành</option></select>
+          <select><option>Chọn Quận / huyện</option></select>
+        </div>
+        <div class="input-full"><textarea placeholder="Ghi chú thêm..."></textarea></div>
+      </div>
+
+      <div class="checkout-form-section">
+        <h3>VẬN CHUYỂN & THANH TOÁN</h3>
+        <div class="radio-option"><input type="radio" name="ship" checked>Vận chuyển tiêu chuẩn (29,000VNĐ)</div>
+        <div class="radio-option"><input type="radio" name="ship">Hỏa tốc (45,000VNĐ)</div>
+        <div class="shipping-box-placeholder"><i class="fa-solid fa-truck-fast"></i></div>
+        <br>
+        <div class="radio-option"><input type="radio" name="pay" checked>Thanh toán COD</div>
+        <div class="radio-option"><input type="radio" name="pay">Chuyển khoản ngân hàng</div>
+        <div class="radio-option"><input type="radio" name="pay">Thẻ Tín dụng/Ghi nợ</div>
+      </div>
     </div>
   </div>
 </div>
 
 <div class="cart-actions">
   <div class="cart-actions-content">
-    <div class="cart-total-footer">
-      TẠM TÍNH (sản phẩm)<br>
-      <span id="footer-product-total">1,334,000₫</span>
+    <div class="cart-total-footer">TẠM TÍNH (sản phẩm)<br>
+      <span>1,334,000VNĐ</span>
     </div>
     <div class="cart-actions-buttons">
-      <button class="continue-shopping" onclick="window.location.href = 'index.html'">TIẾP TỤC MUA SẮM</button>
-      <button class="checkout">THANH TOÁN</button>
+      <button class="continue-shopping" onclick="window.location.href='index.html'">TIẾP TỤC MUA SẮM</button>
+      <button class="checkout" onclick="showCheckout()">THANH TOÁN</button>
     </div>
   </div>
 </div>
@@ -368,16 +413,36 @@
   function updateQuantity(button, change) {
     const item = button.closest('.cart-item');
     const input = item.querySelector('.quantity-input');
-    let currentQuantity = parseInt(input.value);
-    let newQuantity = currentQuantity + change;
+    let newQty = parseInt(input.value) + change;
+    if (newQty >= 1) input.value = newQty;
+  }
 
-    if (newQuantity >= 1) {
-      input.value = newQuantity;
-      item.dataset.quantity = newQuantity;
-      console.log(`Cập nhật số lượng sản phẩm: ${item.querySelector('.item-name').textContent} thành ${newQuantity}`);
-    }
+  function showCheckout() {
+    const form = document.getElementById("checkoutForm");
+    form.style.display = form.style.display === "none" || form.style.display === "" ? "flex" : "none";
   }
 </script>
+<script>
+  const checkoutButton = document.querySelector('.checkout');
+  const checkoutForm = document.querySelector('.checkout-form-container');
+
+  let checkoutStep = 1; // 1 = hiện form, 2 = đặt hàng
+
+  checkoutButton.addEventListener('click', function() {
+    if (checkoutStep === 1) {
+      checkoutForm.style.display = 'flex';
+      checkoutButton.textContent = 'XÁC NHẬN ĐẶT HÀNG'; // đổi tên nút
+      checkoutStep = 2;
+    } else {
+      // Giả sử người dùng đã điền thông tin đầy đủ
+      alert('Đặt hàng thành công! Cảm ơn bạn đã mua sắm.');
+      checkoutButton.textContent = 'ĐẶT HÀNG THÀNH CÔNG';
+      checkoutButton.style.backgroundColor = 'green';
+      checkoutButton.disabled = true; // khoá nút
+    }
+  });
+</script>
+
 <div id="footer-placeholder"></div>
 <script>
   document.addEventListener("DOMContentLoaded", function() {
@@ -399,11 +464,8 @@
     }
 
     loadHTML("header.html", "header-placeholder");
-
     loadHTML("footer.html", "footer-placeholder");
   });
 </script>
-
-
 </body>
 </html>
