@@ -443,29 +443,7 @@
   });
 </script>
 
-<div id="footer-placeholder"></div>
-<script>
-  document.addEventListener("DOMContentLoaded", function() {
-
-    function loadHTML(file, elementId) {
-      fetch(file)
-        .then(response => {
-          if (!response.ok) {
-            throw new Error("Không thể tải file: " + response.statusText);
-          }
-          return response.text();
-        })
-        .then(data => {
-          document.getElementById(elementId).innerHTML = data;
-        })
-        .catch(error => {
-          console.error("Lỗi khi tải file HTML:", error);
-        });
-    }
-
-    loadHTML("header.html", "header-placeholder");
-    loadHTML("footer.html", "footer-placeholder");
-  });
-</script>
+<div id="footer"></div>
+<script src="script.js"></script>
 </body>
 </html>

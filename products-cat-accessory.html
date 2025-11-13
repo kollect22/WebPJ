@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"/>
+    <style>
+        body{
+            font-family: Arial, sans-serif;
+            color: white;
+        }
+        .breadcrumb {
+            padding: 20px 0;
+            margin: 0 100px;
+            color: white;
+        }
+        a {
+            text-decoration: none;
+            color: white;
+        }
+        .shop-container{
+            display: flex;
+            gap: 30px;
+            margin: 0 100px;
+        }
+        li{
+            list-style: none;
+        }
+        .sidebar {
+            width: 350px;
+            height: 220px;
+            padding: 20px;
+            color: white;
+            text-decoration: none;
+            border: white 1px solid;
+            border-radius: 10px;
+        }
+        .categories h3{
+            border-bottom: white 1px solid;
+            padding-bottom: 10px;
+        }
+        .categories-list {
+            padding-left: 20px;
+        }
+        .categories-list li {
+            margin-bottom: 10px;
+            border-bottom: white 1px solid;
+        }
+        .categories-list li:last-child {
+            margin-bottom: 0;
+            border-bottom: none;
+        }
+        .main-content{
+            flex: 1;
+        }
+        .filter{
+            display: flex;
+            width: 100%;
+            gap: 30px;
+            margin-bottom: 20px;
+        }
+        .filter-btn, #select-sort{
+            background-color: #333333;
+            border: none;
+            color: white;
+            padding: 10px;
+            border-radius: 30px;
+        }
+
+        .product-cat-list{
+            display: grid;
+            grid-template-columns: repeat(4, 300px);
+            gap: 20px;
+            justify-content: center;
+        }
+        .product-item img {
+
+        }
+
+    </style>
+</head>
+<body>
+<div id="header"></div>
+<section class="banner">
+    <img src="img/banner.jpg" alt="banner quảng cáo"/>
+    <div class="banner-text">
+        <h2>Ưu đãi Haloween</h2>
+        <button>Xem ngay</button>
+    </div>
+</section>
+<div class="breadcrumb">
+    <i class="fa-regular fa-house"></i> <a href="index.html">Trang chủ</a> / Sản phẩm
+</div>
+<div class="shop-container">
+    <!-- Danh mục -->
+    <aside class="sidebar">
+        <div class="categories">
+            <h3>Danh mục</h3>
+            <ul class="categories-list">
+                <li><a href="products-category-all.html" >Tất cả sản phẩm</a></li>
+                <li><a href="products-cat-handbag.html" >Túi xách</a></li>
+                <li><a href="products-cat-accessory.html" style="color: #007bff">Phụ kiện</a></li>
+            </ul>
+        </div>
+    </aside>
+
+    <section class="main-content">
+        <!-- bộ lọc-->
+        <div class="filter">
+            <button class="filter-btn" ><i class="fa-solid fa-filter"></i></button>
+            <select id="select-sort">
+                <option value="newest">Mới nhất</option>
+                <option value="price-asc">Giá tăng dần</option>
+                <option value="price-desc">Giá giảm dần</option>
+            </select>
+        </div>
+        <!-- sản phẩm-->
+        <div class="product-cat-list">
+            <div class="product-item">
+                <img src="img/product1.webp" alt="www"/>
+                <div class="cart-icon">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                </div>
+                <div class="product-name">Túi xách</div>
+                <div class="product-price">100.000VNĐ</div>
+            </div>
+            <div class="product-item">
+                <img src="img/product1.webp" alt="www"/>
+                <div class="cart-icon">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                </div>
+                <div class="product-name">Túi xách</div>
+                <div class="product-price">100.000VNĐ</div>
+            </div>
+            <div class="product-item">
+                <img src="img/product1.webp" alt="www"/>
+                <div class="cart-icon">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                </div>
+                <div class="product-name">Túi xách</div>
+                <div class="product-price">100.000VNĐ</div>
+            </div>
+            <div class="product-item">
+                <img src="img/product1.webp" alt="www"/>
+                <div class="cart-icon">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                </div>
+                <div class="product-name">Túi xách</div>
+                <div class="product-price">100.000VNĐ</div>
+            </div>
+            <div class="product-item">
+                <img src="img/product1.webp" alt="www"/>
+                <div class="cart-icon">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                </div>
+                <div class="product-name">Túi xách</div>
+                <div class="product-price">100.000VNĐ</div>
+            </div>
+            <div class="product-item">
+                <img src="img/product1.webp" alt="www"/>
+                <div class="cart-icon">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                </div>
+                <div class="product-name">Túi xách</div>
+                <div class="product-price">100.000VNĐ</div>
+            </div>
+            <div class="product-item">
+                <img src="img/product1.webp" alt="www"/>
+                <div class="cart-icon">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                </div>
+                <div class="product-name">Túi xách</div>
+                <div class="product-price">100.000VNĐ</div>
+            </div>
+            <div class="product-item">
+                <img src="img/product1.webp" alt="www"/>
+                <div class="cart-icon">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                </div>
+                <div class="product-name">Túi xách</div>
+                <div class="product-price">100.000VNĐ</div>
+            </div>
+        </div>
+
+    </section>
+</div>
+
+<div id="footer"></div>
+
+<script src="script.js"></script></body>
+
+</html>
