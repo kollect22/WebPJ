@@ -12,31 +12,43 @@ body {
     top: 0;
     left: 0;
     width: 100%;
-    height: auto;
     display: flex;
     justify-content: space-between;
-    padding: 10px 89px;
+    padding: 12px 40px;
     background-color: #333;
     color: white;
     z-index: 100;
 }
+.navbar a {
+     color: white;
+     text-decoration: none;
+ }
 .logo{
-    font-size: 35px;
+   display: flex;
+    align-items: center;
     font-weight: bold;
+    flex: 1;
+    font-size: 32px;
 }
 .logo a{
-
+}
+.nav-center {
+    display: flex;
+    justify-content: center;
+    flex: 2;
 }
 .nav-center ul{
     list-style: none;
     display: flex;
-    gap: 20px;
+    gap: 40px;
     padding: 0;
 }
 .nav-center ul li{
     position: relative;
+    white-space: nowrap;
 }
 .nav-center ul li a{
+    font-size: 20px;
     display: block;
     transition: 0.25s ease;
 }
@@ -44,27 +56,23 @@ body {
     background-color: #555555;
     color: white;
 }
-.navbar a {
-     color: white;
-     margin: 0 10px;
-     text-decoration: none;
-    font-size: 20px;
- }
-.sub-menu {
+
+.nav-center ul .sub-menu {
     position: absolute;
     top: 100%;
     left: 0;
     background: #333;
-    padding: 10px 0;
+    padding-top: 10px;
     min-width: 150px;
-    display: none !important;
     z-index: 1;
+    white-space: nowrap;
+    display: none;
 }
 
 .sub-menu li a {
     padding: 10px 15px;
-    white-space: nowrap;
     transition: 0.25s ease;
+    display: block;
 }
 .sub-menu li a:hover{
     color: white;
@@ -73,25 +81,37 @@ body {
 .sub-menu li:first-child {
     border-bottom: 1px solid white;
 }
-.sub-menu li:hover {
 
-}
 .nav-center ul li:hover .sub-menu {
-    display: block !important;
+    display: block;
 }
 .nav-right {
     font-size: 20px;
     display: flex;
+    justify-content: flex-end;
     align-items: center;
+    flex: 1;
     gap: 10px;
 }
 .nav-right i{
-    cursor: pointer;
     margin: 0;
     padding: 0;
 }
-
-
+.search-box {
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+.search-box input {
+    padding: 5px 0;
+    margin-left: 8px;
+    border: none;
+    background: none;
+    border-bottom: 2px solid grey;
+    color: white;
+    outline: none;
+    font-size: 16px;
+}
 
 /* banner*/
 .banner{
@@ -125,6 +145,7 @@ body {
     color: white;
     padding: 40px;
     height: 550px;
+    position: relative;
 }
 h2{
     text-align: center;
@@ -134,12 +155,43 @@ h2{
     display: flex;
     justify-content: center;
     gap: 20px;
+
 }
+.scroll-left, .scroll-right {
+    position: absolute;
+    top: 42%;
+    background-color: grey;
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    bottom: 20px;
+    right: 20px;
+    cursor: pointer;
+    font-size: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    transition: 0.25s ease;
+}
+.scroll-right:hover, .scroll-left:hover{
+    background-color: white;
+}
+.scroll-left {
+    left: 20%;
+}
+
+.scroll-right {
+    right: 20%;
+}
+
 .product-item  {
     position: relative;
     cursor: pointer;
     width: 300px;
 }
+
 .product-item img {
      width: 100%;
      height: auto;
@@ -181,8 +233,7 @@ h2{
 
 /*Bo suu tap*/
 .collection{
-    background: #000;
-    padding: 40px 0;
+    padding: 40px;
 }
 
 .collection-title{
@@ -271,7 +322,7 @@ h2{
 }
 
 .footer-col p{
-    margin: 6px, 0;
+    margin: 6px 0;
 }
 
 .footer-icons{
@@ -299,10 +350,19 @@ h2{
     position: fixed;
     border: none;
     border-radius: 50%;
-    width: 28px;
-    height: 28px;
+    width: 40px;
+    height: 40px;
     bottom: 20px;
     right: 20px;
     cursor: pointer;
+    font-size: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     z-index: 1000;
+    transition: 0.5s ease;
 }
+#scrollTopBtn:hover {
+    background-color: white;
+}
+
