@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Hàng Mới - Fashion Store</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+
+    <style>
+        .body{
+            padding-top: 80px;
+        }
+
+        .banner{
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .controls-bar{
+            background-color: #1A1A1A;
+            padding: 20px 0;
+            border-bottom: 1px solid #333;
+            position: sticky;
+            top: 80px;
+            z-index: 50;
+        }
+
+        .controls-container{
+            width: 100%;
+            padding: 0 89px;
+            margin: auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+
+        .controls-container button{
+            background: none;
+            border: 1px solid #777;
+            padding: 10px 20px;
+            font-size: 14px;
+            font-weight: bold;
+            cursor: pointer;
+            color: white;
+        }
+
+        .controls-container button i {
+            margin-left: 8px;
+        }
+
+        .sort-dropdown{
+            position: relative;
+        }
+
+        .sort-list{
+            position: absolute;
+            top: 100%;
+            right: 0;
+            left: 0;
+            background: #1a1a1a;
+            border: 1px solid #777;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+            width:180px;
+            height: 90px;
+            padding: 10px 20px;
+            margin: 5px 0 0 0;
+        }
+
+    </style>
+
+</head>
+<body>
+<div id = "header"></div>
+
+<main class="product-new">
+
+<!--    //banner-->
+    <section class = "banner">
+        <img src="img/banner.jpg" alt="banner"/>
+    </section>
+
+
+<!--    lọc-->
+    <section class = "controls-bar">
+        <div class="controls-container">
+            <button id = "filter">
+                Bộ lọc <i class="fa-solid fa-filter"></i>
+            </button>
+
+            <div class = "sort-dropdown" id = "sort-dropdown">
+                <button id = "sort-btn">
+                    Sắp xếp <i class="fa-solid fa-chervon-down"></i>
+                </button>
+                <ul class = "sort-list" id = "sort-list">
+                    <li>Giá: Giảm dần</li>
+                    <li>Giá: Tăng dần</li>
+                    <li>Cũ nhất</li>
+                    <li class = "active">Mới nhất</li>
+                </ul>
+            </div>
+
+        </div>
+    </section>
+
+<!--    list sp-->
+    <section class = "product-list-container">
+        <div class = "product-list">
+
+            <div class="product-item">
+                <img src="img/product1.webp" alt="www"/>
+                <div class="cart-icon">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                </div>
+                <div class="product-name">Túi xách</div>
+                <div class="product-price">100.000VNĐ</div>
+            </div>
+
+            <div class="product-item">
+                <img src="img/product1.webp" alt="www"/>
+                <div class="cart-icon">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                </div>
+                <div class="product-name">Túi xách</div>
+                <div class="product-price">100.000VNĐ</div>
+            </div>
+
+            <div class="product-item">
+                <img src="img/product1.webp" alt="www"/>
+                <div class="cart-icon">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                </div>
+                <div class="product-name">Túi xách</div>
+                <div class="product-price">100.000VNĐ</div>
+            </div>
+
+            <div class="product-item">
+                <img src="img/product1.webp" alt="www"/>
+                <div class="cart-icon">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                </div>
+                <div class="product-name">Túi xách</div>
+                <div class="product-price">100.000VNĐ</div>
+            </div>
+
+            <div class="product-item">
+                <img src="img/product1.webp" alt="www"/>
+                <div class="cart-icon">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                </div>
+                <div class="product-name">Túi xách</div>
+                <div class="product-price">100.000VNĐ</div>
+            </div>
+
+            <div class="product-item">
+                <img src="img/product1.webp" alt="www"/>
+                <div class="cart-icon">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                </div>
+                <div class="product-name">Túi xách</div>
+                <div class="product-price">100.000VNĐ</div>
+            </div>
+
+            <div class="product-item">
+                <img src="img/product1.webp" alt="www"/>
+                <div class="cart-icon">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                </div>
+                <div class="product-name">Túi xách</div>
+                <div class="product-price">100.000VNĐ</div>
+            </div>
+
+            <div class="product-item">
+                <img src="img/product1.webp" alt="www"/>
+                <div class="cart-icon">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                </div>
+                <div class="product-name">Túi xách</div>
+                <div class="product-price">100.000VNĐ</div>
+            </div>
+        </div>
+    </section>
+
+    <aside class="filters" id="filters">
+        <div class="filter-sidebar">
+            <div class = "filter-header">
+                <h2>Bộ lọc</h2>
+                <button id = "filter-close-btn">
+                    <i class="fa-solid fa-x"></i>
+                </button>
+            </div>
+
+            <div class = "filter-body">
+                <div class = "filter">
+                    <h3>Danh mục sản phẩm</h3>
+                    <ul>
+                        <li><a href="#">Tất cả sản phẩm</a> </li>
+                        <li><a href="#">Túi xách</a> </li>
+                        <li><a href="#">Phụ kiện</a> </li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </aside>
+
+</main>
+
+<div id = "footer"></div>
+<script src="script.js"></script>
+
+</body>
+</html>
