@@ -10,7 +10,6 @@
           background-color: #f8f8f8;
           color: #333;
           margin: 0;
-          padding: 20px 20px 100px;
       }
 
       .container {
@@ -166,7 +165,7 @@
 
       .cart-actions {
           width: 100%;
-          position: fixed;
+          position: static;
           bottom: 0;
           left: 0;
           background-color: #fff;
@@ -283,7 +282,7 @@
   </style>
 </head>
 <body>
-<div id="header-placeholder"></div>
+<div id="header"></div>
 <div class="container">
   <div class="cart-items">
     <h2>Bạn đang có <span id="item-count">2 sản phẩm</span> trong giỏ hàng</h2>
@@ -408,7 +407,7 @@
     </div>
   </div>
 </div>
-
+<div id="footer"></div>
 <script>
   function updateQuantity(button, change) {
     const item = button.closest('.cart-item');
@@ -443,7 +442,6 @@
   });
 </script>
 
-<div id="footer"></div>
 <script src="script.js"></script>
 </body>
 </html>
