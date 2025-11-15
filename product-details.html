@@ -32,12 +32,15 @@
         /* ----- BREADCRUMBS ----- */
         .breadcrumbs {
             font-size: 14px;
-            color: white;
+            color: #888;
             margin-bottom: 25px;
+
+            border-bottom: 1px solid #333;
+            padding-bottom: 10px;
         }
         .breadcrumbs a {
             text-decoration: none;
-            color: #333;
+            color: white;
         }
         .breadcrumbs a:hover {
             text-decoration: underline;
@@ -90,13 +93,14 @@
             font-size: 14px;
             display: block;
             margin-bottom: 8px;
-            font-weight: 600;
+            font-weight: bold;
+            color:white;
         }
         .size-option {
             border: 1px solid #ccc;
             padding: 10px 15px;
             cursor: pointer;
-            font-weight: 600;
+            font-weight: bold;
         }
         .size-option.active {
             background: #000;
@@ -151,6 +155,7 @@
         }
         .other-colors span {
             font-size: 14px;
+            color: white;
             display: block;
             margin-bottom: 10px;
         }
@@ -169,6 +174,7 @@
         }
         .accordion-header {
             display: flex;
+            color: white;
             justify-content: space-between;
             align-items: center;
             padding: 18px 0;
@@ -180,6 +186,7 @@
             transition: transform 0.3s ease;
         }
         .accordion-content {
+            color: white;
             max-height: 0;
             overflow: hidden;
             transition: max-height 0.3s ease-out;
@@ -220,7 +227,7 @@
 </head>
 <body>
 
-<div id="header-placeholder"></div>
+<div id="header"></div>
 
 <div class="product-page-container">
     <nav class="breadcrumbs">
@@ -285,7 +292,7 @@
                             <i class="fas fa-chevron-down"></i>
                         </div>
                         <div class="accordion-content">
-                            <li>Hãy đang nhập để nhận ưu đãi của riêng bạn</li>
+                            <li>Hãy đăng nhập để nhận ưu đãi của riêng bạn</li>
                         </div>
                     </div>
                     <div class="accordion-item active"> <div class="accordion-header">
@@ -356,50 +363,11 @@
     </div>
 </div>
 
-<div id="footer-placeholder"></div>
+<div id="footer"></div>
 
 
-<script>
-    // Chạy code khi trang đã tải xong
-    document.addEventListener("DOMContentLoaded", function() {
+<script src="script.js"></script>
 
-
-        function loadHTML(file, elementId) {
-            fetch(file)
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error("Không thể tải file: " + response.statusText);
-                    }
-                    return response.text();
-                })
-                .then(data => {
-                    // Đưa nội dung file vào "chỗ trống"
-                    document.getElementById(elementId).innerHTML = data;
-                })
-                .catch(error => {
-                    console.error("Lỗi khi tải file HTML:", error);
-                });
-        }
-
-        loadHTML("header.html", "header-placeholder");
-
-        loadHTML("footer.html", "footer-placeholder");
-
-
-
-        const accordionHeaders = document.querySelectorAll(".accordion-header");
-
-        accordionHeaders.forEach(header => {
-            header.addEventListener("click", function() {
-
-                const accordionItem = this.parentElement;
-
-                accordionItem.classList.toggle("active");
-            });
-        });
-
-    });
-</script>
 
 </body>
 </html>
