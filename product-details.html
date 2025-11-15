@@ -9,24 +9,16 @@
 
     <style>
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+
         body {
-            font-family: Arial, sans-serif;
-            background-color: #fff;
-            color: #333;
-            line-height: 1.5;
 
             padding-top: 80px;
         }
 
         .product-page-container {
-            max-width: 1300px;
+            max-width: 1400px;
             margin: 0 auto;
-            padding: 20px;
+            padding: 12px 40px;
         }
 
         /* ----- BREADCRUMBS ----- */
@@ -52,6 +44,9 @@
             gap: 20px;
         }
         .product-images {
+            display:grid;
+            grid-template-columns: repeat(2,1fr);
+            gap:10px;
             width: 100%;
         }
         .product-images img {
@@ -186,7 +181,7 @@
             transition: transform 0.3s ease;
         }
         .accordion-content {
-            color: white;
+            color: #ccc;
             max-height: 0;
             overflow: hidden;
             transition: max-height 0.3s ease-out;
@@ -295,7 +290,7 @@
                             <li>Hãy đăng nhập để nhận ưu đãi của riêng bạn</li>
                         </div>
                     </div>
-                    <div class="accordion-item active"> <div class="accordion-header">
+                    <div class="accordion-item"> <div class="accordion-header">
                         <span>Kích thước sản phẩm</span>
                         <i class="fas fa-chevron-down"></i>
                     </div>
@@ -368,6 +363,21 @@
 
 <script src="script.js"></script>
 
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        loadHTML("header.html", "header");
+        loadHTML("footer.html", "footer");
+
+        const accordionHeaders = document.querySelectorAll(".accordion-header");
+
+        accordionHeaders.forEach(header => {
+            header.addEventListener("click", function() {
+                const accordionItem = this.parentElement;
+                accordionItem.classList.toggle("active");
+            });
+        });
+    });
+</script>
 
 </body>
 </html>
