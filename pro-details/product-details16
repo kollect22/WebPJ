@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chi tiết sản phẩm - Túi Mirabelle</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        body {
+            padding-top: 80px;
+        }
+
+        .product-page-container {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .breadcrumbs {
+            font-size: 14px;
+            color: #888;
+            margin-bottom: 25px;
+            border-bottom: 1px solid #333;
+            padding-bottom: 10px;
+        }
+        .breadcrumbs a {
+            text-decoration: none;
+            color: #f0f0f0;
+        }
+        .breadcrumbs a:hover {
+            text-decoration: underline;
+        }
+
+        .product-layout {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .product-images {
+            display:grid;
+            grid-template-columns: repeat(2,1fr);
+            gap:10px;
+            width: 100%;
+        }
+        .product-images img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+            margin-bottom: 15px;
+        }
+        .product-info-wrapper {
+            width: 100%;
+        }
+        .product-info { }
+
+        .title-wrapper {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 15px;
+            margin-bottom: 10px;
+        }
+        .title-wrapper h1 {
+            color: white;
+            font-size: 20px;
+            font-weight: 500;
+        }
+        .title-wrapper .fa-heart {
+            font-size: 20px;
+            cursor: pointer;
+            color: white;
+        }
+        .price {
+            font-size: 24px;
+            font-weight: bold;
+            color: white;
+            margin-bottom: 20px;
+        }
+        .option-selector {
+            margin-bottom: 20px;
+        }
+        .option-selector > span {
+            font-size: 14px;
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: white;
+        }
+
+        .size-option {
+            border: 1px solid #ccc;
+            padding: 10px 15px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        .size-option.active {
+            background: #000;
+            color: gray;
+            border-color: gray;
+        }
+        .quantity-control {
+            display: flex;
+            border: 1px solid #ccc;
+            width: fit-content;
+        }
+        .quantity-control .quantity-btn {
+            border: none;
+            background: #f9f9f9;
+            padding: 0 15px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        .quantity-control input {
+            border: none;
+            border-left: 1px solid #ccc;
+            border-right: 1px solid #ccc;
+            width: 45px;
+            height: 40px;
+            text-align: center;
+            font-size: 16px;
+        }
+        .action-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin: 25px 0;
+        }
+        .action-buttons button {
+            padding: 15px;
+            font-size: 14px;
+            font-weight: bold;
+            text-transform: uppercase;
+            cursor: pointer;
+            border: 1px solid #333;
+        }
+        .btn-buy {
+            background: #333;
+            color: #fff;
+        }
+        .btn-add-to-cart {
+            background: #fff;
+            color: #333;
+        }
+
+        .other-colors {
+            margin-bottom: 20px;
+        }
+
+        .other-colors span {
+            font-size: 14px;
+            color: white;
+            display: block;
+            margin-bottom: 10px;
+        }
+        .color-swatch img {
+            width: 60px;
+            height: 60px;
+            border: 1px solid #eee;
+            cursor: pointer;
+        }
+        .colors-container{
+            display: flex;
+            flex-direction: row;
+            gap: 10px;
+        }
+
+        .accordion-item {
+            border-bottom: 1px solid #333;
+        }
+        .accordion-item:first-child {
+            border-top: 1px solid #333;
+        }
+        .accordion-header {
+            display: flex;
+            color: white;
+            justify-content: space-between;
+            align-items: center;
+            padding: 18px 0;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 15px;
+        }
+        .accordion-header i {
+            transition: transform 0.3s ease;
+        }
+        .accordion-content {
+            color: #ccc;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+        .accordion-content ul {
+            padding-left: 20px;
+            margin: 0 0 20px 0;
+            list-style: none;
+        }
+        .accordion-content li {
+            padding-bottom: 5px;
+        }
+        .accordion-item.active .accordion-content {
+            max-height: 500px;
+            transition: max-height 0.5s ease-in;
+        }
+        .accordion-item.active .accordion-header i {
+            transform: rotate(180deg);
+        }
+
+        @media (min-width: 992px) {
+            .product-layout {
+                flex-direction: row;
+                gap: 40px;
+                align-items: flex-start;
+            }
+            .product-images {
+                flex: 2;
+            }
+            .product-info-wrapper {
+                flex: 1;
+            }
+            .product-info {
+                position: sticky;
+                top: 20px;
+            }
+        }
+    </style>
+
+</head>
+<body>
+
+<div id="header"></div>
+
+<div class="product-page-container">
+    <nav class="breadcrumbs">
+        <a href="index.html">Trang chủ</a> / <a href="#">Sản Phẩm</a> / <span>Túi xách Mirabelle</span>
+    </nav>
+
+    <div class="product-layout">
+
+        <section class="product-images">
+            <img src="img/tui-mirabelle/anh1.webp" alt="Túi Mirabelle Đen - ảnh 1">
+            <img src="img/tui-mirabelle/anh2.webp" alt="Túi Mirabelle Đen - ảnh 2">
+            <img src="img/tui-mirabelle/anh3.webp" alt="Túi Mirabelle Đen - ảnh 3">
+            <img src="img/tui-mirabelle/anh4.jpg" alt="Túi Mirabelle Đen - ảnh 4">
+        </section>
+
+        <div class="product-info-wrapper">
+            <aside class="product-info">
+
+                <div class="title-wrapper">
+                    <h1>Túi xách phom chữ nhật Mirabelle Structured - Đen</h1>
+                    <i class="fa-regular fa-heart"></i>
+                </div>
+                <div class="price">2.550.000VNĐ</div>
+
+                <div class="option-selector">
+                    <span>Size</span>
+                    <div class="options">
+                        <button class="size-option active">L</button>
+                    </div>
+                </div>
+
+                <div class="option-selector">
+                    <span>Số lượng</span>
+                    <div class="quantity-control">
+                        <button class="quantity-btn" aria-label="Giảm"><i class="fas fa-minus"></i></button>
+                        <input type="text" value="1" min="1" aria-label="Số lượng">
+                        <button class="quantity-btn" aria-label="Tăng"><i class="fas fa-plus"></i></button>
+                    </div>
+                </div>
+
+                <div class="action-buttons">
+                    <button class="btn-buy">Mua ngay</button>
+                    <button class="btn-add-to-cart">Thêm vào giỏ hàng</button>
+                </div>
+
+                <div class="other-colors">
+                    <span>Sản phẩm cùng loại khác màu</span>
+                    <div class="colors-container">
+                        <a href="#" class="color-swatch">
+                            <img src="img/tui-mirabelle/hong1.webp" alt="Màu hồng">
+                        </a>
+
+                        <a href="#" class="color-swatch">
+                            <img src="img/tui-mirabelle/nau1.webp" alt="Màu nâu">
+                        </a>
+                    </div>
+                </div>
+                <div class="accordion-section">
+                    <div class="accordion-item">
+                        <div class="accordion-header">
+                            <span>Ưu đãi của bạn</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="accordion-content">
+                            <ul>
+                                <li>Hãy đăng nhập để nhận ưu đãi của riêng bạn</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <div class="accordion-header">
+                            <span>Kích thước sản phẩm</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="accordion-content">
+                            <ul>
+                                <li>Chiều rộng: 30 cm</li>
+                                <li>Chiều sâu: 10 cm</li>
+                                <li>Chiều cao: 22 cm</li>
+                                <li>Trọng lượng: 888 g</li>
+                                <li>Chiều dài tay cầm: 11 cm</li>
+                                <li>Chiều dài dây đeo: 50-56 cm</li>
+                                <li>Tổng chiều dài dây: 103-115 cm</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <div class="accordion-header">
+                            <span>Mô tả sản phẩm</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="accordion-content">
+                            <ul>
+                                <li>Mã sản phẩm: CK2-50160152_BLACK_L-VN</li>
+                                <li>Chất liệu: Da nhân tạo Tumble</li>
+                                <li>Loại khóa cài: Khóa zip</li>
+                                <li>Số lượng dây đeo: 1</li>
+                                <li>Dây đeo có thể tháo rời: Có thể tháo rời</li>
+                                <li>Dây đeo có thể điều chỉnh: Có thể điều chỉnh</li>
+                                <li>Ngăn trong: 2 Ngăn bên trong, 2 Ngăn phía trong, 2 Ngăn có khóa kéo</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <div class="accordion-header">
+                            <span>Hướng dẫn bảo quản</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="accordion-content">
+                            <h3>I. Sử dụng túi xách:</h3>
+
+                            <ul>
+                                <li>Tránh quá tải: Hãy chú ý không đựng quá nhiều đồ trong túi xách để tránh làm méo dạng hoặc gãy xác chiếc túi. Sử dụng lớp lót: Sử dụng một bao lót bên trong túi xách để giữ cho bên trong sạch sẽ và ngăn chặn các vật phẩm nhỏ bên trong gây tổn hại cho bề mặt.</li>
+                            </ul>
+                            <h3>II. Chăm sóc da:</h3>
+                            <ul>
+                                <li>Đối với túi xách da thật, hãy chăm sóc da bằng cách lau nhẹ bằng khăn mềm để loại bỏ bụi bẩn và chất bã nhờn. Đừng để túi xách tiếp xúc với nước hoặc ánh nắng trực tiếp trong thời gian dài. Đóng cửa cẩn thận: Đảm bảo rằng bạn đã đóng cửa túi xách một cách cẩn thận sau khi sử dụng để tránh mất vật phẩm hoặc bị mất cắp.</li>
+                            </ul>
+                            <h3>III. Bảo quản túi xách:</h3>
+                            <p><strong>Lưu trữ đúng cách:</strong></p>
+                            <ul>
+                                <li>Khi bạn không sử dụng túi xách, hãy bảo quản nó trong hộp hoặc túi vải để ngăn bụi và ánh sáng mặt trời tiếp xúc.</li>
+                            </ul>
+                            <p><strong>Kiểm tra và làm sạch định kỳ:</strong></p>
+                            <ul>
+                                <li>Thường xuyên kiểm tra túi xách của bạn để phát hiện vết bẩn hoặc hỏng hóc và làm sạch chúng ngay lập tức để tránh tình trạng trầy xước hoặc tổn hại lớn hơn.</li>
+                            </ul>
+                            <p><strong>Bảo quản túi xách đúng cách theo loại chất liệu:</strong></p>
+                            <ul>
+                                <li>Đối với túi xách da, bạn có thể sử dụng kem bảo dưỡng chuyên dụng để giữ cho da luôn mềm mại và bền bỉ. Theo các hướng dẫn trên, bạn có thể bảo quản túi xách nữ của mình một cách tốt nhất, giúp nó luôn trong tình trạng tốt nhất và đồng hành cùng bạn trong nhiều năm tới.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+            </aside>
+        </div>
+    </div>
+</div>
+
+<div id="footer"></div>
+
+
+<script src="script.js"></script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+
+        loadHTML("header.html", "header");
+        loadHTML("footer.html", "footer");
+
+        const accordionHeaders = document.querySelectorAll(".accordion-header");
+
+        accordionHeaders.forEach(header => {
+            header.addEventListener("click", function() {
+                const accordionItem = this.parentElement;
+                accordionItem.classList.toggle("active");
+            });
+        });
+    });
+</script>
+
+</body>
+</html>
