@@ -228,6 +228,7 @@
             }
         }
     </style>
+    <link rel="stylesheet" href="../style.css">
 
 </head>
 <body>
@@ -383,8 +384,9 @@
 <script>
     document.addEventListener("DOMContentLoaded", function() {
 
-        loadHTML("header.html", "header");
-        loadHTML("footer.html", "footer");
+        loadHTML("header", "../header.html");
+        loadHTML("footer", "../footer.html");
+
 
         const accordionHeaders = document.querySelectorAll(".accordion-header");
 
