@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"/>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="admin-page">
+    <aside id="sidebar">
+        <div class="logo-admin">Admin</div>
+        <nav class="side-nav">
+            <ul>
+                <li><a href="admin-dashboard.html"><i class="fa-solid fa-gauge"></i> Dashboard</a></li>
+                <li><a href="admin-products.html"><i class="fa-solid fa-bag-shopping"></i> Quản lý sản phẩm</a></li>
+                <li><a href="admin-orders.html"><i class="fa-solid fa-receipt"></i> Quản lý đơn hàng</a></li>
+                <li class="active"><a href="#"><i class="fa-solid fa-percent"></i> Khuyến mãi</a></li>
+                <li><a href="admin-banner.html"><i class="fa-solid fa-image"></i> Quản lý banner</a></li>
+                <li><a href="admin-customer.html"><i class="fa-solid fa-user"></i> Khách hàng</a></li>
+            </ul>
+        </nav>
+    </aside>
+    <main id="main">
+        <header id="admin-header">
+            <h1>Dashboard</h1>
+            <div class="admin-info">
+                <span>Xin chào, Admin!</span>
+                <i class="fa-slab fa-regular fa-user"></i>
+            </div>
+        </header>
+        <h2>Tạo Mã giảm giá mới</h2>
+        <div class="admin-form">
+            <form>
+                <div class="form-group">
+                    <label for="coupon-code">Mã Giảm Giá</label>
+                    <input type="text" id="coupon-code" value="SALE20" required>
+                </div>
+                <div class="form-group">
+                    <label for="coupon-type">Loại Giảm Giá</label>
+                    <select id="coupon-type">
+                        <option value="percent">Giảm theo Phần trăm (%)</option>
+                        <option value="amount">Giảm theo Số tiền</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="coupon-value">Giá trị</label>
+                    <input type="number" id="coupon-value" value="20" required>
+                </div>
+                <button type="submit" class="admin-btn btn-primary">Lưu Mã giảm giá</button>
+            </form>
+        </div>
+        <h2>Mã giảm giá hiện có</h2>
+        <div class="table-container">
+            <table class="admin-table">
+                <thead>
+                <tr>
+                    <th>Mã</th>
+                    <th>Loại</th>
+                    <th>Giá trị</th>
+                    <th>Trạng thái</th>
+                    <th>Hành động</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>WINTER10</td>
+                    <td>Phần trăm</td>
+                    <td>10%</td>
+                    <td><span class="badge badge-success">Hoạt động</span></td>
+                    <td>
+                        <button class="btn-action"><i class="fa-solid fa-pen-to-square"></i></button>
+                        <button class="btn-action"><i class="fa-solid fa-trash"></i></button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>FREESHIP</td>
+                    <td>Miễn phí vận chuyển</td>
+                    <td>-</td>
+                    <td><span class="badge badge-danger">Hết hạn</span></td>
+                    <td>
+                        <button class="btn-action"><i class="fa-solid fa-pen-to-square"></i></button>
+                        <button class="btn-action"><i class="fa-solid fa-trash"></i></button>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </main>
+</div>
+</body>
+</html>

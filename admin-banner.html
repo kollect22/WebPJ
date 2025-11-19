@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"/>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="admin-page">
+    <aside id="sidebar">
+        <div class="logo-admin">Admin</div>
+        <nav class="side-nav">
+            <ul>
+                <li><a href="admin-dashboard.html"><i class="fa-solid fa-gauge"></i> Dashboard</a></li>
+                <li><a href="admin-products.html"><i class="fa-solid fa-bag-shopping"></i> Quản lý sản phẩm</a></li>
+                <li><a href="admin-orders.html"><i class="fa-solid fa-receipt"></i> Quản lý đơn hàng</a></li>
+                <li><a href="admin-coupons.html"><i class="fa-solid fa-percent"></i> Khuyến mãi</a></li>
+                <li class="active"><a href="#"><i class="fa-solid fa-image"></i> Quản lý banner</a></li>
+                <li><a href="admin-customer.html"><i class="fa-solid fa-user"></i> Khách hàng</a></li>
+            </ul>
+        </nav>
+    </aside>
+    <main id="main">
+        <header id="admin-header">
+            <h1>Dashboard</h1>
+            <div class="admin-info">
+                <span>Xin chào, Admin!</span>
+                <i class="fa-slab fa-regular fa-user"></i>
+            </div>
+        </header>
+        <div class="module-header">
+            <h2>Danh sách Banner</h2>
+            <button class="admin-btn btn-primary"><i class="fa-solid fa-upload"></i> Tải lên Banner mới</button>
+        </div>
+
+        <div class="table-container">
+            <table class="admin-table">
+                <thead>
+                <tr>
+                    <th>Ảnh</th>
+                    <th>Tiêu đề</th>
+                    <th>Liên kết nút</th>
+                    <th>Vị trí</th>
+                    <th>Hành động</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td><img src="img/banner.jpg" alt="Banner Haloween" class="thumb"></td>
+                    <td>Ưu đãi Haloween</td>
+                    <td>/sale/halloween</td>
+                    <td>Banner Chính</td>
+                    <td>
+                        <button class="btn-action"><i class="fa-solid fa-pen-to-square"></i></button>
+                        <button class="btn-action"><i class="fa-solid fa-trash"></i></button>
+                    </td>
+                </tr>
+                <tr>
+                    <td><img src="img/tui-xach-nu-mau-trang-sua-1.jpg" alt="Collection Banner" class="thumb"></td>
+                    <td>Bộ sưu tập Túi Xách</td>
+                    <td>/collection/tui-xach</td>
+                    <td>Dưới Products</td>
+                    <td>
+                        <button class="btn-action"><i class="fa-solid fa-pen-to-square"></i></button>
+                        <button class="btn-action"><i class="fa-solid fa-trash"></i></button>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </main>
+</div>
+</body>
+</html>

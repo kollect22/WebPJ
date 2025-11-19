@@ -34,25 +34,35 @@ btn.onclick = function () {
     });
 };
 //scroll left right
-document.querySelectorAll(".products").forEach(section => {
-    const list = section.querySelector(".product-list");
-    const items = list.querySelectorAll(".product-item");
-    const leftBtn = section.querySelector(".scroll-left");
-    const rightBtn = section.querySelector(".scroll-right");
+const scrollAmount = 335;
 
-    // Ẩn sản phẩm từ sản phẩm thứ 5
-    items.forEach((item, index) => {
-        if (index >= 4) item.style.display = "none";
-    });
+// 1. Chọn TẤT CẢ các container cha có class "products"
+const productSections = document.querySelectorAll(".products");
 
-    // Cuộn theo từng item
-    const itemWidth = items[0].offsetWidth + 20; // 20 là gap
+// 2. Lặp qua từng container (section) sản phẩm
+productSections.forEach(section => {
+    // Trong mỗi section, tìm danh sách sản phẩm và các nút cuộn tương ứng
+    const productList = section.querySelector(".product-list");
+    const btnLeft = section.querySelector(".scroll-left");
+    const btnRight = section.querySelector(".scroll-right");
 
-    rightBtn.onclick = () => {
-        list.scrollLeft += itemWidth;
-    };
+    // Đảm bảo tất cả các phần tử đều tồn tại trước khi gán sự kiện
+    if (productList && btnLeft && btnRight) {
 
-    leftBtn.onclick = () => {
-        list.scrollLeft -= itemWidth;
-    };
+        // Gán sự kiện cho nút bên trái của section hiện tại
+        btnLeft.addEventListener("click", () => {
+            productList.scrollBy({
+                left: -scrollAmount,
+                behavior: "smooth"
+            });
+        });
+
+        // Gán sự kiện cho nút bên phải của section hiện tại
+        btnRight.addEventListener("click", () => {
+            productList.scrollBy({
+                left: scrollAmount,
+                behavior: "smooth"
+            });
+        });
+    }
 });
