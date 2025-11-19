@@ -159,9 +159,10 @@ h2{
 }
 .product-list{
     display: flex;
-    justify-content: center;
+    /*justify-content: center;*/
     gap: 20px;
-
+    overflow-x: hidden;
+    scroll-behavior: smooth;
 }
 .scroll-left, .scroll-right {
     position: absolute;
@@ -171,8 +172,6 @@ h2{
     border-radius: 50%;
     width: 40px;
     height: 40px;
-    bottom: 20px;
-    right: 20px;
     cursor: pointer;
     font-size: 20px;
     display: flex;
@@ -195,7 +194,8 @@ h2{
 .product-item  {
     position: relative;
     cursor: pointer;
-
+    width: calc((100% - 60px) / 4);
+    flex-shrink: 0;
 }
 
 
@@ -378,4 +378,170 @@ h2{
 #scrollTopBtn:hover {
     background-color: white;
 }
+/*admin page*/
+#admin-page {
+    display: flex;
+    min-height: 100vh;
+    background-color: #1A1A1A;
+    color: white;
+}
+#sidebar {
+    width: 250px;
+    padding: 20px 0;
+    background-color: #2A2A2A;
+    flex-shrink: 0;
+}
+.logo-admin{
+    text-align: center;
+    margin-bottom: 40px;
+}
+.side-nav ul{
+    list-style: none;
+    padding: 0;
+}
+.side-nav ul li a{
+    display: block;
+    padding: 12px 20px;
+    text-decoration: none;
+    color: #ccc;
+
+}
+.side-nav ul li a:hover, .side-nav ul .active a {
+    background-color: #333;
+    color: white;
+    border-left: 3px solid orange;
+}
+#main{
+    width: 100%;
+    padding: 20px;
+}
+#admin-header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #2A2A2A;
+}
+.module-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+/* BUTTONS */
+.admin-btn {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.2s;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.btn-primary {
+    background-color: orange;
+    color: #1A1A1A;
+}
+
+.btn-primary:hover {
+    background-color: darkorange;
+}
+
+.btn-action {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 16px;
+    margin: 0 5px;
+    cursor: pointer;
+}
+
+.btn-action:hover {
+    color: orange;
+}
+
+/* FORMS & INPUTS */
+.admin-form {
+    background-color: #2a2a2a;
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 30px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #ccc;
+}
+
+.form-group input[type="text"],
+.form-group input[type="number"],
+.form-group textarea,
+.form-group select {
+    width: 100%;
+    padding: 10px;
+    border-radius: 4px;
+    border: 1px solid #444;
+    background-color: #333;
+    color: white;
+    box-sizing: border-box;
+}
+
+/* ADMIN TABLES */
+.admin-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #2a2a2a;
+    border-radius: 8px;
+    overflow: hidden;
+    margin-top: 20px;
+}
+
+.admin-table th, .admin-table td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #333;
+}
+
+.admin-table thead th {
+    background-color: #333;
+    font-weight: 600;
+}
+
+.admin-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.admin-table img.thumb {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 4px;
+}
+
+/* BADGES (Trạng thái) */
+.badge {
+    padding: 5px 10px;
+    border-radius: 12px;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.badge-success { background-color: #28a745; color: white; } /* Còn hàng, Hoạt động */
+.badge-warning { background-color: #ffc107; color: #1A1A1A; } /* Chờ xử lý */
+.badge-danger { background-color: #dc3545; color: white; } /* Hết hàng, Hết hạn */
+
+/* Các status cụ thể của đơn hàng (cho Dashboard) */
+.status-pending { color: #ffc107; font-weight: bold; }
+.status-shipped { color: #17a2b8; font-weight: bold; }
+.status-completed { color: #28a745; font-weight: bold; }
 
