@@ -195,8 +195,9 @@ h2{
 .product-item  {
     position: relative;
     cursor: pointer;
-    width: 300px;
+
 }
+
 
 .product-item img {
      width: 100%;
