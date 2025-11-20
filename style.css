@@ -194,7 +194,7 @@ h2{
 .product-item  {
     position: relative;
     cursor: pointer;
-    width: calc((100% - 60px) / 4);
+
     flex-shrink: 0;
 }
 
