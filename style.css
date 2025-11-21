@@ -62,12 +62,13 @@ body {
     position: absolute;
     top: 100%;
     left: 0;
-    background: #333;
+    background: #2a2a2a;
     padding-top: 10px;
     min-width: 150px;
     z-index: 1;
     white-space: nowrap;
     display: none;
+    border: 1px solid white;
 }
 
 .sub-menu li a {
