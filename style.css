@@ -119,10 +119,10 @@ body {
 .banner{
     position: relative;
     width: 100%;
-    height: 400px;
-    padding: 0 40px;
+    height: 600px;
+    padding: 0 50px;
+    margin-top: 80px;
     box-sizing: border-box;
-    margin: 80px auto 0;
 }
 .banner img {
     width: 100%;
@@ -134,7 +134,8 @@ body {
     position: absolute;
     top: 40%;
     left: 10%;
-    color: white;
+    color: black;
+    font-size: 25px;
 }
 .banner-text button {
     background: #333;
@@ -153,6 +154,7 @@ body {
     max-width:1400px;
     margin: 0 auto;
     box-sizing: border-box;
+    border-bottom: 1px solid grey;
 }
 h2{
     text-align: center;
@@ -278,14 +280,12 @@ h2{
 .collection-box{
     display: flex;
     gap: 20px;
-    justify-content: center;
-    padding: 0 20px;
     box-sizing: border-box;
 
 }
 
 .item{
-    width: 620px;
+    width: 100%;
     position: relative;
     height: 400px;
 }
