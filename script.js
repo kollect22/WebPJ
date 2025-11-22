@@ -19,20 +19,22 @@ window.addEventListener("DOMContentLoaded", () => {
 //scroll top button
 const btn = document.getElementById("scrollTopBtn");
 
-window.onscroll = function () {
-    if (document.documentElement.scrollTop > 200) {
-        btn.style.display = "flex";
-    } else {
-        btn.style.display = "none";
-    }
-};
+if(btn){
+    window.onscroll = function () {
+        if (document.documentElement.scrollTop > 200) {
+            btn.style.display = "flex";
+        } else {
+            btn.style.display = "none";
+        }
+    };
 
-btn.onclick = function () {
-    window.scrollTo({
-        top: 0,
-        behavior: "smooth"
-    });
-};
+    btn.onclick = function () {
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+    };
+}
 //scroll left right
 const scrollAmount = 335;
 
@@ -66,3 +68,30 @@ productSections.forEach(section => {
         });
     }
 });
+
+//Bộ Lọc trong product
+const filterBtn = document.getElementById("filter-toggle-btn")
+const closeBtn = document.getElementById("filter-close-btn");
+const overlay = document.getElementById("filter-overlay");
+
+if (filterBtn && closeBtn && overlay) {
+    // Mở sidebar
+    filterBtn.addEventListener("click", () => {
+        overlay.classList.add("active");
+    });
+
+    // Đóng sidebar bằng nút X
+    closeBtn.addEventListener("click", () => {
+        overlay.classList.remove("active");
+    });
+
+    // Đóng sidebar khi bấm ra ngoài
+    overlay.addEventListener("click", (e) => {
+        if (e.target === overlay) {
+            overlay.classList.remove("active");
+        }
+    });
+}
+
+
+
