@@ -137,13 +137,13 @@ body {
     color: black;
     font-size: 25px;
 }
-.banner-text button {
+.banner-text a {
     background: #333;
     color: white;
     border: none;
     border-radius: 30px;
     padding: 10px 30px;
-    cursor: pointer;
+    text-decoration: none;
 }
 /* section*/
 .products{
