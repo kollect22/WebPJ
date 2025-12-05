@@ -500,7 +500,7 @@ h2{
     display: block;
     margin-bottom: 5px;
     font-weight: bold;
-    color: #ccc;
+    color: black;
 }
 
 .form-group input[type="text"],
@@ -556,12 +556,29 @@ h2{
     font-weight: bold;
 }
 
-.badge-success { background-color: #28a745; color: white; } /* Còn hàng, Hoạt động */
-.badge-warning { background-color: #ffc107; color: #1A1A1A; } /* Chờ xử lý */
-.badge-danger { background-color: #dc3545; color: white; } /* Hết hàng, Hết hạn */
+.badge-success {
+    background-color: #28a745;
+    color: white;
+}
+.badge-warning {
+    background-color: #ffc107;
+    color: #1A1A1A;
+}
+.badge-danger {
+    background-color: #dc3545;
+    color: white;
+}
 
-/* Các status cụ thể của đơn hàng (cho Dashboard) */
-.status-pending { color: #ffc107; font-weight: bold; }
-.status-shipped { color: #17a2b8; font-weight: bold; }
-.status-completed { color: #28a745; font-weight: bold; }
+.status-pending {
+    color: #ffc107;
+    font-weight: bold;
+}
+.status-shipped {
+    color: #17a2b8;
+    font-weight: bold;
+}
+.status-completed {
+    color: #28a745;
+    font-weight: bold;
+}
 
