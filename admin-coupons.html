@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"/>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="admin-style.css">
+
 </head>
 <body>
 <div id="admin-page">
@@ -31,10 +32,10 @@
         </header>
         <h2>Tạo Mã giảm giá mới</h2>
         <div class="admin-form">
-            <form>
+            <form id="create-coupon-form">
                 <div class="form-group">
                     <label for="coupon-code">Mã Giảm Giá</label>
-                    <input type="text" id="coupon-code" value="SALE20" required>
+                    <input type="text" id="coupon-code" placeholder="Ví dụ: SALE50" required>
                 </div>
                 <div class="form-group">
                     <label for="coupon-type">Loại Giảm Giá</label>
@@ -45,7 +46,7 @@
                 </div>
                 <div class="form-group">
                     <label for="coupon-value">Giá trị</label>
-                    <input type="number" id="coupon-value" value="20" required>
+                    <input type="number" id="coupon-value" placeholder="Nhập số..." required>
                 </div>
                 <button type="submit" class="admin-btn btn-primary">Lưu Mã giảm giá</button>
             </form>
@@ -62,7 +63,7 @@
                     <th>Hành động</th>
                 </tr>
                 </thead>
-                <tbody>
+                <tbody id="coupon-table-body">
                 <tr>
                     <td>WINTER10</td>
                     <td>Phần trăm</td>
@@ -88,5 +89,60 @@
         </div>
     </main>
 </div>
+<script>
+    // Lắng nghe sự kiện Submit Form
+    document.getElementById('create-coupon-form').addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        // Lấy giá trị từ các ô input
+        const code = document.getElementById('coupon-code').value.toUpperCase();
+        const type = document.getElementById('coupon-type').value;
+        const valueInput = document.getElementById('coupon-value').value;
+
+        // Xử lý hiển thị Loại và Giá trị
+        let displayType = '';
+        let displayValue = '';
+
+        if (type === 'percent') {
+            displayType = 'Phần trăm';
+            displayValue = valueInput + '%';
+        } else {
+            displayType = 'Số tiền';
+            // Format tiền tệ
+            displayValue = new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(valueInput);
+        }
+
+        // Tạo dòng HTML mới
+        const newRow = document.createElement('tr');
+        newRow.innerHTML = `
+            <td>${code}</td>
+            <td>${displayType}</td>
+            <td>${displayValue}</td>
+            <td><span class="badge badge-success">Hoạt động</span></td>
+            <td>
+                <button class="btn-action edit"><i class="fa-solid fa-pen-to-square"></i></button>
+                <button class="btn-action delete"><i class="fa-solid fa-trash"></i></button>
+            </td>
+        `;
+
+        // Thêm dòng mới vào đầu bảng
+        const tableBody = document.getElementById('coupon-table-body');
+        tableBody.prepend(newRow);
+
+        // Reset form về trống
+        this.reset();
+        alert('Đã thêm mã giảm giá: ' + code);
+    });
+
+    // 7. Xử lý chức năng Xóa
+    document.getElementById('coupon-table-body').addEventListener('click', function(e) {
+        if (e.target.closest('.delete')) {
+            if(confirm('Bạn có chắc muốn xóa mã giảm giá này không?')) {
+                const row = e.target.closest('tr');
+                row.remove();
+            }
+        }
+    });
+</script>
 </body>
 </html>
