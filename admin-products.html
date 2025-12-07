@@ -4,9 +4,13 @@
     <meta charset="UTF-8">
     <title>Admin-products</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"/>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="admin-style.css">
+
 </head>
 <style>
+    h2{
+        color: white;
+    }
     .modal {
         display: none;
         position: fixed;
@@ -19,7 +23,7 @@
     }
 
     .modal-content {
-        background-color: #fff;
+        background-color: #2a2a2a;
         margin: 10% auto;
         padding: 20px;
         border-radius: 8px;
@@ -194,7 +198,7 @@
         let statusText = statusValue === 'success' ? 'Còn hàng' : 'Hết hàng';
         let badgeClass = statusValue === 'success' ? 'badge-success' : 'badge-danger';
 
-        // Định dạng giá tiền (thêm dấu chấm phân cách)
+        // Định dạng giá tiền
         const formattedPrice = new Intl.NumberFormat('vi-VN').format(price) + ' VNĐ';
 
         // Tạo dòng HTML mới
