@@ -8,12 +8,12 @@
     <style>
         body{
             font-family: Arial, sans-serif;
-            color: white;
-            background-color: #1A1A1A; /* Đảm bảo nền màu tối */
+            color: black;
+            background-color: white; /* Đảm bảo nền màu tối */
         }
         a {
             text-decoration: none;
-            color: white;
+            color: black;
         }
 
         li{
@@ -22,18 +22,18 @@
 
         /* --- BREADCRUMBS --- */
         .breadcrumbs{
-            color: #888;
+            color: grey;
             margin: 20px 40px 25px 40px;
-            border-bottom: 1px solid #333;
+            border-bottom: 1px solid black;
             padding-bottom: 10px;
         }
 
         .breadcrumbs i{
-            color: #f0f0f0;
+            color: black;
         }
         .breadcrumbs a{
             text-decoration: none;
-            color: #f0f0f0;
+            color: black;
         }
 
         .breadcrumbs a:hover{
@@ -58,9 +58,9 @@
         .filter-btn {
             background: none;
             height: 38px;
-            border: 1px solid #555;
+            border: 1px solid black;
             border-radius: 30px;
-            color: white;
+            color: black;
             padding: 10px 20px;
             display: flex;
             align-items: center ;
@@ -70,15 +70,16 @@
         }
 
         .filter-btn:hover {
-            background: #333;
+            background: black;
+            color: white;
             border-color: #fff;
         }
 
         #select-sort{
-            background-color: #1A1A1A;
+            background-color: white;
             height: 38px;
-            border: 1px solid #555;
-            color: white;
+            border: 1px solid black;
+            color: black;
             padding: 0 20px;
             border-radius: 30px;
             outline: none;
@@ -108,7 +109,7 @@
             height: 350px;
             object-fit: contain;
             border-radius: 10px;
-            background-color: #252525; /* Nền xám tôn ảnh */
+            background-color: #252525;
             box-sizing: border-box;
             transition: transform 0.3s ease;
         }
@@ -157,8 +158,8 @@
             width: 400px;
             max-width: 85%;
             height: 100%;
-            background-color: #111;
-            box-shadow: -5px 0 15px rgba(0,0,0,0.5);
+            background-color: white;
+            box-shadow: -5px 0 15px rgb(255, 255, 255);
 
             transform: translateX(-100%); /* Ẩn sang phải */
             transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
@@ -170,7 +171,7 @@
             justify-content: space-between;
             align-items: center;
             padding: 25px 30px;
-            border-bottom: 1px solid #333;
+            border-bottom: 1px solid black;
         }
 
         .filter-sidebar-header h2 {
@@ -178,19 +179,19 @@
             font-size: 18px;
             text-transform: uppercase;
             font-weight: 600;
-            color: #fff;
+            color: black;
         }
 
         .filter-sidebar-header button {
             background: none;
             border: none;
-            color: #888;
+            color: black;
             font-size: 24px;
             cursor: pointer;
             transition: 0.3s;
         }
         .filter-sidebar-header button:hover {
-            color: #fff;
+            color: black;
             transform: rotate(90deg);
         }
 
@@ -205,7 +206,7 @@
 
         .categories-list li {
             margin-bottom: 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            border-bottom: 1px solid rgba(255, 255, 255, 0);
         }
 
         .categories-list a {
@@ -213,13 +214,13 @@
             justify-content: space-between;
             align-items: center;
             padding: 18px 0;
-            color: #ccc;
+            color: black;
             font-size: 15px;
             transition: all 0.3s ease;
         }
 
         .categories-list a:hover {
-            color: #fff;
+            color: grey;
             padding-left: 10px;
         }
 
@@ -228,11 +229,11 @@
             font-family: "Font Awesome 5 Free";
             font-weight: 900;
             font-size: 12px;
-            color: #555;
+            color: black;
             transition: color 0.3s;
         }
         .categories-list a:hover::after {
-            color: #fff;
+            color: grey;
         }
 
         .filter-overlay {
@@ -263,7 +264,7 @@
 <div id="header"></div>
 
 <section class="banner">
-    <img src="img/banner%20hlw.jpg" />
+    <img src="img/banner%201.jpg" />
     <div class="banner-text">
         <h2>Ưu đãi Haloween</h2>
         <a href="halloween-sales.html">Xem Ngay</a>
