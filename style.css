@@ -123,6 +123,25 @@ body {
     outline: none;
     font-size: 14px;
 }
+.wishlist-header {
+    position: relative;
+    margin: 0 10px;
+}
+
+.wishlist-header i {
+    font-size: 20px;
+}
+
+.wishlist-count {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    background: red;
+    color: #fff;
+    font-size: 12px;
+    padding: 2px 6px;
+    border-radius: 50%;
+}
 
 /* banner*/
 .banner{
@@ -171,7 +190,6 @@ h2{
 }
 .product-list{
     display: flex;
-    /*justify-content: center;*/
     gap: 20px;
     overflow-x: hidden;
     scroll-behavior: smooth;
