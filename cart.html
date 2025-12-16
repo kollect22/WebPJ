@@ -205,6 +205,17 @@
           border: none;
           text-transform: uppercase;
       }
+      .remove-item {
+          position: absolute;
+          top: 10px;
+          right: 10px;
+          cursor: pointer;
+          color: #999;
+          font-size: 18px;
+      }
+      .remove-item:hover {
+          color: red;
+      }
 
       .continue-shopping {
           background-color: #fff;
@@ -312,6 +323,7 @@
             <button onclick="updateQuantity(this, 1)">+</button>
           </div>
         </div>
+        <i class="fa-solid fa-xmark remove-item" onclick="removeItem(this)"></i>
       </div>
 
       <div class="cart-item" data-price="382500" data-quantity="1">
@@ -332,8 +344,12 @@
             <button onclick="updateQuantity(this, 1)">+</button>
           </div>
         </div>
+        <i class="fa-solid fa-xmark remove-item" onclick="removeItem(this)"></i>
       </div>
+
     </div>
+
+
   </div>
 
   <div class="cart-summary">
@@ -361,9 +377,10 @@
     <div class="discount-code">
       <p>Mã giảm giá</p>
       <div class="discount-input-group">
-        <input type="text" placeholder="Nhập mã khuyến mãi">
-        <button>ÁP DỤNG</button>
+        <input type="text" id="discount-code-input" placeholder="Nhập mã khuyến mãi">
+        <button onclick="applyDiscount()">ÁP DỤNG</button>
       </div>
+      <p id="discount-message" style="margin-top:8px;font-size:14px;"></p>
     </div>
 
     <div class="summary-row total">
@@ -418,15 +435,91 @@
   function updateQuantity(button, change) {
     const item = button.closest('.cart-item');
     const input = item.querySelector('.quantity-input');
-    let newQty = parseInt(input.value) + change;
-    if (newQty >= 1) input.value = newQty;
+
+    let qty = parseInt(input.value) + change;
+    if (qty < 1) qty = 1;
+
+    input.value = qty;
+    calculateTotal();
   }
 
-  function showCheckout() {
-    const form = document.getElementById("checkoutForm");
-    form.style.display = form.style.display === "none" || form.style.display === "" ? "flex" : "none";
+  function removeItem(btn) {
+    const item = btn.closest('.cart-item');
+    item.remove();
+    calculateTotal();
+  }
+  let appliedDiscount = {
+    type: null, // "percent" | "money" | "ship"
+    value: 0
+  };
+
+  function calculateTotal() {
+    const items = document.querySelectorAll(".cart-item");
+    let subtotal = 0;
+
+    items.forEach(item => {
+      const price = parseInt(item.dataset.price);
+      const qty = parseInt(item.querySelector(".quantity-input").value);
+      subtotal += price * qty;
+    });
+
+    let shipping = 29000;
+    let discount = 0;
+
+    // ÁP GIẢM GIÁ
+    if (appliedDiscount.type === "percent") {
+      discount = subtotal * appliedDiscount.value;
+    } else if (appliedDiscount.type === "money") {
+      discount = appliedDiscount.value;
+    } else if (appliedDiscount.type === "ship") {
+      shipping = 0;
+    }
+
+    const total = subtotal - discount + shipping;
+
+    // CẬP NHẬT UI
+    document.getElementById("original-total").innerText = formatMoney(subtotal);
+    document.getElementById("discount-amount").innerText =
+      discount > 0 ? "-" + formatMoney(discount) : "0VNĐ";
+    document.getElementById("shipping-fee").innerText = formatMoney(shipping);
+    document.getElementById("order-total").innerText = formatMoney(total);
+    document.getElementById("final-total").innerText = formatMoney(total);
+    document.querySelector(".cart-total-footer span").innerText = formatMoney(total);
+
+    document.getElementById("item-count").innerText =
+      `${items.length} sản phẩm`;
+  }
+  function formatMoney(number) {
+    return number.toLocaleString("vi-VN") + "VNĐ";
   }
 </script>
+<script>
+  function applyDiscount() {
+    const code = document.getElementById("discount-code-input").value.trim().toUpperCase();
+    const message = document.getElementById("discount-message");
+
+    const discountCodes = {
+      "SALE10": { type: "percent", value: 0.1 },
+      "GIAM100K": { type: "money", value: 100000 },
+      "FREESHIP": { type: "ship", value: 0 }
+    };
+
+    if (!discountCodes[code]) {
+      message.style.color = "red";
+      message.innerText = "Mã giảm giá không hợp lệ.";
+      appliedDiscount = { type: null, value: 0 };
+      calculateTotal();
+      return;
+    }
+
+    appliedDiscount = discountCodes[code];
+    message.style.color = "green";
+    message.innerText = `Áp dụng mã ${code} thành công 🎉`;
+
+    calculateTotal();
+  }
+</script>
+
 <script>
   const checkoutButton = document.querySelector('.checkout');
   const checkoutForm = document.querySelector('.checkout-form-container');
@@ -447,7 +540,6 @@
     }
   });
 </script>
-
 <script src="script.js"></script>
 </body>
 </html>
