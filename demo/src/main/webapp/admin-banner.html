@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"/>
+    <link rel="stylesheet" href="../../../../admin-style.css">
+    <style>
+        #add-banner-section {
+            display: none;
+            background: #2a2a2a;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+        }
+        .preview-img {
+            max-width: 200px;
+            max-height: 100px;
+            margin-top: 10px;
+            display: none;
+            border: 1px dashed #ccc;
+            padding: 2px;
+        }
+        .thumb {
+            width: 100px;
+            height: auto;
+            border-radius: 4px;
+            object-fit: cover;
+        }
+    </style>
+</head>
+<body>
+<div id="admin-page">
+    <aside id="sidebar">
+        <div class="logo-admin">Admin</div>
+        <nav class="side-nav">
+            <ul>
+                <li><a href="admin-dashboard.html"><i class="fa-solid fa-gauge"></i> Dashboard</a></li>
+                <li><a href="admin-products.html"><i class="fa-solid fa-bag-shopping"></i> Quản lý sản phẩm</a></li>
+                <li><a href="admin-orders.html"><i class="fa-solid fa-receipt"></i> Quản lý đơn hàng</a></li>
+                <li><a href="admin-coupons.html"><i class="fa-solid fa-percent"></i> Khuyến mãi</a></li>
+                <li class="active"><a href="#"><i class="fa-solid fa-image"></i> Quản lý banner</a></li>
+                <li><a href="admin-customer.html"><i class="fa-solid fa-user"></i> Khách hàng</a></li>
+            </ul>
+        </nav>
+    </aside>
+    <main id="main">
+        <header id="admin-header">
+            <h1>Dashboard</h1>
+            <div class="admin-info">
+                <span>Xin chào, Admin!</span>
+                <i class="fa-slab fa-regular fa-user"></i>
+            </div>
+        </header>
+        <div class="module-header">
+            <h2>Danh sách Banner</h2>
+            <button class="admin-btn btn-primary" onclick="toggleForm()">
+                <i class="fa-solid fa-upload"></i> Tải lên Banner mới
+            </button>
+        </div>
+
+        <div id="add-banner-section">
+            <h3>Thêm Banner Mới</h3>
+            <form id="banner-form">
+                <div class="form-group">
+                    <label>Chọn hình ảnh</label>
+                    <input type="file" id="banner-file" accept="image/*" required onchange="previewImage(this)">
+                    <img id="img-preview" class="preview-img" src="" alt="Xem trước">
+                </div>
+                <div class="form-group">
+                    <label>Tiêu đề Banner</label>
+                    <input type="text" id="banner-title" placeholder="Ví dụ: Siêu sale mùa hè..." required>
+                </div>
+                <div class="form-group">
+                    <label>Đường dẫn (Link khi click)</label>
+                    <input type="text" id="banner-link" placeholder="/sale/summer" required>
+                </div>
+                <div class="form-group">
+                    <label>Vị trí hiển thị</label>
+                    <select id="banner-pos">
+                        <option value="Banner Chính">Banner Chính (Slider)</option>
+                        <option value="Dưới Products">Dưới danh sách sản phẩm</option>
+                        <option value="Sidebar">Sidebar bên phải</option>
+                    </select>
+                </div>
+                <div style="margin-top: 15px;">
+                    <button type="submit" class="admin-btn btn-primary">Lưu Banner</button>
+                    <button type="button" class="admin-btn" style="background:#6c757d; color:white" onclick="toggleForm()">Hủy</button>
+                </div>
+            </form>
+        </div>
+
+        <div class="table-container">
+            <table class="admin-table">
+                <thead>
+                <tr>
+                    <th>Ảnh</th>
+                    <th>Tiêu đề</th>
+                    <th>Liên kết nút</th>
+                    <th>Vị trí</th>
+                    <th>Hành động</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td><img src="../../../../img/banner%20hlw.jpg" alt="Banner" class="thumb"></td>
+                    <td>Ưu đãi Haloween</td>
+                    <td>/sale/halloween</td>
+                    <td>Banner Chính</td>
+                    <td>
+                        <button class="btn-action"><i class="fa-solid fa-pen-to-square"></i></button>
+                        <button class="btn-action"><i class="fa-solid fa-trash"></i></button>
+                    </td>
+                </tr>
+                <tr>
+                    <td><img src="../../../../img/tui-xach-nu-mau-trang-sua-1.jpg" alt="Collection Banner" class="thumb"></td>
+                    <td>Bộ sưu tập Túi Xách</td>
+                    <td>/collection/tui-xach</td>
+                    <td>Dưới Products</td>
+                    <td>
+                        <button class="btn-action"><i class="fa-solid fa-pen-to-square"></i></button>
+                        <button class="btn-action"><i class="fa-solid fa-trash"></i></button>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </main>
+</div>
+<script>
+    // Hàm Ẩn/Hiện Form khi bấm nút "Tải lên"
+    function toggleForm() {
+        const formSection = document.getElementById('add-banner-section');
+        if (formSection.style.display === 'none' || formSection.style.display === '') {
+            formSection.style.display = 'block';
+        } else {
+            formSection.style.display = 'none';
+        }
+    }
+
+    // Hàm xem trước ảnh khi chọn file từ máy tính
+    function previewImage(input) {
+        const preview = document.getElementById('img-preview');
+        if (input.files && input.files[0]) {
+            const reader = new FileReader();
+
+            reader.onload = function(e) {
+                preview.src = e.target.result;
+                preview.style.display = 'block';
+            }
+
+            reader.readAsDataURL(input.files[0]);
+        } else {
+            preview.style.display = 'none';
+        }
+    }
+
+    // Xử lý sự kiện Submit Form
+    document.getElementById('banner-form').addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        // Lấy dữ liệu
+        const title = document.getElementById('banner-title').value;
+        const link = document.getElementById('banner-link').value;
+        const pos = document.getElementById('banner-pos').value;
+
+        // Lấy đường dẫn ảnh từ thẻ preview
+        const imgSrc = document.getElementById('img-preview').src;
+
+        if(!imgSrc || document.getElementById('img-preview').style.display === 'none') {
+            alert("Vui lòng chọn ảnh!");
+            return;
+        }
+
+        // Tạo dòng mới
+        const newRow = document.createElement('tr');
+        newRow.innerHTML = `
+            <td><img src="${imgSrc}" alt="${title}" class="thumb"></td>
+            <td>${title}</td>
+            <td>${link}</td>
+            <td>${pos}</td>
+            <td>
+                <button class="btn-action"><i class="fa-solid fa-pen-to-square"></i></button>
+                <button class="btn-action delete"><i class="fa-solid fa-trash"></i></button>
+            </td>
+        `;
+
+        // Thêm vào đầu bảng
+        document.getElementById('banner-table-body').prepend(newRow);
+
+        // Reset form và ẩn đi
+        this.reset();
+        document.getElementById('img-preview').style.display = 'none';
+        toggleForm();
+        alert('Đã thêm banner mới thành công!');
+    });
+
+    // Xử lý xóa
+    document.getElementById('banner-table-body').addEventListener('click', function(e) {
+        if (e.target.closest('.delete')) {
+            if(confirm('Bạn có chắc muốn xóa banner này?')) {
+                e.target.closest('tr').remove();
+            }
+        }
+    });
+</script>
+</body>
+</html>

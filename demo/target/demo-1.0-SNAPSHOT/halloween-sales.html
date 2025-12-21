@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Halloween Sales</title>
+    <link rel="stylesheet" href="demo/src/main/webapp/WEB-INF/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"/>
+</head>
+<style>
+    *{
+        box-sizing: border-box;
+    }
+
+    body{
+        background: #0D0D0D;
+        padding-top: 90px;
+        margin: 0;
+        font-family: Arial, sans-serif;
+    }
+
+    .hlw-container {
+        width: 90%;
+        margin: auto;
+        padding: 40px 0;
+    }
+
+    /* Banner từng ưu đãi */
+    .hlw-block {
+        padding: 40px 20px;
+        margin-bottom: 60px;
+        border-radius: 18px;
+        color: white;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+    }
+
+    .promo-sale {
+        background: linear-gradient(135deg, #3a005077, #ff6b0066);
+        border: 1px solid #ff6b0044;
+    }
+    .best-sellers {
+        background: linear-gradient(135deg, #001f3f77, #3c004d77);
+        border: 1px solid #9932cc44;
+    }
+    .limited-edition {
+
+        background: linear-gradient(135deg, #1c1c1c77, #57575777);
+        border: 1px solid #cccccc44;
+    }
+
+
+    .hlw-title {
+        text-align: center;
+        font-size: 36px;
+        margin-bottom: 30px;
+        font-weight: 700;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        color: #FF6B00;
+    }
+
+    .product-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 25px;
+    }
+
+    .product-card {
+        background: rgba(255,255,255,0.06);
+        padding: 15px;
+        border-radius: 12px;
+        text-align: center;
+        backdrop-filter: blur(4px);
+        transition: 0.3s;
+        border: 1px solid #ffffff22;
+    }
+
+    .product-card:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 8px 20px rgba(0,0,0,0.6);
+        border-color: #FF6B00;
+    }
+
+    .product-card img {
+        width: 100%;
+        height: 300px;
+        object-fit: cover;
+        border-radius: 12px;
+    }
+
+    .product-card h3 {
+        margin: 10px 0 5px;
+        font-size: 18px;
+        font-weight: 600;
+        color: white;
+    }
+
+    .price {
+        font-size: 17px;
+        color: #FFD700;
+        font-weight: bold;
+    }
+
+    .discount-badge {
+        position: absolute;
+        top: 0;
+        right: 0;
+        background-color: #FF6B00;
+        color: white;
+        padding: 5px 10px;
+        border-radius: 0 12px 0 12px;
+        font-weight: bold;
+        font-size: 14px;
+        letter-spacing: 0.5px;
+    }
+    .product-card {
+        position: relative;
+    }
+
+</style>
+<body>
+<div id="header"></div>
+<section class="hlw-container">
+
+    <div class="hlw-block promo-sale">
+        <h2 class="hlw-title"> SALE NỬA GIÁ HALLOWEEN </h2>
+
+        <div class="product-grid">
+            <div class="product-card">
+                <div class="discount-badge">GIẢM 50%</div>
+                <img src="../../../../img/túi%20xách%20da%20màu%20nâu%20sẫm%20vintage.jpg" alt="Túi Da Ma Mị">
+                <h3>Túi Da Ma Mị</h3>
+                <p class="price"><del style="color: #ccc; font-weight: normal;">1.680.000đ</del> <br> 840.000đ</p>
+            </div>
+            <div class="product-card">
+                <div class="discount-badge" style="background-color: #9932cc;">GIẢM 25%</div>
+                <img src="../../../../img/túi%20xách%20cầm%20tay%20màu%20đen%20da%20lộn.jpg" alt="Túi Tay Phù Thủy">
+                <h3>Túi Tay Phù Thủy</h3>
+                <p class="price"><del style="color: #ccc; font-weight: normal;">1.500.000đ</del> <br> 1.125.000đ</p>
+            </div>
+            <div class="product-card">
+                <div class="discount-badge">GIẢM 40%</div>
+                <img src="../../../../img/túi%20xách%20màu%20xám%20đen.webp" alt="Túi Đeo Ánh Trăng"/>
+                <h3>Túi Đeo Ánh Trăng</h3>
+                <p class="price"><del style="color: #ccc; font-weight: normal;">1.150.000đ</del> <br> 690.000đ</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="hlw-block best-sellers">
+        <h2 class="hlw-title">TOP BÁN CHẠY NHẤT</h2>
+
+        <div class="product-grid">
+            <div class="product-card">
+                <div class="discount-badge" style="background-color: #9932cc;">HOT</div>
+                <img src="../../../../img/túi%20xách%20da%20đen%20minimalist.jpg" alt="Túi Bí Ẩn"/>
+                <h3>Túi Bí Ẩn (Bán chạy)</h3>
+                <p class="price">580.000đ</p>
+            </div>
+            <div class="product-card">
+                <div class="discount-badge" style="background-color: #9932cc;">MỚI</div>
+                <img src="../../../../img/Khăn%20Lụa%20(Silk%20Scarf)%20Họa%20Tiết%20Gothic.webp"/>
+                <h3> Khăn Lụa Họa Tiết Mạng Nhện</h3>
+                <p class="price">620.000đ</p>
+            </div>
+            <div class="product-card">
+                <img src="../../../../img/túi%20tote%20vải%20bố.jpg" alt="Túi năng lượng"/>
+                <h3>Túi Năng Lượng</h3>
+                <p class="price">710.000đ</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="hlw-block limited-edition">
+        <h2 class="hlw-title">PHIÊN BẢN GIỚI HẠN</h2>
+
+        <div class="product-grid">
+            <div class="product-card">
+                <div class="discount-badge" style="background-color: #83a4d4;">LIMITED</div>
+                <img src="../../../../img/móc%20khóa%20dơi.png" alt="Móc Khóa Dơi"/>
+                <h3>Móc Khóa Dơi</h3>
+                <p class="price">910.000đ</p>
+            </div>
+            <div class="product-card">
+                <img src="../../../../img/túi%20xách%20da%20cá%20sấu%20đen.webp" alt="Túi Da Tử Thần"/>
+                <h3>Túi Da Tử Thần</h3>
+                <p class="price">1.050.000đ</p>
+            </div>
+            <div class="product-card">
+                <img src="../../../../img/túi%20kẹp%20đông.jpg" alt="Túi Kẹp Mùa Đông">
+                <h3>Túi Kẹp Xác Ướp</h3>
+                <p class="price">880.000đ</p>
+            </div>
+        </div>
+    </div>
+
+</section>
+
+<div id="footer"></div>
+<script src="../../../../script.js"></script>
+</body>
+</html>
