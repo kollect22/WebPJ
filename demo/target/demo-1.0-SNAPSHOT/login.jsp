@@ -106,7 +106,7 @@
 
             <form id="loginForm" action="login" method="POST">
                 <div class="input-box">
-                    <input type="text" name="username" placeholder="Số điện thoại hoặc Email" required>
+                    <input type="text" name="username" placeholder="Email" value="">
                 </div>
                 <div class="input-box">
                     <input type="password" name="password" placeholder="Mật khẩu" required>
