@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Sản Phẩm</title>
+    <title>Phụ kiện</title>
     <link rel="stylesheet" href="demo/src/main/webapp/WEB-INF/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"/>
     <style>
@@ -267,7 +267,7 @@
 
 <nav class="breadcrumbs">
     <i class="fa-regular fa-house"></i>
-    <a href="demo/src/main/webapp/index.html">Trang chủ</a> / <a>Sản phẩm</a> / <span>Tất cả sản phẩm</span>
+    <a href="demo/src/main/webapp/index.html">Trang chủ</a> / <a>Sản phẩm</a> / <span>Phụ kiện</span>
 </nav>
 
 <div class="shop-container">
@@ -284,150 +284,6 @@
     </div>
 
     <div class="product-cat-list">
-
-        <a href="../../../../pro-details/product-details1.html" class="product-item">
-            <img src="../../../../img/túi%20xách%20nâu%20cá%20tính/a3.jpg" alt="Túi Nâu"/>
-            <div class="cart-icon">
-                <i class="fa-solid fa-cart-shopping"></i>
-            </div>
-            <div class="product-name">Túi Xách Nâu Cá Tính SBM395</div>
-            <div class="product-price">1.850.000VNĐ</div>
-        </a>
-
-        <a href="../../../../pro-details/product-details19.html" class="product-item">
-            <img src="../../../../img/tui-enola/anh1.webp" alt="Túi Enola"/>
-            <div class="cart-icon">
-                <i class="fa-solid fa-cart-shopping"></i>
-            </div>
-            <div class="product-name">Túi Enola Canvas Two-Tone</div>
-            <div class="product-price">1.890.000VNĐ</div>
-        </a>
-
-        <a href="../../../../pro-details/product-details2.html" class="product-item">
-            <img src="../../../../img/túi%20da/a1.jpeg" alt="Túi da dây xích"/>
-            <div class="cart-icon">
-                <i class="fa-solid fa-cart-shopping"></i>
-            </div>
-            <div class="product-name">Túi xách nữ dây xích H1355</div>
-            <div class="product-price">500.000VNĐ</div>
-        </a>
-
-        <a href="../../../../pro-details/product-details19.html" class="product-item">
-            <img src="../../../../img/túi%20da%20ca%20sấu/a1.jpeg" alt="Túi cá sấu"/>
-            <div class="cart-icon">
-                <i class="fa-solid fa-cart-shopping"></i>
-            </div>
-            <div class="product-name">Túi da cá sấu cao cấp TX57</div>
-            <div class="product-price">5.500.000VNĐ</div>
-        </a>
-
-        <a href="../../../../pro-details/product-details19.html" class="product-item">
-            <img src="../../../../img/túi%20da%20PU/a2.webp" alt="Túi da PU"/>
-            <div class="cart-icon">
-                <i class="fa-solid fa-cart-shopping"></i>
-            </div>
-            <div class="product-name">Túi Xách Tay Nữ N10</div>
-            <div class="product-price">1.750.000VNĐ</div>
-        </a>
-
-        <a href="../../../../pro-details/product-details19.html" class="product-item">
-            <img src="../../../../img/tui-trice/anh1.webp" alt="Túi Trice"/>
-            <div class="cart-icon">
-                <i class="fa-solid fa-cart-shopping"></i>
-            </div>
-            <div class="product-name">Túi đeo vai Trice - Trắng</div>
-            <div class="product-price">1.250.000đ</div>
-        </a>
-
-        <a href="../../../../pro-details/product-details19.html" class="product-item">
-            <img src="../../../../img/tui-alva/xanh1.webp" alt="Túi Alva"/>
-            <div class="cart-icon">
-                <i class="fa-solid fa-cart-shopping"></i>
-            </div>
-            <div class="product-name">Túi xách Alva - Xanh Mint</div>
-            <div class="product-price">1.450.000đ</div>
-        </a>
-
-        <a href="../../../../pro-details/product-details19.html" class="product-item">
-            <img src="../../../../img/tui-mirabelle/hong1.webp" alt="Túi Mirabelle"/>
-            <div class="cart-icon">
-                <i class="fa-solid fa-cart-shopping"></i>
-            </div>
-            <div class="product-name">Túi Mirabelle - Hồng Phấn</div>
-            <div class="product-price">1.320.000đ</div>
-        </a>
-
-        <a href="../../../../pro-details/product-details19.html" class="product-item">
-            <img src="../../../../img/tui-noane/xam1.webp" alt="Túi Noane"/>
-            <div class="cart-icon">
-                <i class="fa-solid fa-cart-shopping"></i>
-            </div>
-            <div class="product-name">Túi Noane Phom Hộp - Xám</div>
-            <div class="product-price">1.180.000đ</div>
-        </a>
-
-        <a href="../../../../pro-details/product-details19.html" class="product-item">
-            <img src="../../../../img/túi%20clutch/2023-L6-CK2-70160131-01-1.webp" alt="Túi clutch"/>
-            <div class="cart-icon">
-                <i class="fa-solid fa-cart-shopping"></i>
-            </div>
-            <div class="product-name">Túi Clutch Cầm Tay - Đen</div>
-            <div class="product-price">1.850.000đ</div>
-        </a>
-
-        <a href="../../../../pro-details/product-details19.html" class="product-item">
-            <img src="../../../../img/túi%20da/a2.jpeg" alt="Túi da"/>
-            <div class="cart-icon">
-                <i class="fa-solid fa-cart-shopping"></i>
-            </div>
-            <div class="product-name">Túi Da Thời Trang - Be</div>
-            <div class="product-price">1.450.000đ</div>
-        </a>
-
-        <a href="../../../../pro-details/product-details19.html" class="product-item">
-            <img src="../../../../img/túi%20da%20thật/a1.jpg" alt="Túi da thật"/>
-            <div class="cart-icon">
-                <i class="fa-solid fa-cart-shopping"></i>
-            </div>
-            <div class="product-name">Túi Da Thật Cao Cấp</div>
-            <div class="product-price">1.350.000đ</div>
-        </a>
-
-        <a href="../../../../pro-details/product-details19.html" class="product-item">
-            <img src="../../../../img/Túi%20đv%20adalyn/2025-L7-CK2-20782753-01-5.webp" alt="Túi Adalyn"/>
-            <div class="cart-icon">
-                <i class="fa-solid fa-cart-shopping"></i>
-            </div>
-            <div class="product-name">Túi Đeo Vai Adalyn</div>
-            <div class="product-price">1.590.000đ</div>
-        </a>
-
-        <a href="../../../../pro-details/product-details19.html" class="product-item">
-            <img src="../../../../img/túi%20xách%20handmade/a1.jpg" alt="Túi Handmade"/>
-            <div class="cart-icon">
-                <i class="fa-solid fa-cart-shopping"></i>
-            </div>
-            <div class="product-name">Túi Xách Handmade - Hồng</div>
-            <div class="product-price">1.150.000đ</div>
-        </a>
-
-        <a href="../../../../pro-details/product-details19.html" class="product-item">
-            <img src="../../../../img/tui-britton/den1.webp" alt="Túi Britton"/>
-            <div class="cart-icon">
-                <i class="fa-solid fa-cart-shopping"></i>
-            </div>
-            <div class="product-name">Túi Britton Khóa Kim Loại</div>
-            <div class="product-price">1.690.000đ</div>
-        </a>
-
-        <a href="../../../../pro-details/product-details19.html" class="product-item">
-            <img src="../../../../img/túi%20hàng%20hiệu/a1.jpg" alt="Túi hàng hiệu"/>
-            <div class="cart-icon">
-                <i class="fa-solid fa-cart-shopping"></i>
-            </div>
-            <div class="product-name">Túi Xách Thời Trang Cao Cấp</div>
-            <div class="product-price">850.000VNĐ</div>
-        </a>
 
         <a href="#" class="product-item">
             <img src="../../../../img/Phu%20Kien/Bunnie%20charm%20-%20CMH%200016%20-%20Màu%20hồng.jpg" alt="Bunnie charm"/>
@@ -515,8 +371,8 @@
 
         <div class="filter-sidebar-body">
             <ul class="categories-list">
-                <li><a href="products-category-all.html" >Tất cả sản phẩm</a></li>
-                <li><a href="products-cat-handbag.html" >Túi xách</a></li>
+                <li><a href="products-category-all.jsp" >Tất cả sản phẩm</a></li>
+                <li><a href="products-cat-handbag.jsp" >Túi xách</a></li>
                 <li><a href="products-cat-accessory.html" >Phụ kiện</a></li>
             </ul>
         </div>

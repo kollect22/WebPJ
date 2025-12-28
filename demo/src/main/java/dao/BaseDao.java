@@ -9,7 +9,7 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.Properties;
 
-public class BaseDao {
+public abstract class BaseDao {
     private static Jdbi jdbi;
     public Jdbi get() {
         if(jdbi == null) makeConnect();
@@ -32,12 +32,12 @@ public class BaseDao {
         jdbi = Jdbi.create(dataSource);
     }
 
-    public static void main(String[] args) {
-        BaseDao bs = new BaseDao();
-        Jdbi jdbi1 = bs.get();
-        List<Product> products = jdbi.withHandle(h ->{
-            return h.createQuery("select * from products").mapToBean(Product.class).list();
-        });
-        System.out.println(products);
-    }
+//    public static void main(String[] args) {
+//        BaseDao bs = new BaseDao();
+//        Jdbi jdbi1 = bs.get();
+//        List<Product> products = jdbi.withHandle(h ->{
+//            return h.createQuery("select * from products").mapToBean(Product.class).list();
+//        });
+//        System.out.println(products);
+//    }
 }

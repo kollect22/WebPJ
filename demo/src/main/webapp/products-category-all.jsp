@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Túi xách</title>
+    <title>Sản Phẩm</title>
     <link rel="stylesheet" href="demo/src/main/webapp/WEB-INF/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"/>
     <style>
@@ -267,7 +267,7 @@
 
 <nav class="breadcrumbs">
     <i class="fa-regular fa-house"></i>
-    <a href="demo/src/main/webapp/index.html">Trang chủ</a> / <a>Sản phẩm</a> / <span>Túi xách</span>
+    <a href="demo/src/main/webapp/index.html">Trang chủ</a> / <a>Sản phẩm</a> / <span>Tất cả sản phẩm</span>
 </nav>
 
 <div class="shop-container">
@@ -429,6 +429,78 @@
             <div class="product-price">850.000VNĐ</div>
         </a>
 
+        <a href="#" class="product-item">
+            <img src="../../../../img/Phu%20Kien/Bunnie%20charm%20-%20CMH%200016%20-%20Màu%20hồng.jpg" alt="Bunnie charm"/>
+            <div class="cart-icon">
+                <i class="fa-solid fa-cart-shopping"></i>
+            </div>
+            <div class="product-name">Charm Thỏ Bông Bunnie - Hồng</div>
+            <div class="product-price">350.000VNĐ</div>
+        </a>
+
+        <a href="#" class="product-item">
+            <img src="../../../../img/Phu%20Kien/Charm%20dây%20hoạ%20tiết%20phối%20trái%20tim%20kim%20loại%20-%20CHM%200052%20-%20Màu%20trắng%20đen.jpg" alt="Charm dây tim"/>
+            <div class="cart-icon">
+                <i class="fa-solid fa-cart-shopping"></i>
+            </div>
+            <div class="product-name">Charm Dây Phối Trái Tim Kim Loại</div>
+            <div class="product-price">290.000VNĐ</div>
+        </a>
+
+        <a href="#" class="product-item">
+            <img src="../../../../img/Phu%20Kien/Charm%20dây%20ngọc%20trai%20nhấn%20nơ%20hoa%20-%20CHM%200046%20-%20Màu%20trắng%20đen.jpg" alt="Charm ngọc trai"/>
+            <div class="cart-icon">
+                <i class="fa-solid fa-cart-shopping"></i>
+            </div>
+            <div class="product-name">Charm Dây Ngọc Trai Nơ Hoa</div>
+            <div class="product-price">200.000VNĐ</div>
+        </a>
+
+        <a href="#" class="product-item">
+            <img src="../../../../img/Phu%20Kien/Charm%20dây%20nơ%20bạc%20phối%20ngọc%20trai%20-%20CHM%200053%20-%20Màu%20trắng%20đen.jpg" alt="Charm nơ bạc"/>
+            <div class="cart-icon">
+                <i class="fa-solid fa-cart-shopping"></i>
+            </div>
+            <div class="product-name">Charm Dây Nơ Bạc Ngọc Trai</div>
+            <div class="product-price">300.000VNĐ</div>
+        </a>
+
+        <a href="#" class="product-item">
+            <img src="../../../../img/Phu%20Kien/Charm%20thú%20bông%20lông%20xù%20-%20CHM%200054%20-%20Màu%20vàng.jpg" alt="Charm thú bông vàng"/>
+            <div class="cart-icon">
+                <i class="fa-solid fa-cart-shopping"></i>
+            </div>
+            <div class="product-name">Charm Thú Bông Lông Xù - Vàng</div>
+            <div class="product-price">150.000VNĐ</div>
+        </a>
+
+        <a href="#" class="product-item">
+            <img src="../../../../img/Phu%20Kien/Charm%20thú%20bông%20lông%20xù%20-%20CHM%200054%20-%20Màu%20xám.jpg" alt="Charm thú bông xám"/>
+            <div class="cart-icon">
+                <i class="fa-solid fa-cart-shopping"></i>
+            </div>
+            <div class="product-name">Charm Thú Bông Lông Xù - Xám</div>
+            <div class="product-price">150.000VNĐ</div>
+        </a>
+
+        <a href="#" class="product-item">
+            <img src="../../../../img/Phu%20Kien/Majoris%20charm%20sắc%20cầu%20vồng%20-%20CHM%200042%20-%20Màu%20cầu%20vồng.jpg" alt="Charm cầu vồng"/>
+            <div class="cart-icon">
+                <i class="fa-solid fa-cart-shopping"></i>
+            </div>
+            <div class="product-name">Majoris Charm Sắc Cầu Vồng</div>
+            <div class="product-price">250.000VNĐ</div>
+        </a>
+
+        <a href="#" class="product-item">
+            <img src="../../../../img/Phu%20Kien/Bowie%20charm%20-%20CHM%200015%20-%20Màu%20nâu.jpg" alt="Charm Bowie"/>
+            <div class="cart-icon">
+                <i class="fa-solid fa-cart-shopping"></i>
+            </div>
+            <div class="product-name">Bowie Charm Gấu Nâu</div>
+            <div class="product-price">190.000VNĐ</div>
+        </a>
+
     </div>
 </div>
 
@@ -444,8 +516,8 @@
         <div class="filter-sidebar-body">
             <ul class="categories-list">
                 <li><a href="products-category-all.html" >Tất cả sản phẩm</a></li>
-                <li><a href="products-cat-handbag.html" >Túi xách</a></li>
-                <li><a href="products-cat-accessory.html" >Phụ kiện</a></li>
+                <li><a href="products-cat-handbag.jsp" >Túi xách</a></li>
+                <li><a href="products-cat-accessory.jsp" >Phụ kiện</a></li>
             </ul>
         </div>
     </div>
