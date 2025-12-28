@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Phụ kiện</title>
+    <link rel="stylesheet" href="demo/src/main/webapp/WEB-INF/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"/>
+    <style>
+        body{
+            font-family: Arial, sans-serif;
+            color: black;
+            background-color: white; /* Đảm bảo nền màu tối */
+        }
+        a {
+            text-decoration: none;
+            color: black;
+        }
+
+        li{
+            list-style: none;
+        }
+
+        /* --- BREADCRUMBS --- */
+        .breadcrumbs{
+            color: grey;
+            margin: 20px 40px 25px 40px;
+            border-bottom: 1px solid black;
+            padding-bottom: 10px;
+        }
+
+        .breadcrumbs i{
+            color: black;
+        }
+        .breadcrumbs a{
+            text-decoration: none;
+            color: black;
+        }
+
+        .breadcrumbs a:hover{
+            text-decoration: underline;
+        }
+
+        .shop-container{
+            padding:0 40px;
+            margin-bottom: 50px;
+        }
+
+        /* --- FILTER BAR --- */
+        .filter-bar{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+        }
+
+        .filter-btn {
+            background: none;
+            height: 38px;
+            border: 1px solid black;
+            border-radius: 30px;
+            color: black;
+            padding: 10px 20px;
+            display: flex;
+            align-items: center ;
+            gap: 10px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .filter-btn:hover {
+            background: black;
+            color: white;
+            border-color: #fff;
+        }
+
+        #select-sort{
+            background-color: white;
+            height: 38px;
+            border: 1px solid black;
+            color: black;
+            padding: 0 20px;
+            border-radius: 30px;
+            outline: none;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        /* --- PRODUCT GRID --- */
+        .product-cat-list{
+            display: grid;
+            grid-template-columns: repeat(4, 1fr); /* 4 cột đều nhau */
+            gap: 20px;
+        }
+
+        /* QUAN TRỌNG: Cấu hình thẻ a thành khối hộp */
+        a.product-item {
+            display: block;
+            position: relative;
+            cursor: pointer;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* Chỉnh ảnh đẹp */
+        .product-item img {
+            width: 100%;
+            height: 350px;
+            object-fit: contain;
+            border-radius: 10px;
+            background-color: #252525;
+            box-sizing: border-box;
+            transition: transform 0.3s ease;
+        }
+
+        .product-item:hover img {
+            transform: scale(1.03);
+        }
+
+        .product-name {
+            font-size: 18px;
+            margin-top: 15px;
+            font-weight: 500;
+            line-height: 1.4;
+        }
+
+        .product-price {
+            margin-top: 8px;
+            color: #ccc;
+            font-size: 16px;
+        }
+
+        /*icon gio hang*/
+        .cart-icon {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 18px;
+            color: white;
+            background-color: #000;
+            padding: 10px;
+            border-radius: 50%;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 2;
+        }
+
+        .product-item:hover .cart-icon {
+            opacity: 1;
+        }
+
+        /* Sidebar */
+        .filter-sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 400px;
+            max-width: 85%;
+            height: 100%;
+            background-color: white;
+            box-shadow: -5px 0 15px rgb(255, 255, 255);
+
+            transform: translateX(-100%); /* Ẩn sang phải */
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 1002;
+        }
+
+        .filter-sidebar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 25px 30px;
+            border-bottom: 1px solid black;
+        }
+
+        .filter-sidebar-header h2 {
+            margin: 0;
+            font-size: 18px;
+            text-transform: uppercase;
+            font-weight: 600;
+            color: black;
+        }
+
+        .filter-sidebar-header button {
+            background: none;
+            border: none;
+            color: black;
+            font-size: 24px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .filter-sidebar-header button:hover {
+            color: black;
+            transform: rotate(90deg);
+        }
+
+        .filter-sidebar-body {
+            padding: 10px 30px;
+        }
+
+        .categories-list {
+            padding-left: 0;
+            margin-top: 10px;
+        }
+
+        .categories-list li {
+            margin-bottom: 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0);
+        }
+
+        .categories-list a {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 18px 0;
+            color: black;
+            font-size: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .categories-list a:hover {
+            color: grey;
+            padding-left: 10px;
+        }
+
+        .categories-list a::after {
+            content: "\f054";
+            font-family: "Font Awesome 5 Free";
+            font-weight: 900;
+            font-size: 12px;
+            color: black;
+            transition: color 0.3s;
+        }
+        .categories-list a:hover::after {
+            color: grey;
+        }
+
+        .filter-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 1001;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(2px);
+        }
+
+        .filter-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .filter-overlay.active .filter-sidebar {
+            transform: translateX(0);
+        }
+    </style>
+</head>
+<body>
+<div id="header"></div>
+<section class="banner">
+    <img src="../../../../img/banner%20hlw.jpg" />
+    <div class="banner-text">
+        <h2>Ưu đãi Haloween</h2>
+        <a href="halloween-sales.html">Xem Ngay</a>
+    </div>
+</section>
+
+<nav class="breadcrumbs">
+    <i class="fa-regular fa-house"></i>
+    <a href="demo/src/main/webapp/index.html">Trang chủ</a> / <a>Sản phẩm</a> / <span>Phụ kiện</span>
+</nav>
+
+<div class="shop-container">
+    <div class="filter-bar">
+        <button class="filter-btn" id="filter-toggle-btn">
+            <i class="fa-solid fa-list"></i> Bộ lọc </button>
+
+        <select id="select-sort">
+            <option value="newest">Mới nhất</option>
+            <option value="oldest">Cũ nhất</option>
+            <option value="price-asc">Giá tăng dần</option>
+            <option value="price-desc">Giá giảm dần</option>
+        </select>
+    </div>
+
+    <div class="product-cat-list">
+
+        <a href="#" class="product-item">
+            <img src="../../../../img/Phu%20Kien/Bunnie%20charm%20-%20CMH%200016%20-%20Màu%20hồng.jpg" alt="Bunnie charm"/>
+            <div class="cart-icon">
+                <i class="fa-solid fa-cart-shopping"></i>
+            </div>
+            <div class="product-name">Charm Thỏ Bông Bunnie - Hồng</div>
+            <div class="product-price">350.000VNĐ</div>
+        </a>
+
+        <a href="#" class="product-item">
+            <img src="../../../../img/Phu%20Kien/Charm%20dây%20hoạ%20tiết%20phối%20trái%20tim%20kim%20loại%20-%20CHM%200052%20-%20Màu%20trắng%20đen.jpg" alt="Charm dây tim"/>
+            <div class="cart-icon">
+                <i class="fa-solid fa-cart-shopping"></i>
+            </div>
+            <div class="product-name">Charm Dây Phối Trái Tim Kim Loại</div>
+            <div class="product-price">290.000VNĐ</div>
+        </a>
+
+        <a href="#" class="product-item">
+            <img src="../../../../img/Phu%20Kien/Charm%20dây%20ngọc%20trai%20nhấn%20nơ%20hoa%20-%20CHM%200046%20-%20Màu%20trắng%20đen.jpg" alt="Charm ngọc trai"/>
+            <div class="cart-icon">
+                <i class="fa-solid fa-cart-shopping"></i>
+            </div>
+            <div class="product-name">Charm Dây Ngọc Trai Nơ Hoa</div>
+            <div class="product-price">200.000VNĐ</div>
+        </a>
+
+        <a href="#" class="product-item">
+            <img src="../../../../img/Phu%20Kien/Charm%20dây%20nơ%20bạc%20phối%20ngọc%20trai%20-%20CHM%200053%20-%20Màu%20trắng%20đen.jpg" alt="Charm nơ bạc"/>
+            <div class="cart-icon">
+                <i class="fa-solid fa-cart-shopping"></i>
+            </div>
+            <div class="product-name">Charm Dây Nơ Bạc Ngọc Trai</div>
+            <div class="product-price">300.000VNĐ</div>
+        </a>
+
+        <a href="#" class="product-item">
+            <img src="../../../../img/Phu%20Kien/Charm%20thú%20bông%20lông%20xù%20-%20CHM%200054%20-%20Màu%20vàng.jpg" alt="Charm thú bông vàng"/>
+            <div class="cart-icon">
+                <i class="fa-solid fa-cart-shopping"></i>
+            </div>
+            <div class="product-name">Charm Thú Bông Lông Xù - Vàng</div>
+            <div class="product-price">150.000VNĐ</div>
+        </a>
+
+        <a href="#" class="product-item">
+            <img src="../../../../img/Phu%20Kien/Charm%20thú%20bông%20lông%20xù%20-%20CHM%200054%20-%20Màu%20xám.jpg" alt="Charm thú bông xám"/>
+            <div class="cart-icon">
+                <i class="fa-solid fa-cart-shopping"></i>
+            </div>
+            <div class="product-name">Charm Thú Bông Lông Xù - Xám</div>
+            <div class="product-price">150.000VNĐ</div>
+        </a>
+
+        <a href="#" class="product-item">
+            <img src="../../../../img/Phu%20Kien/Majoris%20charm%20sắc%20cầu%20vồng%20-%20CHM%200042%20-%20Màu%20cầu%20vồng.jpg" alt="Charm cầu vồng"/>
+            <div class="cart-icon">
+                <i class="fa-solid fa-cart-shopping"></i>
+            </div>
+            <div class="product-name">Majoris Charm Sắc Cầu Vồng</div>
+            <div class="product-price">250.000VNĐ</div>
+        </a>
+
+        <a href="#" class="product-item">
+            <img src="../../../../img/Phu%20Kien/Bowie%20charm%20-%20CHM%200015%20-%20Màu%20nâu.jpg" alt="Charm Bowie"/>
+            <div class="cart-icon">
+                <i class="fa-solid fa-cart-shopping"></i>
+            </div>
+            <div class="product-name">Bowie Charm Gấu Nâu</div>
+            <div class="product-price">190.000VNĐ</div>
+        </a>
+
+    </div>
+</div>
+
+<aside class="filter-overlay" id="filter-overlay">
+    <div class="filter-sidebar">
+        <div class="filter-sidebar-header">
+            <h2>Danh Mục</h2>
+            <button id="filter-close-btn">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+
+        <div class="filter-sidebar-body">
+            <ul class="categories-list">
+                <li><a href="products-category-all.html" >Tất cả sản phẩm</a></li>
+                <li><a href="products-cat-handbag.html" >Túi xách</a></li>
+                <li><a href="products-cat-accessory.html" >Phụ kiện</a></li>
+            </ul>
+        </div>
+    </div>
+</aside>
+
+<div id="footer"></div>
+
+<script src="../../../../script.js"></script>
+</body>
+</html>
