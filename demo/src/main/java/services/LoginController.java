@@ -1,10 +1,12 @@
-package com.example.demo;
+package services;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+import model.User;
 
 import java.io.IOException;
 
@@ -14,8 +16,12 @@ public class LoginController extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String username = req.getParameter("username");
         String password = req.getParameter("password");
-        //AuthService as = new AuthService();
-        if ("abc".equals(username) && "123".equals(password)) {
+        AuthService as = new AuthService();
+        User u = as.checkLogin(username,password);
+        if (u != null ) {
+
+            HttpSession session = req.getSession();
+            session.setAttribute("auth",u);
             resp.sendRedirect("index.jsp");
         } else {
             req.setAttribute("error", "Sai username or password");
