@@ -1,0 +1,300 @@
+/* ===============================
+   BASE
+================================ */
+body {
+    padding-top: 80px;
+    font-family: Arial, sans-serif;
+    color: #333;
+}
+
+
+
+/* ===============================
+   CONTAINER
+================================ */
+.product-page-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 10px 40px;
+    margin-bottom: 40PX;
+}
+
+/* ===============================
+   BREADCRUMBS
+================================ */
+.breadcrumbs {
+    color: grey;
+    margin: 20px 40px 25px;
+    border-bottom: 1px solid black;
+    padding: 5px 0 10px;
+}
+
+.breadcrumbs i {
+    color: black; }
+
+.breadcrumbs a {
+    text-decoration: none;
+    color: black;
+}
+
+.breadcrumbs a:hover {
+    text-decoration: underline;
+}
+
+/* ===============================
+   MAIN LAYOUT
+================================ */
+.product-layout {
+    display: flex;
+    gap: 50px;
+    align-items: flex-start;
+}
+
+/* ===============================
+   GALLERY (THUMB + MAIN IMAGE)
+================================ */
+.product-gallery {
+    display: flex;
+    gap: 20px;
+    flex: 1.2;
+    position: sticky;
+    top: 100px;
+}
+
+.thumb-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 70px;
+}
+
+.thumb-list img {
+    width: 100%;
+    aspect-ratio: 3 / 4;
+    object-fit: cover;
+    cursor: pointer;
+    opacity: 0.6;
+    border: 1px solid transparent;
+    transition: 0.3s;
+}
+
+.thumb-list img.active,
+.thumb-list img:hover {
+    opacity: 1;
+    border-color: #000;
+}
+
+.main-image-container {
+    flex: 1;
+}
+
+.main-image-container img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+/* ===============================
+   PRODUCT INFO
+================================ */
+.product-info-wrapper {
+    flex: 1;
+}
+
+.product-info {
+    position: sticky;
+    top: 100px;
+}
+
+/* ---------- TITLE ---------- */
+.title-wrapper {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.title-wrapper h1 {
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 1.4;
+    margin: 0;
+}
+
+.title-wrapper .fa-heart {
+    font-size: 22px;
+    cursor: pointer;
+}
+
+/* ---------- PRICE ---------- */
+.price {
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 25px;
+}
+
+/* ===============================
+   OPTIONS
+================================ */
+.option-selector {
+    margin-bottom: 20px;
+}
+
+.option-selector > span {
+    font-size: 13px;
+    font-weight: 600;
+    display: block;
+    margin-bottom: 8px;
+}
+
+/* SIZE */
+.size-option {
+    border: 1px solid #ddd;
+    padding: 10px 22px;
+    cursor: pointer;
+    background: #fff;
+}
+
+.size-option.active {
+    background: #000;
+    color: #fff;
+}
+
+/* QUANTITY */
+.quantity-control {
+    display: inline-flex;
+    align-items: center;
+    border: 1px solid #ddd;
+    height: 42px;
+    width: 120px;
+}
+
+.quantity-control input {
+    width: 45px;
+    text-align: center;
+    border: none;
+    border-left: 1px solid #ddd;
+    border-right: 1px solid #ddd;
+}
+
+.quantity-control .quantity-btn {
+    width: 40px;
+    border: none;
+    background: #fff;
+    cursor: pointer;
+}
+
+/* ===============================
+   ACTION BUTTONS
+================================ */
+.action-buttons-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 30px;
+}
+
+.btn-buy-now {
+    background: #fff;
+    border: 1px solid #ccc;
+    padding: 16px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.btn-buy-now:hover {
+    border-color: #000;
+}
+
+.btn-add-cart {
+    background: #222;
+    color: #fff;
+    border: 1px solid #222;
+    padding: 16px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.btn-add-cart:hover {
+    background: #000;
+}
+
+/* ===============================
+   OTHER COLORS (SẢN PHẨM CÙNG LOẠI)
+================================ */
+
+.other-colors {
+    margin-top: 25px;
+}
+
+.other-colors span {
+    display: block;
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 10px;
+    color: #000;
+}
+
+.colors-container {
+    display: flex;
+    gap: 12px;
+}
+
+.color-swatch {
+    display: inline-block;
+    border: 1px solid #ddd;
+    padding: 0;
+    cursor: pointer;
+    transition: border 0.3s ease;
+}
+
+.color-swatch img {
+    width: 60px;
+    height: 80px;
+    object-fit: cover;
+    display: block;
+}
+
+.color-swatch:hover {
+    border-color: #000;
+}
+
+.color-swatch.active {
+    border-color: #000;
+}
+
+/* ===============================
+   ACCORDION
+================================ */
+.accordion-item {
+    border-bottom: 1px solid #eee;
+}
+
+.accordion-header {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 0;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.accordion-header i {
+    transition: transform 0.3s;
+}
+
+.accordion-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease;
+    font-size: 14px;
+}
+
+.accordion-item.active .accordion-content {
+    max-height: 500px;
+}
+
+.accordion-item.active .accordion-header i {
+    transform: rotate(180deg);
+}
+
+

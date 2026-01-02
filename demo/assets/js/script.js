@@ -12,8 +12,8 @@ function loadHTML(id, file) {
 
 // Gọi hàm khi trang load
 window.addEventListener("DOMContentLoaded", () => {
-    loadHTML("header", "header.html");
-    loadHTML("footer", "footer.html");
+    loadHTML("header", "header.jsp");
+    loadHTML("footer", "footer.jsp");
 });
 
 //scroll top button
