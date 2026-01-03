@@ -6,9 +6,11 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import model.Product;
+import services.ProductService;
 
 import java.io.IOException;
 import java.util.List;
+
 
 @WebServlet(name = "ListProduct", value = "/list-product")
 public class ListProduct extends HttpServlet {
