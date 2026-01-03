@@ -11,9 +11,9 @@ function loadHTML(id, file) {
 }
 
 // Gọi hàm khi trang load
-window.addEventListener("DOMContentLoaded", () => {
-    loadHTML("header", "header.html");
-    loadHTML("footer", "footer.html");
+document.addEventListener("DOMContentLoaded", () => {
+    loadHTML("footer", "footer.jsp");
+    countProducts();
 });
 
 //scroll top button
@@ -92,6 +92,98 @@ if (filterBtn && closeBtn && overlay) {
         }
     });
 }
+
+// đếm sản pham
+function countProducts(){
+    //tim the co ten .p...
+    const products = document.querySelectorAll('.product-item');
+    //tim cho hien thu
+    const countDisplay = document.getElementById('product-count-display');
+    if(countDisplay){
+        countDisplay.innerText= products.length + " sản phẩm";
+    }
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+    const toggle = document.getElementById("sortToggle");
+    const menu = document.getElementById("sortMenu");
+    const items = document.querySelectorAll(".sort-item");
+    const hiddenInput = document.getElementById("sort-value");
+    const label = document.getElementById("current-sort-text");
+
+    if (!toggle || !menu) return;
+
+    // Mở / đóng menu
+    toggle.addEventListener("click", e => {
+        e.stopPropagation();
+        menu.classList.toggle("show");
+    });
+
+    // Click chọn sort
+    items.forEach(item => {
+        item.addEventListener("click", e => {
+            e.stopPropagation();
+
+            items.forEach(i => i.classList.remove("active"));
+            item.classList.add("active");
+
+            const value = item.dataset.value;
+            hiddenInput.value = value;
+            label.textContent = item.textContent.trim();
+
+            menu.classList.remove("show");
+            console.log("SORT:", value);
+        });
+    });
+
+    // Click ra ngoài thì đóng
+    document.addEventListener("click", () => {
+        menu.classList.remove("show");
+    });
+});
+
+
+// -------productdetails-------
+function changeImage(el) {
+    const mainImage = document.getElementById("mainImage");
+    if (!mainImage) return;
+
+    mainImage.src = el.src;
+
+
+    document.querySelectorAll(".thumb-list img")
+        .forEach(img => img.classList.remove("active"));
+    el.classList.add("active");
+}
+
+document.addEventListener("DOMContentLoaded", function() {
+
+    // --- 1. Xử lý Accordion ---
+    const accordionHeaders = document.querySelectorAll(".accordion-header");
+    accordionHeaders.forEach(header => {
+    header.addEventListener("click", function() {
+    const accordionItem = this.parentElement;
+    accordionItem.classList.toggle("active");
+});
+});
+
+    // --- 2. Xử lý Tăng/Giảm Số lượng ---
+    const decreaseBtn = document.querySelector('.quantity-btn[aria-label="Giảm"]');
+    const increaseBtn = document.querySelector('.quantity-btn[aria-label="Tăng"]');
+    const quantityInput = document.querySelector('.quantity-control input');
+
+    if (decreaseBtn && increaseBtn && quantityInput) {
+    decreaseBtn.addEventListener("click", () => {
+    let val = parseInt(quantityInput.value) || 1;
+    if (val > 1) quantityInput.value = val - 1;
+});
+
+    increaseBtn.addEventListener("click", () => {
+    let val = parseInt(quantityInput.value) || 1;
+    quantityInput.value = val + 1;
+});
+}
+});
 
 
 

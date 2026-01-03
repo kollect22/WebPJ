@@ -1,0 +1,379 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="de51f29c-e241-43d2-8881-5aa38e2660e5" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/webContexts.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/wishlist.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/collection.html" beforeDir="false" afterPath="$PROJECT_DIR$/collection.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/demo/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/demo/WEB-INF/web.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/assets/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/demo/assets/css/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/assets/js/script.js" beforeDir="false" afterPath="$PROJECT_DIR$/demo/assets/js/script.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/demo/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/pro-details/product-details.html" beforeDir="false" afterPath="$PROJECT_DIR$/demo/pro-details/product-details.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/pro-details/product-details1.html" beforeDir="false" afterPath="$PROJECT_DIR$/demo/pro-details/product-details1.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/pro-details/product-details10.html" beforeDir="false" afterPath="$PROJECT_DIR$/demo/pro-details/product-details10.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/pro-details/product-details11.html" beforeDir="false" afterPath="$PROJECT_DIR$/demo/pro-details/product-details11.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/pro-details/product-details12.html" beforeDir="false" afterPath="$PROJECT_DIR$/demo/pro-details/product-details12.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/pro-details/product-details13.html" beforeDir="false" afterPath="$PROJECT_DIR$/demo/pro-details/product-details13.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/pro-details/product-details14.html" beforeDir="false" afterPath="$PROJECT_DIR$/demo/pro-details/product-details14.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/pro-details/product-details15.html" beforeDir="false" afterPath="$PROJECT_DIR$/demo/pro-details/product-details15.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/pro-details/product-details16.html" beforeDir="false" afterPath="$PROJECT_DIR$/demo/pro-details/product-details16.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/pro-details/product-details17.html" beforeDir="false" afterPath="$PROJECT_DIR$/demo/pro-details/product-details17.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/pro-details/product-details18.html" beforeDir="false" afterPath="$PROJECT_DIR$/demo/pro-details/product-details18.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/pro-details/product-details19.html" beforeDir="false" afterPath="$PROJECT_DIR$/demo/pro-details/product-details19.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/pro-details/product-details2.html" beforeDir="false" afterPath="$PROJECT_DIR$/demo/pro-details/product-details2.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/pro-details/product-details3.html" beforeDir="false" afterPath="$PROJECT_DIR$/demo/pro-details/product-details3.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/pro-details/product-details4.html" beforeDir="false" afterPath="$PROJECT_DIR$/demo/pro-details/product-details4.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/pro-details/product-details5.html" beforeDir="false" afterPath="$PROJECT_DIR$/demo/pro-details/product-details5.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/pro-details/product-details6.html" beforeDir="false" afterPath="$PROJECT_DIR$/demo/pro-details/product-details6.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/pro-details/product-details7.html" beforeDir="false" afterPath="$PROJECT_DIR$/demo/pro-details/product-details7.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/pro-details/product-details8.html" beforeDir="false" afterPath="$PROJECT_DIR$/demo/pro-details/product-details8.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/pro-details/product-details9.html" beforeDir="false" afterPath="$PROJECT_DIR$/demo/pro-details/product-details9.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/src/main/java/com/example/demo/HelloServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/demo/src/main/java/com/example/demo/HelloServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/src/main/java/com/example/demo/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/demo/src/main/java/com/example/demo/LoginController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/src/main/resources/db.properties" beforeDir="false" afterPath="$PROJECT_DIR$/demo/src/main/resources/db.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/src/main/webapp/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/demo/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/src/main/webapp/admin-coupons.html" beforeDir="false" afterPath="$PROJECT_DIR$/demo/src/main/webapp/admin-coupons.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/src/main/webapp/admin-customer.html" beforeDir="false" afterPath="$PROJECT_DIR$/demo/src/main/webapp/admin-customer.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/src/main/webapp/admin-dashboard.html" beforeDir="false" afterPath="$PROJECT_DIR$/demo/src/main/webapp/admin-dashboard.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/src/main/webapp/admin-orders.html" beforeDir="false" afterPath="$PROJECT_DIR$/demo/src/main/webapp/admin-orders.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/src/main/webapp/admin-products.html" beforeDir="false" afterPath="$PROJECT_DIR$/demo/src/main/webapp/admin-products.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/src/main/webapp/assets/css/product-detail.css" beforeDir="false" afterPath="$PROJECT_DIR$/demo/src/main/webapp/assets/css/product-detail.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/src/main/webapp/assets/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/demo/src/main/webapp/assets/css/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/src/main/webapp/assets/js/script.js" beforeDir="false" afterPath="$PROJECT_DIR$/demo/src/main/webapp/assets/js/script.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/src/main/webapp/cart.html" beforeDir="false" afterPath="$PROJECT_DIR$/demo/src/main/webapp/cart.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/src/main/webapp/collection.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/demo/src/main/webapp/collection.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/src/main/webapp/footer.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/demo/src/main/webapp/footer.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/src/main/webapp/halloween-sales.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/demo/src/main/webapp/halloween-sales.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/src/main/webapp/header.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/demo/src/main/webapp/header.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/src/main/webapp/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/demo/src/main/webapp/index.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/src/main/webapp/introduce.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/demo/src/main/webapp/introduce.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/src/main/webapp/login.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/demo/src/main/webapp/login.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/src/main/webapp/pro-details/product-details(TuiPhoiKhoa).jsp" beforeDir="false" afterPath="$PROJECT_DIR$/demo/src/main/webapp/pro-details/product-details(TuiPhoiKhoa).jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/src/main/webapp/pro-details/product-details1(TuiXNCaTinh).jsp" beforeDir="false" afterPath="$PROJECT_DIR$/demo/src/main/webapp/pro-details/product-details1(TuiXNCaTinh).jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/src/main/webapp/pro-details/product-details10.html" beforeDir="false" afterPath="$PROJECT_DIR$/demo/src/main/webapp/pro-details/product-details10.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/src/main/webapp/pro-details/product-details11.html" beforeDir="false" afterPath="$PROJECT_DIR$/demo/src/main/webapp/pro-details/product-details11.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/src/main/webapp/pro-details/product-details12.html" beforeDir="false" afterPath="$PROJECT_DIR$/demo/src/main/webapp/pro-details/product-details12.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/src/main/webapp/pro-details/product-details13(TuiAlva).jsp" beforeDir="false" afterPath="$PROJECT_DIR$/demo/src/main/webapp/pro-details/product-details13(TuiAlva).jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/src/main/webapp/pro-details/product-details14.html" beforeDir="false" afterPath="$PROJECT_DIR$/demo/src/main/webapp/pro-details/product-details14.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/src/main/webapp/pro-details/product-details15.html" beforeDir="false" afterPath="$PROJECT_DIR$/demo/src/main/webapp/pro-details/product-details15.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/src/main/webapp/pro-details/product-details16.html" beforeDir="false" afterPath="$PROJECT_DIR$/demo/src/main/webapp/pro-details/product-details16.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/src/main/webapp/pro-details/product-details17.html" beforeDir="false" afterPath="$PROJECT_DIR$/demo/src/main/webapp/pro-details/product-details17.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/src/main/webapp/pro-details/product-details18.html" beforeDir="false" afterPath="$PROJECT_DIR$/demo/src/main/webapp/pro-details/product-details18.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/src/main/webapp/pro-details/product-details19.html" beforeDir="false" afterPath="$PROJECT_DIR$/demo/src/main/webapp/pro-details/product-details19.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/src/main/webapp/pro-details/product-details2(TuiDa).jsp" beforeDir="false" afterPath="$PROJECT_DIR$/demo/src/main/webapp/pro-details/product-details2(TuiDa).jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/src/main/webapp/pro-details/product-details3.html" beforeDir="false" afterPath="$PROJECT_DIR$/demo/src/main/webapp/pro-details/product-details3.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/src/main/webapp/pro-details/product-details4.html" beforeDir="false" afterPath="$PROJECT_DIR$/demo/src/main/webapp/pro-details/product-details4.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/src/main/webapp/pro-details/product-details5.html" beforeDir="false" afterPath="$PROJECT_DIR$/demo/src/main/webapp/pro-details/product-details5.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/src/main/webapp/pro-details/product-details6.html" beforeDir="false" afterPath="$PROJECT_DIR$/demo/src/main/webapp/pro-details/product-details6.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/src/main/webapp/pro-details/product-details7.html" beforeDir="false" afterPath="$PROJECT_DIR$/demo/src/main/webapp/pro-details/product-details7.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/src/main/webapp/pro-details/product-details8.html" beforeDir="false" afterPath="$PROJECT_DIR$/demo/src/main/webapp/pro-details/product-details8.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/src/main/webapp/pro-details/product-details9.html" beforeDir="false" afterPath="$PROJECT_DIR$/demo/src/main/webapp/pro-details/product-details9.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/src/main/webapp/product-new.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/demo/src/main/webapp/product-new.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/src/main/webapp/products-cat-accessory.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/demo/src/main/webapp/products-cat-accessory.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/src/main/webapp/products-cat-handbag.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/demo/src/main/webapp/products-cat-handbag.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/src/main/webapp/products-category-all.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/demo/src/main/webapp/products-category-all.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/target/Do_an_web-1.0-SNAPSHOT/META-INF/MANIFEST.MF" beforeDir="false" afterPath="$PROJECT_DIR$/demo/target/Do_an_web-1.0-SNAPSHOT/META-INF/MANIFEST.MF" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/target/Do_an_web-1.0-SNAPSHOT/WEB-INF/classes/db.properties" beforeDir="false" afterPath="$PROJECT_DIR$/demo/target/Do_an_web-1.0-SNAPSHOT/WEB-INF/classes/db.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/target/Do_an_web-1.0-SNAPSHOT/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/demo/target/Do_an_web-1.0-SNAPSHOT/WEB-INF/web.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/target/Do_an_web-1.0-SNAPSHOT/admin-banner.html" beforeDir="false" afterPath="$PROJECT_DIR$/demo/target/Do_an_web-1.0-SNAPSHOT/admin-banner.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/target/Do_an_web-1.0-SNAPSHOT/admin-coupons.html" beforeDir="false" afterPath="$PROJECT_DIR$/demo/target/Do_an_web-1.0-SNAPSHOT/admin-coupons.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/target/Do_an_web-1.0-SNAPSHOT/admin-customer.html" beforeDir="false" afterPath="$PROJECT_DIR$/demo/target/Do_an_web-1.0-SNAPSHOT/admin-customer.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/target/Do_an_web-1.0-SNAPSHOT/admin-dashboard.html" beforeDir="false" afterPath="$PROJECT_DIR$/demo/target/Do_an_web-1.0-SNAPSHOT/admin-dashboard.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/target/Do_an_web-1.0-SNAPSHOT/admin-orders.html" beforeDir="false" afterPath="$PROJECT_DIR$/demo/target/Do_an_web-1.0-SNAPSHOT/admin-orders.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/target/Do_an_web-1.0-SNAPSHOT/admin-products.html" beforeDir="false" afterPath="$PROJECT_DIR$/demo/target/Do_an_web-1.0-SNAPSHOT/admin-products.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/target/Do_an_web-1.0-SNAPSHOT/assets/css/product-detail.css" beforeDir="false" afterPath="$PROJECT_DIR$/demo/target/Do_an_web-1.0-SNAPSHOT/assets/css/product-detail.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/target/Do_an_web-1.0-SNAPSHOT/assets/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/demo/target/Do_an_web-1.0-SNAPSHOT/assets/css/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/target/Do_an_web-1.0-SNAPSHOT/assets/js/script.js" beforeDir="false" afterPath="$PROJECT_DIR$/demo/target/Do_an_web-1.0-SNAPSHOT/assets/js/script.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/target/Do_an_web-1.0-SNAPSHOT/cart.html" beforeDir="false" afterPath="$PROJECT_DIR$/demo/target/Do_an_web-1.0-SNAPSHOT/cart.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/target/Do_an_web-1.0-SNAPSHOT/collection.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/demo/target/Do_an_web-1.0-SNAPSHOT/collection.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/target/Do_an_web-1.0-SNAPSHOT/footer.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/demo/target/Do_an_web-1.0-SNAPSHOT/footer.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/target/Do_an_web-1.0-SNAPSHOT/halloween-sales.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/demo/target/Do_an_web-1.0-SNAPSHOT/halloween-sales.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/target/Do_an_web-1.0-SNAPSHOT/header.html" beforeDir="false" afterPath="$PROJECT_DIR$/demo/target/Do_an_web-1.0-SNAPSHOT/header.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/target/Do_an_web-1.0-SNAPSHOT/header.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/demo/target/Do_an_web-1.0-SNAPSHOT/header.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/target/Do_an_web-1.0-SNAPSHOT/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/demo/target/Do_an_web-1.0-SNAPSHOT/index.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/target/Do_an_web-1.0-SNAPSHOT/introduce.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/demo/target/Do_an_web-1.0-SNAPSHOT/introduce.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/target/Do_an_web-1.0-SNAPSHOT/login.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/demo/target/Do_an_web-1.0-SNAPSHOT/login.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/target/Do_an_web-1.0-SNAPSHOT/pro-details/product-details(TuiPhoiKhoa).jsp" beforeDir="false" afterPath="$PROJECT_DIR$/demo/target/Do_an_web-1.0-SNAPSHOT/pro-details/product-details(TuiPhoiKhoa).jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/target/Do_an_web-1.0-SNAPSHOT/pro-details/product-details1(TuiXNCaTinh).jsp" beforeDir="false" afterPath="$PROJECT_DIR$/demo/target/Do_an_web-1.0-SNAPSHOT/pro-details/product-details1(TuiXNCaTinh).jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/target/Do_an_web-1.0-SNAPSHOT/pro-details/product-details10.html" beforeDir="false" afterPath="$PROJECT_DIR$/demo/target/Do_an_web-1.0-SNAPSHOT/pro-details/product-details10.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/target/Do_an_web-1.0-SNAPSHOT/pro-details/product-details11.html" beforeDir="false" afterPath="$PROJECT_DIR$/demo/target/Do_an_web-1.0-SNAPSHOT/pro-details/product-details11.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/target/Do_an_web-1.0-SNAPSHOT/pro-details/product-details12.html" beforeDir="false" afterPath="$PROJECT_DIR$/demo/target/Do_an_web-1.0-SNAPSHOT/pro-details/product-details12.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/target/Do_an_web-1.0-SNAPSHOT/pro-details/product-details13(TuiAlva).jsp" beforeDir="false" afterPath="$PROJECT_DIR$/demo/target/Do_an_web-1.0-SNAPSHOT/pro-details/product-details13(TuiAlva).jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/target/Do_an_web-1.0-SNAPSHOT/pro-details/product-details14.html" beforeDir="false" afterPath="$PROJECT_DIR$/demo/target/Do_an_web-1.0-SNAPSHOT/pro-details/product-details14.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/target/Do_an_web-1.0-SNAPSHOT/pro-details/product-details15.html" beforeDir="false" afterPath="$PROJECT_DIR$/demo/target/Do_an_web-1.0-SNAPSHOT/pro-details/product-details15.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/target/Do_an_web-1.0-SNAPSHOT/pro-details/product-details16.html" beforeDir="false" afterPath="$PROJECT_DIR$/demo/target/Do_an_web-1.0-SNAPSHOT/pro-details/product-details16.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/target/Do_an_web-1.0-SNAPSHOT/pro-details/product-details17.html" beforeDir="false" afterPath="$PROJECT_DIR$/demo/target/Do_an_web-1.0-SNAPSHOT/pro-details/product-details17.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/target/Do_an_web-1.0-SNAPSHOT/pro-details/product-details18.html" beforeDir="false" afterPath="$PROJECT_DIR$/demo/target/Do_an_web-1.0-SNAPSHOT/pro-details/product-details18.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/target/Do_an_web-1.0-SNAPSHOT/pro-details/product-details19.html" beforeDir="false" afterPath="$PROJECT_DIR$/demo/target/Do_an_web-1.0-SNAPSHOT/pro-details/product-details19.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/target/Do_an_web-1.0-SNAPSHOT/pro-details/product-details2(TuiDa).jsp" beforeDir="false" afterPath="$PROJECT_DIR$/demo/target/Do_an_web-1.0-SNAPSHOT/pro-details/product-details2(TuiDa).jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/target/Do_an_web-1.0-SNAPSHOT/pro-details/product-details3.html" beforeDir="false" afterPath="$PROJECT_DIR$/demo/target/Do_an_web-1.0-SNAPSHOT/pro-details/product-details3.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/target/Do_an_web-1.0-SNAPSHOT/pro-details/product-details4.html" beforeDir="false" afterPath="$PROJECT_DIR$/demo/target/Do_an_web-1.0-SNAPSHOT/pro-details/product-details4.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/target/Do_an_web-1.0-SNAPSHOT/pro-details/product-details5.html" beforeDir="false" afterPath="$PROJECT_DIR$/demo/target/Do_an_web-1.0-SNAPSHOT/pro-details/product-details5.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/target/Do_an_web-1.0-SNAPSHOT/pro-details/product-details6.html" beforeDir="false" afterPath="$PROJECT_DIR$/demo/target/Do_an_web-1.0-SNAPSHOT/pro-details/product-details6.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/target/Do_an_web-1.0-SNAPSHOT/pro-details/product-details7.html" beforeDir="false" afterPath="$PROJECT_DIR$/demo/target/Do_an_web-1.0-SNAPSHOT/pro-details/product-details7.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/target/Do_an_web-1.0-SNAPSHOT/pro-details/product-details8.html" beforeDir="false" afterPath="$PROJECT_DIR$/demo/target/Do_an_web-1.0-SNAPSHOT/pro-details/product-details8.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/target/Do_an_web-1.0-SNAPSHOT/pro-details/product-details9.html" beforeDir="false" afterPath="$PROJECT_DIR$/demo/target/Do_an_web-1.0-SNAPSHOT/pro-details/product-details9.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/target/Do_an_web-1.0-SNAPSHOT/product-new.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/demo/target/Do_an_web-1.0-SNAPSHOT/product-new.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/target/Do_an_web-1.0-SNAPSHOT/products-cat-accessory.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/demo/target/Do_an_web-1.0-SNAPSHOT/products-cat-accessory.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/target/Do_an_web-1.0-SNAPSHOT/products-cat-handbag.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/demo/target/Do_an_web-1.0-SNAPSHOT/products-cat-handbag.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/target/Do_an_web-1.0-SNAPSHOT/products-category-all.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/demo/target/Do_an_web-1.0-SNAPSHOT/products-category-all.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/target/classes/db.properties" beforeDir="false" afterPath="$PROJECT_DIR$/demo/target/classes/db.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/halloween-sales.html" beforeDir="false" afterPath="$PROJECT_DIR$/halloween-sales.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/header.html" beforeDir="false" afterPath="$PROJECT_DIR$/header.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/20230801_w7UOlIvX.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/img/20230801_w7UOlIvX.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/4 season.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/img/4 season.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/Introduce.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/img/Introduce.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/Khăn Lụa (Silk Scarf) Họa Tiết Gothic.webp" beforeDir="false" afterPath="$PROJECT_DIR$/img/Khăn Lụa (Silk Scarf) Họa Tiết Gothic.webp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/Phu Kien/Bowie charm - CHM 0015 - Màu nâu.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/img/Phu Kien/Bowie charm - CHM 0015 - Màu nâu.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/Phu Kien/Bunnie charm - CMH 0016 - Màu hồng.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/img/Phu Kien/Bunnie charm - CMH 0016 - Màu hồng.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/Phu Kien/Charm dây hoạ tiết phối trái tim kim loại - CHM 0052 - Màu trắng đen.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/img/Phu Kien/Charm dây hoạ tiết phối trái tim kim loại - CHM 0052 - Màu trắng đen.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/Phu Kien/Charm dây ngọc trai nhấn nơ hoa - CHM 0046 - Màu trắng đen.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/img/Phu Kien/Charm dây ngọc trai nhấn nơ hoa - CHM 0046 - Màu trắng đen.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/Phu Kien/Charm dây nơ bạc phối ngọc trai - CHM 0053 - Màu trắng đen.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/img/Phu Kien/Charm dây nơ bạc phối ngọc trai - CHM 0053 - Màu trắng đen.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/Phu Kien/Charm thú bông lông xù - CHM 0054 - Màu vàng.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/img/Phu Kien/Charm thú bông lông xù - CHM 0054 - Màu vàng.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/Phu Kien/Charm thú bông lông xù - CHM 0054 - Màu xám.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/img/Phu Kien/Charm thú bông lông xù - CHM 0054 - Màu xám.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/Phu Kien/Majoris charm sắc cầu vồng - CHM 0042 - Màu cầu vồng.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/img/Phu Kien/Majoris charm sắc cầu vồng - CHM 0042 - Màu cầu vồng.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/Túi xách tay nhấn đường cong phối khóa kim loại/Anh 1.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/img/Túi xách tay nhấn đường cong phối khóa kim loại/Anh 1.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/Túi xách tay nhấn đường cong phối khóa kim loại/Anh 2.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/img/Túi xách tay nhấn đường cong phối khóa kim loại/Anh 2.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/Túi xách tay nhấn đường cong phối khóa kim loại/Anh 3.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/img/Túi xách tay nhấn đường cong phối khóa kim loại/Anh 3.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/Túi xách tay nhấn đường cong phối khóa kim loại/Anh 4.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/img/Túi xách tay nhấn đường cong phối khóa kim loại/Anh 4.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/Túi xách tay nhấn đường cong phối khóa kim loại/mau den.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/img/Túi xách tay nhấn đường cong phối khóa kim loại/mau den.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/Túi đv adalyn/2025-L7-CK2-20782753-01-1.webp" beforeDir="false" afterPath="$PROJECT_DIR$/img/Túi đv adalyn/2025-L7-CK2-20782753-01-1.webp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/Túi đv adalyn/2025-L7-CK2-20782753-01-3.webp" beforeDir="false" afterPath="$PROJECT_DIR$/img/Túi đv adalyn/2025-L7-CK2-20782753-01-3.webp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/Túi đv adalyn/2025-L7-CK2-20782753-01-5.webp" beforeDir="false" afterPath="$PROJECT_DIR$/img/Túi đv adalyn/2025-L7-CK2-20782753-01-5.webp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/Túi đv adalyn/2025-L7-CK2-20782753-01-6.webp" beforeDir="false" afterPath="$PROJECT_DIR$/img/Túi đv adalyn/2025-L7-CK2-20782753-01-6.webp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/Túi đv adalyn/2025-L7-CK2-20782753-N9-1.webp" beforeDir="false" afterPath="$PROJECT_DIR$/img/Túi đv adalyn/2025-L7-CK2-20782753-N9-1.webp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/Túi đv adalyn/2025-L7-CK2-20782753-N9-2.webp" beforeDir="false" afterPath="$PROJECT_DIR$/img/Túi đv adalyn/2025-L7-CK2-20782753-N9-2.webp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/Túi đv adalyn/2025-L7-CK2-20782753-N9-3.webp" beforeDir="false" afterPath="$PROJECT_DIR$/img/Túi đv adalyn/2025-L7-CK2-20782753-N9-3.webp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/Túi đv adalyn/2025-L7-CK2-20782753-N9-4.webp" beforeDir="false" afterPath="$PROJECT_DIR$/img/Túi đv adalyn/2025-L7-CK2-20782753-N9-4.webp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/banner hlw.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/img/banner hlw.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/m69651514684_1.webp" beforeDir="false" afterPath="$PROJECT_DIR$/img/m69651514684_1.webp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/móc khóa dơi.png" beforeDir="false" afterPath="$PROJECT_DIR$/img/móc khóa dơi.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/product1.webp" beforeDir="false" afterPath="$PROJECT_DIR$/img/product1.webp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/product2.webp" beforeDir="false" afterPath="$PROJECT_DIR$/img/product2.webp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/tui-SHO 0298/anh1.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/img/tui-SHO 0298/anh1.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/tui-SHO 0303/anh1.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/img/tui-SHO 0303/anh1.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/tui-TOT 0206/anh1.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/img/tui-TOT 0206/anh1.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/tui-TOT0211/anh1.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/img/tui-TOT0211/anh1.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/tui-alva/anh1.webp" beforeDir="false" afterPath="$PROJECT_DIR$/img/tui-alva/anh1.webp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/tui-alva/anh2.webp" beforeDir="false" afterPath="$PROJECT_DIR$/img/tui-alva/anh2.webp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/tui-alva/anh3.webp" beforeDir="false" afterPath="$PROJECT_DIR$/img/tui-alva/anh3.webp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/tui-alva/anh4.webp" beforeDir="false" afterPath="$PROJECT_DIR$/img/tui-alva/anh4.webp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/tui-alva/anh5.webp" beforeDir="false" afterPath="$PROJECT_DIR$/img/tui-alva/anh5.webp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/tui-alva/bac1.webp" beforeDir="false" afterPath="$PROJECT_DIR$/img/tui-alva/bac1.webp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/tui-alva/bac2.webp" beforeDir="false" afterPath="$PROJECT_DIR$/img/tui-alva/bac2.webp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/tui-alva/bac3.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/img/tui-alva/bac3.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/tui-alva/bac4.webp" beforeDir="false" afterPath="$PROJECT_DIR$/img/tui-alva/bac4.webp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/tui-alva/kem1.webp" beforeDir="false" afterPath="$PROJECT_DIR$/img/tui-alva/kem1.webp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/tui-alva/kem2.webp" beforeDir="false" afterPath="$PROJECT_DIR$/img/tui-alva/kem2.webp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/tui-alva/kem3.webp" beforeDir="false" afterPath="$PROJECT_DIR$/img/tui-alva/kem3.webp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/tui-alva/kem4.webp" beforeDir="false" afterPath="$PROJECT_DIR$/img/tui-alva/kem4.webp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/tui-alva/xanh1.webp" beforeDir="false" afterPath="$PROJECT_DIR$/img/tui-alva/xanh1.webp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/tui-alva/xanh2.webp" beforeDir="false" afterPath="$PROJECT_DIR$/img/tui-alva/xanh2.webp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/tui-alva/xanh3.webp" beforeDir="false" afterPath="$PROJECT_DIR$/img/tui-alva/xanh3.webp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/tui-alva/xanh4.webp" beforeDir="false" afterPath="$PROJECT_DIR$/img/tui-alva/xanh4.webp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/tui-britton/anh1.webp" beforeDir="false" afterPath="$PROJECT_DIR$/img/tui-britton/anh1.webp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/tui-britton/anh2.webp" beforeDir="false" afterPath="$PROJECT_DIR$/img/tui-britton/anh2.webp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/tui-britton/anh3.webp" beforeDir="false" afterPath="$PROJECT_DIR$/img/tui-britton/anh3.webp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/tui-britton/anh4.webp" beforeDir="false" afterPath="$PROJECT_DIR$/img/tui-britton/anh4.webp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/tui-britton/den1.webp" beforeDir="false" afterPath="$PROJECT_DIR$/img/tui-britton/den1.webp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/tui-britton/den2.webp" beforeDir="false" afterPath="$PROJECT_DIR$/img/tui-britton/den2.webp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/tui-britton/den3.webp" beforeDir="false" afterPath="$PROJECT_DIR$/img/tui-britton/den3.webp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/tui-britton/den4.webp" beforeDir="false" afterPath="$PROJECT_DIR$/img/tui-britton/den4.webp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/tui-day-rut/anh1.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/img/tui-day-rut/anh1.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/tui-deo-cheo/anh1.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/img/tui-deo-cheo/anh1.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/tui-deo-vai/anh1.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/img/tui-deo-vai/anh1.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/tui-double-handle/DEN1.webp" beforeDir="false" afterPath="$PROJECT_DIR$/img/tui-double-handle/DEN1.webp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/tui-double-handle/anh1.webp" beforeDir="false" afterPath="$PROJECT_DIR$/img/tui-double-handle/anh1.webp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/tui-double-handle/anh2.webp" beforeDir="false" afterPath="$PROJECT_DIR$/img/tui-double-handle/anh2.webp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/tui-double-handle/anh3.webp" beforeDir="false" afterPath="$PROJECT_DIR$/img/tui-double-handle/anh3.webp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/tui-double-handle/anh4.webp" beforeDir="false" afterPath="$PROJECT_DIR$/img/tui-double-handle/anh4.webp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/tui-double-handle/anh5.webp" beforeDir="false" afterPath="$PROJECT_DIR$/img/tui-double-handle/anh5.webp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/tui-enola/anh1.webp" beforeDir="false" afterPath="$PROJECT_DIR$/img/tui-enola/anh1.webp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/tui-enola/anh2.webp" beforeDir="false" afterPath="$PROJECT_DIR$/img/tui-enola/anh2.webp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/tui-enola/anh3.webp" beforeDir="false" afterPath="$PROJECT_DIR$/img/tui-enola/anh3.webp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/tui-enola/anh4.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/img/tui-enola/anh4.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/tui-enola/anh5.webp" beforeDir="false" afterPath="$PROJECT_DIR$/img/tui-enola/anh5.webp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/tui-mirabelle/anh1.webp" beforeDir="false" afterPath="$PROJECT_DIR$/img/tui-mirabelle/anh1.webp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/tui-mirabelle/anh2.webp" beforeDir="false" afterPath="$PROJECT_DIR$/img/tui-mirabelle/anh2.webp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/tui-mirabelle/anh3.webp" beforeDir="false" afterPath="$PROJECT_DIR$/img/tui-mirabelle/anh3.webp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/tui-mirabelle/anh4.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/img/tui-mirabelle/anh4.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/tui-mirabelle/hong1.webp" beforeDir="false" afterPath="$PROJECT_DIR$/img/tui-mirabelle/hong1.webp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/tui-mirabelle/hong2.webp" beforeDir="false" afterPath="$PROJECT_DIR$/img/tui-mirabelle/hong2.webp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/tui-mirabelle/hong3.webp" beforeDir="false" afterPath="$PROJECT_DIR$/img/tui-mirabelle/hong3.webp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/tui-mirabelle/hong4.webp" beforeDir="false" afterPath="$PROJECT_DIR$/img/tui-mirabelle/hong4.webp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/tui-mirabelle/nau1.webp" beforeDir="false" afterPath="$PROJECT_DIR$/img/tui-mirabelle/nau1.webp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/tui-mirabelle/nau2.webp" beforeDir="false" afterPath="$PROJECT_DIR$/img/tui-mirabelle/nau2.webp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/tui-mirabelle/nau3.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/img/tui-mirabelle/nau3.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/tui-mirabelle/nau4.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/img/tui-mirabelle/nau4.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/tui-nelly/anh1.webp" beforeDir="false" afterPath="$PROJECT_DIR$/img/tui-nelly/anh1.webp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/tui-nelly/anh2.webp" beforeDir="false" afterPath="$PROJECT_DIR$/img/tui-nelly/anh2.webp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/tui-nelly/anh3.webp" beforeDir="false" afterPath="$PROJECT_DIR$/img/tui-nelly/anh3.webp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/tui-nelly/anh4.webp" beforeDir="false" afterPath="$PROJECT_DIR$/img/tui-nelly/anh4.webp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/tui-nelly/anh5.webp" beforeDir="false" afterPath="$PROJECT_DIR$/img/tui-nelly/anh5.webp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/tui-nelly/anh6.webp" beforeDir="false" afterPath="$PROJECT_DIR$/img/tui-nelly/anh6.webp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/tui-nelly/den1.webp" beforeDir="false" afterPath="$PROJECT_DIR$/img/tui-nelly/den1.webp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/tui-nelly/den2.webp" beforeDir="false" afterPath="$PROJECT_DIR$/img/tui-nelly/den2.webp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/tui-nelly/den3.webp" beforeDir="false" afterPath="$PROJECT_DIR$/img/tui-nelly/den3.webp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/tui-nelly/den4.webp" beforeDir="false" afterPath="$PROJECT_DIR$/img/tui-nelly/den4.webp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/tui-nelly/den5.webp" beforeDir="false" afterPath="$PROJECT_DIR$/img/tui-nelly/den5.webp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/tui-noane/anh1.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/img/tui-noane/anh1.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/tui-noane/anh2.webp" beforeDir="false" afterPath="$PROJECT_DIR$/img/tui-noane/anh2.webp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/tui-noane/anh3.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/img/tui-noane/anh3.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/tui-noane/anh4.webp" beforeDir="false" afterPath="$PROJECT_DIR$/img/tui-noane/anh4.webp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/tui-noane/den1.webp" beforeDir="false" afterPath="$PROJECT_DIR$/img/tui-noane/den1.webp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/tui-noane/den2.webp" beforeDir="false" afterPath="$PROJECT_DIR$/img/tui-noane/den2.webp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/tui-noane/den3.webp" beforeDir="false" afterPath="$PROJECT_DIR$/img/tui-noane/den3.webp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/tui-noane/den4.webp" beforeDir="false" afterPath="$PROJECT_DIR$/img/tui-noane/den4.webp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/tui-noane/hong1.webp" beforeDir="false" afterPath="$PROJECT_DIR$/img/tui-noane/hong1.webp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/tui-noane/hong2.webp" beforeDir="false" afterPath="$PROJECT_DIR$/img/tui-noane/hong2.webp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/tui-noane/hong3.webp" beforeDir="false" afterPath="$PROJECT_DIR$/img/tui-noane/hong3.webp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/tui-noane/hong4.webp" beforeDir="false" afterPath="$PROJECT_DIR$/img/tui-noane/hong4.webp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/tui-noane/xam1.webp" beforeDir="false" afterPath="$PROJECT_DIR$/img/tui-noane/xam1.webp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/tui-noane/xam2.webp" beforeDir="false" afterPath="$PROJECT_DIR$/img/tui-noane/xam2.webp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/tui-noane/xam3.webp" beforeDir="false" afterPath="$PROJECT_DIR$/img/tui-noane/xam3.webp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/tui-noane/xam4.webp" beforeDir="false" afterPath="$PROJECT_DIR$/img/tui-noane/xam4.webp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/tui-quai-doi/tui-xach-tay-quai-doi-toi-gian-tot-0215-mau-xanh-olive-0-766378-1763275264-medium.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/img/tui-quai-doi/tui-xach-tay-quai-doi-toi-gian-tot-0215-mau-xanh-olive-0-766378-1763275264-medium.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/tui-trice/anh1.webp" beforeDir="false" afterPath="$PROJECT_DIR$/img/tui-trice/anh1.webp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/tui-trice/anh2.webp" beforeDir="false" afterPath="$PROJECT_DIR$/img/tui-trice/anh2.webp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/tui-trice/anh3.webp" beforeDir="false" afterPath="$PROJECT_DIR$/img/tui-trice/anh3.webp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/tui-trice/anh4.webp" beforeDir="false" afterPath="$PROJECT_DIR$/img/tui-trice/anh4.webp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/tui-trice/den1.webp" beforeDir="false" afterPath="$PROJECT_DIR$/img/tui-trice/den1.webp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/tui-trice/den2.webp" beforeDir="false" afterPath="$PROJECT_DIR$/img/tui-trice/den2.webp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/tui-trice/den3.webp" beforeDir="false" afterPath="$PROJECT_DIR$/img/tui-trice/den3.webp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/tui-trice/den4.webp" beforeDir="false" afterPath="$PROJECT_DIR$/img/tui-trice/den4.webp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/tui-trice/phan1.webp" beforeDir="false" afterPath="$PROJECT_DIR$/img/tui-trice/phan1.webp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/tui-trice/phan2.webp" beforeDir="false" afterPath="$PROJECT_DIR$/img/tui-trice/phan2.webp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/tui-trice/phan3.webp" beforeDir="false" afterPath="$PROJECT_DIR$/img/tui-trice/phan3.webp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/tui-trice/phan4.webp" beforeDir="false" afterPath="$PROJECT_DIR$/img/tui-trice/phan4.webp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/túi clutch/2023-L6-CK2-70160131-01-1.webp" beforeDir="false" afterPath="$PROJECT_DIR$/img/túi clutch/2023-L6-CK2-70160131-01-1.webp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/túi clutch/2023-L6-CK2-70160131-01-2.webp" beforeDir="false" afterPath="$PROJECT_DIR$/img/túi clutch/2023-L6-CK2-70160131-01-2.webp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/túi clutch/2023-L6-CK2-70160131-01-3.webp" beforeDir="false" afterPath="$PROJECT_DIR$/img/túi clutch/2023-L6-CK2-70160131-01-3.webp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/túi clutch/2023-L6-CK2-70160131-01-4.webp" beforeDir="false" afterPath="$PROJECT_DIR$/img/túi clutch/2023-L6-CK2-70160131-01-4.webp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/túi clutch/2023-L6-CK2-70160131-01-8.webp" beforeDir="false" afterPath="$PROJECT_DIR$/img/túi clutch/2023-L6-CK2-70160131-01-8.webp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/túi clutch/2023-L6-CK2-70160131-09-1.webp" beforeDir="false" afterPath="$PROJECT_DIR$/img/túi clutch/2023-L6-CK2-70160131-09-1.webp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/túi clutch/2023-L6-CK2-70160131-09-7.webp" beforeDir="false" afterPath="$PROJECT_DIR$/img/túi clutch/2023-L6-CK2-70160131-09-7.webp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/túi clutch/2023-L6-CK2-70160131-09-8.webp" beforeDir="false" afterPath="$PROJECT_DIR$/img/túi clutch/2023-L6-CK2-70160131-09-8.webp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/túi clutch/2023-L6-CK2-70160131-O2-1.webp" beforeDir="false" afterPath="$PROJECT_DIR$/img/túi clutch/2023-L6-CK2-70160131-O2-1.webp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/túi clutch/2023-L6-CK2-70160131-O2-2.webp" beforeDir="false" afterPath="$PROJECT_DIR$/img/túi clutch/2023-L6-CK2-70160131-O2-2.webp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/túi clutch/2023-L6-CK2-70160131-O2-3.webp" beforeDir="false" afterPath="$PROJECT_DIR$/img/túi clutch/2023-L6-CK2-70160131-O2-3.webp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/túi da PU/a1.webp" beforeDir="false" afterPath="$PROJECT_DIR$/img/túi da PU/a1.webp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/túi da PU/a2.webp" beforeDir="false" afterPath="$PROJECT_DIR$/img/túi da PU/a2.webp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/túi da PU/a3.webp" beforeDir="false" afterPath="$PROJECT_DIR$/img/túi da PU/a3.webp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/túi da PU/a4.webp" beforeDir="false" afterPath="$PROJECT_DIR$/img/túi da PU/a4.webp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/túi da ca sấu/a1.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/img/túi da ca sấu/a1.jpeg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/túi da ca sấu/a2.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/img/túi da ca sấu/a2.jpeg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/túi da ca sấu/a3.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/img/túi da ca sấu/a3.jpeg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/túi da ca sấu/a4.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/img/túi da ca sấu/a4.jpeg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/túi da nâu.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/img/túi da nâu.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/túi da thật/a1.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/img/túi da thật/a1.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/túi da thật/a2.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/img/túi da thật/a2.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/túi da thật/a3.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/img/túi da thật/a3.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/túi da thật/a4.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/img/túi da thật/a4.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/túi da thật/a5.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/img/túi da thật/a5.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/túi da thật/a6.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/img/túi da thật/a6.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/túi da đen.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/img/túi da đen.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/túi da/a1.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/img/túi da/a1.jpeg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/túi da/a2.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/img/túi da/a2.jpeg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/túi da/a3.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/img/túi da/a3.jpeg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/túi da/a4.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/img/túi da/a4.jpeg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/túi hoa pastel.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/img/túi hoa pastel.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/túi hàng hiệu/a1.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/img/túi hàng hiệu/a1.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/túi hàng hiệu/a2.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/img/túi hàng hiệu/a2.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/túi hàng hiệu/a3.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/img/túi hàng hiệu/a3.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/túi hàng hiệu/a4.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/img/túi hàng hiệu/a4.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/túi hàng hiệu/a5.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/img/túi hàng hiệu/a5.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/túi kẹp đông.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/img/túi kẹp đông.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/túi kẹpp.webp" beforeDir="false" afterPath="$PROJECT_DIR$/img/túi kẹpp.webp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/túi lông.webp" beforeDir="false" afterPath="$PROJECT_DIR$/img/túi lông.webp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/túi năng động.webp" beforeDir="false" afterPath="$PROJECT_DIR$/img/túi năng động.webp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/túi tay.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/img/túi tay.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/túi tote vải bố.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/img/túi tote vải bố.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/túi xách cầm tay màu đen da lộn.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/img/túi xách cầm tay màu đen da lộn.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/túi xách da cá sấu đen.webp" beforeDir="false" afterPath="$PROJECT_DIR$/img/túi xách da cá sấu đen.webp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/túi xách da màu nâu sẫm vintage.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/img/túi xách da màu nâu sẫm vintage.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/túi xách da đen minimalist.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/img/túi xách da đen minimalist.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/túi xách handmade/a1.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/img/túi xách handmade/a1.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/túi xách handmade/a2.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/img/túi xách handmade/a2.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/túi xách handmade/a3.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/img/túi xách handmade/a3.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/túi xách handmade/a4.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/img/túi xách handmade/a4.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/túi xách màu xám đen.webp" beforeDir="false" afterPath="$PROJECT_DIR$/img/túi xách màu xám đen.webp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/túi xách nâu cá tính/a1.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/img/túi xách nâu cá tính/a1.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/túi xách nâu cá tính/a2.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/img/túi xách nâu cá tính/a2.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/túi xách nâu cá tính/a3.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/img/túi xách nâu cá tính/a3.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/túi xách nâu cá tính/a4.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/img/túi xách nâu cá tính/a4.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/túi xách nữ/a1.webp" beforeDir="false" afterPath="$PROJECT_DIR$/img/túi xách nữ/a1.webp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/túi xách nữ/a2.webp" beforeDir="false" afterPath="$PROJECT_DIR$/img/túi xách nữ/a2.webp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/túi xách nữ/a3.webp" beforeDir="false" afterPath="$PROJECT_DIR$/img/túi xách nữ/a3.webp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/túi xách nữ/a4.webp" beforeDir="false" afterPath="$PROJECT_DIR$/img/túi xách nữ/a4.webp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/túi xách nữ/a5.webp" beforeDir="false" afterPath="$PROJECT_DIR$/img/túi xách nữ/a5.webp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/túi xách tay/a1.webp" beforeDir="false" afterPath="$PROJECT_DIR$/img/túi xách tay/a1.webp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/túi xách tay/a2.webp" beforeDir="false" afterPath="$PROJECT_DIR$/img/túi xách tay/a2.webp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/túi xách tay/a3.webp" beforeDir="false" afterPath="$PROJECT_DIR$/img/túi xách tay/a3.webp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/túi xách tay/a4.webp" beforeDir="false" afterPath="$PROJECT_DIR$/img/túi xách tay/a4.webp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/túi xách tay/a5.webp" beforeDir="false" afterPath="$PROJECT_DIR$/img/túi xách tay/a5.webp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/túi đeo chéo/a1.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/img/túi đeo chéo/a1.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/túi đeo chéo/a2.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/img/túi đeo chéo/a2.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/túi đeo chéo/a3.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/img/túi đeo chéo/a3.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/túi đeo chéo/a4.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/img/túi đeo chéo/a4.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/túi đeo chéo/a5.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/img/túi đeo chéo/a5.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/túi đeo chéo/a6.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/img/túi đeo chéo/a6.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/túi đeo.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/img/túi đeo.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/túi đeo.webp" beforeDir="false" afterPath="$PROJECT_DIR$/img/túi đeo.webp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/túi đi biển.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/img/túi đi biển.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/introduce.html" beforeDir="false" afterPath="$PROJECT_DIR$/introduce.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pro-details/product-details.html" beforeDir="false" afterPath="$PROJECT_DIR$/pro-details/product-details.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pro-details/product-details1.html" beforeDir="false" afterPath="$PROJECT_DIR$/pro-details/product-details1.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pro-details/product-details13.html" beforeDir="false" afterPath="$PROJECT_DIR$/pro-details/product-details13.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pro-details/product-details2.html" beforeDir="false" afterPath="$PROJECT_DIR$/pro-details/product-details2.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/script.js" beforeDir="false" afterPath="$PROJECT_DIR$/script.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/style.css" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 4
+}]]></component>
+  <component name="ProjectId" id="37jm3qEZU3mrPUWwOdUtMuFVLsN" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-js-predefined-d6986cc7102b-3aa1da707db6-JavaScript-WS-252.26830.93" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="de51f29c-e241-43d2-8881-5aa38e2660e5" name="Changes" comment="" />
+      <created>1767424662543</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1767424662543</updated>
+      <workItem from="1767424667127" duration="14000" />
+    </task>
+    <servers />
+  </component>
+</project>
