@@ -9,10 +9,13 @@ public class AuthService {
     public User checkLogin(String username, String password){
         User u = authDao.getUserByUsername(username);
         if(u == null) return null;
-        if(u.getPassword().equals(password) && u.isActive()){
+
+        if(password.equals(u.getPassword()) && u.isActive()){
             u.setPassword("");
             return u;
         }
         return null;
     }
+
+
 }
