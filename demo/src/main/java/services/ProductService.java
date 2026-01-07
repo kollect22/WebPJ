@@ -9,4 +9,8 @@ public class ProductService {
     public List<Product> getListProduct() {
         return new ArrayList<>();
     }
+
+    public Product getProduct(int id) {
+       return null;
+    }
 }

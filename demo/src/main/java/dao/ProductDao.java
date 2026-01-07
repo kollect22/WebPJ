@@ -12,6 +12,9 @@ import java.util.Map;
 
 public class ProductDao extends BaseDao {
     static Map<Integer, Product> data = new HashMap<>();
+    static {
+        data.put(1, new Product(1, "", "", 10000));
+    }
 
     public List<Product> getListProduct() {
         //return new ArrayList<Product>(data.values());
