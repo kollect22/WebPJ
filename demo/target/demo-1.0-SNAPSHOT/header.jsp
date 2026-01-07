@@ -32,8 +32,14 @@
             <input type="search" placeholder="Tìm kiếm" class="search-input">
         </div>
 
-        <a href="${pageContext.request.contextPath}/login.jsp">
+        <a href="${empty sessionScope.auth ? pageContext.request.contextPath.concat('/login.jsp') : '#'}"
+           class="d-flex align-items-center gap-2 text-decoration-none text-reset">
+
             <i class="fa-solid fa-user"></i>
+
+            <span class="fw-bold">
+                ${sessionScope.auth.username}
+            </span>
         </a>
 
         <a href="${pageContext.request.contextPath}/wishlist.jsp" class="wishlist-header">
@@ -42,7 +48,7 @@
         </a>
 
         <a href="${pageContext.request.contextPath}/cart.jsp">
-            <i class="fa-solid fa-shopping-cart"></i>
+            <i class="fa-solid fa-shopping-cart"></i> (${sessionScope.cart.totalQuantity}
         </a>
     </div>
 </header>

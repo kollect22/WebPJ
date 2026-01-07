@@ -27,7 +27,9 @@
 
         <div class="product-item">
             <img src="${pageContext.request.contextPath}/img/products/tui-deo-vai/anh1.jpg" alt="Túi đeo vai màu be"/>
-            <div class="cart-icon"><i class="fa-solid fa-cart-shopping"></i></div>
+            <a href="add-cart?id=${p.id}&q=1" class="cart-icon">
+                <i class="fa-solid fa-cart-shopping"></i>
+            </a>
             <div class="product-name">Túi đeo vai nhấn khóa - Be</div>
             <div class="product-price">
                 <span class="new-price">1.135.250đ</span>
@@ -38,7 +40,9 @@
 
         <div class="product-item">
             <img src="${pageContext.request.contextPath}/img/products/tui-TOT0211/anh1.jpg" alt="Túi xách màu nâu"/>
-            <div class="cart-icon"><i class="fa-solid fa-cart-shopping"></i></div>
+            <a href="AddCart?id=${p.id}&q=1" class="cart-icon">
+                <i class="fa-solid fa-cart-shopping"></i>
+            </a>
             <div class="product-name">Túi xách đai khoá - Nâu</div>
             <div class="product-price">
                 <span class="new-price">1.154.250đ</span>
@@ -49,7 +53,9 @@
 
         <div class="product-item">
             <img src="${pageContext.request.contextPath}/img/products/tui-TOT0206/anh1.jpg" alt="Túi mini đỏ"/>
-            <div class="cart-icon"><i class="fa-solid fa-cart-shopping"></i></div>
+            <a href="AddCart?id=${p.id}&q=1" class="cart-icon">
+                <i class="fa-solid fa-cart-shopping"></i>
+            </a>
             <div class="product-name">Túi xách tay mini tối giản - Đỏ</div>
             <div class="product-price">
                 <span class="new-price">1.030.750đ</span>
@@ -60,7 +66,9 @@
 
         <div class="product-item">
             <img src="${pageContext.request.contextPath}/img/products/tui-SHO0303/anh1.jpg" alt="Túi mini đỏ"/>
-            <div class="cart-icon"><i class="fa-solid fa-cart-shopping"></i></div>
+            <a href="AddCart?id=${p.id}&q=1" class="cart-icon">
+                <i class="fa-solid fa-cart-shopping"></i>
+            </a>
             <div class="product-name">Túi đeo vai hình thang - Hồng</div>
             <div class="product-price">
                 <span class="new-price">1.425.000đ</span>
@@ -71,7 +79,9 @@
 
         <div class="product-item">
             <img src="${pageContext.request.contextPath}/img/products/tui-SHO0298/anh1.jpg" alt="Túi Hobo xanh lá"/>
-            <div class="cart-icon"><i class="fa-solid fa-cart-shopping"></i></div>
+            <a href="AddCart?id=${p.id}&q=1" class="cart-icon">
+                <i class="fa-solid fa-cart-shopping"></i>
+            </a>
             <div class="product-name">Túi Hobo phối xích - Xanh lá</div>
             <div class="product-price">
                 <span class="new-price">1.059.250đ</span>
@@ -82,7 +92,9 @@
 
         <div class="product-item">
             <img src="${pageContext.request.contextPath}/img/products/tui-deo-cheo/anh1.jpg" alt="Túi đeo chéo kem"/>
-            <div class="cart-icon"><i class="fa-solid fa-cart-shopping"></i></div>
+            <a href="AddCart?id=${p.id}&q=1" class="cart-icon">
+                <i class="fa-solid fa-cart-shopping"></i>
+            </a>
             <div class="product-name">Túi đeo chéo nắp gập - Kem</div>
             <div class="product-price">
                 <span class="new-price">973.750đ</span>
@@ -93,7 +105,9 @@
 
         <div class="product-item">
             <img src="${pageContext.request.contextPath}/img/products/tui-quai-doi/a1.jpg" alt="Túi xách Olive"/>
-            <div class="cart-icon"><i class="fa-solid fa-cart-shopping"></i></div>
+            <a href="AddCart?id=${p.id}&q=1" class="cart-icon">
+                <i class="fa-solid fa-cart-shopping"></i>
+            </a>
             <div class="product-name">Túi xách quai đôi - Olive</div>
             <div class="product-price">
                 <span class="new-price">1.211.250đ</span>
@@ -104,7 +118,9 @@
 
         <div class="product-item">
             <img src="${pageContext.request.contextPath}/img/products/tui-day-rut/anh1.jpg" alt="Túi dây rút đen"/>
-            <div class="cart-icon"><i class="fa-solid fa-cart-shopping"></i></div>
+            <a href="AddCart?id=${p.id}&q=1" class="cart-icon">
+                <i class="fa-solid fa-cart-shopping"></i>
+            </a>
             <div class="product-name">Túi đeo vai dây rút - Đen</div>
             <div class="product-price">
                 <span class="new-price">1.591.250đ</span>
@@ -123,35 +139,45 @@
 
         <div class="product-item">
             <img src="${pageContext.request.contextPath}/img/products/tui-trice/anh1.webp" alt="Túi Trice"/>
-            <div class="cart-icon"><i class="fa-solid fa-cart-shopping"></i></div>
+            <a href="AddCart?id=${p.id}&q=1" class="cart-icon">
+                <i class="fa-solid fa-cart-shopping"></i>
+            </a>
             <div class="product-name">Túi đeo vai Trice - Trắng</div>
             <div class="product-price">1.250.000đ</div>
         </div>
 
         <div class="product-item">
             <img src="${pageContext.request.contextPath}/img/products/tui-alva/xanh1.webp" alt="Túi Alva"/>
-            <div class="cart-icon"><i class="fa-solid fa-cart-shopping"></i></div>
+            <a href="AddCart?id=${p.id}&q=1" class="cart-icon">
+                <i class="fa-solid fa-cart-shopping"></i>
+            </a>
             <div class="product-name">Túi xách Alva - Xanh</div>
             <div class="product-price">1.450.000đ</div>
         </div>
 
         <div class="product-item">
             <img src="${pageContext.request.contextPath}/img/products/tui-mirabelle/hong1.webp" alt="Túi Mirabelle"/>
-            <div class="cart-icon"><i class="fa-solid fa-cart-shopping"></i></div>
+            <a href="AddCart?id=${p.id}&q=1" class="cart-icon">
+                <i class="fa-solid fa-cart-shopping"></i>
+            </a>
             <div class="product-name">Túi Mirabelle - Hồng Phấn</div>
             <div class="product-price">1.320.000đ</div>
         </div>
 
         <div class="product-item">
             <img src="${pageContext.request.contextPath}/img/products/tui-noane/xam1.webp" alt="Túi Noane"/>
-            <div class="cart-icon"><i class="fa-solid fa-cart-shopping"></i></div>
+            <a href="AddCart?id=${p.id}&q=1" class="cart-icon">
+                <i class="fa-solid fa-cart-shopping"></i>
+            </a>
             <div class="product-name">Túi Noane Phom Hộp - Xám</div>
             <div class="product-price">1.180.000đ</div>
         </div>
 
         <div class="product-item">
             <img src="${pageContext.request.contextPath}/img/products/tui-mirabelle/nau1.webp" alt="Túi Mirabelle Nâu"/>
-            <div class="cart-icon"><i class="fa-solid fa-cart-shopping"></i></div>
+            <a href="AddCart?id=${p.id}&q=1" class="cart-icon">
+                <i class="fa-solid fa-cart-shopping"></i>
+            </a>
             <div class="product-name">Túi Mirabelle - Nâu Tây</div>
             <div class="product-price">1.320.000đ</div>
         </div>
@@ -159,21 +185,27 @@
         <div class="product-item">
             <img src="${pageContext.request.contextPath}/img/products/tui-double-handle/DEN1.webp"
                  alt="Túi Double Handle"/>
-            <div class="cart-icon"><i class="fa-solid fa-cart-shopping"></i></div>
+            <a href="AddCart?id=${p.id}&q=1" class="cart-icon">
+                <i class="fa-solid fa-cart-shopping"></i>
+            </a>
             <div class="product-name">Túi xách Double Handle - Đen</div>
             <div class="product-price">1.550.000đ</div>
         </div>
 
         <div class="product-item">
             <img src="${pageContext.request.contextPath}/img/products/tui-day-rut/anh1.jpg" alt="Túi Bucket"/>
-            <div class="cart-icon"><i class="fa-solid fa-cart-shopping"></i></div>
+            <a href="AddCart?id=${p.id}&q=1" class="cart-icon">
+                <i class="fa-solid fa-cart-shopping"></i>
+            </a>
             <div class="product-name">Túi Bucket Dây Rút - Be</div>
             <div class="product-price">980.000đ</div>
         </div>
 
         <div class="product-item">
             <img src="${pageContext.request.contextPath}/img/products/tui-britton/den1.webp" alt="Túi Britton"/>
-            <div class="cart-icon"><i class="fa-solid fa-cart-shopping"></i></div>
+            <a href="AddCart?id=${p.id}&q=1" class="cart-icon">
+                <i class="fa-solid fa-cart-shopping"></i>
+            </a>
             <div class="product-name">Túi Britton Khóa Kim Loại</div>
             <div class="product-price">1.690.000đ</div>
         </div>

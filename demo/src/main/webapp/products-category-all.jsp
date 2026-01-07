@@ -26,7 +26,6 @@
             list-style: none;
         }
 
-        /* --- 2. BREADCRUMBS (Đường dẫn) --- */
         .breadcrumbs {
             color: grey;
             margin: 20px 40px 25px 40px;
@@ -44,13 +43,11 @@
             text-decoration: underline;
         }
 
-        /* --- 3. LAYOUT CONTAINER --- */
         .shop-container {
             padding: 0 40px;
             margin-bottom: 50px;
         }
 
-        /* --- 4. TOOLBAR (Bộ lọc - Số lượng - Sắp xếp) --- */
         .toolbar-container {
             display: flex;
             justify-content: space-between;
@@ -82,7 +79,6 @@
             font-family: Arial, sans-serif;
         }
 
-        /* Đường kẻ dọc ngăn cách */
         .tool-item:not(:last-child)::after {
             content: "";
             position: absolute;
@@ -94,7 +90,6 @@
             background-color: #e5e5e5;
         }
 
-        /* Nút Bộ lọc */
         .btn-filter {
             font-weight: 500;
             transition: color 0.3s;
@@ -104,15 +99,14 @@
             color: #000;
         }
 
-        /* Số lượng sản phẩm */
+
         .product-count {
             color: #666;
             cursor: default;
         }
 
-        /* Phần Sắp xếp */
         .sort-wrapper {
-            position: relative; /*Để menu con định vị theo cha */
+            position: relative;
             z-index: 2000;
             cursor: pointer;
             user-select: none;
@@ -124,7 +118,6 @@
             padding-right: 170px;
             padding-left: 170px;
         }
-        /* Menu xổ xuống */
         .sort-menu {
             position: absolute;
             top: 105%;
@@ -172,8 +165,6 @@
         }
 
 
-
-        /* --- 5. PRODUCT GRID (Lưới sản phẩm) --- */
         .product-cat-list {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
@@ -200,7 +191,6 @@
             background-color: #fff;
         }
 
-        /* Ảnh sản phẩm */
         .product-item img {
             width: 100%;
             height: 400px;
@@ -216,7 +206,6 @@
             transform: none;
         }
 
-        /* Thông tin sản phẩm */
         .product-name {
             font-size: 16px;
             margin-top: 15px;
@@ -231,7 +220,6 @@
             font-size: 14px;
         }
 
-        /* Icon giỏ hàng */
         .cart-icon {
             position: absolute;
             top: 15px;
@@ -250,7 +238,6 @@
             opacity: 1;
         }
 
-        /* --- 6. SIDEBAR (Thanh bên) --- */
         .filter-sidebar {
             position: fixed;
             top: 0;

@@ -104,7 +104,7 @@
 
             <div class="error-msg">${error}</div>
 
-            <form id="loginForm" action="login" method="POST">
+            <form id="loginForm" action="/login" method="POST">
                 <div class="input-box">
                     <input type="text" name="username" placeholder="Email" value="">
                 </div>
@@ -144,7 +144,6 @@
 </div>
 
 <script>
-    // Chỉ giữ lại logic chuyển đổi giao diện (UI)
     function showForm(form) {
         document.getElementById('loginForm').style.display = form === 'loginForm' ? 'block' : 'none';
         document.getElementById('registerForm').style.display = form === 'registerForm' ? 'block' : 'none';
