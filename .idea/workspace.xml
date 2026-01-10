@@ -11,525 +11,21 @@
   <component name="ChangeListManager">
     <list default="true" id="de51f29c-e241-43d2-8881-5aa38e2660e5" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/src/main/java/dao/AuthDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/demo/src/main/java/dao/AuthDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/src/main/java/Controller/ListProduct.java" beforeDir="false" afterPath="$PROJECT_DIR$/demo/src/main/java/Controller/ListProduct.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/src/main/java/Controller/ProductController.java" beforeDir="false" afterPath="$PROJECT_DIR$/demo/src/main/java/Controller/ProductController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/demo/src/main/java/dao/ProductDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/demo/src/main/java/dao/ProductDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/src/main/java/model/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/demo/src/main/java/model/Product.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/src/main/java/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/demo/src/main/java/model/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/src/main/java/services/AuthService.java" beforeDir="false" afterPath="$PROJECT_DIR$/demo/src/main/java/services/AuthService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/src/main/java/services/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/demo/src/main/java/services/LoginController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/demo/src/main/java/services/ProductService.java" beforeDir="false" afterPath="$PROJECT_DIR$/demo/src/main/java/services/ProductService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/src/main/resources/db.properties" beforeDir="false" afterPath="$PROJECT_DIR$/demo/src/main/resources/db.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/src/main/webapp/cart.html" beforeDir="false" afterPath="$PROJECT_DIR$/demo/src/main/webapp/cart.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/src/main/webapp/collection.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/src/main/webapp/footer.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/src/main/webapp/halloween-sales.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/src/main/webapp/header.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/src/main/webapp/header.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/demo/src/main/webapp/header.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/src/main/webapp/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/demo/src/main/webapp/index.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/src/main/webapp/introduce.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/src/main/webapp/login.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/demo/src/main/webapp/login.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/src/main/webapp/pro-details/product-details.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/src/main/webapp/pro-details/product-details1.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/src/main/webapp/pro-details/product-details13.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/src/main/webapp/pro-details/product-details2.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/src/main/webapp/product-new.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/classes/Controller/ListProduct.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/classes/Controller/ProductController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/classes/dao/AuthDao.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/classes/dao/BaseDao.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/classes/dao/DBProperties.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/classes/dao/ProductDao.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/classes/db.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/classes/model/Product.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/classes/model/User.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/classes/services/AuthService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/classes/services/HelloServlet.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/classes/services/LoginController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/classes/services/ProductService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/META-INF/MANIFEST.MF" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/WEB-INF/classes/Controller/ListProduct.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/WEB-INF/classes/Controller/ProductController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/WEB-INF/classes/com/example/demo/HelloServlet.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/WEB-INF/classes/com/example/demo/LoginController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/WEB-INF/classes/dao/AuthDao.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/WEB-INF/classes/dao/BaseDao.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/WEB-INF/classes/dao/DBProperties.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/WEB-INF/classes/dao/ProductDao.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/WEB-INF/classes/db.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/WEB-INF/classes/model/Product.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/WEB-INF/classes/model/User.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/WEB-INF/classes/services/AuthService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/WEB-INF/classes/services/HelloServlet.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/WEB-INF/classes/services/LoginController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/WEB-INF/classes/services/ProductService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/WEB-INF/lib/geantyref-1.3.14.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/WEB-INF/lib/jakarta.el-api-5.0.0.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/WEB-INF/lib/jakarta.servlet.jsp.jstl-3.0.1.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/WEB-INF/lib/jakarta.servlet.jsp.jstl-api-3.0.0.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/WEB-INF/lib/jdbi3-core-3.41.3.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/WEB-INF/lib/mysql-connector-j-8.2.0.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/WEB-INF/lib/protobuf-java-3.21.9.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/WEB-INF/lib/slf4j-api-1.7.36.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/WEB-INF/web.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/admin-banner.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/admin-coupons.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/admin-customer.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/admin-dashboard.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/admin-orders.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/admin-products.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/assets/css/admin-style.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/assets/css/product-detail.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/assets/css/style.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/assets/js/script.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/cart.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/collection.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/collection.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/footer.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/footer.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/halloween-sales.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/halloween-sales.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/header.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/header.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/20230801_w7UOlIvX.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/4 season.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/Introduce.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/Khăn Lụa (Silk Scarf) Họa Tiết Gothic.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/Phu Kien/Bowie charm - CHM 0015 - Màu nâu.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/Phu Kien/Bunnie charm - CMH 0016 - Màu hồng.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/Phu Kien/Charm dây hoạ tiết phối trái tim kim loại - CHM 0052 - Màu trắng đen.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/Phu Kien/Charm dây ngọc trai nhấn nơ hoa - CHM 0046 - Màu trắng đen.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/Phu Kien/Charm dây nơ bạc phối ngọc trai - CHM 0053 - Màu trắng đen.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/Phu Kien/Charm thú bông lông xù - CHM 0054 - Màu vàng.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/Phu Kien/Charm thú bông lông xù - CHM 0054 - Màu xám.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/Phu Kien/Majoris charm sắc cầu vồng - CHM 0042 - Màu cầu vồng.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/Túi xách tay nhấn đường cong phối khóa kim loại/Anh 1.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/Túi xách tay nhấn đường cong phối khóa kim loại/Anh 2.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/Túi xách tay nhấn đường cong phối khóa kim loại/Anh 3.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/Túi xách tay nhấn đường cong phối khóa kim loại/Anh 4.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/Túi xách tay nhấn đường cong phối khóa kim loại/mau den.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/Túi đv adalyn/2025-L7-CK2-20782753-01-1.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/Túi đv adalyn/2025-L7-CK2-20782753-01-3.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/Túi đv adalyn/2025-L7-CK2-20782753-01-5.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/Túi đv adalyn/2025-L7-CK2-20782753-01-6.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/Túi đv adalyn/2025-L7-CK2-20782753-N9-1.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/Túi đv adalyn/2025-L7-CK2-20782753-N9-2.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/Túi đv adalyn/2025-L7-CK2-20782753-N9-3.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/Túi đv adalyn/2025-L7-CK2-20782753-N9-4.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/accessory/Charm-Bunnie-Hong.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/accessory/Charm-Day-Ngoc-Trai.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/accessory/Charm-Day-No-Bac.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/accessory/Charm-Gau-Nau-Bowie.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/accessory/Charm-Sac-Cau-Vong.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/accessory/Charm-Thu-Bong-Vang.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/accessory/Charm-Thu-Bong-Xam.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/accessory/Charm-Trai-Tim.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/accessory/KhanLua.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/accessory/MocKhoaDoi.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/banner hlw.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/banners/20230801_w7UOlIvX.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/banners/4-season.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/banners/banner 1.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/banners/banner-hlw.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/banners/introduce.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/m69651514684_1.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/móc khóa dơi.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/product1.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/product2.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/products/tui-1.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/products/tui-2.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/products/tui-3.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/products/tui-4.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/products/tui-5.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/products/tui-SHO0298/anh1.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/products/tui-SHO0303/anh1.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/products/tui-TOT0206/anh1.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/products/tui-TOT0211/anh1.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/products/tui-alva/anh1.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/products/tui-alva/anh2.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/products/tui-alva/anh3.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/products/tui-alva/anh4.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/products/tui-alva/anh5.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/products/tui-alva/bac1.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/products/tui-alva/bac2.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/products/tui-alva/bac3.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/products/tui-alva/bac4.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/products/tui-alva/kem1.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/products/tui-alva/kem2.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/products/tui-alva/kem3.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/products/tui-alva/kem4.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/products/tui-alva/xanh1.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/products/tui-alva/xanh2.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/products/tui-alva/xanh3.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/products/tui-alva/xanh4.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/products/tui-britton/anh1.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/products/tui-britton/anh2.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/products/tui-britton/anh3.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/products/tui-britton/anh4.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/products/tui-britton/den1.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/products/tui-britton/den2.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/products/tui-britton/den3.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/products/tui-britton/den4.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/products/tui-clutch/2023-L6-CK2-70160131-01-1.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/products/tui-clutch/2023-L6-CK2-70160131-01-2.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/products/tui-clutch/2023-L6-CK2-70160131-01-3.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/products/tui-clutch/2023-L6-CK2-70160131-01-4.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/products/tui-clutch/2023-L6-CK2-70160131-01-8.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/products/tui-clutch/2023-L6-CK2-70160131-09-1.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/products/tui-clutch/2023-L6-CK2-70160131-09-7.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/products/tui-clutch/2023-L6-CK2-70160131-09-8.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/products/tui-clutch/2023-L6-CK2-70160131-O2-1.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/products/tui-clutch/2023-L6-CK2-70160131-O2-2.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/products/tui-clutch/2023-L6-CK2-70160131-O2-3.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/products/tui-da-PU/a1.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/products/tui-da-PU/a2.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/products/tui-da-PU/a3.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/products/tui-da-PU/a4.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/products/tui-da-ca-sau.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/products/tui-da-ca-sau/a1.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/products/tui-da-ca-sau/a2.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/products/tui-da-ca-sau/a3.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/products/tui-da-ca-sau/a4.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/products/tui-da-den.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/products/tui-da-nau.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/products/tui-da-that/a1.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/products/tui-da-that/a2.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/products/tui-da-that/a3.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/products/tui-da-that/a4.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/products/tui-da-that/a5.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/products/tui-da-that/a6.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/products/tui-da/a1.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/products/tui-da/a2.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/products/tui-da/a3.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/products/tui-da/a4.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/products/tui-day-rut/anh1.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/products/tui-deo-cheo-1/a1.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/products/tui-deo-cheo-1/a2.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/products/tui-deo-cheo-1/a3.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/products/tui-deo-cheo-1/a4.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/products/tui-deo-cheo-1/a5.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/products/tui-deo-cheo-1/a6.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/products/tui-deo-cheo-pastel.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/products/tui-deo-cheo/anh1.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/products/tui-deo-vai/anh1.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/products/tui-det-tay.jfif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/products/tui-di-bien.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/products/tui-doi.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/products/tui-double-handle/DEN1.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/products/tui-double-handle/anh1.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/products/tui-double-handle/anh2.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/products/tui-double-handle/anh3.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/products/tui-double-handle/anh4.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/products/tui-double-handle/anh5.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/products/tui-dv-adalyn/2025-L7-CK2-20782753-01-1.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/products/tui-dv-adalyn/2025-L7-CK2-20782753-01-3.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/products/tui-dv-adalyn/2025-L7-CK2-20782753-01-5.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/products/tui-dv-adalyn/2025-L7-CK2-20782753-01-6.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/products/tui-dv-adalyn/2025-L7-CK2-20782753-N9-1.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/products/tui-dv-adalyn/2025-L7-CK2-20782753-N9-2.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/products/tui-dv-adalyn/2025-L7-CK2-20782753-N9-3.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/products/tui-dv-adalyn/2025-L7-CK2-20782753-N9-4.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/products/tui-enola/anh1.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/products/tui-enola/anh2.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/products/tui-enola/anh3.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/products/tui-enola/anh4.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/products/tui-enola/anh5.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/products/tui-hang-hieu/a1.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/products/tui-hang-hieu/a2.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/products/tui-hang-hieu/a3.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/products/tui-hang-hieu/a4.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/products/tui-hang-hieu/a5.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/products/tui-hlw-xam.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/products/tui-hoa-pastel.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/products/tui-kep-dong.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/products/tui-kep-hong.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/products/tui-long.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/products/tui-mirabelle/anh1.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/products/tui-mirabelle/anh2.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/products/tui-mirabelle/anh3.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/products/tui-mirabelle/anh4.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/products/tui-mirabelle/hong1.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/products/tui-mirabelle/hong2.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/products/tui-mirabelle/hong3.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/products/tui-mirabelle/hong4.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/products/tui-mirabelle/nau1.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/products/tui-mirabelle/nau2.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/products/tui-mirabelle/nau3.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/products/tui-mirabelle/nau4.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/products/tui-nang-dong.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/products/tui-nelly/anh1.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/products/tui-nelly/anh2.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/products/tui-nelly/anh3.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/products/tui-nelly/anh4.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/products/tui-nelly/anh5.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/products/tui-nelly/anh6.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/products/tui-nelly/den1.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/products/tui-nelly/den2.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/products/tui-nelly/den3.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/products/tui-nelly/den4.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/products/tui-nelly/den5.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/products/tui-noane/anh1.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/products/tui-noane/anh2.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/products/tui-noane/anh3.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/products/tui-noane/anh4.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/products/tui-noane/den1.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/products/tui-noane/den2.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/products/tui-noane/den3.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/products/tui-noane/den4.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/products/tui-noane/hong1.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/products/tui-noane/hong2.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/products/tui-noane/hong3.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/products/tui-noane/hong4.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/products/tui-noane/xam1.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/products/tui-noane/xam2.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/products/tui-noane/xam3.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/products/tui-noane/xam4.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/products/tui-phoi-khoa/Anh 1.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/products/tui-phoi-khoa/Anh 2.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/products/tui-phoi-khoa/Anh 3.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/products/tui-phoi-khoa/Anh 4.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/products/tui-phoi-khoa/mauden.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/products/tui-quai-doi/a1.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/products/tui-tay.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/products/tui-tote.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/products/tui-trice/anh1.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/products/tui-trice/anh2.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/products/tui-trice/anh3.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/products/tui-trice/anh4.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/products/tui-trice/den1.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/products/tui-trice/den2.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/products/tui-trice/den3.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/products/tui-trice/den4.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/products/tui-trice/phan1.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/products/tui-trice/phan2.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/products/tui-trice/phan3.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/products/tui-trice/phan4.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/products/tui-xach-da-vintage.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/products/tui-xach-handmade/a1.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/products/tui-xach-handmade/a2.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/products/tui-xach-handmade/a3.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/products/tui-xach-handmade/a4.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/products/tui-xach-nau-ca-tinh/a1.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/products/tui-xach-nau-ca-tinh/a2.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/products/tui-xach-nau-ca-tinh/a3.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/products/tui-xach-nau-ca-tinh/a4.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/products/tui-xach-nu/a1.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/products/tui-xach-nu/a2.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/products/tui-xach-nu/a3.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/products/tui-xach-nu/a4.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/products/tui-xach-nu/a5.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/products/tui-xach-tay/a1.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/products/tui-xach-tay/a2.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/products/tui-xach-tay/a3.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/products/tui-xach-tay/a4.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/products/tui-xach-tay/a5.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/tui-SHO 0298/anh1.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/tui-SHO 0303/anh1.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/tui-TOT 0206/anh1.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/tui-TOT0211/anh1.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/tui-alva/anh1.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/tui-alva/anh2.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/tui-alva/anh3.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/tui-alva/anh4.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/tui-alva/anh5.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/tui-alva/bac1.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/tui-alva/bac2.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/tui-alva/bac3.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/tui-alva/bac4.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/tui-alva/kem1.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/tui-alva/kem2.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/tui-alva/kem3.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/tui-alva/kem4.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/tui-alva/xanh1.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/tui-alva/xanh2.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/tui-alva/xanh3.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/tui-alva/xanh4.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/tui-britton/anh1.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/tui-britton/anh2.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/tui-britton/anh3.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/tui-britton/anh4.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/tui-britton/den1.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/tui-britton/den2.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/tui-britton/den3.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/tui-britton/den4.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/tui-day-rut/anh1.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/tui-deo-cheo/anh1.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/tui-deo-vai/anh1.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/tui-double-handle/DEN1.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/tui-double-handle/anh1.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/tui-double-handle/anh2.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/tui-double-handle/anh3.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/tui-double-handle/anh4.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/tui-double-handle/anh5.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/tui-enola/anh1.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/tui-enola/anh2.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/tui-enola/anh3.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/tui-enola/anh4.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/tui-enola/anh5.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/tui-mirabelle/anh1.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/tui-mirabelle/anh2.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/tui-mirabelle/anh3.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/tui-mirabelle/anh4.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/tui-mirabelle/hong1.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/tui-mirabelle/hong2.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/tui-mirabelle/hong3.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/tui-mirabelle/hong4.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/tui-mirabelle/nau1.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/tui-mirabelle/nau2.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/tui-mirabelle/nau3.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/tui-mirabelle/nau4.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/tui-nelly/anh1.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/tui-nelly/anh2.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/tui-nelly/anh3.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/tui-nelly/anh4.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/tui-nelly/anh5.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/tui-nelly/anh6.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/tui-nelly/den1.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/tui-nelly/den2.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/tui-nelly/den3.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/tui-nelly/den4.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/tui-nelly/den5.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/tui-noane/anh1.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/tui-noane/anh2.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/tui-noane/anh3.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/tui-noane/anh4.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/tui-noane/den1.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/tui-noane/den2.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/tui-noane/den3.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/tui-noane/den4.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/tui-noane/hong1.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/tui-noane/hong2.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/tui-noane/hong3.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/tui-noane/hong4.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/tui-noane/xam1.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/tui-noane/xam2.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/tui-noane/xam3.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/tui-noane/xam4.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/tui-quai-doi/tui-xach-tay-quai-doi-toi-gian-tot-0215-mau-xanh-olive-0-766378-1763275264-medium.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/tui-trice/anh1.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/tui-trice/anh2.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/tui-trice/anh3.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/tui-trice/anh4.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/tui-trice/den1.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/tui-trice/den2.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/tui-trice/den3.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/tui-trice/den4.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/tui-trice/phan1.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/tui-trice/phan2.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/tui-trice/phan3.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/tui-trice/phan4.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/tui-xach-nu-mau-trang-sua-1.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/túi clutch/2023-L6-CK2-70160131-01-1.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/túi clutch/2023-L6-CK2-70160131-01-2.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/túi clutch/2023-L6-CK2-70160131-01-3.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/túi clutch/2023-L6-CK2-70160131-01-4.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/túi clutch/2023-L6-CK2-70160131-01-8.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/túi clutch/2023-L6-CK2-70160131-09-1.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/túi clutch/2023-L6-CK2-70160131-09-7.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/túi clutch/2023-L6-CK2-70160131-09-8.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/túi clutch/2023-L6-CK2-70160131-O2-1.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/túi clutch/2023-L6-CK2-70160131-O2-2.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/túi clutch/2023-L6-CK2-70160131-O2-3.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/túi da PU/a1.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/túi da PU/a2.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/túi da PU/a3.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/túi da PU/a4.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/túi da ca sấu/a1.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/túi da ca sấu/a2.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/túi da ca sấu/a3.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/túi da ca sấu/a4.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/túi da nâu.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/túi da thật/a1.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/túi da thật/a2.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/túi da thật/a3.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/túi da thật/a4.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/túi da thật/a5.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/túi da thật/a6.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/túi da đen.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/túi da/a1.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/túi da/a2.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/túi da/a3.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/túi da/a4.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/túi dệt tay.avif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/túi hoa pastel.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/túi hàng hiệu/a1.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/túi hàng hiệu/a2.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/túi hàng hiệu/a3.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/túi hàng hiệu/a4.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/túi hàng hiệu/a5.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/túi kẹp đông.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/túi kẹpp.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/túi lông.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/túi năng động.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/túi tay.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/túi tote vải bố.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/túi xách cầm tay màu đen da lộn.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/túi xách da cá sấu đen.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/túi xách da màu nâu sẫm vintage.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/túi xách da đen minimalist.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/túi xách handmade/a1.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/túi xách handmade/a2.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/túi xách handmade/a3.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/túi xách handmade/a4.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/túi xách màu xám đen.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/túi xách nâu cá tính/a1.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/túi xách nâu cá tính/a2.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/túi xách nâu cá tính/a3.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/túi xách nâu cá tính/a4.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/túi xách nữ/a1.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/túi xách nữ/a2.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/túi xách nữ/a3.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/túi xách nữ/a4.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/túi xách nữ/a5.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/túi xách tay/a1.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/túi xách tay/a2.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/túi xách tay/a3.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/túi xách tay/a4.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/túi xách tay/a5.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/túi đeo chéo/a1.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/túi đeo chéo/a2.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/túi đeo chéo/a3.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/túi đeo chéo/a4.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/túi đeo chéo/a5.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/túi đeo chéo/a6.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/túi đeo.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/túi đeo.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/img/túi đi biển.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/index.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/introduce.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/introduce.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/login.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/pro-details/product-details(TuiPhoiKhoa).jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/pro-details/product-details.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/pro-details/product-details1(TuiXNCaTinh).jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/pro-details/product-details1.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/pro-details/product-details10.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/pro-details/product-details11.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/pro-details/product-details12.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/pro-details/product-details13(TuiAlva).jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/pro-details/product-details13.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/pro-details/product-details14.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/pro-details/product-details15.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/pro-details/product-details16.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/pro-details/product-details17.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/pro-details/product-details18.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/pro-details/product-details19.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/pro-details/product-details2(TuiDa).jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/pro-details/product-details2.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/pro-details/product-details3.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/pro-details/product-details4.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/pro-details/product-details5.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/pro-details/product-details6.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/pro-details/product-details7.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/pro-details/product-details8.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/pro-details/product-details9.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/product-new.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/product-new.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/products-cat-accessory.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/products-cat-accessory.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/products-cat-handbag.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/products-cat-handbag.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/products-category-all.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/products-category-all.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/src/main/webapp/products-category-all.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/demo/src/main/webapp/products-category-all.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/target/classes/Controller/ListProduct.class" beforeDir="false" afterPath="$PROJECT_DIR$/demo/target/classes/Controller/ListProduct.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/target/classes/Controller/ProductController.class" beforeDir="false" afterPath="$PROJECT_DIR$/demo/target/classes/Controller/ProductController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/target/classes/dao/ProductDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/demo/target/classes/dao/ProductDao.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/target/classes/services/ProductService.class" beforeDir="false" afterPath="$PROJECT_DIR$/demo/target/classes/services/ProductService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT.war" beforeDir="false" afterPath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT.war" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/WEB-INF/classes/Controller/ListProduct.class" beforeDir="false" afterPath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/WEB-INF/classes/Controller/ListProduct.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/WEB-INF/classes/Controller/ProductController.class" beforeDir="false" afterPath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/WEB-INF/classes/Controller/ProductController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/WEB-INF/classes/dao/ProductDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/WEB-INF/classes/dao/ProductDao.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/WEB-INF/classes/services/ProductService.class" beforeDir="false" afterPath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/WEB-INF/classes/services/ProductService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/products-category-all.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/products-category-all.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -564,30 +60,32 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.AuthDao.executor": "Run",
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "Tomcat Server.Tomcat 10.1.50.executor": "Run",
-    "Tomcat Server.index.jsp.executor": "Run",
-    "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultAutoModeForALLUsers.v1": "true",
-    "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
-    "git-widget-placeholder": "servlet",
-    "junie.onboarding.icon.badge.shown": "true",
-    "kotlin-language-version-configured": "true",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "project.structure.last.edited": "Artifacts",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.2",
-    "to.speed.mode.migration.done": "true",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.AuthDao.executor&quot;: &quot;Run&quot;,
+    &quot;Application.ProductDao.executor&quot;: &quot;Run&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;Tomcat Server.Tomcat 10.1.50.executor&quot;: &quot;Run&quot;,
+    &quot;Tomcat Server.index.jsp.executor&quot;: &quot;Run&quot;,
+    &quot;com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultAutoModeForALLUsers.v1&quot;: &quot;true&quot;,
+    &quot;com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;servlet&quot;,
+    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Artifacts&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;to.speed.mode.migration.done&quot;: &quot;true&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="cart" />
@@ -609,6 +107,19 @@
   <component name="RunManager" selected="Tomcat Server.Tomcat 10.1.50">
     <configuration name="AuthDao" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="dao.AuthDao" />
+      <module name="demo" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="dao.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ProductDao" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="dao.ProductDao" />
       <module name="demo" />
       <extension name="coverage">
         <pattern>
@@ -709,11 +220,13 @@
       </method>
     </configuration>
     <list>
+      <item itemvalue="Application.ProductDao" />
       <item itemvalue="Application.AuthDao" />
       <item itemvalue="Tomcat Server.Tomcat 10.1.50" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.ProductDao" />
         <item itemvalue="Application.AuthDao" />
       </list>
     </recent_temporary>
@@ -735,7 +248,9 @@
       <updated>1767424662543</updated>
       <workItem from="1767424667127" duration="14000" />
       <workItem from="1767564982268" duration="1088000" />
-      <workItem from="1767795281577" duration="12841000" />
+      <workItem from="1767795281577" duration="13385000" />
+      <workItem from="1767883993540" duration="8183000" />
+      <workItem from="1768056082464" duration="366000" />
     </task>
     <servers />
   </component>
