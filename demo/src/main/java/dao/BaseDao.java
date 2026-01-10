@@ -19,7 +19,7 @@ public abstract class BaseDao {
     private void makeConnect() {
         MysqlDataSource dataSource = new MysqlDataSource();
         dataSource.setURL("jdbc:mysql://" + DBProperties.getDbHost() + ":" + DBProperties.getDbPort() + "/"
-                + DBProperties.getDbName());
+                + DBProperties.getDbName() +  DBProperties.getDbOption());
         dataSource.setUser(DBProperties.getUsername());
         dataSource.setPassword(DBProperties.getPassword());
         try {
