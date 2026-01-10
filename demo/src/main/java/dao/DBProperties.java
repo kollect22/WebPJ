@@ -4,33 +4,33 @@ import java.io.IOException;
 import java.util.Properties;
 
 public class DBProperties {
-        private static Properties prop = new Properties();
+    private static Properties prop = new Properties();
 
-        static {
-            try {
-                prop.load(DBProperties.class.getClassLoader().getResourceAsStream("db.properties"));
-            } catch (IOException ioException) {
-                ioException.printStackTrace();
-            }
-        }
-
-        public static String getDbHost() {
-            return prop.get("db.host").toString();
-        }
-
-        public static String getDbPort() {
-            return prop.get("db.port").toString();
-        }
-        public static String getUsername() {
-            return prop.get("db.username").toString();
-        }
-        public static String getPassword() {
-            return prop.get("db.password").toString();
-        }
-        public static String getDbName() {
-            return prop.get("db.name").toString();
-        }
-        public static String getDbOption() {
-            return prop.get("db.options").toString();
+    static {
+        try {
+            prop.load(DBProperties.class.getClassLoader().getResourceAsStream("db.properties"));
+        } catch (IOException ioException) {
+            ioException.printStackTrace();
         }
     }
+
+    public static String getDbHost() {
+        return prop.getProperty("db.host");
+    }
+
+    public static String getDbPort() {
+        return prop.getProperty("db.port");
+    }
+    public static String getUsername() {
+        return prop.getProperty("db.username");
+    }
+    public static String getPassword() {
+        return prop.getProperty("db.password");
+    }
+    public static String getDbName() {
+        return prop.getProperty("db.name");
+    }
+    public static String getDbOption() {
+        return prop.getProperty("db.options");
+    }
+}
