@@ -19,7 +19,11 @@ public class ProductDao extends BaseDao {
     public List<Product> getListProduct() {
         //return new ArrayList<Product>(data.values());
         return get().withHandle(h -> {
-            return h.createQuery("select * from products").mapToBean(Product.class).list();
+            List<Product> list = h.createQuery("select * from products").mapToBean(Product.class).list();
+
+            for(Product p : list){
+                p.setColors(getColorsByProductId(p.getId()));
+            } return list;
         });
     }
     public Product getProduct(int id) {
@@ -37,6 +41,16 @@ public class ProductDao extends BaseDao {
             pb.execute();
         });
     }
+
+    public List<String> getColorsByProductId(int id){
+        return get().withHandle(h->
+                h.createQuery("SELECT color_code FROM product_colors WHERE product_id = :id")
+                        .bind("id", id)
+                        .mapTo(String.class)
+                        .list()
+        );
+    }
+
 
 //    public static void main(String[] args) {
 //        ProductDao pd = new ProductDao();

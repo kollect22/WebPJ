@@ -89,7 +89,7 @@
 
 <main class="about-us">
     <nav class="breadcrumbs">
-        <i class="fa-solid fa-house"></i> <a href="${pageContext.request.contextPath}/index.jsp">Trang chủ</a> / <span>Giới thiệu</span>
+        <i class="fa-solid fa-house"></i> <a href="${pageContext.request.contextPath}/home.jsp">Trang chủ</a> / <span>Giới thiệu</span>
     </nav>
 
     <div class="content">
