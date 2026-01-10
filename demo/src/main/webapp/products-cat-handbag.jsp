@@ -378,7 +378,7 @@
 
 <nav class="breadcrumbs">
     <i class="fa-solid fa-house"></i>
-    <a href="${pageContext.request.contextPath}/index.jsp">Trang chủ</a> /
+    <a href="${pageContext.request.contextPath}/home.jsp">Trang chủ</a> /
     <a href="${pageContext.request.contextPath}/products-category-all.jsp">Sản phẩm</a> /
     <span>Túi xách</span>
 </nav>

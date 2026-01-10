@@ -377,7 +377,7 @@
 
 <nav class="breadcrumbs">
     <i class="fa-regular fa-house"></i>
-    <a href="${pageContext.request.contextPath}/index.jsp">Trang chủ</a> / <span>Hàng mới</span>
+    <a href="${pageContext.request.contextPath}/home.jsp">Trang chủ</a> / <span>Hàng mới</span>
 </nav>
 
 <div class="shop-container">

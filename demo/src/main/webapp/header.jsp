@@ -4,7 +4,7 @@
 
 <header class="navbar">
     <div class="logo">
-        <a href="${pageContext.request.contextPath}/index.jsp">
+        <a href="${pageContext.request.contextPath}/home.jsp">
             Fashion Store
         </a>
     </div>

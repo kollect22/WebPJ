@@ -311,6 +311,27 @@ h2 {
     font-weight: normal;
 }
 
+.color-options {
+    display: flex;
+    gap: 8px; /* Khoảng cách giữa các chấm màu */
+    justify-content: center; /* Căn giữa */
+    margin: 10px 0;
+}
+
+.color-swatch {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%; /* Làm tròn thành hình tròn */
+    border: 1px solid #ccc; /* Viền mỏng để màu trắng không bị chìm */
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.color-swatch:hover {
+    transform: scale(1.2); /* Phóng to nhẹ khi di chuột vào */
+    border-color: #000;
+}
+
 .Special-deal {
     color: #ff4d6d;
     font-weight: bold;
