@@ -6,13 +6,14 @@ import java.util.ArrayList;
 
 public class ProductService {
 
+    ProductDao productDao = new ProductDao();
 
-    ProductDao dao = new ProductDao();
     public List<Product> getListProduct() {
-        return dao.getListProduct();
+        return productDao.getListProduct();
     }
 
     public Product getProduct(int id) {
-       return null;
+
+        return productDao.getProduct(id);
     }
 }
