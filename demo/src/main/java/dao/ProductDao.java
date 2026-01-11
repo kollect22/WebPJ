@@ -26,32 +26,24 @@ public class ProductDao extends BaseDao {
 //        });
     }
     public Product getProduct(int id) {
-        return data.get(id);
-//        return get().withHandle(h -> {
-//            return h.createQuery("select * from products where id = :id").bind("id",id).mapToBean(Product.class).first();
-//        });
+        //return data.get(id);
+        return get().withHandle(h -> {
+            return h.createQuery("select * from products where id = :id").bind("id",id).mapToBean(Product.class).first();
+        });
     }
-//    public void insert(List<Product> list) {
-//        get().useHandle(h -> {
-//            PreparedBatch pb = h.prepareBatch("insert into products values (:id, :name, :img, :price)");
-//            list.forEach(l ->{
-//                pb.bindBean(l).add();
-//            });
-//            pb.execute();
-//        });
-//    }
-//
-//    public static void main(String[] args) {
-//        ProductDao pd = new ProductDao();
-//        pd.insert(pd.getListProduct());
-//    }
-public static void main(String[] args) {
-    ProductDao dao = new ProductDao();
-    List<Product> list = dao.getListProduct();
+    public void insert(List<Product> list) {
+        get().useHandle(h -> {
+            PreparedBatch pb = h.prepareBatch("insert into products values (:id, :name, :img, :price)");
+            list.forEach(l ->{
+                pb.bindBean(l).add();
+            });
+            pb.execute();
+        });
+    }
 
-    System.out.println("------------ TEST DAO ------------");
-    System.out.println("Số lượng sản phẩm: " + list.size());
-    for (Product p : list) {
-        System.out.println("- " + p.getName() + " (Giá: " + p.getPrice() + ")");
-    }}
+    public static void main(String[] args) {
+        ProductDao pd = new ProductDao();
+        pd.insert(pd.getListProduct());
+    }
+
 }

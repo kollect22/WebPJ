@@ -1,62 +1,14 @@
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Admin</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"/>
-    <link rel="stylesheet" href="../../../../admin-style.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/admin-style.css">
 
 </head>
-<style>
 
-.kpi-cards{
-    display: flex;
-    justify-content: space-between;
-    gap: 20px;
-    margin-bottom: 20px;
-}
-.card{
-    width: 100%;
-    border-radius: 10px;
-    background-color: #2A2A2A;
-    padding: 20px;
-}
-.card i{
-    padding-bottom: 10px;
-    font-size: 25px;
-}
-.recent-orders{
-    background-color: #2A2A2A;
-    padding: 20px;
-    border-radius: 10px;
-}
-.recent-products h2{
-    padding-bottom: 10px;
-}
-.table-container{
-}
-table{
-    width: 100%;
-    border-collapse: collapse;
-}
-.recent-orders th, .recent-orders td {
-    padding: 12px 15px;
-    text-align: left;
-    border-bottom: 1px solid #333;
-}
-.status-pending {
-    color: yellow;
-    font-weight: bold;
-}
-.status-shipped {
-    color: cyan;
-    font-weight: bold;
-}
-.status-completed {
-    color: limegreen;
-    font-weight: bold;
-}
-</style>
 <body>
 <div id="admin-page">
     <aside id="sidebar">
@@ -105,7 +57,7 @@ table{
         <section class="recent-orders">
             <h2>Đơn hàng gần đây</h2>
             <div class="table-container">
-                <table>
+                <table class="admin-table">
                     <thead>
                         <tr>
                             <th>Mã đơn</th>
