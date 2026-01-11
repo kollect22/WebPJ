@@ -13,7 +13,10 @@ import java.util.Map;
 public class ProductDao extends BaseDao {
     static Map<Integer, Product> data = new HashMap<>();
     static {
-        data.put(1, new Product(1, "", "", 10000));
+        data.put(1, new Product(1, "Khăn lụa", "img/accessory/KhanLua.webp", 10000));
+        data.put(2, new Product(2, "Túi da", "img/products/tui-da/a1.jpeg", 100020));
+        data.put(3, new Product(3, "Túi da thật", "img/products/tui-da/a1.jpeg", 100004));
+        data.put(4, new Product(4, "Túi đeo vai", "img/products/tui-deo-vai/anh1.jpg", 100500));
     }
 
     public List<Product> getListProduct() {
