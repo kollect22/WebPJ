@@ -18,8 +18,8 @@ public class ListProduct extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         ProductService ps = new ProductService();
         List<Product> list = ps.getListProduct();
-        request.setAttribute("list", list);
-        request.getRequestDispatcher("products-category-all.jsp").forward(request, response);
+        request.setAttribute("listP", list);
+        request.getRequestDispatcher("product-category-all.jsp").forward(request, response);
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
