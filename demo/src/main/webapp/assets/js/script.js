@@ -185,5 +185,37 @@ document.addEventListener("DOMContentLoaded", function() {
 }
 });
 
+document.addEventListener('DOMContentLoaded', function (){
+    const track = document.querySelector('.slider-track');
+
+    if(!track) return;
+
+    const slides = Array.from(track.children);
+    const autoPlayDelay = 3000;
+    let currentIndex =0;
+    let autoPlayInterval;
+
+    function setPositionByIndex() {
+        track.style.transform = `translateX(-${currentIndex * 100}%)`;
+    }
+
+    function nextSlide() {
+        if (currentIndex < slides.length - 1) {
+            currentIndex += 1;
+        } else {
+            currentIndex = 0;
+        }
+        // Đảm bảo transition luôn bật khi auto-play
+        track.style.transition = 'transform 0.5s ease-in-out';
+        setPositionByIndex();
+    }
+
+    function startAutoPlay() {
+        autoPlayInterval = setInterval(nextSlide, autoPlayDelay);
+    }
+    startAutoPlay();
+
+});
+
 
 
