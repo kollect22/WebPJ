@@ -48,7 +48,7 @@
         </a>
 
         <a href="${pageContext.request.contextPath}/cart.jsp">
-            <i class="fa-solid fa-shopping-cart"></i> (${sessionScope.cart.totalQuantity}
+            <i class="fa-solid fa-shopping-cart"></i> ${sessionScope.cart.totalQuantity}
         </a>
     </div>
 </header>

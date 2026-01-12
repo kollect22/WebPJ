@@ -14,17 +14,54 @@
 
 <jsp:include page="header.jsp" />
 
-<section class="banner">
-    <img src="${pageContext.request.contextPath}/img/banners/banner-hlw.jpg"/>
-    <div class="banner-text">
-        <h2>Ưu đãi Halloween</h2>
-        <a href="${pageContext.request.contextPath}/halloween-sales.jsp">Xem Ngay</a>
+<%--<section class="banner">--%>
+<%--    <img src="${pageContext.request.contextPath}/img/banners/banner-hlw.jpg"/>--%>
+<%--    <div class="banner-text">--%>
+<%--        <h2>Ưu đãi Halloween</h2>--%>
+<%--        <a href="${pageContext.request.contextPath}/halloween-sales.jsp">Xem Ngay</a>--%>
+<%--    </div>--%>
+<%--</section>--%>
+
+<section class="banner-slider">
+    <div class = "slider-track">
+        <div class = "slide">
+            <img src="${pageContext.request.contextPath}/img/banners/banner5.jpg" alt="Banner 1">
+        </div>
+
+        <div class = "slide">
+            <img src="${pageContext.request.contextPath}/img/banners/banner6.jpg" alt="Banner 1">
+        </div>
+
+        <div class = "slide">
+            <img src="${pageContext.request.contextPath}/img/banners/banner10.jpeg" alt="Banner 1">
+        </div>
+    </div>
+</section>
+
+<section class="category-split">
+    <div class="cat-box">
+        <a href="${pageContext.request.contextPath}/products-category-all.jsp"> <img src="${pageContext.request.contextPath}/img/banners/banner2.webp" alt="Túi xách">
+            <div class="cat-content">
+                <h3>Túi xách</h3>
+                <span class="shop-now">Mua Ngay</span>
+            </div>
+        </a>
+    </div>
+
+    <div class="cat-box">
+        <a href="${pageContext.request.contextPath}/products-cat-accessory.jsp"> <img src="${pageContext.request.contextPath}/img/banners/banner3.jpg" alt="Phụ kiện">
+            <div class="cat-content">
+                <h3>Phụ kiện</h3>
+                <span class="shop-now">Mua Ngay</span>
+            </div>
+        </a>
     </div>
 </section>
 
 <section class="products">
     <h2>Ưu đãi mỗi ngày</h2>
     <button class="scroll-left"><i class="fa-solid fa-angle-left"></i></button>
+
     <div class="product-list">
 
         <c:forEach items="${productList}" var="p" begin="0" end="7">
@@ -35,11 +72,11 @@
                     <i class="fa-solid fa-cart-shopping"></i>
                 </a>
 
-<%--                <div class="color-options">--%>
-<%--                    <c:forEach items="${p.colors}" var="colorCode">--%>
-<%--                        <span class="color-swatch" style="background-color: ${colorCode};"></span>--%>
-<%--                    </c:forEach>--%>
-<%--                </div>--%>
+                <div class="color-options">
+                    <c:forEach items="${p.colors}" var="colorCode">
+                        <span class="color-swatch" style="background-color: ${colorCode};"></span>
+                    </c:forEach>
+                </div>
 
                 <div class="product-name">
                     <a href="detail?id=${p.id}" style="text-decoration: none; color: black;">
@@ -48,9 +85,28 @@
                 </div>
 
                 <div class="product-price">
-                    <span class="new-price">
-                        <fmt:formatNumber value="${p.price}" type="currency" currencySymbol="đ"/>
-                    </span>
+                    <c:choose>
+                        <%-- TRƯỜNG HỢP CÓ GIẢM GIÁ (salePrice > 0) --%>
+                        <c:when test="${p.salePrice > 0}">
+                            <span class="new-price" style="color: #d0021b; font-weight: bold;">
+                                <fmt:formatNumber value="${p.salePrice}" type="currency" currencySymbol="đ"/>
+                            </span>
+                                            <span class="old-price" style="text-decoration: line-through; color: #999; font-size: 0.9em; margin-left: 5px;">
+                                <fmt:formatNumber value="${p.price}" type="currency" currencySymbol="đ"/>
+                            </span>
+
+                                            <span class="discount-tag" style="background: #d0021b; color: white; padding: 2px 4px; border-radius: 3px; font-size: 0.7em;">
+                                -<fmt:formatNumber value="${(1 - p.salePrice/p.price) * 100}" maxFractionDigits="0"/>%
+                            </span>
+                        </c:when>
+
+                        <%-- TRƯỜNG HỢP KHÔNG GIẢM GIÁ --%>
+                        <c:otherwise>
+                            <span class="new-price" style="font-weight: bold;">
+                                <fmt:formatNumber value="${p.price}" type="currency" currencySymbol="đ"/>
+                            </span>
+                        </c:otherwise>
+                    </c:choose>
                 </div>
 
                 <div class="Special-deal">Hot</div>
@@ -105,6 +161,9 @@
 
 <jsp:include page="footer.jsp" />
 
+
 <script src="${pageContext.request.contextPath}/assets/js/script.js"></script>
+
+
 </body>
 </html>
