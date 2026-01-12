@@ -1,6 +1,7 @@
 package model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Product implements Serializable {
@@ -8,6 +9,7 @@ public class Product implements Serializable {
     private String name;
     private String img;
     private int price;
+    private int salePrice;
 
     private String description;
     private String category;
@@ -59,6 +61,16 @@ public class Product implements Serializable {
 
     public void setColors(List<String> colors) {
         this.colors = colors;
+    }
+
+    private List<String> listColors = new ArrayList<>();
+
+    public int getSalePrice() {
+        return salePrice;
+    }
+
+    public void setSalePrice(int salePrice) {
+        this.salePrice = salePrice;
     }
 
     @Override

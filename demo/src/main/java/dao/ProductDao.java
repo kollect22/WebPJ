@@ -37,11 +37,28 @@ public class ProductDao extends BaseDao {
     }
     public void insert(List<Product> list) {
         get().useHandle(h -> {
-            PreparedBatch pb = h.prepareBatch("insert into products values (:id, :name, :img, :price)");
-            list.forEach(l ->{
-                pb.bindBean(l).add();
-            });
-            pb.execute();
+//            PreparedBatch pb = h.prepareBatch("insert into products values (:id, :name, :img, :price)");
+//            PreparedBatch pb = h.prepareBatch("INSERT INTO products (name, img, price, sale_price, description, category) VALUES (:name, :img, :price, :salePrice, :description, :category)");
+//            list.forEach(l ->{
+//                pb.bindBean(l).add();
+//            });
+//            pb.execute();
+            for (Product p : list) {
+                int productId = h.createUpdate("INSERT INTO products(name, img, price) VALUES (:name, :img, :price)")
+                        .bindBean(p)
+                        .executeAndReturnGeneratedKeys("id")
+                        .mapTo(Integer.class)
+                        .one();
+
+                if (p.getColors() != null) {
+                    for (String color : p.getColors()) {
+                        h.createUpdate("INSERT INTO product_colors(product_id, color_code) VALUES (:pid, :color)")
+                                .bind("pid", productId)
+                                .bind("color", color)
+                                .execute();
+                    }
+                }
+            }
         });
     }
 
