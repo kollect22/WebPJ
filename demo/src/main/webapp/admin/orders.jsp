@@ -1,27 +1,16 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"/>
-    <link rel="stylesheet" href="../../../../admin-style.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/admin-style.css">
 
 </head>
 <body>
 <div id="admin-page">
-    <aside id="sidebar">
-        <div class="logo-admin">Admin</div>
-        <nav class="side-nav">
-            <ul>
-                <li><a href="admin-dashboard.jsp"><i class="fa-solid fa-gauge"></i> Dashboard</a></li>
-                <li><a href="admin-products.html"><i class="fa-solid fa-bag-shopping"></i> Quản lý sản phẩm</a></li>
-                <li class="active"><a href="#"><i class="fa-solid fa-receipt"></i> Quản lý đơn hàng</a></li>
-                <li><a href="admin-coupons.html"><i class="fa-solid fa-percent"></i> Khuyến mãi</a></li>
-                <li><a href="admin-banner.html"><i class="fa-solid fa-image"></i> Quản lý banner</a></li>
-                <li><a href="admin-customer.html"><i class="fa-solid fa-user"></i> Khách hàng</a></li>
-            </ul>
-        </nav>
-    </aside>
+    <jsp:include page="sidebar.jsp"/>
     <main id="main">
         <header id="admin-header">
             <h1>Dashboard</h1>

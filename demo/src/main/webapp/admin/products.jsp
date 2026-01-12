@@ -1,10 +1,13 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
+<%@ taglib prefix="fmt" uri="jakarta.tags.fmt" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Admin-products</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"/>
-    <link rel="stylesheet" href="../../../../admin-style.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/admin-style.css">
 
 </head>
 <style>
@@ -16,60 +19,89 @@
         top: 0;
         width: 100%;
         height: 100%;
-        background-color: rgba(0,0,0,0.5);
+        background-color: rgba(0, 0, 0, 0.5);
+        backdrop-filter: blur(2px);
     }
 
     .modal-content {
-        background-color: #2a2a2a;
-        margin: 10% auto;
-        padding: 20px;
-        border-radius: 8px;
-        width: 400px;
-        box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        background-color: #ffffff;
+        margin: 5% auto;
+        padding: 30px;
+        border-radius: 10px;
+        width: 100%;
+        max-width: 500px;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
         position: relative;
+        animation: slideDown 0.3s ease-out;
+    }
+
+    @keyframes slideDown {
+        from { transform: translateY(-50px); opacity: 0; }
+        to { transform: translateY(0); opacity: 1; }
     }
 
     .close-btn {
         position: absolute;
-        top: 10px;
-        right: 15px;
-        font-size: 24px;
-        cursor: pointer;
+        top: 15px;
+        right: 20px;
+        font-size: 28px;
+        font-weight: bold;
         color: #aaa;
+        cursor: pointer;
+        transition: color 0.2s;
     }
-    .close-btn:hover { color: #000; }
+    .close-btn:hover {
+        color: #dc3545;
+    }
+
+    .modal-content h2 {
+        margin-top: 0;
+        margin-bottom: 20px;
+        color: #007bff;
+        text-align: center;
+        font-size: 22px;
+        text-transform: uppercase;
+    }
 
     .form-group {
-        margin-bottom: 15px;
+        margin-bottom: 20px;
     }
     .form-group label {
         display: block;
-        margin-bottom: 5px;
-        font-weight: bold;
+        margin-bottom: 8px;
+        font-weight: 600;
+        color: #333;
     }
-    .form-group input, .form-group select {
+    .form-group input,
+    .form-group select {
         width: 100%;
-        padding: 8px;
-        border: 1px solid #ccc;
-        border-radius: 4px;
-        box-sizing: border-box;
+        padding: 10px 12px;
+        border: 1px solid #ced4da;
+        border-radius: 6px;
+        font-size: 14px;
+        color: #495057;
+        background-color: #fff;
+        transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus {
+        border-color: #80bdff;
+        outline: 0;
+        box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+    }
+
+    .modal-content .btn-primary {
+        width: 100%;
+        padding: 12px;
+        font-size: 16px;
+        margin-top: 10px;
+        border-radius: 6px;
     }
 </style>
 <body>
 <div id="admin-page">
-    <aside id="sidebar">
-        <div class="logo-admin">Admin</div>
-        <nav class="side-nav">
-            <ul>
-                <li><a href="admin-dashboard.jsp"><i class="fa-solid fa-gauge"></i> Dashboard</a></li>
-                <li class="active"><a href="#"><i class="fa-solid fa-bag-shopping"></i> Quản lý sản phẩm</a></li>
-                <li><a href="admin-orders.html"><i class="fa-solid fa-receipt"></i> Quản lý đơn hàng</a></li>
-                <li><a href="admin-coupons.html"><i class="fa-solid fa-percent"></i> Khuyến mãi</a></li>
-                <li><a href="admin-banner.html"><i class="fa-solid fa-image"></i> Quản lý banner</a></li>
-                <li><a href="admin-customer.html"><i class="fa-solid fa-user"></i> Khách hàng</a></li>
-            </ul>
-        </nav>
-    </aside>
+    <jsp:include page="sidebar.jsp"/>
     <main id="main">
         <header id="admin-header">
             <h1>Dashboard</h1>
@@ -95,28 +127,44 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                    <td><img src="../../../../img/product1.webp" alt="Túi xách" class="thumb"></td>
-                    <td>Túi Xách Da Cao Cấp</td>
-                    <td>TX001</td>
-                    <td>100.000 VNĐ</td>
-                    <td><span class="badge badge-success">Còn hàng</span></td>
-                    <td>
-                        <button class="btn-action"><i class="fa-solid fa-pen-to-square"></i></button>
-                        <button class="btn-action"><i class="fa-solid fa-trash"></i></button>
-                    </td>
-                </tr>
-                <tr>
-                    <td><img src="../../../../img/túi%20đeo.webp" alt="Túi đeo" class="thumb"></td>
-                    <td>Túi Đeo</td>
-                    <td>VN005</td>
-                    <td>350.000 VNĐ</td>
-                    <td><span class="badge badge-danger">Hết hàng</span></td>
-                    <td>
-                        <button class="btn-action"><i class="fa-solid fa-pen-to-square"></i></button>
-                        <button class="btn-action"><i class="fa-solid fa-trash"></i></button>
-                    </td>
-                </tr>
+                <c:forEach items="${productList}" var="p">
+                    <tr>
+                        <td>
+                            <img src="${pageContext.request.contextPath}/${p.img}"
+                                 alt="${p.name}" class="thumb"
+                                 onerror="this.src='https://placehold.co/50x50?text=No+Img'">
+                        </td>
+
+                        <td>${p.name}</td>
+
+                        <td>SP-${p.id}</td>
+
+                        <td>
+                            <fmt:formatNumber value="${p.price}" type="currency" currencySymbol="VNĐ"/>
+                        </td>
+
+                        <td>
+                            <c:choose>
+                                <c:when test="${p.price > 0}">
+                                    <span class="badge badge-success">Còn hàng</span>
+                                </c:when>
+                                <c:otherwise>
+                                    <span class="badge badge-danger">Hết hàng</span>
+                                </c:otherwise>
+                            </c:choose>
+                        </td>
+
+                        <td>
+                            <a href="${pageContext.request.contextPath}/admin/product-edit?id=${p.id}" class="btn-action">
+                                <i class="fa-solid fa-pen-to-square"></i>
+                            </a>
+
+                            <button class="btn-action" onclick="confirmDelete(${p.id})">
+                                <i class="fa-solid fa-trash"></i>
+                            </button>
+                        </td>
+                    </tr>
+                </c:forEach>
                 </tbody>
             </table>
         </div>

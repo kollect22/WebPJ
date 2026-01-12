@@ -11,19 +11,7 @@
 
 <body>
 <div id="admin-page">
-    <aside id="sidebar">
-        <div class="logo-admin">Admin</div>
-        <nav class="side-nav">
-            <ul>
-                <li class="active"><a href="#"><i class="fa-solid fa-gauge"></i> Dashboard</a></li>
-                <li><a href="admin-products.html"><i class="fa-solid fa-bag-shopping"></i> Quản lý sản phẩm</a></li>
-                <li><a href="admin-orders.html"><i class="fa-solid fa-receipt"></i> Quản lý đơn hàng</a></li>
-                <li><a href="admin-coupons.html"><i class="fa-solid fa-percent"></i> Khuyến mãi</a></li>
-                <li><a href="admin-banner.html"><i class="fa-solid fa-image"></i> Quản lý banner</a></li>
-                <li><a href="admin-customer.html"><i class="fa-solid fa-user"></i> Khách hàng</a></li>
-            </ul>
-        </nav>
-    </aside>
+    <jsp:include page="sidebar.jsp"/>
     <main id="main">
         <header id="admin-header">
             <h1>Dashboard</h1>
