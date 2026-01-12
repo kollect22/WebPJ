@@ -44,7 +44,7 @@ public class ProductDao extends BaseDao {
 //            });
 //            pb.execute();
             for (Product p : list) {
-                int productId = h.createUpdate("INSERT INTO products(name, img, price) VALUES (:name, :img, :price)")
+                int productId = h.createUpdate("INSERT INTO products(name, img, price, sale_price, description, category) VALUES (:name, :img, :price, :salePrice, :description, :category)")
                         .bindBean(p)
                         .executeAndReturnGeneratedKeys("id")
                         .mapTo(Integer.class)
@@ -52,9 +52,9 @@ public class ProductDao extends BaseDao {
 
                 if (p.getColors() != null) {
                     for (String color : p.getColors()) {
-                        h.createUpdate("INSERT INTO product_colors(product_id, color_code) VALUES (:pid, :color)")
+                        h.createUpdate("INSERT INTO product_colors(product_id, color_code) VALUES (:pid, :colorCode)")
                                 .bind("pid", productId)
-                                .bind("color", color)
+                                .bind("colorCode", color)
                                 .execute();
                     }
                 }
@@ -76,4 +76,5 @@ public class ProductDao extends BaseDao {
 //        ProductDao pd = new ProductDao();
 //        pd.insert(pd.getListProduct());
 //    }
+
 }
