@@ -40,7 +40,7 @@
 
 <section class="category-split">
     <div class="cat-box">
-        <a href="${pageContext.request.contextPath}/products-category-all.jsp"> <img src="${pageContext.request.contextPath}/img/banners/banner2.webp" alt="Túi xách">
+        <a href="${pageContext.request.contextPath}/list-product.jsp"> <img src="${pageContext.request.contextPath}/img/banners/banner2.webp" alt="Túi xách">
             <div class="cat-content">
                 <h3>Túi xách</h3>
                 <span class="shop-now">Mua Ngay</span>

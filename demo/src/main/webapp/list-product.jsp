@@ -436,7 +436,7 @@
 
         <div class="filter-sidebar-body">
             <ul class="categories-list">
-                <li><a href="${pageContext.request.contextPath}/products-category-all.jsp" >Tất cả sản phẩm</a></li>
+                <li><a href="${pageContext.request.contextPath}/list-product.jsp" >Tất cả sản phẩm</a></li>
                 <li><a href="${pageContext.request.contextPath}/products-cat-handbag.jsp" >Túi xách</a></li>
                 <li><a href="${pageContext.request.contextPath}/products-cat-accessory.jsp" >Phụ kiện</a></li>
             </ul>

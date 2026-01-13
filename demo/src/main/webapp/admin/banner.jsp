@@ -1,201 +1,214 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"/>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/admin-style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quản lý Banner</title>
 
-    <base href="../">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
 
     <style>
-        #add-banner-section {
-            display: none;
-            background: #2a2a2a;
-            padding: 20px;
-            border-radius: 8px;
-            margin-bottom: 20px;
-            border: 1px solid #ddd;
+        body {
+            background-color: #f8f9fa;
+        }
+        .banner-thumb {
+            width: 120px;
+            height: 60px;
+            object-fit: cover;
+            border-radius: 6px;
+            border: 1px solid #dee2e6;
+        }
+        .preview-container {
+            width: 100%;
+            height: 150px;
+            border: 2px dashed #dee2e6;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            background-color: #f8f9fa;
+            margin-top: 10px;
         }
         .preview-img {
-            max-width: 200px;
-            max-height: 100px;
-            margin-top: 10px;
+            max-width: 100%;
+            max-height: 100%;
             display: none;
-            border: 1px dashed #ccc;
-            padding: 2px;
         }
-        .thumb {
-            width: 100px;
-            height: auto;
-            border-radius: 4px;
-            object-fit: cover;
+        .placeholder-text {
+            color: #adb5bd;
+            font-size: 0.9rem;
         }
     </style>
 </head>
 <body>
-<div id="admin-page">
-    <jsp:include page="sidebar.jsp"/>
-    <main id="main">
-        <header id="admin-header">
-            <h1>Dashboard</h1>
-            <div class="admin-info">
-                <span>Xin chào, Admin!</span>
-                <i class="fa-slab fa-regular fa-user"></i>
+
+<div class="d-flex" id="wrapper">
+
+    <div class="border-end bg-white" id="sidebar-wrapper" style="min-height: 100vh;">
+        <jsp:include page="sidebar.jsp"/>
+    </div>
+
+    <div id="page-content-wrapper" class="w-100">
+
+        <nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom shadow-sm px-4 py-3">
+            <div class="container-fluid">
+                <h4 class="mb-0 text-primary fw-bold">Dashboard</h4>
+                <div class="ms-auto d-flex align-items-center">
+                    <span class="me-3 text-secondary">Xin chào, <strong>Admin!</strong></span>
+                    <div class="rounded-circle bg-light d-flex justify-content-center align-items-center" style="width: 40px; height: 40px;">
+                        <i class="fa-regular fa-user text-primary"></i>
+                    </div>
+                </div>
             </div>
-        </header>
-        <div class="module-header">
-            <h2>Danh sách Banner</h2>
-            <button class="admin-btn btn-primary" onclick="toggleForm()">
-                <i class="fa-solid fa-upload"></i> Tải lên Banner mới
-            </button>
-        </div>
+        </nav>
 
-        <div id="add-banner-section">
-            <h3>Thêm Banner Mới</h3>
-            <form id="banner-form">
-                <div class="form-group">
-                    <label>Chọn hình ảnh</label>
-                    <input type="file" id="banner-file" accept="image/*" required onchange="previewImage(this)">
-                    <img id="img-preview" class="preview-img" src="" alt="Xem trước">
-                </div>
-                <div class="form-group">
-                    <label>Tiêu đề Banner</label>
-                    <input type="text" id="banner-title" placeholder="Ví dụ: Siêu sale mùa hè..." required>
-                </div>
-                <div class="form-group">
-                    <label>Đường dẫn (Link khi click)</label>
-                    <input type="text" id="banner-link" placeholder="/sale/summer" required>
-                </div>
-                <div class="form-group">
-                    <label>Vị trí hiển thị</label>
-                    <select id="banner-pos">
-                        <option value="Banner Chính">Banner Chính (Slider)</option>
-                        <option value="Dưới Products">Dưới danh sách sản phẩm</option>
-                        <option value="Sidebar">Sidebar bên phải</option>
-                    </select>
-                </div>
-                <div style="margin-top: 15px;">
-                    <button type="submit" class="admin-btn btn-primary">Lưu Banner</button>
-                    <button type="button" class="admin-btn" style="background:#6c757d; color:white" onclick="toggleForm()">Hủy</button>
-                </div>
-            </form>
-        </div>
+        <div class="container-fluid px-4 mt-4">
 
-        <div class="table-container">
-            <table class="admin-table">
-                <thead>
-                <tr>
-                    <th>Ảnh</th>
-                    <th>Tiêu đề</th>
-                    <th>Liên kết nút</th>
-                    <th>Vị trí</th>
-                    <th>Hành động</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <td><img src="img/banner hlw.jpg" alt="Banner" class="thumb"></td>
-                    <td>Ưu đãi Haloween</td>
-                    <td>/sale/halloween</td>
-                    <td>Banner Chính</td>
-                    <td>
-                        <button class="btn-action"><i class="fa-solid fa-pen-to-square"></i></button>
-                        <button class="btn-action"><i class="fa-solid fa-trash"></i></button>
-                    </td>
-                </tr>
-                <tr>
-                    <td><img src="img/tui-xach-nu-mau-trang-sua-1.jpg" alt="Collection Banner" class="thumb"></td>
-                    <td>Bộ sưu tập Túi Xách</td>
-                    <td>/collection/tui-xach</td>
-                    <td>Dưới Products</td>
-                    <td>
-                        <button class="btn-action"><i class="fa-solid fa-pen-to-square"></i></button>
-                        <button class="btn-action"><i class="fa-solid fa-trash"></i></button>
-                    </td>
-                </tr>
-                </tbody>
-            </table>
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h3 class="mb-0 text-secondary">Quản lý Banner</h3>
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addBannerModal">
+                    <i class="fa-solid fa-cloud-arrow-up me-2"></i> Tải lên Banner
+                </button>
+            </div>
+
+            <div class="card shadow border-0 rounded-3">
+                <div class="card-body p-0">
+                    <div class="table-responsive">
+                        <table class="table table-hover table-striped align-middle mb-0">
+                            <thead class="bg-light text-secondary">
+                            <tr>
+                                <th class="py-3 ps-4">Hình ảnh</th>
+                                <th class="py-3">Tiêu đề</th>
+                                <th class="py-3">Liên kết (Link)</th>
+                                <th class="py-3">Vị trí</th>
+                                <th class="py-3 text-center">Hành động</th>
+                            </tr>
+                            </thead>
+                            <tbody id="banner-table-body">
+                            <tr>
+                                <td class="ps-4">
+                                    <img src="${pageContext.request.contextPath}/assets/img/banner-hlw.jpg"
+                                         alt="Banner" class="banner-thumb"
+                                         onerror="this.src='https://placehold.co/120x60?text=No+Img'">
+                                </td>
+                                <td class="fw-bold">Ưu đãi Halloween</td>
+                                <td class="text-primary">/sale/halloween</td>
+                                <td><span class="badge bg-primary">Banner Chính</span></td>
+                                <td class="text-center">
+                                    <button class="btn btn-sm btn-outline-primary me-1"><i class="fa-solid fa-pen-to-square"></i></button>
+                                    <button class="btn btn-sm btn-outline-danger delete-btn"><i class="fa-solid fa-trash"></i></button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="ps-4">
+                                    <img src="${pageContext.request.contextPath}/assets/img/banner-collection.jpg"
+                                         alt="Banner" class="banner-thumb"
+                                         onerror="this.src='https://placehold.co/120x60?text=No+Img'">
+                                </td>
+                                <td class="fw-bold">Bộ sưu tập Túi Xách</td>
+                                <td class="text-primary">/collection/tui-xach</td>
+                                <td><span class="badge bg-info text-dark">Dưới Products</span></td>
+                                <td class="text-center">
+                                    <button class="btn btn-sm btn-outline-primary me-1"><i class="fa-solid fa-pen-to-square"></i></button>
+                                    <button class="btn btn-sm btn-outline-danger delete-btn"><i class="fa-solid fa-trash"></i></button>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
         </div>
-    </main>
+    </div>
 </div>
-<script>
-    // Hàm Ẩn/Hiện Form khi bấm nút "Tải lên"
-    function toggleForm() {
-        const formSection = document.getElementById('add-banner-section');
-        if (formSection.style.display === 'none' || formSection.style.display === '') {
-            formSection.style.display = 'block';
-        } else {
-            formSection.style.display = 'none';
-        }
-    }
 
-    // Hàm xem trước ảnh khi chọn file từ máy tính
+<div class="modal fade" id="addBannerModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header bg-white">
+                <h5 class="modal-title text-primary fw-bold">THÊM BANNER MỚI</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+            <div class="modal-body">
+                <form id="bannerForm" action="${pageContext.request.contextPath}/admin/banner-add" method="post" enctype="multipart/form-data">
+
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">Chọn hình ảnh</label>
+                        <input type="file" class="form-control" id="bannerFile" name="file" accept="image/*" required onchange="previewImage(this)">
+
+                        <div class="preview-container">
+                            <span class="placeholder-text" id="placeholderText">Chưa chọn ảnh</span>
+                            <img id="imgPreview" class="preview-img" src="" alt="Preview">
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">Tiêu đề Banner</label>
+                        <input type="text" class="form-control" name="title" placeholder="Ví dụ: Siêu sale mùa hè..." required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">Đường dẫn (Link)</label>
+                        <input type="text" class="form-control" name="link" placeholder="/sale/summer" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">Vị trí hiển thị</label>
+                        <select class="form-select" name="position">
+                            <option value="main">Banner Chính (Slider)</option>
+                            <option value="sub">Dưới danh sách sản phẩm</option>
+                            <option value="sidebar">Sidebar bên phải</option>
+                        </select>
+                    </div>
+
+                    <div class="modal-footer border-0 px-0 pb-0">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+                        <button type="submit" class="btn btn-primary px-4">Lưu Banner</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
     function previewImage(input) {
-        const preview = document.getElementById('img-preview');
+        const preview = document.getElementById('imgPreview');
+        const placeholder = document.getElementById('placeholderText');
+
         if (input.files && input.files[0]) {
             const reader = new FileReader();
 
             reader.onload = function(e) {
                 preview.src = e.target.result;
                 preview.style.display = 'block';
+                placeholder.style.display = 'none';
             }
 
             reader.readAsDataURL(input.files[0]);
         } else {
             preview.style.display = 'none';
+            placeholder.style.display = 'block';
         }
     }
 
-    // Xử lý sự kiện Submit Form
-    document.getElementById('banner-form').addEventListener('submit', function(e) {
-        e.preventDefault();
-
-        // Lấy dữ liệu
-        const title = document.getElementById('banner-title').value;
-        const link = document.getElementById('banner-link').value;
-        const pos = document.getElementById('banner-pos').value;
-
-        // Lấy đường dẫn ảnh từ thẻ preview
-        const imgSrc = document.getElementById('img-preview').src;
-
-        if(!imgSrc || document.getElementById('img-preview').style.display === 'none') {
-            alert("Vui lòng chọn ảnh!");
-            return;
-        }
-
-        // Tạo dòng mới
-        const newRow = document.createElement('tr');
-        newRow.innerHTML = `
-            <td><img src="${imgSrc}" alt="${title}" class="thumb"></td>
-            <td>${title}</td>
-            <td>${link}</td>
-            <td>${pos}</td>
-            <td>
-                <button class="btn-action"><i class="fa-solid fa-pen-to-square"></i></button>
-                <button class="btn-action delete"><i class="fa-solid fa-trash"></i></button>
-            </td>
-        `;
-
-        // Thêm vào đầu bảng
-        document.getElementById('banner-table-body').prepend(newRow);
-
-        // Reset form và ẩn đi
-        this.reset();
-        document.getElementById('img-preview').style.display = 'none';
-        toggleForm();
-        alert('Đã thêm banner mới thành công!');
-    });
-
-    // Xử lý xóa
-    document.getElementById('banner-table-body').addEventListener('click', function(e) {
-        if (e.target.closest('.delete')) {
+    document.addEventListener('click', function(e) {
+        if (e.target.closest('.delete-btn')) {
             if(confirm('Bạn có chắc muốn xóa banner này?')) {
                 e.target.closest('tr').remove();
             }
         }
     });
 </script>
+
 </body>
 </html>

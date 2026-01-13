@@ -377,7 +377,7 @@
 <nav class="breadcrumbs">
     <i class="fa-solid fa-house"></i>
     <a href="${pageContext.request.contextPath}/home.jsp">Trang chủ</a> /
-    <a href="${pageContext.request.contextPath}/products-category-all.jsp">Sản phẩm</a> /
+    <a href="${pageContext.request.contextPath}/list-product.jsp">Sản phẩm</a> /
     <span>Phụ kiện</span>
 </nav>
 
@@ -481,7 +481,7 @@
 
         <div class="filter-sidebar-body">
             <ul class="categories-list">
-                <li><a href="${pageContext.request.contextPath}/products-category-all.jsp" >Tất cả sản phẩm</a></li>
+                <li><a href="${pageContext.request.contextPath}/list-product.jsp" >Tất cả sản phẩm</a></li>
                 <li><a href="${pageContext.request.contextPath}/products-cat-handbag.jsp" >Túi xách</a></li>
                 <li><a href="${pageContext.request.contextPath}/products-cat-accessory.jsp" >Phụ kiện</a></li>
             </ul>
