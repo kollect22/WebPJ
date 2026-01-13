@@ -25,24 +25,31 @@ public class AdminController extends HttpServlet {
 
         switch (path) {
             case "/admin/dashboard":
+                req.setAttribute("activeMenu", "dashboard");
                 targetPage = "/admin/dashboard.jsp";
                 break;
             case "/admin/products":
+                req.setAttribute("activeMenu", "products");
                 targetPage = "/admin/products.jsp";
                 break;
             case "/admin/coupons":
+                req.setAttribute("activeMenu", "coupons");
                 targetPage = "/admin/coupons.jsp";
                 break;
             case "/admin/customers":
-                targetPage = "/admin/customers.jsp";
+                req.setAttribute("activeMenu", "customer");
+                targetPage = "/admin/customer.jsp";
                 break;
             case "/admin/banner":
+                req.setAttribute("activeMenu", "banner");
                 targetPage = "/admin/banner.jsp";
                 break;
             case "/admin/orders":
+                req.setAttribute("activeMenu", "orders");
                 targetPage = "/admin/orders.jsp";
                 break;
             default:
+                req.setAttribute("activeMenu", "dashboard");
                 targetPage = "/admin/dashboard.jsp";
         }
         req.getRequestDispatcher(targetPage).forward(req, resp);
