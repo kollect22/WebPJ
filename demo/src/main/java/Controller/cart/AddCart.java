@@ -22,14 +22,18 @@ public class AddCart extends HttpServlet {
         ProductService ps = new ProductService();
         Product product = ps.getProduct(id);
         if (product == null) {
+            resp.sendRedirect(req.getContextPath() + "/products-category-all.jsp");
             return;
         }
+
         HttpSession session = req.getSession();
         Cart c = (Cart) session.getAttribute("cart");
-        if (c == null) c = new Cart();
-        c.addProduct(product, 1);
+        if (c == null) {
+            c = new Cart();
+        }
+        c.addProduct(product, q);
         session.setAttribute("cart", c);
-        resp.sendRedirect("products-category-all");
+        resp.sendRedirect(req.getContextPath() + "/products-category-all.jsp");
     }
 
     @Override
