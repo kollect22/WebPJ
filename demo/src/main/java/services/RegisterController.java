@@ -37,7 +37,7 @@ public class RegisterController extends HttpServlet {
             session.setAttribute("user", email);
 
             // chuyển vào trang mua sắm
-            response.sendRedirect("index.jsp");
+            response.sendRedirect("home.jsp");
         } else {
             request.setAttribute("error", "Đăng ký thất bại!");
             request.getRequestDispatcher("login.jsp").forward(request, response);

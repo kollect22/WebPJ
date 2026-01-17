@@ -219,6 +219,10 @@
             color: #333131;
             font-size: 14px;
         }
+        .product-item-wrapper {
+            position: relative;
+
+        }
 
         .cart-icon {
             position: absolute;
@@ -234,9 +238,10 @@
             z-index: 2;
         }
 
-        .product-item:hover .cart-icon {
+        .product-item-wrapper:hover .cart-icon {
             opacity: 1;
         }
+
 
         .filter-sidebar {
             position: fixed;
@@ -397,174 +402,226 @@
 
     <div class="product-cat-list">
 
-        <a href="${pageContext.request.contextPath}/pro-details/product-details1.jsp" class="product-item">
-            <img src="${pageContext.request.contextPath}/img/products/tui-xach-nau-ca-tinh/a3.jpg" alt="Túi Nâu"/>
-            <div class="cart-icon"><i class="fa-solid fa-cart-shopping"></i></div>
-            <div class="product-name">Túi Xách Nâu Cá Tính SBM395</div>
-            <div class="product-price">1.850.000VNĐ</div>
-        </a>
+        <div class="product-item-wrapper">
 
-        <a href="${pageContext.request.contextPath}/pro-details/product-details19.jsp" class="product-item">
-            <img src="${pageContext.request.contextPath}/img/products/tui-enola/anh1.webp" alt="Túi Enola"/>
-            <div class="cart-icon"><i class="fa-solid fa-cart-shopping"></i></div>
-            <div class="product-name">Túi Enola Canvas Two-Tone</div>
-            <div class="product-price">1.890.000VNĐ</div>
-        </a>
+            <a href="${pageContext.request.contextPath}/pro-details/product-details1(TuiXNCaTinh).jsp" class="product-item">
+                <img src="${pageContext.request.contextPath}/img/products/tui-xach-nau-ca-tinh/a3.jpg" alt="Túi Nâu"/>
 
-        <a href="${pageContext.request.contextPath}/pro-details/product-details2.jsp" class="product-item">
-            <img src="${pageContext.request.contextPath}/img/products/tui-da/a1.jpeg" alt="Túi da dây xích"/>
-            <div class="cart-icon"><i class="fa-solid fa-cart-shopping"></i></div>
-            <div class="product-name">Túi xách nữ dây xích H1355</div>
-            <div class="product-price">500.000VNĐ</div>
-        </a>
+                <div class="product-name">Túi Xách Nâu Cá Tính SBM395</div>
+                <div class="product-price">1.850.000VNĐ</div>
+            </a>
+            <a href="${pageContext.request.contextPath}/add-cart?id=1&q=1"
+               class="cart-icon">
+                <i class="fa-solid fa-cart-shopping"></i>
+            </a>
+        </div>
 
-        <a href="${pageContext.request.contextPath}/pro-details/product-details19.jsp" class="product-item">
-            <img src="${pageContext.request.contextPath}/img/products/tui-da-ca-sau/a1.jpeg" alt="Túi cá sấu"/>
-            <div class="cart-icon"><i class="fa-solid fa-cart-shopping"></i></div>
-            <div class="product-name">Túi da cá sấu cao cấp TX57</div>
-            <div class="product-price">5.500.000VNĐ</div>
-        </a>
+        <div class="product-item-wrapper">
+            <a href="${pageContext.request.contextPath}/pro-details/product-details19.jsp" class="product-item">
+                <img src="${pageContext.request.contextPath}/img/products/tui-enola/anh1.webp" alt="Túi Enola"/>
+                <div class="cart-icon"><i class="fa-solid fa-cart-shopping"></i></div>
+                <div class="product-name">Túi Enola Canvas Two-Tone</div>
+                <div class="product-price">1.890.000VNĐ</div>
+            </a>
+        </div>
 
-        <a href="${pageContext.request.contextPath}/pro-details/product-details19.jsp" class="product-item">
-            <img src="${pageContext.request.contextPath}/img/products/tui-da-PU/a2.webp" alt="Túi da PU"/>
-            <div class="cart-icon"><i class="fa-solid fa-cart-shopping"></i></div>
-            <div class="product-name">Túi Xách Tay Nữ N10</div>
-            <div class="product-price">1.750.000VNĐ</div>
-        </a>
+        <div class="product-item-wrapper">
+            <a href="${pageContext.request.contextPath}/pro-details/product-details2.jsp" class="product-item">
+                <img src="${pageContext.request.contextPath}/img/products/tui-da/a1.jpeg" alt="Túi da dây xích"/>
+                <div class="cart-icon"><i class="fa-solid fa-cart-shopping"></i></div>
+                <div class="product-name">Túi xách nữ dây xích H1355</div>
+                <div class="product-price">500.000VNĐ</div>
+            </a>
+        </div>
 
-        <a href="${pageContext.request.contextPath}/pro-details/product-details19.jsp" class="product-item">
-            <img src="${pageContext.request.contextPath}/img/products/tui-trice/anh1.webp" alt="Túi Trice"/>
-            <div class="cart-icon"><i class="fa-solid fa-cart-shopping"></i></div>
-            <div class="product-name">Túi đeo vai Trice - Trắng</div>
-            <div class="product-price">1.250.000đ</div>
-        </a>
+        <div class="product-item-wrapper">
+            <a href="${pageContext.request.contextPath}/pro-details/product-details19.jsp" class="product-item">
+                <img src="${pageContext.request.contextPath}/img/products/tui-da-ca-sau/a1.jpeg" alt="Túi cá sấu"/>
+                <div class="cart-icon"><i class="fa-solid fa-cart-shopping"></i></div>
+                <div class="product-name">Túi da cá sấu cao cấp TX57</div>
+                <div class="product-price">5.500.000VNĐ</div>
+            </a>
+        </div>
 
-        <a href="${pageContext.request.contextPath}/pro-details/product-details19.jsp" class="product-item">
-            <img src="${pageContext.request.contextPath}/img/products/tui-alva/xanh1.webp" alt="Túi Alva"/>
-            <div class="cart-icon"><i class="fa-solid fa-cart-shopping"></i></div>
-            <div class="product-name">Túi xách Alva - Xanh Mint</div>
-            <div class="product-price">1.450.000đ</div>
-        </a>
+        <div class="product-item-wrapper">
+            <a href="${pageContext.request.contextPath}/pro-details/product-details19.jsp" class="product-item">
+                <img src="${pageContext.request.contextPath}/img/products/tui-da-PU/a2.webp" alt="Túi da PU"/>
+                <div class="cart-icon"><i class="fa-solid fa-cart-shopping"></i></div>
+                <div class="product-name">Túi Xách Tay Nữ N10</div>
+                <div class="product-price">1.750.000VNĐ</div>
+            </a>
+        </div>
 
-        <a href="${pageContext.request.contextPath}/pro-details/product-details19.jsp" class="product-item">
-            <img src="${pageContext.request.contextPath}/img/products/tui-mirabelle/hong1.webp" alt="Túi Mirabelle"/>
-            <div class="cart-icon"><i class="fa-solid fa-cart-shopping"></i></div>
-            <div class="product-name">Túi Mirabelle - Hồng Phấn</div>
-            <div class="product-price">1.320.000đ</div>
-        </a>
+        <div class="product-item-wrapper">
+            <a href="${pageContext.request.contextPath}/pro-details/product-details19.jsp" class="product-item">
+                <img src="${pageContext.request.contextPath}/img/products/tui-trice/anh1.webp" alt="Túi Trice"/>
+                <div class="cart-icon"><i class="fa-solid fa-cart-shopping"></i></div>
+                <div class="product-name">Túi đeo vai Trice - Trắng</div>
+                <div class="product-price">1.250.000đ</div>
+            </a>
+        </div>
 
-        <a href="${pageContext.request.contextPath}/pro-details/product-details19.jsp" class="product-item">
-            <img src="${pageContext.request.contextPath}/img/products/tui-noane/xam1.webp" alt="Túi Noane"/>
-            <div class="cart-icon"><i class="fa-solid fa-cart-shopping"></i></div>
-            <div class="product-name">Túi Noane Phom Hộp - Xám</div>
-            <div class="product-price">1.180.000đ</div>
-        </a>
+        <div class="product-item-wrapper">
+            <a href="${pageContext.request.contextPath}/pro-details/product-details19.jsp" class="product-item">
+                <img src="${pageContext.request.contextPath}/img/products/tui-alva/xanh1.webp" alt="Túi Alva"/>
+                <div class="cart-icon"><i class="fa-solid fa-cart-shopping"></i></div>
+                <div class="product-name">Túi xách Alva - Xanh Mint</div>
+                <div class="product-price">1.450.000đ</div>
+            </a>
+        </div>
 
-        <a href="${pageContext.request.contextPath}/pro-details/product-details19.jsp" class="product-item">
-            <img src="${pageContext.request.contextPath}/img/products/tui-clutch/2023-L6-CK2-70160131-01-1.webp" alt="Túi clutch"/>
-            <div class="cart-icon"><i class="fa-solid fa-cart-shopping"></i></div>
-            <div class="product-name">Túi Clutch Cầm Tay - Đen</div>
-            <div class="product-price">1.850.000đ</div>
-        </a>
+        <div class="product-item-wrapper">
+            <a href="${pageContext.request.contextPath}/pro-details/product-details19.jsp" class="product-item">
+                <img src="${pageContext.request.contextPath}/img/products/tui-mirabelle/hong1.webp" alt="Túi Mirabelle"/>
+                <div class="cart-icon"><i class="fa-solid fa-cart-shopping"></i></div>
+                <div class="product-name">Túi Mirabelle - Hồng Phấn</div>
+                <div class="product-price">1.320.000đ</div>
+            </a>
+        </div>
 
-        <a href="${pageContext.request.contextPath}/pro-details/product-details19.jsp" class="product-item">
-            <img src="${pageContext.request.contextPath}/img/products/tui-da/a2.jpeg" alt="Túi da"/>
-            <div class="cart-icon"><i class="fa-solid fa-cart-shopping"></i></div>
-            <div class="product-name">Túi Da Thời Trang - Be</div>
-            <div class="product-price">1.450.000đ</div>
-        </a>
+        <div class="product-item-wrapper">
+            <a href="${pageContext.request.contextPath}/pro-details/product-details19.jsp" class="product-item">
+                <img src="${pageContext.request.contextPath}/img/products/tui-noane/xam1.webp" alt="Túi Noane"/>
+                <div class="cart-icon"><i class="fa-solid fa-cart-shopping"></i></div>
+                <div class="product-name">Túi Noane Phom Hộp - Xám</div>
+                <div class="product-price">1.180.000đ</div>
+            </a>
+        </div>
 
-        <a href="${pageContext.request.contextPath}/pro-details/product-details19.jsp" class="product-item">
-            <img src="${pageContext.request.contextPath}/img/products/tui-da-that/a1.jpg" alt="Túi da thật"/>
-            <div class="cart-icon"><i class="fa-solid fa-cart-shopping"></i></div>
-            <div class="product-name">Túi Da Thật Cao Cấp</div>
-            <div class="product-price">1.350.000đ</div>
-        </a>
+        <div class="product-item-wrapper">
+            <a href="${pageContext.request.contextPath}/pro-details/product-details19.jsp" class="product-item">
+                <img src="${pageContext.request.contextPath}/img/products/tui-clutch/2023-L6-CK2-70160131-01-1.webp" alt="Túi clutch"/>
+                <div class="cart-icon"><i class="fa-solid fa-cart-shopping"></i></div>
+                <div class="product-name">Túi Clutch Cầm Tay - Đen</div>
+                <div class="product-price">1.850.000đ</div>
+            </a>
+        </div>
 
-        <a href="${pageContext.request.contextPath}/pro-details/product-details19.jsp" class="product-item">
-            <img src="${pageContext.request.contextPath}/img/products/tui-dv-adalyn/2025-L7-CK2-20782753-01-5.webp" alt="Túi Adalyn"/>
-            <div class="cart-icon"><i class="fa-solid fa-cart-shopping"></i></div>
-            <div class="product-name">Túi Đeo Vai Adalyn</div>
-            <div class="product-price">1.590.000đ</div>
-        </a>
+        <div class="product-item-wrapper">
+            <a href="${pageContext.request.contextPath}/pro-details/product-details19.jsp" class="product-item">
+                <img src="${pageContext.request.contextPath}/img/products/tui-da/a2.jpeg" alt="Túi da"/>
+                <div class="cart-icon"><i class="fa-solid fa-cart-shopping"></i></div>
+                <div class="product-name">Túi Da Thời Trang - Be</div>
+                <div class="product-price">1.450.000đ</div>
+            </a>
+        </div>
 
-        <a href="${pageContext.request.contextPath}/pro-details/product-details19.jsp" class="product-item">
-            <img src="${pageContext.request.contextPath}/img/products/tui-xach-handmade/a1.jpg" alt="Túi Handmade"/>
-            <div class="cart-icon"><i class="fa-solid fa-cart-shopping"></i></div>
-            <div class="product-name">Túi Xách Handmade - Hồng</div>
-            <div class="product-price">1.150.000đ</div>
-        </a>
+        <div class="product-item-wrapper">
+            <a href="${pageContext.request.contextPath}/pro-details/product-details19.jsp" class="product-item">
+                <img src="${pageContext.request.contextPath}/img/products/tui-da-that/a1.jpg" alt="Túi da thật"/>
+                <div class="cart-icon"><i class="fa-solid fa-cart-shopping"></i></div>
+                <div class="product-name">Túi Da Thật Cao Cấp</div>
+                <div class="product-price">1.350.000đ</div>
+            </a>
+        </div>
 
-        <a href="${pageContext.request.contextPath}/pro-details/product-details19.jsp" class="product-item">
-            <img src="${pageContext.request.contextPath}/img/products/tui-britton/den1.webp" alt="Túi Britton"/>
-            <div class="cart-icon"><i class="fa-solid fa-cart-shopping"></i></div>
-            <div class="product-name">Túi Britton Khóa Kim Loại</div>
-            <div class="product-price">1.690.000đ</div>
-        </a>
+        <div class="product-item-wrapper">
+            <a href="${pageContext.request.contextPath}/pro-details/product-details19.jsp" class="product-item">
+                <img src="${pageContext.request.contextPath}/img/products/tui-dv-adalyn/2025-L7-CK2-20782753-01-5.webp" alt="Túi Adalyn"/>
+                <div class="cart-icon"><i class="fa-solid fa-cart-shopping"></i></div>
+                <div class="product-name">Túi Đeo Vai Adalyn</div>
+                <div class="product-price">1.590.000đ</div>
+            </a>
+        </div>
 
-        <a href="${pageContext.request.contextPath}/pro-details/product-details19.jsp" class="product-item">
-            <img src="${pageContext.request.contextPath}/img/products/tui-hang-hieu/a1.jpg" alt="Túi hàng hiệu"/>
-            <div class="cart-icon"><i class="fa-solid fa-cart-shopping"></i></div>
-            <div class="product-name">Túi Xách Thời Trang Cao Cấp</div>
-            <div class="product-price">850.000VNĐ</div>
-        </a>
+        <div class="product-item-wrapper">
+            <a href="${pageContext.request.contextPath}/pro-details/product-details19.jsp" class="product-item">
+                <img src="${pageContext.request.contextPath}/img/products/tui-xach-handmade/a1.jpg" alt="Túi Handmade"/>
+                <div class="cart-icon"><i class="fa-solid fa-cart-shopping"></i></div>
+                <div class="product-name">Túi Xách Handmade - Hồng</div>
+                <div class="product-price">1.150.000đ</div>
+            </a>
+        </div>
 
-        <a href="#" class="product-item">
-            <img src="${pageContext.request.contextPath}/img/accessory/Charm-Bunnie-Hong.jpg" alt="Bunnie charm"/>
-            <div class="cart-icon"><i class="fa-solid fa-cart-shopping"></i></div>
-            <div class="product-name">Charm Thỏ Bông Bunnie - Hồng</div>
-            <div class="product-price">350.000VNĐ</div>
-        </a>
+        <div class="product-item-wrapper">
+            <a href="${pageContext.request.contextPath}/pro-details/product-details19.jsp" class="product-item">
+                <img src="${pageContext.request.contextPath}/img/products/tui-britton/den1.webp" alt="Túi Britton"/>
+                <div class="cart-icon"><i class="fa-solid fa-cart-shopping"></i></div>
+                <div class="product-name">Túi Britton Khóa Kim Loại</div>
+                <div class="product-price">1.690.000đ</div>
+            </a>
+        </div>
 
-        <a href="#" class="product-item">
-            <img src="${pageContext.request.contextPath}/img/accessory/Charm-Trai-Tim.jpg" alt="Charm dây tim"/>
-            <div class="cart-icon"><i class="fa-solid fa-cart-shopping"></i></div>
-            <div class="product-name">Charm Dây Phối Trái Tim Kim Loại</div>
-            <div class="product-price">290.000VNĐ</div>
-        </a>
+        <div class="product-item-wrapper">
+            <a href="${pageContext.request.contextPath}/pro-details/product-details19.jsp" class="product-item">
+                <img src="${pageContext.request.contextPath}/img/products/tui-hang-hieu/a1.jpg" alt="Túi hàng hiệu"/>
+                <div class="cart-icon"><i class="fa-solid fa-cart-shopping"></i></div>
+                <div class="product-name">Túi Xách Thời Trang Cao Cấp</div>
+                <div class="product-price">850.000VNĐ</div>
+            </a>
+        </div>
 
-        <a href="#" class="product-item">
-            <img src="${pageContext.request.contextPath}/img/accessory/Charm-Day-Ngoc-Trai.jpg" alt="Charm ngọc trai"/>
-            <div class="cart-icon"><i class="fa-solid fa-cart-shopping"></i></div>
-            <div class="product-name">Charm Dây Ngọc Trai Nơ Hoa</div>
-            <div class="product-price">200.000VNĐ</div>
-        </a>
+        <div class="product-item-wrapper">
+            <a href="#" class="product-item">
+                <img src="${pageContext.request.contextPath}/img/accessory/Charm-Bunnie-Hong.jpg" alt="Bunnie charm"/>
+                <div class="cart-icon"><i class="fa-solid fa-cart-shopping"></i></div>
+                <div class="product-name">Charm Thỏ Bông Bunnie - Hồng</div>
+                <div class="product-price">350.000VNĐ</div>
+            </a>
+        </div>
 
-        <a href="#" class="product-item">
-            <img src="${pageContext.request.contextPath}/img/accessory/Charm-Day-No-Bac.jpg" alt="Charm nơ bạc"/>
-            <div class="cart-icon"><i class="fa-solid fa-cart-shopping"></i></div>
-            <div class="product-name">Charm Dây Nơ Bạc Ngọc Trai</div>
-            <div class="product-price">300.000VNĐ</div>
-        </a>
+        <div class="product-item-wrapper">
+            <a href="#" class="product-item">
+                <img src="${pageContext.request.contextPath}/img/accessory/Charm-Trai-Tim.jpg" alt="Charm dây tim"/>
+                <div class="cart-icon"><i class="fa-solid fa-cart-shopping"></i></div>
+                <div class="product-name">Charm Dây Phối Trái Tim Kim Loại</div>
+                <div class="product-price">290.000VNĐ</div>
+            </a>
+        </div>
 
-        <a href="#" class="product-item">
-            <img src="${pageContext.request.contextPath}/img/accessory/Charm-Thu-Bong-Vang.jpg" alt="Charm thú bông vàng"/>
-            <div class="cart-icon"><i class="fa-solid fa-cart-shopping"></i></div>
-            <div class="product-name">Charm Thú Bông Lông Xù - Vàng</div>
-            <div class="product-price">150.000VNĐ</div>
-        </a>
+        <div class="product-item-wrapper">
+            <a href="#" class="product-item">
+                <img src="${pageContext.request.contextPath}/img/accessory/Charm-Day-Ngoc-Trai.jpg" alt="Charm ngọc trai"/>
+                <div class="cart-icon"><i class="fa-solid fa-cart-shopping"></i></div>
+                <div class="product-name">Charm Dây Ngọc Trai Nơ Hoa</div>
+                <div class="product-price">200.000VNĐ</div>
+            </a>
+        </div>
 
-        <a href="#" class="product-item">
-            <img src="${pageContext.request.contextPath}/img/accessory/Charm-Thu-Bong-Xam.jpg" alt="Charm thú bông xám"/>
-            <div class="cart-icon"><i class="fa-solid fa-cart-shopping"></i></div>
-            <div class="product-name">Charm Thú Bông Lông Xù - Xám</div>
-            <div class="product-price">150.000VNĐ</div>
-        </a>
+        <div class="product-item-wrapper">
+            <a href="#" class="product-item">
+                <img src="${pageContext.request.contextPath}/img/accessory/Charm-Day-No-Bac.jpg" alt="Charm nơ bạc"/>
+                <div class="cart-icon"><i class="fa-solid fa-cart-shopping"></i></div>
+                <div class="product-name">Charm Dây Nơ Bạc Ngọc Trai</div>
+                <div class="product-price">300.000VNĐ</div>
+            </a>
+        </div>
 
-        <a href="#" class="product-item">
-            <img src="${pageContext.request.contextPath}/img/accessory/Charm-Sac-Cau-Vong.jpg" alt="Charm cầu vồng"/>
-            <div class="cart-icon"><i class="fa-solid fa-cart-shopping"></i></div>
-            <div class="product-name">Majoris Charm Sắc Cầu Vồng</div>
-            <div class="product-price">250.000VNĐ</div>
-        </a>
+        <div class="product-item-wrapper">
+            <a href="#" class="product-item">
+                <img src="${pageContext.request.contextPath}/img/accessory/Charm-Thu-Bong-Vang.jpg" alt="Charm thú bông vàng"/>
+                <div class="cart-icon"><i class="fa-solid fa-cart-shopping"></i></div>
+                <div class="product-name">Charm Thú Bông Lông Xù - Vàng</div>
+                <div class="product-price">150.000VNĐ</div>
+            </a>
+        </div>
 
-        <a href="#" class="product-item">
-            <img src="${pageContext.request.contextPath}/img/accessory/Charm-Gau-Nau-Bowie.jpg" alt="Charm Bowie"/>
-            <div class="cart-icon"><i class="fa-solid fa-cart-shopping"></i></div>
-            <div class="product-name">Bowie Charm Gấu Nâu</div>
-            <div class="product-price">190.000VNĐ</div>
-        </a>
+        <div class="product-item-wrapper">
+            <a href="#" class="product-item">
+                <img src="${pageContext.request.contextPath}/img/accessory/Charm-Thu-Bong-Xam.jpg" alt="Charm thú bông xám"/>
+                <div class="cart-icon"><i class="fa-solid fa-cart-shopping"></i></div>
+                <div class="product-name">Charm Thú Bông Lông Xù - Xám</div>
+                <div class="product-price">150.000VNĐ</div>
+            </a>
+        </div>
 
+        <div class="product-item-wrapper">
+            <a href="#" class="product-item">
+                <img src="${pageContext.request.contextPath}/img/accessory/Charm-Sac-Cau-Vong.jpg" alt="Charm cầu vồng"/>
+                <div class="cart-icon"><i class="fa-solid fa-cart-shopping"></i></div>
+                <div class="product-name">Majoris Charm Sắc Cầu Vồng</div>
+                <div class="product-price">250.000VNĐ</div>
+            </a>
+        </div>
+
+        <div class="product-item-wrapper">
+            <a href="#" class="product-item">
+                <img src="${pageContext.request.contextPath}/img/accessory/Charm-Gau-Nau-Bowie.jpg" alt="Charm Bowie"/>
+                <div class="cart-icon"><i class="fa-solid fa-cart-shopping"></i></div>
+                <div class="product-name">Bowie Charm Gấu Nâu</div>
+                <div class="product-price">190.000VNĐ</div>
+            </a>
+        </div>
     </div>
 </div>
 

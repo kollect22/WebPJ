@@ -10,8 +10,60 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="de51f29c-e241-43d2-8881-5aa38e2660e5" name="Changes" comment="sửa đăng ký">
+      <change afterPath="$PROJECT_DIR$/demo/src/main/java/Controller/HomeController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/demo/src/main/webapp/admin/banner.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/demo/src/main/webapp/admin/coupons.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/demo/src/main/webapp/admin/customer.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/demo/src/main/webapp/admin/dashboard.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/demo/src/main/webapp/admin/orders.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/demo/src/main/webapp/admin/products.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/demo/src/main/webapp/admin/sidebar.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/demo/src/main/webapp/home.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/demo/src/main/webapp/list-product.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/src/main/java/Controller/ProductController.java" beforeDir="false" afterPath="$PROJECT_DIR$/demo/src/main/java/Controller/ProductController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/src/main/java/Controller/cart/AddCart.java" beforeDir="false" afterPath="$PROJECT_DIR$/demo/src/main/java/Controller/cart/AddCart.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/src/main/java/cart/Cart.java" beforeDir="false" afterPath="$PROJECT_DIR$/demo/src/main/java/cart/Cart.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/src/main/java/cart/CartItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/demo/src/main/java/cart/CartItem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/src/main/java/dao/BaseDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/demo/src/main/java/dao/BaseDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/src/main/java/dao/ProductDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/demo/src/main/java/dao/ProductDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/src/main/java/model/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/demo/src/main/java/model/Product.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/src/main/java/services/ProductService.java" beforeDir="false" afterPath="$PROJECT_DIR$/demo/src/main/java/services/ProductService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/src/main/java/services/RegisterController.java" beforeDir="false" afterPath="$PROJECT_DIR$/demo/src/main/java/services/RegisterController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/src/main/resources/db.properties" beforeDir="false" afterPath="$PROJECT_DIR$/demo/src/main/resources/db.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/src/main/webapp/assets/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/demo/src/main/webapp/assets/css/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/src/main/webapp/assets/js/script.js" beforeDir="false" afterPath="$PROJECT_DIR$/demo/src/main/webapp/assets/js/script.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/src/main/webapp/cart.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/demo/src/main/webapp/cart.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/src/main/webapp/header.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/demo/src/main/webapp/header.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/src/main/webapp/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/demo/src/main/webapp/index.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/src/main/webapp/products-category-all.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/demo/src/main/webapp/products-category-all.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/target/classes/Controller/ProductController.class" beforeDir="false" afterPath="$PROJECT_DIR$/demo/target/classes/Controller/ProductController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/target/classes/Controller/cart/AddCart.class" beforeDir="false" afterPath="$PROJECT_DIR$/demo/target/classes/Controller/cart/AddCart.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/target/classes/cart/Cart.class" beforeDir="false" afterPath="$PROJECT_DIR$/demo/target/classes/cart/Cart.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/target/classes/cart/CartItem.class" beforeDir="false" afterPath="$PROJECT_DIR$/demo/target/classes/cart/CartItem.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/target/classes/dao/BaseDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/demo/target/classes/dao/BaseDao.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/target/classes/dao/ProductDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/demo/target/classes/dao/ProductDao.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/target/classes/db.properties" beforeDir="false" afterPath="$PROJECT_DIR$/demo/target/classes/db.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/target/classes/model/Product.class" beforeDir="false" afterPath="$PROJECT_DIR$/demo/target/classes/model/Product.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/target/classes/services/ProductService.class" beforeDir="false" afterPath="$PROJECT_DIR$/demo/target/classes/services/ProductService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/target/classes/services/RegisterController.class" beforeDir="false" afterPath="$PROJECT_DIR$/demo/target/classes/services/RegisterController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT.war" beforeDir="false" afterPath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT.war" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/WEB-INF/classes/Controller/ProductController.class" beforeDir="false" afterPath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/WEB-INF/classes/Controller/ProductController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/WEB-INF/classes/Controller/cart/AddCart.class" beforeDir="false" afterPath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/WEB-INF/classes/Controller/cart/AddCart.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/WEB-INF/classes/cart/Cart.class" beforeDir="false" afterPath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/WEB-INF/classes/cart/Cart.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/WEB-INF/classes/cart/CartItem.class" beforeDir="false" afterPath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/WEB-INF/classes/cart/CartItem.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/WEB-INF/classes/dao/BaseDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/WEB-INF/classes/dao/BaseDao.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/WEB-INF/classes/dao/ProductDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/WEB-INF/classes/dao/ProductDao.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/WEB-INF/classes/db.properties" beforeDir="false" afterPath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/WEB-INF/classes/db.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/WEB-INF/classes/model/Product.class" beforeDir="false" afterPath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/WEB-INF/classes/model/Product.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/WEB-INF/classes/services/ProductService.class" beforeDir="false" afterPath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/WEB-INF/classes/services/ProductService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/WEB-INF/classes/services/RegisterController.class" beforeDir="false" afterPath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/WEB-INF/classes/services/RegisterController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/assets/js/script.js" beforeDir="false" afterPath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/assets/js/script.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/cart.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/cart.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/header.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/header.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/index.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/products-category-all.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/demo/target/demo-1.0-SNAPSHOT/products-category-all.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wishlist.html" beforeDir="false" afterPath="$PROJECT_DIR$/demo/src/main/webapp/wishlist.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -22,24 +74,27 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Class" />
+        <option value="Jsp File" />
+        <option value="Servlet" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="UPDATE_TYPE" value="REBASE" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "Tthanh-076"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;Tthanh-076&quot;
   }
-}]]></component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/kollect22/WebPJ.git",
-    "accountId": "ae89782e-2911-4451-b90c-bc9bdfcd9c28"
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/kollect22/WebPJ.git&quot;,
+    &quot;accountId&quot;: &quot;ae89782e-2911-4451-b90c-bc9bdfcd9c28&quot;
   }
-}]]></component>
+}</component>
   <component name="JvmLoggingSettingsStorage">
     <option name="loggerId" value="Slf4j" />
   </component>
@@ -62,37 +117,40 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.AuthDao.executor": "Run",
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "RunOnceActivity.MCP Project settings loaded": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
-    "Tomcat Server.Tomcat 10.1.50.executor": "Run",
-    "Tomcat Server.index.jsp.executor": "Run",
-    "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultAutoModeForALLUsers.v1": "true",
-    "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
-    "git-widget-placeholder": "23130305",
-    "junie.onboarding.icon.badge.shown": "true",
-    "kotlin-language-version-configured": "true",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Artifacts",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.2",
-    "to.speed.mode.migration.done": "true",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.AuthDao.executor&quot;: &quot;Run&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.MCP Project settings loaded&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
+    &quot;Tomcat Server.Tomcat 10.1.50.executor&quot;: &quot;Run&quot;,
+    &quot;Tomcat Server.index.jsp.executor&quot;: &quot;Run&quot;,
+    &quot;com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultAutoModeForALLUsers.v1&quot;: &quot;true&quot;,
+    &quot;com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;23130305&quot;,
+    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Artifacts&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;to.speed.mode.migration.done&quot;: &quot;true&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="cart" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\LTW\WebPJ\demo\src\main\webapp" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -238,7 +296,7 @@
       <workItem from="1767424667127" duration="14000" />
       <workItem from="1767564982268" duration="1088000" />
       <workItem from="1767795281577" duration="12841000" />
-      <workItem from="1767880471369" duration="418000" />
+      <workItem from="1767880471369" duration="25465000" />
     </task>
     <servers />
   </component>

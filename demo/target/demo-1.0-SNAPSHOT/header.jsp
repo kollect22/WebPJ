@@ -47,8 +47,12 @@
             <span class="wishlist-count">0</span>
         </a>
 
-        <a href="${pageContext.request.contextPath}/cart.jsp">
-            <i class="fa-solid fa-shopping-cart"></i> (${sessionScope.cart.totalQuantity}
+        <a href="${pageContext.request.contextPath}/cart.jsp" class="cart-header">
+            <i class="fa-solid fa-shopping-cart"></i>
+            <span class="cart-count">
+                ${sessionScope.cart != null ? sessionScope.cart.totalQuantity : 0}
+            </span>
         </a>
+
     </div>
 </header>
