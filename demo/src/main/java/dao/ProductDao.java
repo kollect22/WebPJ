@@ -30,11 +30,15 @@ public class ProductDao extends BaseDao {
         });
     }
     public Product getProduct(int id) {
-        // data.get(id);
-        return get().withHandle(h -> {
-            return h.createQuery("select * from products where id = :id").bind("id",id).mapToBean(Product.class).first();
-        });
+        return get().withHandle(h ->
+                h.createQuery("SELECT * FROM products WHERE id = :id")
+                        .bind("id", id)
+                        .mapToBean(Product.class)
+                        .findOne()
+                        .orElse(null)
+        );
     }
+
     public void insert(List<Product> list) {
         get().useHandle(h -> {
 //            PreparedBatch pb = h.prepareBatch("insert into products values (:id, :name, :img, :price)");

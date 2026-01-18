@@ -17,7 +17,7 @@
 
 <nav class="breadcrumbs">
     <i class="fa-regular fa-house"></i>
-    <a href="${pageContext.request.contextPath}/home.jsp">Trang chủ</a> /
+    <a href="${pageContext.request.contextPath}/index.jsp">Trang chủ</a> /
     <a href="${pageContext.request.contextPath}/products-new.jsp">Hàng mới</a> /
     <span>Túi Alva</span>
 </nav>

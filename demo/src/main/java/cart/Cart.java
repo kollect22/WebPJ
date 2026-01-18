@@ -11,13 +11,30 @@ public class Cart implements Serializable {
     Map<Integer, CartItem> data;
 
     public Cart() {
-        data = new HashMap<>();
+        data = new HashMap<Integer, CartItem>();
     }
 
     public void addProduct(Product p, int quantity) {
-        if(data.containsKey(p.getId())) data.get(p.getId()).upQuantity(quantity);
-        else data.put(p.getId(), new CartItem(p, p.getPrice(), quantity));
+        if (quantity <= 0) quantity = 1;
+
+        if (data.containsKey(p.getId())) {
+            data.get(p.getId()).upQuantity(quantity);
+        } else {
+            data.put(p.getId(), new CartItem(p, p.getPrice(), quantity));
+        }
     }
+
+    public void updateProduct(Product p, int quantity) {
+        if (quantity <= 0) {
+            data.remove(p.getId());
+        } else {
+            CartItem item = data.get(p.getId());
+            if (item != null) {
+                item.setQuantity(quantity);
+            }
+        }
+    }
+
 
     public CartItem deleteProduct(int id) {
         return data.remove(id) ;
@@ -42,7 +59,8 @@ public class Cart implements Serializable {
 
     public double getTotal() {
         AtomicReference<Double> total = new AtomicReference<>((double) 0);
-        data.values().forEach(p -> total.updateAndGet(v -> (v + (p.getQuantity() * p.getPrice()))));        return total.get();
+        data.values().forEach(p -> total.updateAndGet(v -> (v + (p.getQuantity() * p.getPrice()))));
+        return total.get();
     }
 
 }
