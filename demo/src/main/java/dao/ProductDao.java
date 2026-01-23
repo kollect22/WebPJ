@@ -11,16 +11,7 @@ import java.util.List;
 import java.util.Map;
 
 public class ProductDao extends BaseDao {
-    static Map<Integer, Product> data = new HashMap<>();
-    static {
-        data.put(1, new Product(1, "Khăn lụa", "img/accessory/KhanLua.webp", 10000));
-        data.put(2, new Product(2, "Túi da", "img/products/tui-da/a1.jpeg", 100020));
-        data.put(3, new Product(3, "Túi da thật", "img/products/tui-da/a1.jpeg", 100004));
-        data.put(4, new Product(4, "Túi đeo vai", "img/products/tui-deo-vai/anh1.jpg", 100500));
-    }
-
     public List<Product> getListProduct() {
-        //return new ArrayList<Product>(data.values());
         return get().withHandle(h -> {
             List<Product> list = h.createQuery("select * from products").mapToBean(Product.class).list();
 
@@ -30,7 +21,6 @@ public class ProductDao extends BaseDao {
         });
     }
     public Product getProduct(int id) {
-        // data.get(id);
         return get().withHandle(h -> {
             return h.createQuery("select * from products where id = :id").bind("id",id).mapToBean(Product.class).first();
         });
@@ -44,7 +34,8 @@ public class ProductDao extends BaseDao {
 //            });
 //            pb.execute();
             for (Product p : list) {
-                int productId = h.createUpdate("INSERT INTO products(name, img, price, sale_price, description, category) VALUES (:name, :img, :price, :salePrice, :description, :category)")
+                System.out.println("Đang thêm sản phẩm: " + p.getName());
+                int productId = h.createUpdate("INSERT INTO products(name, img, price, sale_price) VALUES (:name, :img, :price, :salePrice)")
                         .bindBean(p)
                         .executeAndReturnGeneratedKeys("id")
                         .mapTo(Integer.class)
@@ -59,6 +50,25 @@ public class ProductDao extends BaseDao {
                     }
                 }
             }
+        });
+    }
+    public void delete(int id) {
+        get().useHandle(h -> {
+            h.createUpdate("DELETE FROM product_colors WHERE product_id = :id")
+                    .bind("id", id).execute();
+
+            // Sau đó xóa sản phẩm
+            h.createUpdate("DELETE FROM products WHERE id = :id")
+                    .bind("id", id).execute();
+        });
+    }
+
+    // 2. Hàm Sửa (Update)
+    public void update(Product p) {
+        get().useHandle(h -> {
+            h.createUpdate("UPDATE products SET name = :name, img = :img, price = :price, sale_price = :salePrice WHERE id = :id")
+                    .bindBean(p)
+                    .execute();
         });
     }
 
