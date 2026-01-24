@@ -66,20 +66,52 @@
 
         <c:forEach items="${productList}" var="p" begin="0" end="7">
             <div class="product-item">
-                <img src="${pageContext.request.contextPath}/${p.img}" alt="${p.name}"/>
+<%--                <img src="${pageContext.request.contextPath}/${p.img}" alt="${p.name}"/>--%>
+
+                <a href="detail?id=${p.id}" class="product-link">
+                    <img src="${pageContext.request.contextPath}/${p.img}"
+                         alt="${p.name}"
+                         class="product-card-img" />
+                </a>
 
                 <a href="add-cart?id=${p.id}&q=1" class="cart-icon">
                     <i class="fa-solid fa-cart-shopping"></i>
                 </a>
 
                 <div class="color-options">
-                    <c:forEach items="${p.colors}" var="colorCode">
-                        <span class="color-swatch" style="background-color: ${colorCode};"></span>
-                    </c:forEach>
+                    <c:if test="${not empty p.colors}">
+                        <c:forEach items="${p.colors}" var="c">
+
+                            <c:set var="bgColor" value="#ccc" /> <c:if test="${c.colorName == 'Màu Đen' || c.colorName == 'Đen'}">
+                            <c:set var="bgColor" value="#000000" />
+                        </c:if>
+                            <c:if test="${c.colorName == 'Màu Be' || c.colorName == 'Kem'}">
+                                <c:set var="bgColor" value="#f0e6d2" />
+                            </c:if>
+                            <c:if test="${c.colorName == 'Màu Đỏ' || c.colorName == 'Đỏ'}">
+                                <c:set var="bgColor" value="#d0021b" />
+                            </c:if>
+                            <c:if test="${c.colorName == 'Màu Bạc' || c.colorName == 'Bạc'}">
+                                <c:set var="bgColor" value="#c0c0c0" />
+                            </c:if>
+                            <c:if test="${c.colorName == 'Màu Xanh' || c.colorName == 'Xanh'}">
+                                <c:set var="bgColor" value="#aaddff" />
+                            </c:if>
+
+                            <span class="color-swatch"
+                                  onclick="changeCardImage(this)"
+                                  data-src="${pageContext.request.contextPath}/${c.imgThumbnail}"
+                                  data-link="detail?id=${c.productid}"
+                                  title="${c.colorName}"
+                                  style="background-color: ${bgColor};">
+                        </span>
+
+                        </c:forEach>
+                    </c:if>
                 </div>
 
                 <div class="product-name">
-                    <a href="detail?id=${p.id}" style="text-decoration: none; color: black;">
+                    <a href="detail?id=${p.id}" title="${p.name}">
                             ${p.name}
                     </a>
                 </div>

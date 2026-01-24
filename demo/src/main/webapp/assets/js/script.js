@@ -144,16 +144,49 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 // -------productdetails-------
-function changeImage(el) {
-    const mainImage = document.getElementById("mainImage");
-    if (!mainImage) return;
+// function changeImage(el) {
+//     const mainImage = document.getElementById("mainImage");
+//     if (!mainImage) return;
+//
+//     mainImage.src = el.src;
+//
+//
+//     document.querySelectorAll(".thumb-list img")
+//         .forEach(img => img.classList.remove("active"));
+//     el.classList.add("active");
+// }
+//
+function changeImage(element) {
+    // 1. Lấy đường dẫn ảnh mới từ thuộc tính data-src của chấm màu
+    var newImageSrc = element.getAttribute("data-src");
 
-    mainImage.src = el.src;
+    // 2. Lấy đường dẫn trang chi tiết mới từ data-link
+    var newLinkHref = element.getAttribute("data-link");
 
+    // 3. Tìm thẻ cha (product-item) bao bọc sản phẩm này
+    var productCard = element.closest(".product-item");
 
-    document.querySelectorAll(".thumb-list img")
-        .forEach(img => img.classList.remove("active"));
-    el.classList.add("active");
+    // 4. Tìm thẻ <img> bên trong thẻ cha đó và thay đổi src
+    var mainImage = productCard.querySelector(".product-card-img");
+    if (mainImage) {
+        mainImage.src = newImageSrc;
+    }
+
+    // 5. (Tùy chọn) Tìm thẻ <a> bao quanh ảnh và đổi href
+    // Để khi bấm vào ảnh to nó dẫn đúng sang trang của màu đó
+    var mainLink = productCard.querySelector(".product-link");
+    if (mainLink) {
+        mainLink.href = newLinkHref;
+    }
+
+    // 6. Hiệu ứng viền active cho chấm màu đang chọn
+    // Xóa class active ở các chấm khác trong cùng sản phẩm
+    var siblings = productCard.querySelectorAll(".color-swatch");
+    siblings.forEach(function(swatch) {
+        swatch.style.borderColor = "#ddd"; // Màu viền mặc định
+    });
+    // Tô viền đen cho chấm vừa bấm
+    element.style.borderColor = "#000";
 }
 
 document.addEventListener("DOMContentLoaded", function() {
@@ -217,4 +250,30 @@ document.addEventListener('DOMContentLoaded', function (){
 
 });
 
+// Hàm riêng cho trang Chi tiết (đổi ảnh Gallery)
+function changeGalleryImage(thumbElement) {
+    // Đổi ảnh chính
+    var newSrc = thumbElement.src;
+    document.getElementById("mainImage").src = newSrc;
+
+    // Xử lý active class cho thumbnail
+    var allThumbs = document.querySelectorAll(".thumb-list img");
+    allThumbs.forEach(t => t.classList.remove("active"));
+    thumbElement.classList.add("active");
+}
+
+// Các hàm tăng giảm số lượng
+function increaseQty() {
+    var input = document.getElementById("qtyInput");
+    input.value = parseInt(input.value) + 1;
+    document.getElementById("hiddenQty").value = input.value;
+}
+
+function decreaseQty() {
+    var input = document.getElementById("qtyInput");
+    if(parseInt(input.value) > 1) {
+        input.value = parseInt(input.value) - 1;
+        document.getElementById("hiddenQty").value = input.value;
+    }
+}
 
