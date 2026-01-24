@@ -200,7 +200,7 @@ body {
     width: 100%;
     margin-top: 5px;       /* Cách phần trên một chút */
     margin-bottom: 40px;
-    gap: 10px;              /* Khoảng cách nhỏ giữa 2 ảnh (nếu muốn dính liền thì để 0) */
+    gap: 0;
 }
 
 .cat-box {
@@ -227,15 +227,15 @@ body {
 /* Phần chữ đè lên ảnh */
 .cat-content {
     position: absolute;
-    top: 30px;              /* Cách mép trên 30px */
-    left: 30px;             /* Cách mép trái 30px */
+    top: 30px;
+    left: 30px;
     z-index: 2;
     text-align: left;
 }
 
 .cat-content h3 {
-    color: black;            /* Chữ màu trắng */
-    font-size: 2rem;        /* Cỡ chữ to */
+    color: black;
+    font-size: 2rem;
     font-weight: bold;
     margin-bottom: 5px;
     text-shadow: 1px 1px 4px rgba(0,0,0,0.3); /* Bóng đổ nhẹ */
@@ -333,7 +333,8 @@ h2 {
 .product-list .product-item {
     position: relative;
     cursor: pointer;
-    width: calc((100% - 60px) / 4);
+    /*width: calc((100% - 60px) / 4);*/
+    width: 300px;
     flex-shrink: 0;
     display: flex;
     flex-direction: column;
@@ -344,6 +345,7 @@ h2 {
     /*border-radius: 12px;*/
     overflow: hidden;
     transition: all 0.3s ease;
+    padding: 0;
     padding-bottom: 20px;
     box-sizing: border-box;
 }
@@ -360,6 +362,8 @@ h2 {
     object-fit: cover;
     box-sizing: border-box;
     transition: 0.3s ease;
+    display: block;
+    margin: 0;
     margin-bottom: 10px;
 }
 
@@ -386,15 +390,30 @@ h2 {
 }
 
 .product-name {
-    font-size: 16px;
-    margin-top: 10px;
-    margin-bottom: 5px;
-    font-weight: 500;
-    line-height: 1.4;
-    width: 100%;
+    margin: 5px 0;
     text-align: center;
     padding: 0 10px;
+    width:100%;
+    box-sizing: border-box;
+}
+
+.product-name a{
     color: #000;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1.4;
+    transition: color 0.3s;
+    width: 100%;
+
+    /* Kỹ thuật cắt chữ (Hiện dấu ... nếu tên quá dài) */
+    display: -webkit-box;
+    -webkit-line-clamp: 2;      /* Chỉ hiện tối đa 2 dòng */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    min-height: 40px;
+
 }
 
 .product-price {
@@ -404,12 +423,13 @@ h2 {
     font-weight: normal;
     color: #333;
     width: 100%;
+    padding: 0 10px;
     text-align: center;
 }
 
 .product-price .new-price {
     margin-right: 10px;
-    color: #ff4d6d;
+    color: black;
 }
 
 .product-price .old-price {
@@ -424,6 +444,9 @@ h2 {
     gap: 8px; /* Khoảng cách giữa các chấm màu */
     justify-content: center; /* Căn giữa */
     margin: 10px 0;
+    width: 100%;
+    padding: 0 10px;
+    box-sizing: border-box;
 }
 
 .color-swatch {
