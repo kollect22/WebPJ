@@ -157,6 +157,39 @@
                             </ul>
                         </div>
                     </div>
+                    <div class="accordion-item">
+                        <div class="accordion-header">
+                            <span>Hướng dẫn bảo quản</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="accordion-content">
+                            <h3>I. Vệ Sinh Cơ Bản (Chất liệu thông thường)</h3>
+                            <p><strong>Cách 1: Tẩy nhẹ</strong></p>
+                            <ul>
+                                <li>Sử dụng vải cotton trắng, chấm nhẹ một chút vào nước tẩy nhẹ (hóa chất vệ sinh chuyên dụng).</li>
+                                <li>Sau đó lau qua vị trí cần vệ sinh.</li>
+                            </ul>
+                            <p><strong>Cách 2: Lau ẩm</strong></p>
+                            <ul>
+                                <li>Sử dụng vải cotton trắng, nhúng vào nước sạch và vắt khô.</li>
+                                <li>Sau đó nhẹ nhàng lau qua vị trí cần vệ sinh trên sản phẩm.</li>
+                            </ul>
+
+                            <h3>II. Vệ Sinh Theo Chất liệu Đặc Biệt</h3>
+                            <p><strong>Đối với chất liệu Microfiber:</strong></p>
+                            <p>Có thể sử dụng bàn chải lông mềm và chải nhẹ lên bề mặt sản phẩm để vệ sinh.</p>
+                            <p><strong>Đối với chất liệu PC và PVC:</strong></p>
+                            <p>Trường hợp sản phẩm bị dính keo, có thể dùng cao su sống để chùi sau khi đã chấm nhẹ nước tẩy nhẹ lên vị trí dính keo.</p>
+
+                            <h3>III. Lưu Ý Quan Trọng</h3>
+                            <ul>
+                                <li>Không áp dụng các phương pháp trên cho chất liệu lông (*).</li>
+                                <li>Không giặt túi bằng bột giặt, các chất tẩy mạnh.</li>
+                                <li>Chỉ sử dụng nước hoặc các hóa chất vệ sinh chuyên dụng.</li>
+                                <li>Đối với sản phẩm được làm từ chất liệu đặc biệt sẽ có cách thức vệ sinh riêng biệt, bạn vui lòng liên hệ tổng đài CSKH 1900 6909 (Nhấn phím 1) để được hướng dẫn cụ thể.</li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
 
             </aside>
