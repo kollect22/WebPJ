@@ -1,495 +1,253 @@
-<!DOCTYPE html>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<html lang="en">
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
+<!DOCTYPE html>
+<html lang="vi">
 <head>
-  <meta charset="UTF-8">
-  <title>Giỏ hàng & Thanh toán</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"/>
-  <style>
-      body {
-          font-family: Arial, sans-serif;
-          background-color: #f8f8f8;
-          color: #333;
-          margin: 0;
-          display: flex;
-          flex-direction: column;
-          min-height: 100vh;
-      }
+    <meta charset="UTF-8">
+    <title>Giỏ hàng</title>
 
-      .container {
-          display: flex;
-          max-width: 1200px;
-          margin: 80px auto 0;
-          gap: 30px;
-          background-color: #fff;
-          padding: 20px;
-          border: 1px solid #ddd;
-          flex: 1;
-          width: 100%;
-          box-sizing: border-box;
-      }
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"/>
 
-      .cart-items {
-          flex: 2;
-          min-height: 600px;
-      }
+    <style>
+        * { box-sizing: border-box; }
 
-      .cart-summary {
-          flex: 1;
-          padding: 20px;
-          border-left: 1px solid #eee;
-          background-color: #fff;
-          box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
-          position: relative;
-      }
+        body {
+            margin: 0;
+            background: #f4f4f4;
+            font-family: "Segoe UI", Arial, sans-serif;
+            color: #111;
+        }
 
-      h2 {
-          font-size: 18px;
-          font-weight: bold;
-          margin-bottom: 20px;
-          color: #000;
-      }
+        .container {
+            max-width: 1200px;
+            margin: 100px auto;
+            display: flex;
+            gap: 30px;
+            background: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
 
-      .cart-item {
-          display: flex;
-          border-bottom: 1px solid #eee;
-          padding: 15px 0;
-          position: relative;
-      }
+        /* ===== LEFT ===== */
+        .cart-items { flex: 2; }
 
-      .cart-item:last-child {
-          border-bottom: none;
-      }
+        .cart-item {
+            display: flex;
+            align-items: center;
+            padding: 20px 0;
+            border-bottom: 1px solid #e5e5e5;
+            position: relative;
+            transition: 0.25s;
+        }
 
-      .item-image {
-          width: 100px;
-          height: 100px;
-          margin-right: 15px;
-          background-color: #eee;
-          border: 1px solid #ddd;
-      }
+        .cart-item:hover {
+            background: #fafafa;
+            transform: translateY(-2px);
+        }
 
-      .item-image img {
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-      }
+        .item-check {
+            margin-right: 15px;
+            transform: scale(1.2);
+            accent-color: #111;
+            cursor: pointer;
+        }
 
-      .item-details {
-          flex-grow: 1;
-      }
+        .item-image {
+            width: 100px;
+            height: 100px;
+            margin-right: 20px;
+            border-radius: 6px;
+            overflow: hidden;
+            border: 1px solid #ddd;
+        }
 
-      .item-name {
-          font-size: 16px;
-          font-weight: bold;
-          color: #000;
-          margin-bottom: 5px;
-      }
+        .item-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
 
-      .item-price {
-          font-size: 18px;
-          font-weight: bold;
-          color: #000;
-          margin-bottom: 5px;
-      }
+        .item-details { flex: 1; }
 
-      .item-price-old {
-          font-size: 14px;
-          color: #999;
-          text-decoration: line-through;
-          margin-left: 10px;
-      }
+        .item-name {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
 
-      .item-info {
-          font-size: 14px;
-          color: #555;
-          margin-bottom: 5px;
-      }
+        .item-price {
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
 
-      .quantity-control {
-          display: flex;
-          align-items: center;
-          border: 1px solid #ccc;
-          width: 100px;
-          margin-top: 10px;
-      }
+        .quantity-control {
+            display: inline-flex;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            overflow: hidden;
+        }
 
-      .quantity-control button {
-          background: #fff;
-          border: none;
-          padding: 5px 10px;
-          cursor: pointer;
-          font-size: 16px;
-      }
+        .quantity-control a {
+            padding: 6px 12px;
+            text-decoration: none;
+            color: #111;
+            background: #f8f8f8;
+            transition: 0.2s;
+        }
 
-      .quantity-control input {
-          width: 30px;
-          text-align: center;
-          border: none;
-          padding: 5px 0;
-          font-size: 14px;
-      }
+        .quantity-control a:hover {
+            background: #e5e5e5;
+        }
 
-      .summary-row {
-          display: flex;
-          justify-content: space-between;
-          margin-bottom: 10px;
-          font-size: 15px;
-      }
+        .quantity-control span {
+            padding: 6px 14px;
+            font-weight: 600;
+        }
 
-      .summary-row.total {
-          font-size: 18px;
-          font-weight: bold;
-          padding-top: 10px;
-          border-top: 1px solid #000;
-          margin-top: 15px;
-      }
+        .remove-item {
+            position: absolute;
+            right: 10px;
+            top: 20px;
+            color: #999;
+            font-size: 18px;
+        }
 
-      .discount-code {
-          margin-top: 20px;
-          padding-top: 10px;
-          border-top: 1px solid #eee;
-      }
+        .remove-item:hover { color: #111; }
 
-      .discount-input-group {
-          display: flex;
-      }
+        /* ===== RIGHT ===== */
+        .cart-summary {
+            flex: 1;
+            background: #fafafa;
+            padding: 25px;
+            border-radius: 6px;
+            border-left: 1px solid #e5e5e5;
+        }
 
-      .discount-input-group input {
-          flex-grow: 1;
-          padding: 10px;
-          border: 1px solid #ccc;
-      }
+        .cart-summary h2 {
+            margin-top: 0;
+            margin-bottom: 20px;
+            font-size: 22px;
+        }
 
-      .discount-input-group button {
-          background-color: #000;
-          color: #fff;
-          border: none;
-          padding: 10px 15px;
-          cursor: pointer;
-          font-weight: bold;
-      }
+        .cart-summary strong {
+            font-size: 22px;
+        }
 
-      .cart-actions {
-          width: 100%;
-          position: static;
-          bottom: 0;
-          left: 0;
-          background-color: #fff;
-          box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
-          z-index: 1000;
-          border-top: 1px solid #ddd;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-      }
+        .checkout-btn {
+            display: block;
+            width: 100%;
+            padding: 14px 0;
+            margin-top: 25px;
+            background: #111;
+            color: #fff;
+            text-align: center;
+            font-size: 17px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            border-radius: 4px;
+            text-decoration: none;
+            transition: 0.3s;
+        }
 
-      .cart-actions-content {
-          max-width: 1200px;
-          width: 100%;
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-          padding: 15px 20px;
-      }
-      .cart-total-footer {
-          font-size: 18px;
-          font-weight: bold;
-          color: #000;
-          line-height: 1.2;
-      }
-      .cart-actions-buttons button {
-          padding: 15px 30px;
-          font-size: 16px;
-          font-weight: bold;
-          cursor: pointer;
-          border: none;
-          text-transform: uppercase;
-      }
-      .remove-item {
-          position: absolute;
-          top: 10px;
-          right: 10px;
-          cursor: pointer;
-          color: #999;
-          font-size: 18px;
-      }
-      .remove-item:hover {
-          color: red;
-      }
+        .checkout-btn:hover {
+            background: #000;
+            transform: translateY(-2px);
+        }
 
-      .continue-shopping {
-          background-color: #fff;
-          color: #000;
-          border: 1px solid #000 !important;
-          margin-right: 15px;
-      }
+        .continue {
+            display: inline-block;
+            margin-top: 20px;
+            color: #111;
+            font-size: 14px;
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+        }
 
-      .checkout {
-          background-color: #000;
-          color: #fff;
-      }
+        .continue:hover {
+            border-bottom: 1px solid #111;
+        }
 
-      /* -------- FORM THANH TOÁN -------- */
-      .checkout-form-container {
-          display: none;
-          flex-direction: column;
-          gap: 25px;
-          margin-top: 20px;
-          background-color: #f9f9f9;
-          padding: 15px 20px;
-          border-radius: 12px; 
-          border: 1px solid #ddd;
-          box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-      }
-
-      .checkout-form-section h3 {
-          font-size: 18px;
-          font-weight: bold;
-          color: #000;
-          margin-bottom: 15px;
-      }
-
-      .input-group-half {
-          display: flex;
-          gap: 10px;
-          margin-bottom: 10px;
-      }
-
-      .input-group-half input, .input-full input, .input-full textarea, select {
-          flex: 1;
-          padding: 8px;
-          border: 1px solid #ccc;
-          font-size: 14px;
-          box-sizing: border-box;
-      }
-
-      .input-full textarea {
-          resize: vertical;
-          min-height: 70px;
-          margin-bottom: 10px;
-      }
-
-      .radio-option {
-          display: flex;
-          align-items: center;
-          margin-bottom: 5px;
-      }
-
-      .radio-option input[type="radio"] {
-          margin-right: 10px;
-          accent-color: #4b0082;
-      }
-
-      .shipping-box-placeholder {
-          width: 100%;
-          height: 80px;
-          background-color: #f7f7f7;
-          border: 1px dashed #ccc;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          margin-top: 10px;
-      }
-
-      .shipping-box-placeholder i {
-          font-size: 35px;
-          color: #aaa;
-      }
-
-  </style>
+        @media (max-width: 900px) {
+            .container { flex-direction: column; }
+            .cart-summary {
+                border-left: none;
+                border-top: 1px solid #e5e5e5;
+            }
+        }
+    </style>
 </head>
+
 <body>
-<div id="header"></div>
+
 <div class="container">
-  <div class="cart-items">
-    <h2>Bạn đang có <span id="item-count">2 sản phẩm</span> trong giỏ hàng</h2>
 
-    <div class="item-list">
-      <div class="cart-item" data-price="922500" data-quantity="1">
-        <div class="item-image">
-          <img src="../../../../img/product2.webp" alt="Túi xách">
-        </div>
-        <div class="item-details">
-          <div class="item-name">TÚI XÁCH THỜI TRANG</div>
-          <div class="item-price">
-            <span class="current-price">922,500VNĐ</span>
-            <span class="item-price-old">2,050,000VNĐ</span>
-          </div>
-          <div class="item-info">Màu sắc: **BLACK**</div>
-          <div class="item-info">Kích thước: **No Size**</div>
-          <div class="quantity-control">
-            <button onclick="updateQuantity(this, -1)">-</button>
-            <input type="text" value="1" readonly class="quantity-input">
-            <button onclick="updateQuantity(this, 1)">+</button>
-          </div>
-        </div>
-        <i class="fa-solid fa-xmark remove-item" onclick="removeItem(this)"></i>
-      </div>
+    <div class="cart-items">
 
-      <div class="cart-item" data-price="382500" data-quantity="1">
-        <div class="item-image">
-          <img src="../../../../img/tui-xach-nu-mau-trang-sua-1.jpg" alt="Túi xách">
-        </div>
-        <div class="item-details">
-          <div class="item-name">TÚI XÁCH MODEL</div>
-          <div class="item-price">
-            <span class="current-price">382,500VNĐ</span>
-            <span class="item-price-old">850,000VNĐ</span>
-          </div>
-          <div class="item-info">Màu sắc: **WHITE**</div>
-          <div class="item-info">Kích thước: **No Size**</div>
-          <div class="quantity-control">
-            <button onclick="updateQuantity(this, -1)">-</button>
-            <input type="text" value="1" readonly class="quantity-input">
-            <button onclick="updateQuantity(this, 1)">+</button>
-          </div>
-        </div>
-        <i class="fa-solid fa-xmark remove-item" onclick="removeItem(this)"></i>
-      </div>
+        <c:if test="${empty sessionScope.cart || empty sessionScope.cart.list}">
+            <p style="text-align:center;font-size:18px;color:#777">
+                Giỏ hàng của bạn đang trống
+            </p>
+        </c:if>
+
+        <c:forEach items="${sessionScope.cart.list}" var="ci">
+            <div class="cart-item">
+
+                <input type="checkbox" class="item-check" checked>
+
+                <div class="item-image">
+                    <img src="${ci.product.img}" alt="${ci.product.name}">
+                </div>
+
+                <div class="item-details">
+                    <div class="item-name">${ci.product.name}</div>
+
+                    <div class="item-price">
+                        <fmt:formatNumber value="${ci.product.price * ci.quantity}"
+                                          groupingUsed="true"/> VNĐ
+                    </div>
+
+                    <div class="quantity-control">
+                        <a href="update-cart?id=${ci.product.id}&q=-1">-</a>
+                        <span>${ci.quantity}</span>
+                        <a href="update-cart?id=${ci.product.id}&q=1">+</a>
+                    </div>
+                </div>
+
+               <a href="del-cart?id=${ci.product.id}">
+                   <i class="fa-solid fa-xmark remove-item"></i>
+               </a>
+
+
+            </div>
+        </c:forEach>
 
     </div>
 
+    <div class="cart-summary">
+        <h2>TẠM TÍNH</h2>
 
-  </div>
+        <p>
+            Tổng tiền:<br>
+            <strong>
+                <fmt:formatNumber value="${sessionScope.cart.total}"
+                                  groupingUsed="true"/> VNĐ
+            </strong>
+        </p>
 
-  <div class="cart-summary">
-    <h2>TẠM TÍNH</h2>
-    <div class="summary-details">
-      <div class="summary-row">
-        <span>Giá bán:</span>
-        <span id="original-total">2,900,000VNĐ</span>
-      </div>
-      <div class="summary-row">
-        <span>Giảm giá:</span>
-        <span id="discount-amount">-1,595,000VNĐ</span>
-      </div>
-      <div class="summary-row">
-        <span>Phí vận chuyển:</span>
-        <span id="shipping-fee">29,000VNĐ</span>
-      </div>
+        <a href="checkout" class="checkout-btn">
+            THANH TOÁN
+        </a>
 
-      <div class="summary-row order-total">
-        <span>Đơn hàng:</span>
-        <span id="order-total">1,334,000VNĐ</span>
-      </div>
+        <a href="list-product" class="continue">
+            ← Tiếp tục mua sắm
+        </a>
     </div>
 
-    <div class="discount-code">
-      <p>Mã giảm giá</p>
-      <div class="discount-input-group">
-        <input type="text" id="discount-code-input" placeholder="Nhập mã khuyến mãi">
-        <button onclick="applyDiscount()">ÁP DỤNG</button>
-      </div>
-      <p id="discount-message" style="margin-top:8px;font-size:14px;"></p>
-    </div>
-
-    <div class="summary-row total">
-      <span>TẠM TÍNH:</span>
-      <span id="final-total" style="color: black;">1,334,000VNĐ</span>
-    </div>
-
-    <!-- FORM THÔNG TIN ẨN BÊN PHẢI -->
-    <div class="checkout-form-container" id="checkoutForm">
-      <div class="checkout-form-section">
-        <h3>THÔNG TIN NGƯỜI MUA</h3>
-        <div class="input-group-half">
-          <input type="text" placeholder="Họ và tên">
-          <input type="tel" placeholder="Số điện thoại">
-        </div>
-        <div class="input-full"><input type="email" placeholder="Email"></div>
-        <div class="input-full"><input type="text" placeholder="Địa chỉ nhận hàng"></div>
-        <div class="input-group-half">
-          <select><option>Chọn Tỉnh / thành</option></select>
-          <select><option>Chọn Quận / huyện</option></select>
-        </div>
-        <div class="input-full"><textarea placeholder="Ghi chú thêm..."></textarea></div>
-      </div>
-
-      <div class="checkout-form-section">
-        <h3>VẬN CHUYỂN & THANH TOÁN</h3>
-        <div class="radio-option"><input type="radio" name="ship" checked>Vận chuyển tiêu chuẩn (29,000VNĐ)</div>
-        <div class="radio-option"><input type="radio" name="ship">Hỏa tốc (45,000VNĐ)</div>
-        <div class="shipping-box-placeholder"><i class="fa-solid fa-truck-fast"></i></div>
-        <br>
-        <div class="radio-option"><input type="radio" name="pay" checked>Thanh toán COD</div>
-        <div class="radio-option"><input type="radio" name="pay">Chuyển khoản ngân hàng</div>
-        <div class="radio-option"><input type="radio" name="pay">Thẻ Tín dụng/Ghi nợ</div>
-      </div>
-    </div>
-  </div>
 </div>
 
-<div class="cart-actions">
-  <div class="cart-actions-content">
-    <div class="cart-total-footer">TẠM TÍNH (sản phẩm)<br>
-      <span>1,334,000VNĐ</span>
-    </div>
-    <div class="cart-actions-buttons">
-      <button class="continue-shopping" onclick="window.location.href='index.html'">TIẾP TỤC MUA SẮM</button>
-      <button class="checkout" onclick="showCheckout()">THANH TOÁN</button>
-    </div>
-  </div>
-</div>
-<div id="footer"></div>
-<script>
-  let appliedDiscount = {
-    type: null, // "percent" | "money" | "ship"
-    value: 0
-  };
-
-  function formatMoney(number) {
-    return number.toLocaleString("vi-VN") + "VNĐ";
-  }
-</script>
-<script>
-  function applyDiscount() {
-    const code = document.getElementById("discount-code-input").value.trim().toUpperCase();
-    const message = document.getElementById("discount-message");
-
-    const discountCodes = {
-      "SALE10": { type: "percent", value: 0.1 },
-      "GIAM100K": { type: "money", value: 100000 },
-      "FREESHIP": { type: "ship", value: 0 }
-    };
-
-    if (!discountCodes[code]) {
-      message.style.color = "red";
-      message.innerText = "Mã giảm giá không hợp lệ.";
-      appliedDiscount = { type: null, value: 0 };
-      calculateTotal();
-      return;
-    }
-
-    appliedDiscount = discountCodes[code];
-    message.style.color = "green";
-    message.innerText = `Áp dụng mã ${code} thành công 🎉`;
-
-    calculateTotal();
-  }
-</script>
-
-<script>
-  const checkoutButton = document.querySelector('.checkout');
-  const checkoutForm = document.querySelector('.checkout-form-container');
-
-  let checkoutStep = 1; // 1 = hiện form, 2 = đặt hàng
-
-  checkoutButton.addEventListener('click', function() {
-    if (checkoutStep === 1) {
-      checkoutForm.style.display = 'flex';
-      checkoutButton.textContent = 'XÁC NHẬN ĐẶT HÀNG'; // đổi tên nút
-      checkoutStep = 2;
-    } else {
-      // Giả sử người dùng đã điền thông tin đầy đủ
-      alert('Đặt hàng thành công! Cảm ơn bạn đã mua sắm.');
-      checkoutButton.textContent = 'ĐẶT HÀNG THÀNH CÔNG';
-      checkoutButton.style.backgroundColor = 'green';
-      checkoutButton.disabled = true; // khoá nút
-    }
-  });
-</script>
-<script src="../../../../script.js"></script>
 </body>
 </html>
-

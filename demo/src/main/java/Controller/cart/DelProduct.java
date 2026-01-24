@@ -18,9 +18,8 @@ public class DelProduct extends HttpServlet {
         int id = Integer.parseInt(req.getParameter("id"));
         HttpSession session = req.getSession();
         Cart c = (Cart) session.getAttribute("cart");
-        CartItem cartItem = c.deleteProduct(id);
-        if(cartItem!=null){
-            // todo
+        if (c != null) {
+            c.deleteProduct(id);
         }
         resp.sendRedirect("cart");
     }

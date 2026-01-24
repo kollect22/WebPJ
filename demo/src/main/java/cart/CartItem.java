@@ -8,23 +8,22 @@ import java.util.concurrent.atomic.AtomicReference;
 public class CartItem implements Serializable {
 
     private Product product;
-    private int price;
+    private double price;
     private int quantity;
 
-    public CartItem() {
-    }
-
-    public CartItem(Product product, int price, int quantity) {
+    public CartItem(Product product, double price, int quantity) {
         this.product = product;
         this.price = price;
         this.quantity = quantity;
     }
+    public CartItem() {
+    }
+
     public double getTotal() {
         return price * quantity;
     }
 
     public void upQuantity(int quantity) {
-        if(quantity <= 0) quantity =1;
         this.quantity += quantity;
     }
 
@@ -35,8 +34,16 @@ public class CartItem implements Serializable {
     public Product getProduct() {
         return product;
     }
+    public void setProduct (Product product) {
+        this.product = product;
+    }
 
     public double getPrice() {
         return price;
     }
+
+    public void setQuantity(int newQty) {
+        this.quantity = newQty;
+    }
+
 }

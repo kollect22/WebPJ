@@ -10,7 +10,6 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import model.Product;
 import services.ProductService;
-
 import java.io.IOException;
 
 @WebServlet(name = "AddCart", value= "/add-cart")
@@ -22,14 +21,18 @@ public class AddCart extends HttpServlet {
         ProductService ps = new ProductService();
         Product product = ps.getProduct(id);
         if (product == null) {
+            resp.sendRedirect(req.getContextPath() + "/list-product.jsp");
             return;
         }
         HttpSession session = req.getSession();
         Cart c = (Cart) session.getAttribute("cart");
-        if (c == null) c = new Cart();
-        c.addProduct(product, 1);
+        if (c == null) {
+            c = new Cart();
+        }
+        c.addProduct(product, q);
         session.setAttribute("cart", c);
-        resp.sendRedirect("products-category-all");
+        String referer = req.getHeader("referer");
+        resp.sendRedirect(referer);
     }
 
     @Override
