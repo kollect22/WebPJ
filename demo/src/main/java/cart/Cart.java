@@ -6,8 +6,11 @@ import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicReference;
 
-public class Cart implements Serializable { Map<Integer, CartItem> data;
-    public Cart() { data = new HashMap<>();
+public class Cart implements Serializable {
+    Map<Integer, CartItem> data;
+
+    public Cart() {
+        data = new HashMap<Integer, CartItem>();
     }
     public void addProduct(Product p, int quantity) {
         if (data.containsKey(p.getId())) {
@@ -37,7 +40,8 @@ public class Cart implements Serializable { Map<Integer, CartItem> data;
 
     public int getTotalQuantity() {
         AtomicInteger total = new AtomicInteger();
-        data.values().forEach(p -> { total.addAndGet(p.getQuantity());});
+        data.values().forEach(p -> {
+            total.addAndGet(p.getQuantity());});
         return total.get();
 
     } public double getTotal() {

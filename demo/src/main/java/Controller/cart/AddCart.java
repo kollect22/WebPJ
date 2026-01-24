@@ -8,7 +8,8 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-import model.Product; import services.ProductService;
+import model.Product;
+import services.ProductService;
 import java.io.IOException;
 
 @WebServlet(name = "AddCart", value= "/add-cart")
