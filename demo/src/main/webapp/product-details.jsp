@@ -29,17 +29,21 @@
         <section class="product-gallery">
             <div class="thumb-list">
                 <c:forEach var="img" items="${listImages}" varStatus="status">
-                    <img src="${pageContext.request.contextPath}${img.imageUrl}"
+
+                    <img src="${pageContext.request.contextPath}/${img}"
                          onclick="changeGalleryImage(this)"
                          class="${status.first ? 'active' : ''}"
                          alt="Thumb ${status.count}">
+
                 </c:forEach>
             </div>
 
             <div class="main-image-container">
-                <c:if test="${not empty listImages}">
-                    <img id="mainImage" src="${pageContext.request.contextPath}${listImages[0].imageUrl}" alt="${product.name}">
-                </c:if>
+                    <c:if test="${not empty listImages}">
+                    <img id="mainImage"
+                         src="${pageContext.request.contextPath}/${listImages[0]}"
+                         alt="${product.name}">
+                    </c:if>
             </div>
         </section>
 
@@ -52,7 +56,29 @@
                 </div>
 
                 <div class="price">
-                    <fmt:formatNumber value="${product.price}" type="currency" currencySymbol="VNĐ" maxFractionDigits="0"/>
+                    <c:choose>
+                        <c:when test="${product.salePrice > 0}">
+
+                            <span class="sale-price" style="color: #d0021b; font-weight: bold; font-size: 24px; margin-right: 10px;">
+                                <fmt:formatNumber value="${product.salePrice}" type="number" maxFractionDigits="0"/> VNĐ
+                            </span>
+
+                            <span class="original-price" style="text-decoration: line-through; color: #888; font-size: 16px;">
+                                <fmt:formatNumber value="${product.price}" type="number" maxFractionDigits="0"/> VNĐ
+                            </span>
+
+                            <span class="discount-percent" style="background: #d0021b; color: white; padding: 2px 6px; border-radius: 4px; font-size: 12px; margin-left: 10px; vertical-align: middle;">
+                                -<fmt:formatNumber value="${(1 - product.salePrice/product.price) * 100}" maxFractionDigits="0"/>%
+                            </span>
+
+                        </c:when>
+
+                        <c:otherwise>
+                            <span class="regular-price" style="font-weight: bold; font-size: 24px; color: #000;">
+                                <fmt:formatNumber value="${product.price}" type="number" maxFractionDigits="0"/> VNĐ
+                            </span>
+                        </c:otherwise>
+                    </c:choose>
                 </div>
 
                 <div class="option-selector">
@@ -85,7 +111,7 @@
                     <span>Sản phẩm cùng loại khác màu</span>
                     <div class="colors-container">
                         <c:forEach var="related" items="${relatedColors}">
-                            <a href="${pageContext.request.contextPath}/detail?id=${related.productid}" class="color-swatch" title="${related.colorName}">
+                            <a href="detail?id=${related.productid}" class="related-thumb" title="${related.colorName}">
                                 <img src="${pageContext.request.contextPath}/${related.imgThumbnail}" alt="${related.colorName}">
                             </a>
                         </c:forEach>
