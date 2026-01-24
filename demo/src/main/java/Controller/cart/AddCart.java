@@ -8,9 +8,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-import model.Product;
-import services.ProductService;
-
+import model.Product; import services.ProductService;
 import java.io.IOException;
 
 @WebServlet(name = "AddCart", value= "/add-cart")
@@ -22,10 +20,9 @@ public class AddCart extends HttpServlet {
         ProductService ps = new ProductService();
         Product product = ps.getProduct(id);
         if (product == null) {
-            resp.sendRedirect(req.getContextPath() + "/products-category-all.jsp");
+            resp.sendRedirect(req.getContextPath() + "/list-product.jsp");
             return;
         }
-
         HttpSession session = req.getSession();
         Cart c = (Cart) session.getAttribute("cart");
         if (c == null) {
@@ -33,7 +30,8 @@ public class AddCart extends HttpServlet {
         }
         c.addProduct(product, q);
         session.setAttribute("cart", c);
-        resp.sendRedirect(req.getContextPath() + "/products-category-all.jsp");
+        String referer = req.getHeader("referer");
+        resp.sendRedirect(referer);
     }
 
     @Override
