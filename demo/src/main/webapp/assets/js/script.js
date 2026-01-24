@@ -161,11 +161,11 @@ document.addEventListener("DOMContentLoaded", function() {
     // --- 1. Xử lý Accordion ---
     const accordionHeaders = document.querySelectorAll(".accordion-header");
     accordionHeaders.forEach(header => {
-    header.addEventListener("click", function() {
-    const accordionItem = this.parentElement;
-    accordionItem.classList.toggle("active");
-});
-});
+        header.addEventListener("click", function() {
+            const accordionItem = this.parentElement;
+            accordionItem.classList.toggle("active");
+        });
+    });
 
     // --- 2. Xử lý Tăng/Giảm Số lượng ---
     const decreaseBtn = document.querySelector('.quantity-btn[aria-label="Giảm"]');
@@ -173,16 +173,16 @@ document.addEventListener("DOMContentLoaded", function() {
     const quantityInput = document.querySelector('.quantity-control input');
 
     if (decreaseBtn && increaseBtn && quantityInput) {
-    decreaseBtn.addEventListener("click", () => {
-    let val = parseInt(quantityInput.value) || 1;
-    if (val > 1) quantityInput.value = val - 1;
-});
+        decreaseBtn.addEventListener("click", () => {
+            let val = parseInt(quantityInput.value) || 1;
+            if (val > 1) quantityInput.value = val - 1;
+        });
 
-    increaseBtn.addEventListener("click", () => {
-    let val = parseInt(quantityInput.value) || 1;
-    quantityInput.value = val + 1;
-});
-}
+        increaseBtn.addEventListener("click", () => {
+            let val = parseInt(quantityInput.value) || 1;
+            quantityInput.value = val + 1;
+        });
+    }
 });
 
 document.addEventListener('DOMContentLoaded', function (){
@@ -216,6 +216,5 @@ document.addEventListener('DOMContentLoaded', function (){
     startAutoPlay();
 
 });
-
 
 

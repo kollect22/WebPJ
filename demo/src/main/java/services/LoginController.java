@@ -22,7 +22,7 @@ public class LoginController extends HttpServlet {
 
             HttpSession session = req.getSession();
             session.setAttribute("auth",u);
-            resp.sendRedirect("list-product.jsp");
+            resp.sendRedirect("products-category-all.jsp");
         } else {
             req.setAttribute("error", "Sai username hoặc password");
             req.getRequestDispatcher("login.jsp").forward(req, resp);

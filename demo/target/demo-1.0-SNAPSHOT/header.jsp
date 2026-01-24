@@ -4,7 +4,7 @@
 
 <header class="navbar">
     <div class="logo">
-        <a href="${pageContext.request.contextPath}/home.jsp">
+        <a href="${pageContext.request.contextPath}/index.jsp">
             Fashion Store
         </a>
     </div>
@@ -14,7 +14,7 @@
             <li><a href="${pageContext.request.contextPath}/product-new.jsp">Hàng mới</a></li>
 
             <li>
-                <a href="${pageContext.request.contextPath}/list-product.jsp">Sản phẩm</a>
+                <a href="${pageContext.request.contextPath}/products-category-all.jsp">Sản phẩm</a>
                 <ul class="sub-menu">
                     <li><a href="${pageContext.request.contextPath}/products-cat-handbag.jsp">Túi xách</a></li>
                     <li><a href="${pageContext.request.contextPath}/products-cat-accessory.jsp">Phụ kiện</a></li>
@@ -47,8 +47,12 @@
             <span class="wishlist-count">0</span>
         </a>
 
-        <a href="${pageContext.request.contextPath}/cart.jsp">
-            <i class="fa-solid fa-shopping-cart"></i> ${sessionScope.cart.totalQuantity}
+        <a href="${pageContext.request.contextPath}/cart.jsp" class="cart-header">
+            <i class="fa-solid fa-shopping-cart"></i>
+            <span class="cart-count">
+                ${sessionScope.cart != null ? sessionScope.cart.totalQuantity : 0}
+            </span>
         </a>
+
     </div>
 </header>
