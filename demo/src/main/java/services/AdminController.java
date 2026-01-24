@@ -1,12 +1,15 @@
 package services;
 
+import dao.ProductDao;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import model.Product;
 
 import java.io.IOException;
+import java.util.List;
 
 @WebServlet(name ="AdminController", urlPatterns = {
         "/admin/dashboard",
@@ -29,6 +32,10 @@ public class AdminController extends HttpServlet {
                 targetPage = "/admin/dashboard.jsp";
                 break;
             case "/admin/products":
+                ProductDao productDao = new ProductDao();
+                List<Product> list = productDao.getListProduct();
+
+                req.setAttribute("productList", list);
                 req.setAttribute("activeMenu", "products");
                 targetPage = "/admin/products.jsp";
                 break;

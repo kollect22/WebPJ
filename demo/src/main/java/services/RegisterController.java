@@ -18,11 +18,10 @@ public class RegisterController extends HttpServlet {
 
         request.setCharacterEncoding("UTF-8");
 
-        String fullName = request.getParameter("fullName"); // hiện chưa lưu DB
+        String fullName = request.getParameter("fullName");
         String email = request.getParameter("email");
         String password = request.getParameter("password");
 
-        // kiểm tra trùng email/username
         if (registerDao.exists(email)) {
             request.setAttribute("error", "Email đã tồn tại!");
             request.getRequestDispatcher("login.jsp").forward(request, response);
@@ -32,11 +31,9 @@ public class RegisterController extends HttpServlet {
         boolean success = registerDao.register(email, password);
 
         if (success) {
-            // auto login sau khi đăng ký
             HttpSession session = request.getSession();
             session.setAttribute("user", email);
 
-            // chuyển vào trang mua sắm
             response.sendRedirect("home.jsp");
         } else {
             request.setAttribute("error", "Đăng ký thất bại!");
