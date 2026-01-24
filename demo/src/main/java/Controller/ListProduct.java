@@ -19,7 +19,7 @@ public class ListProduct extends HttpServlet {
         ProductService ps = new ProductService();
         List<Product> list = ps.getListProduct();
         request.setAttribute("list", list);
-        request.getRequestDispatcher("product-category-all.jsp").forward(request, response);
+        request.getRequestDispatcher("list-product.jsp").forward(request, response);
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

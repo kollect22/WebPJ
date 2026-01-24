@@ -1,70 +1,183 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 <head>
     <meta charset="UTF-8">
-    <title>Giỏ hàng & Thanh toán</title>
+    <title>Giỏ hàng</title>
+
     <link rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"/>
+
     <style>
+        * { box-sizing: border-box; }
+
         body {
-            font-family: Arial, sans-serif;
-            background-color: #f8f8f8;
-            color: #333;
             margin: 0;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
+            background: #f4f4f4;
+            font-family: "Segoe UI", Arial, sans-serif;
+            color: #111;
         }
+
         .container {
-            display: flex;
             max-width: 1200px;
-            margin: 80px auto 0;
+            margin: 100px auto;
+            display: flex;
             gap: 30px;
-            background-color: #fff;
-            padding: 20px;
-            border: 1px solid #ddd;
-            flex: 1;
-            width: 100%;
+            background: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
         }
+
+        /* ===== LEFT ===== */
         .cart-items { flex: 2; }
-        .cart-summary {
-            flex: 1;
-            padding: 20px;
-            border-left: 1px solid #eee;
-        }
+
         .cart-item {
             display: flex;
-            border-bottom: 1px solid #eee;
-            padding: 15px 0;
+            align-items: center;
+            padding: 20px 0;
+            border-bottom: 1px solid #e5e5e5;
             position: relative;
+            transition: 0.25s;
         }
+
+        .cart-item:hover {
+            background: #fafafa;
+            transform: translateY(-2px);
+        }
+
+        .item-check {
+            margin-right: 15px;
+            transform: scale(1.2);
+            accent-color: #111;
+            cursor: pointer;
+        }
+
         .item-image {
             width: 100px;
             height: 100px;
-            margin-right: 15px;
+            margin-right: 20px;
+            border-radius: 6px;
+            overflow: hidden;
+            border: 1px solid #ddd;
         }
+
         .item-image img {
             width: 100%;
             height: 100%;
             object-fit: cover;
         }
-        .quantity-control a {
-            padding: 5px 10px;
-            border: 1px solid #000;
-            text-decoration: none;
-            margin: 0 5px;
-            color: black;
+
+        .item-details { flex: 1; }
+
+        .item-name {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 8px;
         }
+
+        .item-price {
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .quantity-control {
+            display: inline-flex;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .quantity-control a {
+            padding: 6px 12px;
+            text-decoration: none;
+            color: #111;
+            background: #f8f8f8;
+            transition: 0.2s;
+        }
+
+        .quantity-control a:hover {
+            background: #e5e5e5;
+        }
+
+        .quantity-control span {
+            padding: 6px 14px;
+            font-weight: 600;
+        }
+
         .remove-item {
             position: absolute;
-            top: 10px;
             right: 10px;
+            top: 20px;
             color: #999;
+            font-size: 18px;
         }
-        .remove-item:hover { color: red; }
+
+        .remove-item:hover { color: #111; }
+
+        /* ===== RIGHT ===== */
+        .cart-summary {
+            flex: 1;
+            background: #fafafa;
+            padding: 25px;
+            border-radius: 6px;
+            border-left: 1px solid #e5e5e5;
+        }
+
+        .cart-summary h2 {
+            margin-top: 0;
+            margin-bottom: 20px;
+            font-size: 22px;
+        }
+
+        .cart-summary strong {
+            font-size: 22px;
+        }
+
+        .checkout-btn {
+            display: block;
+            width: 100%;
+            padding: 14px 0;
+            margin-top: 25px;
+            background: #111;
+            color: #fff;
+            text-align: center;
+            font-size: 17px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            border-radius: 4px;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+        .checkout-btn:hover {
+            background: #000;
+            transform: translateY(-2px);
+        }
+
+        .continue {
+            display: inline-block;
+            margin-top: 20px;
+            color: #111;
+            font-size: 14px;
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+        }
+
+        .continue:hover {
+            border-bottom: 1px solid #111;
+        }
+
+        @media (max-width: 900px) {
+            .container { flex-direction: column; }
+            .cart-summary {
+                border-left: none;
+                border-top: 1px solid #e5e5e5;
+            }
+        }
     </style>
 </head>
 
@@ -72,65 +185,64 @@
 
 <div class="container">
 
-    <!-- ================= BÊN TRÁI: GIỎ HÀNG ================= -->
     <div class="cart-items">
-        <!-- NẾU GIỎ HÀNG TRỐNG -->
+
         <c:if test="${empty sessionScope.cart || empty sessionScope.cart.list}">
-            <p>Giỏ hàng của bạn đang trống.</p>
+            <p style="text-align:center;font-size:18px;color:#777">
+                Giỏ hàng của bạn đang trống
+            </p>
         </c:if>
 
-        <!-- NẾU CÓ SẢN PHẨM -->
-        <div class="item-list">
-            <c:forEach items="${sessionScope.cart.list}" var="ci">
+        <c:forEach items="${sessionScope.cart.list}" var="ci">
+            <div class="cart-item">
 
-                <div class="cart-item">
+                <input type="checkbox" class="item-check" checked>
 
-                    <div class="item-image">
-                        <img src="${ci.product.img}" alt="${ci.product.name}">
-                    </div>
-
-                    <div class="item-details">
-                        <div class="item-name">
-                            <strong>${ci.product.name}</strong>
-                        </div>
-
-                        <div class="item-price">
-                            ${ci.product.price * ci.quantity} VNĐ
-                        </div>
-
-                        <!-- NÚT + / - -->
-                        <div class="quantity-control">
-                            <a href="add-cart?id=${ci.product.id}&q=-1">-</a>
-                            <span>${ci.quantity}</span>
-                            <a href="add-cart?id=${ci.product.id}&q=1">+</a>
-                        </div>
-                    </div>
-
-                    <!-- XÓA -->
-                    <a href="add-cart?id=${ci.product.id}&q=-${ci.quantity}">
-                        <i class="fa-solid fa-xmark remove-item"></i>
-                    </a>
-
+                <div class="item-image">
+                    <img src="${ci.product.img}" alt="${ci.product.name}">
                 </div>
 
-            </c:forEach>
-        </div>
+                <div class="item-details">
+                    <div class="item-name">${ci.product.name}</div>
+
+                    <div class="item-price">
+                        <fmt:formatNumber value="${ci.product.price * ci.quantity}"
+                                          groupingUsed="true"/> VNĐ
+                    </div>
+
+                    <div class="quantity-control">
+                        <a href="update-cart?id=${ci.product.id}&q=-1">-</a>
+                        <span>${ci.quantity}</span>
+                        <a href="update-cart?id=${ci.product.id}&q=1">+</a>
+                    </div>
+                </div>
+
+               <a href="del-cart?id=${ci.product.id}">
+                   <i class="fa-solid fa-xmark remove-item"></i>
+               </a>
+
+
+            </div>
+        </c:forEach>
+
     </div>
 
-    <!-- ================= BÊN PHẢI: TỔNG TIỀN ================= -->
     <div class="cart-summary">
         <h2>TẠM TÍNH</h2>
 
         <p>
-            Tổng tiền:
-            <strong style="font-size:18px">
-                ${sessionScope.cart.total} VNĐ
+            Tổng tiền:<br>
+            <strong>
+                <fmt:formatNumber value="${sessionScope.cart.total}"
+                                  groupingUsed="true"/> VNĐ
             </strong>
         </p>
 
-        <br>
+        <a href="checkout" class="checkout-btn">
+            THANH TOÁN
+        </a>
 
-        <a href="products-category-all">
+        <a href="list-product" class="continue">
             ← Tiếp tục mua sắm
         </a>
     </div>
