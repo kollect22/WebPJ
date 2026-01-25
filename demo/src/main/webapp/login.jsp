@@ -106,7 +106,7 @@
 
             <form id="loginForm" action="/login" method="POST">
                 <div class="input-box">
-                    <input type="text" name="username" placeholder="Email" value="">
+                    <input type="text" name="username" placeholder="Email hoặc SĐT" value="">
                 </div>
                 <div class="input-box">
                     <input type="password" name="password" placeholder="Mật khẩu" required>
@@ -121,12 +121,12 @@
                 </div>
             </form>
 
-            <form id="registerForm" action="register-servlet" method="POST" style="display:none;">
+            <form id="registerForm" action="register" method="POST" style="display:none;">
                 <div class="input-box">
                     <input type="text" name="fullName" placeholder="Họ tên" required>
                 </div>
                 <div class="input-box">
-                    <input type="text" name="email" placeholder="Email hoặc SĐT" required>
+                    <input type="text" name="username" placeholder="Email hoặc SĐT" required>
                 </div>
                 <div class="input-box">
                     <input type="password" name="password" placeholder="Mật khẩu" required>
