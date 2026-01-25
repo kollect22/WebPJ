@@ -15,6 +15,7 @@ import java.util.Map;
 public class ProductDao extends BaseDao {
     public List<Product> getListProduct() {
         return get().withHandle(h -> {
+            // 1. Lấy danh sách sản phẩm
             List<Product> list = h.createQuery("SELECT p.*, c.name AS categoryName FROM products p LEFT JOIN categories c ON p.category_id = c.id")
                     .mapToBean(Product.class)
                     .list();
@@ -23,7 +24,7 @@ public class ProductDao extends BaseDao {
                 if (p.getGroupId() > 0) {
                     List<ColorVariant> colors = getRelatedColors(h, p.getGroupId(), p.getId());
                     p.setColors(colors);
-                }
+                }   
             }
 
             return list;
