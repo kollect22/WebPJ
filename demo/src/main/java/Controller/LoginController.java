@@ -1,4 +1,4 @@
-package services;
+package Controller;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -7,6 +7,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import model.User;
+import services.AuthService;
 
 import java.io.IOException;
 
@@ -22,7 +23,7 @@ public class LoginController extends HttpServlet {
 
             HttpSession session = req.getSession();
             session.setAttribute("auth",u);
-            resp.sendRedirect("products-category-all.jsp");
+            resp.sendRedirect(req.getContextPath() + "/home");
         } else {
             req.setAttribute("error", "Sai username hoặc password");
             req.getRequestDispatcher("login.jsp").forward(req, resp);

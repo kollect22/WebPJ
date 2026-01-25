@@ -15,18 +15,14 @@ import java.util.Map;
 public class ProductDao extends BaseDao {
     public List<Product> getListProduct() {
         return get().withHandle(h -> {
-            // 1. Lấy danh sách sản phẩm
             List<Product> list = h.createQuery("SELECT p.*, c.name AS categoryName FROM products p LEFT JOIN categories c ON p.category_id = c.id")
                     .mapToBean(Product.class)
                     .list();
 
-            // 2. Duyệt qua từng sản phẩm để tìm "anh em" cùng nhóm màu
             for (Product p : list) {
-                // Nếu sản phẩm thuộc một nhóm nào đó (group_id > 0)
                 if (p.getGroupId() > 0) {
-                    // Gọi hàm lấy các màu khác trong cùng nhóm
                     List<ColorVariant> colors = getRelatedColors(h, p.getGroupId(), p.getId());
-                    p.setColors(colors); // Set list màu vào sản phẩm
+                    p.setColors(colors);
                 }
             }
 
@@ -36,7 +32,6 @@ public class ProductDao extends BaseDao {
     public Product getProduct(int id) {
         return get().withHandle(h -> {
 //            return h.createQuery("select * from products where id = :id").bind("id",id).mapToBean(Product.class).first();
-            // 1. Lấy thông tin cơ bản sản phẩm + Tên danh mục (JOIN bảng categories)
             String sql = "SELECT p.*, c.name AS categoryName " +
                     "FROM products p " +
                     "LEFT JOIN categories c ON p.category_id = c.id " +
@@ -46,14 +41,10 @@ public class ProductDao extends BaseDao {
                     .mapToBean(Product.class)
                     .findOne().orElse(null);
 
-            // Nếu tìm thấy sản phẩm, tiếp tục lấy các dữ liệu liên quan
             if (product != null) {
-                // 2. Lấy danh sách ảnh Gallery (List<String>)
                 product.setGalleryImages(getGalleryImages(h, id));
 
-                // 3. Lấy danh sách màu sắc liên quan (List<ColorVariant>)
-                // Logic: Tìm các sản phẩm khác có cùng group_id
-                if (product.getGroupId() > 0) { // Giả sử group_id > 0 là có nhóm
+                if (product.getGroupId() > 0) {
                     product.setColors(getRelatedColors(h, product.getGroupId(), id));
                 }
             }
