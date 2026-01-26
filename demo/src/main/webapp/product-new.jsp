@@ -14,10 +14,12 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
 
     <style>
+        /* --- 1. GLOBAL STYLES --- */
         body {
             font-family: Arial, sans-serif;
             color: black;
             background-color: white;
+            margin: 0;
         }
 
         a {
@@ -30,25 +32,39 @@
             list-style: none;
         }
 
+
+        .container-breadcrumbs {
+            margin-top: 110px;
+            padding: 0 20px;
+            margin-bottom: 20px;
+        }
+
         .breadcrumbs {
-            color: grey;
-            margin: 20px 40px 25px 40px;
-            border-bottom: 1px solid black;
-            padding-bottom: 10px;
+            color: #666;
+            font-size: 14px;
+            margin: 0;
+            padding: 0;
+            border-bottom: none;
         }
 
         .breadcrumbs i,
         .breadcrumbs a {
-            color: black;
+            color: #333;
             text-decoration: none;
         }
 
         .breadcrumbs a:hover {
             text-decoration: underline;
+            color: #000;
         }
 
+        .breadcrumbs span {
+            color: #999;
+        }
+
+        /* --- SHOP CONTAINER --- */
         .shop-container {
-            padding: 0 40px;
+            padding: 0 0;
             margin-bottom: 50px;
         }
 
@@ -63,9 +79,8 @@
             margin-bottom: 30px;
             background-color: #fff;
             position: sticky;
-            top: 94px;
+            top:94px;
             z-index: 999;
-            box-shadow: 0 5px 10px rgba(0,0,0,0.05);
         }
 
         .tool-item {
@@ -90,13 +105,8 @@
             top: 50%;
             transform: translateY(-50%);
             width: 1px;
-            height: 20px;
+            height: 30px;
             background-color: #e5e5e5;
-        }
-
-        .btn-filter {
-            font-weight: 500;
-            transition: color 0.3s;
         }
 
         .btn-filter:hover {
@@ -108,69 +118,29 @@
             cursor: default;
         }
 
-        /* --- 3. SORT DROPDOWN --- */
-        .sort-wrapper {
-            position: relative;
-            z-index: 2000;
-            cursor: pointer;
-            user-select: none;
-        }
-
-        .sort-label {
-            cursor: pointer;
-            user-select: none;
-            padding-right: 170px;
-            padding-left: 170px;
-        }
-
+        /* --- SORT MENU --- */
+        .sort-wrapper { position: relative; z-index: 2000; cursor: pointer; user-select: none; }
+        .sort-label{ cursor: pointer; user-select: none; padding: 0 20px; } /* Đã chỉnh lại padding cho gọn */
         .sort-menu {
-            position: absolute;
-            top: 105%;
-            right: 0;
-            width: 400px;
-            background-color: white;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.15);
-            padding: 8px 0;
-            display: none;
-            z-index: 2000;
-            border: 1px solid #eee;
-            list-style: none;
+            position: absolute; top: 105%; right: 0; width: 250px; /* Gọn hơn */
+            background-color: white; box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+            padding: 8px 0; display: none; z-index: 2000; border: 1px solid #eee; list-style: none;
         }
-
-        .sort-menu.show {
-            display: block;
-            animation: fadeIn 0.2s ease;
-        }
-
+        .sort-menu.show { display: block; animation: fadeIn 0.2s ease; }
         .sort-item {
-            padding: 10px 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            color: #333;
-            font-size: 14px;
-            transition: 0.2s;
+            padding: 10px 20px; display: flex; justify-content: space-between;
+            align-items: center; color: #333; font-size: 14px; transition: 0.2s;
         }
+        .sort-item:hover { background-color: #f5f5f5; color: #000; }
+        .check-icon { opacity: 0; color: #333; font-size: 12px; }
+        .sort-item.active .check-icon { opacity: 1; }
 
-        .sort-item:hover {
-            background-color: #f5f5f5;
-            color: #000;
-        }
-
-        .check-icon {
-            opacity: 0;
-            color: #333;
-            font-size: 12px;
-        }
-
-        .sort-item.active .check-icon {
-            opacity: 1;
-        }
 
         .product-cat-list {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
             gap: 5px;
+            padding: 10px 20px;
         }
 
         a.product-item {
@@ -180,204 +150,185 @@
             text-decoration: none;
             text-align: center;
             color: inherit;
-            padding-bottom: 20px;
+            padding-bottom: 25px;
             border: 1px solid transparent;
             box-sizing: border-box;
             transition: all 0.3s ease;
+            background: #fff;
         }
 
         a.product-item:hover {
-            border: 1px solid #000;
-            border-radius: 0 !important;
-            background-color: #fff;
+            border-color: black;
         }
 
         .product-item img {
             width: 100%;
-            height: 400px;
+            height: 380px; /* Chiều cao ảnh */
             object-fit: cover;
-            border-radius: 0;
-            background-color: #f9f9f9;
-            box-sizing: border-box;
-            transition: transform 0.3s ease;
-            margin-bottom: 5px;
-        }
-
-        .product-item:hover img {
-            transform: none;
-        }
-
-        .product-name {
-            font-size: 16px;
-            margin-top: 15px;
             margin-bottom: 10px;
-            font-weight: 500;
-            line-height: 1.4;
-        }
-
-        .product-price {
-            margin-top: 8px;
-            color: #333131;
-            font-size: 14px;
         }
 
         .cart-icon {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            font-size: 18px;
-            color: white;
-            background-color: #000;
-            padding: 10px;
-            border-radius: 50%;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-            z-index: 2;
+            position: absolute; top: 15px; right: 15px; font-size: 18px;
+            color: white; background-color: #000; padding: 10px; border-radius: 50%;
+            opacity: 0; transition: all 0.3s ease; z-index: 2;
         }
+        .product-item:hover .cart-icon { opacity: 1; transform: translateY(5px); }
+        .cart-icon:hover { background-color: #d0021b; }
 
-        .product-item:hover .cart-icon {
-            opacity: 1;
-        }
 
-        .filter-sidebar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 400px;
-            max-width: 85%;
-            height: 100%;
-            background-color: white;
-            box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
-            transform: translateX(-100%);
-            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            z-index: 1002;
-        }
-
-        .filter-sidebar-header {
+        .color-options {
             display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 25px 30px;
-            border-bottom: 1px solid black;
-        }
-
-        .filter-sidebar-header h2 {
-            margin: 0;
-            font-size: 18px;
-            text-transform: uppercase;
-            font-weight: 600;
-            color: black;
-        }
-
-        .filter-sidebar-header button {
-            background: none;
-            border: none;
-            color: black;
-            font-size: 24px;
-            cursor: pointer;
-            transition: 0.3s;
-        }
-
-        .filter-sidebar-header button:hover {
-            color: black;
-            transform: rotate(90deg);
-        }
-
-        .filter-sidebar-body {
-            padding: 10px 30px;
-        }
-
-        .categories-list {
-            padding-left: 0;
-            margin-top: 10px;
-        }
-
-        .categories-list li {
-            margin-bottom: 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0);
-        }
-
-        .categories-list a {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 18px 0;
-            color: black;
-            font-size: 15px;
-            transition: all 0.3s ease;
-        }
-
-        .categories-list a:hover {
-            color: grey;
-            padding-left: 10px;
-        }
-
-        .categories-list a::after {
-            content: "\f054";
-            font-family: "Font Awesome 5 Free";
-            font-weight: 900;
-            font-size: 12px;
-            color: black;
-            transition: color 0.3s;
-        }
-
-        .categories-list a:hover::after {
-            color: grey;
-        }
-
-        .filter-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
+            gap: 8px;
+            justify-content: center;
+            margin: 15px 0 10px;
             width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.7);
-            z-index: 1001;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s ease;
-            backdrop-filter: blur(2px);
+            padding: 0 10px;
+            box-sizing: border-box;
+        }
+        .color-swatch {
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            border: 1px solid #e0e0e0;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .color-swatch:hover {
+            transform: scale(1.1);
+            border-color: #999;
         }
 
-        .filter-overlay.active {
-            opacity: 1;
-            visibility: visible;
+        .product-name {
+            margin: 5px 0 10px;
+            text-align: center;
+            padding: 0 10px;
+            width:100%;
+            box-sizing: border-box;
+        }
+        .product-name a{
+            color: #333;
+            font-size: 16px;
+            font-weight: 500;
+            line-height: 1.4;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            height: 40px; /* Chiều cao cố định 2 dòng */
         }
 
-        .filter-overlay.active .filter-sidebar {
-            transform: none;
+
+        .product-price {
+            margin-bottom: 15px;
+            font-size: 15px;
+            color: #333;
+            text-align: center;
+            display: flex; /* Dùng flex để căn giữa các giá */
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
         }
 
-        .badge-new {
-            position: absolute;
-            top: 10px;
-            left: 10px;
-            background-color: #ff0000;
-            color: white;
-            padding: 4px 8px;
-            font-size: 12px;
+        .product-price .sale-price-text {
+            color: #d0021b; /* Màu đỏ */
             font-weight: bold;
-            z-index: 10;
-            border-radius: 2px;
+            font-size: 16px;
         }
+
+        /* Giá gốc khi bị gạch */
+        .product-price .old-price {
+            text-decoration: line-through;
+            color: #999; /* Màu xám nhạt */
+            font-size: 14px;
+            font-weight: normal;
+        }
+
+        .product-price .regular-price-text {
+            font-weight: bold;
+            color: #000;
+            font-size: 16px;
+        }
+
+        .discount-tag {
+            background-color: #d0021b;
+            color: white;
+            font-size: 11px;
+            font-weight: bold;
+            padding: 2px 5px;
+            border-radius: 3px;
+            display: inline-block;
+        }
+
+
+        .Special-deal {
+            color: #d0021b;
+            font-weight: bold;
+            font-size: 13px;
+            text-transform: uppercase; /* Chữ in hoa */
+            border: 1px solid #d0021b;
+            padding: 3px 12px;
+            /* Để căn giữa trong thẻ cha có text-align: center */
+            display: inline-block;
+            margin-top: 5px;
+        }
+
+
+        /* --- SIDEBAR FILTER (Giữ nguyên) --- */
+        .filter-sidebar {
+            position: fixed; top: 0; left: 0; width: 350px; max-width: 85%; height: 100%;
+            background-color: white; box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+            transform: translateX(-100%); transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1); z-index: 1002;
+        }
+        .filter-sidebar-header {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 25px 30px; border-bottom: 1px solid black;
+        }
+        .filter-sidebar-header h2 {
+            margin: 0; font-size: 18px; text-transform: uppercase; font-weight: 600; color: black;
+        }
+        .filter-sidebar-header button {
+            background: none; border: none; color: black; font-size: 24px; cursor: pointer; transition: 0.3s;
+        }
+        .filter-sidebar-header button:hover { color: black; transform: rotate(90deg); }
+        .filter-sidebar-body { padding: 10px 30px; }
+        .categories-list { padding-left: 0; margin-top: 10px; }
+        .categories-list li { margin-bottom: 0; border-bottom: 1px solid rgba(255, 255, 255, 0); }
+        .categories-list a {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 18px 0; color: black; font-size: 15px; transition: all 0.3s ease;
+        }
+        .categories-list a:hover { color: grey; padding-left: 10px; }
+        .categories-list a::after {
+            content: "\f054"; font-family: "Font Awesome 5 Free"; font-weight: 900;
+            font-size: 12px; color: black; transition: color 0.3s;
+        }
+        .categories-list a:hover::after { color: grey; }
+        .filter-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background-color: rgba(0, 0, 0, 0.7); z-index: 1001; opacity: 0;
+            visibility: hidden; transition: all 0.3s ease; backdrop-filter: blur(2px);
+        }
+        .filter-overlay.active { opacity: 1; visibility: visible; }
+        .filter-overlay.active .filter-sidebar { transform: none; }
     </style>
 </head>
 <body>
 
 <jsp:include page="header.jsp" />
 
-<section class="banner">
-    <img src="${pageContext.request.contextPath}/img/banners/banner-hlw.jpg" alt="Banner Halloween"/>
-    <div class="banner-text">
-        <h2>Ưu đãi Halloween</h2>
-        <a href="${pageContext.request.contextPath}/halloween-sales.jsp">Xem Ngay</a>
-    </div>
-</section>
+<div class="container-breadcrumbs">
+    <nav class="breadcrumbs">
+        <i class="fa-solid fa-house"></i>
+        <a href="${pageContext.request.contextPath}/home">Trang chủ</a> /
+        <span>${pageTitle}</span>
+    </nav>
+</div>
 
-<nav class="breadcrumbs">
-    <i class="fa-regular fa-house"></i>
-    <a href="${pageContext.request.contextPath}/index.jsp">Trang chủ</a> / <span>Hàng mới</span>
-</nav>
+<section class="banner">
+    <img src="${pageContext.request.contextPath}/img/banners/banner5.jpg" style="width: 100%; object-fit: cover; padding: 0 20px; box-sizing: border-box;" />
+</section>
 
 <div class="shop-container">
 
@@ -455,9 +406,15 @@
 
         <div class="filter-sidebar-body">
             <ul class="categories-list">
-                <li><a href="${pageContext.request.contextPath}/list-product.jsp">Tất cả sản phẩm</a></li>
-                <li><a href="${pageContext.request.contextPath}/products-cat-handbag.jsp">Túi xách</a></li>
-                <li><a href="${pageContext.request.contextPath}/products-cat-accessory.jsp">Phụ kiện</a></li>
+                <li class="${empty activeCid ? 'active' : ''}">
+                    <a href="/FashionStore/list-product">Tất cả sản phẩm</a>
+                </li>
+                <li class="${activeCid == 1 ? 'active' : ''}">
+                    <a href="list-product?cid=1">Túi xách</a>
+                </li>
+                <li class="${activeCid == 2 ? 'active' : ''}">
+                    <a href="list-product?cid=2">Phụ kiện</a>
+                </li>
             </ul>
         </div>
     </div>
