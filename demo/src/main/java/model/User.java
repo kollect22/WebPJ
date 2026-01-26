@@ -6,16 +6,27 @@ public class User implements Serializable {
     private int id;
     private String username;
     private String password;
+    private String fullName;
     private boolean active;
 
-    public User(int id, String username, boolean active, String password) {
+    public User(int id, String username, boolean active, String fullName, String password) {
         this.id = id;
         this.username = username;
+        this.fullName = fullName;
         this.active = active;
         this.password = password;
     }
     public User() {
     }
+
+    public String getFullName() {
+        return fullName;
+    }
+
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
+    }
+
     public int getId() {
         return id;
     }

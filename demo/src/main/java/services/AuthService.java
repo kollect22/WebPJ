@@ -23,12 +23,13 @@ public class AuthService {
         }
         return null;
     }
+
     public boolean register(String username, String passwordRaw, String fullName, String appUrl) {
         if (authDao.checkExist(username)) return false;
 
         String passwordHash = MD5.getMd5(passwordRaw);
 
-        int userId = authDao.registerUser(username, passwordHash, fullName);
+        int userId = authDao.registerUserReturnId(username, passwordHash, fullName);
 
         String token = UUID.randomUUID().toString();
 
@@ -47,6 +48,7 @@ public class AuthService {
 
         return true;
     }
+
     public boolean verify(String token) {
         int userId = authDao.getUserIdByToken(token);
 
@@ -58,5 +60,14 @@ public class AuthService {
         return false;
     }
 
+    public User checkLoginByPhone(String phone) {
+        String normalizedPhone = phone.replace("+84", "0");
 
+        User u = authDao.getUserByUsername(normalizedPhone);
+
+        if (u != null) {
+            return u;
+        }
+        return null;
+    }
 }
