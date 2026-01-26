@@ -143,6 +143,31 @@ public class ProductDao extends BaseDao {
         });
     }
 
+    public List<Product> getProductsByCategory(int cid) {
+        return get().withHandle(h -> {
+            String sql = "SELECT p.id, p.name, p.img, p.price, p.sale_price AS salePrice , p.group_id " +
+                    "FROM products p " +
+                    "WHERE p.category_id = :cid";
+
+            return h.createQuery(sql)
+                    .bind("cid", cid)
+                    .mapToBean(Product.class)
+                    .list();
+        });
+    }
+
+    //lay ten danh muc hien cho dsap
+    public String getCategoryName(int cid) {
+        return get().withHandle(h -> {
+            String sql = "SELECT name FROM categories WHERE id = :id";
+
+            return h.createQuery(sql)
+                    .bind("id", cid)
+                    .mapTo(String.class) // Chỉ lấy 1 giá trị
+                    .findFirst()         // Lấy kết quả đầu tiên tìm thấy
+                    .orElse("Tất cả sản phẩm" +cid);
+        });
+    }
 //    public List<String> getColorsByProductId(int id){
 //        return get().withHandle(h->
 //                h.createQuery("SELECT color_code FROM product_colors WHERE product_id = :id")

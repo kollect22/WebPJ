@@ -4,7 +4,7 @@
 
 <header class="navbar">
     <div class="logo">
-        <a href="${pageContext.request.contextPath}/index.jsp">
+        <a href="${pageContext.request.contextPath}/home">
             Fashion Store
         </a>
     </div>
@@ -16,8 +16,8 @@
             <li>
                 <a href="${pageContext.request.contextPath}/list-product">Sản phẩm</a>
                 <ul class="sub-menu">
-                    <li><a href="${pageContext.request.contextPath}/products-cat-handbag.jsp">Túi xách</a></li>
-                    <li><a href="${pageContext.request.contextPath}/products-cat-accessory.jsp">Phụ kiện</a></li>
+                    <li><a href="${pageContext.request.contextPath}/list-product?cid=1">Túi xách</a></li>
+                    <li><a href="${pageContext.request.contextPath}/list-product?cid=2">Phụ kiện</a></li>
                 </ul>
             </li>
 
@@ -42,17 +42,30 @@
             </span>
         </a>
 
-        <a href="${pageContext.request.contextPath}/wishlist.jsp" class="wishlist-header">
+        <a href="${pageContext.request.contextPath}/wishlist" class="wishlist-header">
             <i class="fa-regular fa-heart"></i>
             <span class="wishlist-count">0</span>
         </a>
 
-        <a href="${pageContext.request.contextPath}/cart.jsp" class="cart-header">
-            <i class="fa-solid fa-shopping-cart"></i>
-            <span class="cart-count">
+
+<%--        <a href="${pageContext.request.contextPath}/cart.jsp" class="cart-header">--%>
+<%--            <i class="fa-solid fa-shopping-cart"></i>--%>
+<%--            <span class="cart-count">--%>
+<%--                ${sessionScope.cart != null ? sessionScope.cart.totalQuantity : 0}--%>
+<%--            </span>--%>
+<%--        </a>--%>
+
+        <div class="cart-wrapper">
+
+            <a href="cart.jsp" style="color: black; font-size: 20px;">
+                <i class="fa-solid fa-cart-shopping"></i>
+            </a>
+
+            <span class="cart-count" id="cart-count">
                 ${sessionScope.cart != null ? sessionScope.cart.totalQuantity : 0}
             </span>
-        </a>
+
+        </div>
 
     </div>
 </header>
