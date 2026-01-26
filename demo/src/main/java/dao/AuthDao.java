@@ -10,7 +10,8 @@ public class AuthDao extends BaseDao {
                 h.createQuery("select * from users where username = :u")
                         .bind("u",username)
                         .mapToBean(User.class)
-                        .first());
+                        .findFirst()
+                        .orElse(null));
     }
     public boolean checkExist(String username) {
         String sql = "SELECT COUNT(*) FROM users WHERE username = :u";
