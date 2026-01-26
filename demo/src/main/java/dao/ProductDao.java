@@ -7,6 +7,7 @@ import org.jdbi.v3.core.Jdbi;
 import org.jdbi.v3.core.statement.PreparedBatch;
 import org.jdbi.v3.core.statement.Update;
 
+import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -122,8 +123,23 @@ public class ProductDao extends BaseDao {
                             "WHERE id = :id")
                     .bindBean(p)
                     .execute();
+        });
+    }
+    public List<Product> getNewArrivals() {
+        return get().withHandle(h -> {
+            String sql = "SELECT *, is_new AS newProduct FROM products WHERE is_new = 1 ORDER BY id DESC LIMIT 20";
 
-            // (Nâng cao) Nếu muốn update cả Gallery ảnh thì phải xóa ảnh cũ đi và insert lại ảnh mới ở đây
+            List<Product> list = h.createQuery(sql)
+                    .mapToBean(Product.class)
+                    .list();
+
+            for (Product p : list) {
+                if (p.getGroupId() > 0) {
+                    p.setColors(getRelatedColors(h, p.getGroupId(), p.getId()));
+                }
+            }
+
+            return list;
         });
     }
 

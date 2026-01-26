@@ -13,6 +13,8 @@ public class Product implements Serializable {
     private int price;
     private int salePrice;
 
+    private boolean newProduct;
+
     private String description;
     private String material;
 
@@ -31,12 +33,13 @@ public class Product implements Serializable {
     public Product(){
 
     }
-    public Product(int id, String name, String img, int price, int salePrice) {
+    public Product(int id, String name, String img, int price, int salePrice, boolean newProduct) {
         this.id = id;
         this.name = name;
         this.img = img;
         this.price = price;
         this.salePrice = salePrice;
+        this.newProduct = newProduct;
     }
 
 //    public Product(int id, String name, String img, int price, String description, String category, List<String> colors) {
@@ -117,8 +120,9 @@ public class Product implements Serializable {
     public void setCategoryName(String categoryName) { this.categoryName = categoryName; }
 
     public List<String> getGalleryImages() { return galleryImages; }
-    public void setGalleryImages(List<String> galleryImages) { this.galleryImages = galleryImages; }
-
+    public void setGalleryImages(List<String> galleryImages) { this.galleryImages = galleryImages;}
+    public boolean isNewProduct() { return newProduct; }
+    public void setNewProduct(boolean newProduct) { this.newProduct = newProduct; }
     @Override
     public String toString() {
         return "Product{id=" + id + ", name='" + name + "', sku='" + sku + "'}";

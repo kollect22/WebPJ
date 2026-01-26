@@ -1,4 +1,9 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
+<%@ taglib prefix="fmt" uri="jakarta.tags.fmt" %>
+
+<fmt:setLocale value="vi_VN"/>
+
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -6,11 +11,9 @@
     <title>Hàng mới - Fashion Store</title>
 
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/style.css">
-
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
 
     <style>
-        /* --- 1. GLOBAL STYLES --- */
         body {
             font-family: Arial, sans-serif;
             color: black;
@@ -27,7 +30,6 @@
             list-style: none;
         }
 
-        /* --- 2. BREADCRUMBS (Đường dẫn) --- */
         .breadcrumbs {
             color: grey;
             margin: 20px 40px 25px 40px;
@@ -45,13 +47,11 @@
             text-decoration: underline;
         }
 
-        /* --- 3. LAYOUT CONTAINER --- */
         .shop-container {
             padding: 0 40px;
             margin-bottom: 50px;
         }
 
-        /* --- 4. TOOLBAR (Bộ lọc - Số lượng - Sắp xếp) --- */
         .toolbar-container {
             display: flex;
             justify-content: space-between;
@@ -63,7 +63,7 @@
             margin-bottom: 30px;
             background-color: #fff;
             position: sticky;
-            top:94px;
+            top: 94px;
             z-index: 999;
             box-shadow: 0 5px 10px rgba(0,0,0,0.05);
         }
@@ -83,7 +83,6 @@
             font-family: Arial, sans-serif;
         }
 
-        /* Đường kẻ dọc ngăn cách */
         .tool-item:not(:last-child)::after {
             content: "";
             position: absolute;
@@ -95,7 +94,6 @@
             background-color: #e5e5e5;
         }
 
-        /* Nút Bộ lọc */
         .btn-filter {
             font-weight: 500;
             transition: color 0.3s;
@@ -105,37 +103,34 @@
             color: #000;
         }
 
-        /* Số lượng sản phẩm */
         .product-count {
             color: #666;
             cursor: default;
         }
 
-        /* Phần Sắp xếp */
+        /* --- 3. SORT DROPDOWN --- */
         .sort-wrapper {
-            position: relative; /*Để menu con định vị theo cha */
+            position: relative;
             z-index: 2000;
             cursor: pointer;
             user-select: none;
         }
 
-        .sort-label{
+        .sort-label {
             cursor: pointer;
             user-select: none;
             padding-right: 170px;
             padding-left: 170px;
         }
-        /* Menu xổ xuống */
+
         .sort-menu {
             position: absolute;
             top: 105%;
             right: 0;
             width: 400px;
             background-color: white;
-
             box-shadow: 0 5px 20px rgba(0,0,0,0.15);
             padding: 8px 0;
-
             display: none;
             z-index: 2000;
             border: 1px solid #eee;
@@ -172,9 +167,6 @@
             opacity: 1;
         }
 
-
-
-        /* --- 5. PRODUCT GRID (Lưới sản phẩm) --- */
         .product-cat-list {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
@@ -189,7 +181,6 @@
             text-align: center;
             color: inherit;
             padding-bottom: 20px;
-
             border: 1px solid transparent;
             box-sizing: border-box;
             transition: all 0.3s ease;
@@ -201,7 +192,6 @@
             background-color: #fff;
         }
 
-        /* Ảnh sản phẩm */
         .product-item img {
             width: 100%;
             height: 400px;
@@ -217,7 +207,6 @@
             transform: none;
         }
 
-        /* Thông tin sản phẩm */
         .product-name {
             font-size: 16px;
             margin-top: 15px;
@@ -232,7 +221,6 @@
             font-size: 14px;
         }
 
-        /* Icon giỏ hàng */
         .cart-icon {
             position: absolute;
             top: 15px;
@@ -251,7 +239,6 @@
             opacity: 1;
         }
 
-        /* --- 6. SIDEBAR (Thanh bên) --- */
         .filter-sidebar {
             position: fixed;
             top: 0;
@@ -261,7 +248,6 @@
             height: 100%;
             background-color: white;
             box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
-
             transform: translateX(-100%);
             transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             z-index: 1002;
@@ -361,10 +347,23 @@
         .filter-overlay.active .filter-sidebar {
             transform: none;
         }
-    </style>
 
+        .badge-new {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background-color: #ff0000;
+            color: white;
+            padding: 4px 8px;
+            font-size: 12px;
+            font-weight: bold;
+            z-index: 10;
+            border-radius: 2px;
+        }
+    </style>
 </head>
 <body>
+
 <jsp:include page="header.jsp" />
 
 <section class="banner">
@@ -381,90 +380,67 @@
 </nav>
 
 <div class="shop-container">
+
     <div class="toolbar-container">
         <button class="tool-item btn-filter" id="filter-toggle-btn">
             <i class="fa-solid fa-filter"></i> Bộ lọc
         </button>
 
         <div class="tool-item product-count" id ="product-count-display">
-            0 sản phẩm
+            ${listNew != null ? listNew.size() : 0} sản phẩm
         </div>
 
         <div class="tool-item sort-wrapper" id="sortDropdownContainer">
             <div class="sort-label" id="sortToggle">
                 <i class="fa-solid fa-arrow-down-short-wide"></i>
-                <span id="current-sort-text">Sắp xếp</span>
+                <span id="current-sort-text">Mới nhất</span>
             </div>
-
             <ul class="sort-menu" id="sortMenu">
-                <li class="sort-item active" data-value="newest">Mới nhất <i class="fa-solid fa-check check-icon"></i></li>
-                <li class="sort-item" data-value="oldest">Cũ nhất <i class="fa-solid fa-check check-icon"></i></li>
-                <li class="sort-item" data-value="price-asc">Giá tăng dần <i class="fa-solid fa-check check-icon"></i></li>
-                <li class="sort-item" data-value="price-desc">Giá giảm dần <i class="fa-solid fa-check check-icon"></i></li>
+                <li class="sort-item active">Mới nhất <i class="fa-solid fa-check check-icon"></i></li>
+                <li class="sort-item">Cũ nhất <i class="fa-solid fa-check check-icon"></i></li>
             </ul>
-
-            <input type="hidden" id="sort-value" value="newest">
         </div>
-
     </div>
 
     <div class="product-cat-list">
+        <c:forEach items="${listNew}" var="p">
+            <a href="${pageContext.request.contextPath}/product-detail?id=${p.id}" class="product-item">
 
-        <a href="${pageContext.request.contextPath}/pro-details/product-details12.jsp" class="product-item">
-            <img src="${pageContext.request.contextPath}/img/products/tui-dv-adalyn/2025-L7-CK2-20782753-N9-1.webp" alt="Túi Trice"/>
-            <div class="cart-icon"><i class="fa-solid fa-cart-shopping"></i></div>
-            <div class="product-name">Túi đeo vai Adalyn - Hồng</div>
-            <div class="product-price">2.300.000VNĐ</div>
-        </a>
+                <div style="position: relative; overflow: hidden;">
+                    <img src="${pageContext.request.contextPath}/${p.img}" alt="${p.name}"/>
 
-        <a href="${pageContext.request.contextPath}/pro-details/product-details13.jsp" class="product-item">
-            <img src="${pageContext.request.contextPath}/img/products/tui-alva/anh1.webp" alt="Túi Alva"/>
-            <div class="cart-icon"><i class="fa-solid fa-cart-shopping"></i></div>
-            <div class="product-name">Túi xách Alva - Đen</div>
-            <div class="product-price">2.290.000VNĐ</div>
-        </a>
+                    <c:if test="${p.newProduct}">
+                        <span class="badge-new">NEW</span>
+                    </c:if>
 
-        <a href="${pageContext.request.contextPath}/pro-details/product-details16.jsp" class="product-item">
-            <img src="${pageContext.request.contextPath}/img/products/tui-mirabelle/anh1.webp" alt="Túi Mirabelle"/>
-            <div class="cart-icon"><i class="fa-solid fa-cart-shopping"></i></div>
-            <div class="product-name">Túi Mirabelle - Đen</div>
-            <div class="product-price">2.550.000đ</div>
-        </a>
+                    <div class="cart-icon"><i class="fa-solid fa-cart-shopping"></i></div>
+                </div>
 
-        <a href="${pageContext.request.contextPath}/pro-details/product-details17.jsp" class="product-item">
-            <img src="${pageContext.request.contextPath}/img/products/tui-noane/anh1.jpg" alt="Túi Noane"/>
-            <div class="cart-icon"><i class="fa-solid fa-cart-shopping"></i></div>
-            <div class="product-name">Túi Noane - Nâu Cafe</div>
-            <div class="product-price">2.050.000đ</div>
-        </a>
+                <div class="product-name">${p.name}</div>
 
-        <a href="${pageContext.request.contextPath}/pro-details/product-details11.jsp" class="product-item">
-            <img src="${pageContext.request.contextPath}/img/products/tui-clutch/2023-L6-CK2-70160131-01-1.webp" alt="Túi Clutch đen"/>
-            <div class="cart-icon"><i class="fa-solid fa-cart-shopping"></i></div>
-            <div class="product-name">Túi Clutch - Đen</div>
-            <div class="product-price">1.850.000đ</div>
-        </a>
+                <div class="product-price">
+                    <c:choose>
+                        <c:when test="${p.salePrice > 0}">
+                             <span style="text-decoration: line-through; color: #999; font-size: 13px;">
+                                <fmt:formatNumber value="${p.price}" type="currency"/>
+                             </span>
+                            <span style="color: red; font-weight: bold; margin-left: 5px;">
+                                <fmt:formatNumber value="${p.salePrice}" type="currency"/>
+                             </span>
+                        </c:when>
+                        <c:otherwise>
+                            <fmt:formatNumber value="${p.price}" type="currency"/>
+                        </c:otherwise>
+                    </c:choose>
+                </div>
+            </a>
+        </c:forEach>
 
-        <a href="${pageContext.request.contextPath}/pro-details/product-details15.jsp" class="product-item">
-            <img src="${pageContext.request.contextPath}/img/products/tui-double-handle/anh1.webp" alt="Túi Double Handle"/>
-            <div class="cart-icon"><i class="fa-solid fa-cart-shopping"></i></div>
-            <div class="product-name">Túi xách Double Handle - Đen</div>
-            <div class="product-price">2.490.000đ</div>
-        </a>
-
-        <a href="#" class="product-item">
-            <img src="${pageContext.request.contextPath}/img/products/tui-day-rut/anh1.jpg" alt="Túi Bucket"/>
-            <div class="cart-icon"><i class="fa-solid fa-cart-shopping"></i></div>
-            <div class="product-name">Túi Bucket Dây Rút - Be</div>
-            <div class="product-price">980.000đ</div>
-        </a>
-
-        <a href="#" class="product-item">
-            <img src="${pageContext.request.contextPath}/img/products/tui-britton/den1.webp" alt="Túi Britton"/>
-            <div class="cart-icon"><i class="fa-solid fa-cart-shopping"></i></div>
-            <div class="product-name">Túi Britton Khóa Kim Loại</div>
-            <div class="product-price">1.690.000đ</div>
-        </a>
+        <c:if test="${empty listNew}">
+            <div style="grid-column: 1/-1; text-align: center; padding: 50px;">
+                <p>Hiện chưa có sản phẩm mới nào được cập nhật.</p>
+            </div>
+        </c:if>
     </div>
 </div>
 
@@ -479,7 +455,7 @@
 
         <div class="filter-sidebar-body">
             <ul class="categories-list">
-                <li><a href="${pageContext.request.contextPath}/products-category-all.jsp">Tất cả sản phẩm</a></li>
+                <li><a href="${pageContext.request.contextPath}/list-product.jsp">Tất cả sản phẩm</a></li>
                 <li><a href="${pageContext.request.contextPath}/products-cat-handbag.jsp">Túi xách</a></li>
                 <li><a href="${pageContext.request.contextPath}/products-cat-accessory.jsp">Phụ kiện</a></li>
             </ul>
@@ -487,15 +463,11 @@
     </div>
 </aside>
 
-<div class="scroll-button">
-    <button id="scrollTopBtn" title="Go to top" style="display: none; background-color: grey; position: fixed; border: none; border-radius: 50%; width: 40px; height: 40px; bottom: 20px; right: 20px; cursor: pointer; justify-content: center; align-items: center; z-index: 1000; color:white;">
-        <i class="fa-solid fa-arrow-up"></i>
-    </button>
-</div>
-
 <jsp:include page="footer.jsp" />
 
-
+<script>
+    window.contextPath = '${pageContext.request.contextPath}';
+</script>
 <script src="${pageContext.request.contextPath}/assets/js/script.js"></script>
 
 </body>
