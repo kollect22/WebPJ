@@ -21,7 +21,7 @@ public class AddCart extends HttpServlet {
         ProductService ps = new ProductService();
         Product product = ps.getProduct(id);
         if (product == null) {
-            resp.sendRedirect(req.getContextPath() + "/list-product.jsp");
+            resp.sendRedirect(req.getContextPath() + "/list-product");
             return;
         }
         HttpSession session = req.getSession();

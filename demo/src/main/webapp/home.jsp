@@ -275,6 +275,17 @@
 
 <jsp:include page="footer.jsp" />
 
+<%
+    String status = (String) session.getAttribute("checkout_status");
+    if ("success".equals(status)) {
+%>
+<script>
+    alert("🎉 Chúc mừng! Bạn đã thanh toán thành công.");
+</script>
+<%
+        session.removeAttribute("checkout_status");
+    }
+%>
 <script>
     window.contextPath = '${pageContext.request.contextPath}';
 </script>
