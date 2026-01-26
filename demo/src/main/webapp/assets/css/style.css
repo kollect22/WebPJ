@@ -687,3 +687,98 @@ h2 {
 #scrollTopBtn:hover {
     background-color: white;
 }
+
+.cart-wrapper {
+    position: relative;
+    display: inline-block;
+}
+
+/* --- 2. STYLE CHO SỐ LƯỢNG (BADGE) --- */
+.cart-count {
+    /* Vị trí: Treo ở góc trên bên phải */
+    position: absolute;
+    top: -8px;    /* Điều chỉnh lên xuống */
+    right: -10px; /* Điều chỉnh sang phải */
+
+    /* Hình dáng & Màu sắc */
+    background-color: #d0021b; /* Màu đỏ nổi bật */
+    color: #ffffff;            /* Chữ trắng */
+    border-radius: 50%;        /* Bo tròn thành hình tròn */
+
+    /* Kích thước */
+    min-width: 20px;  /* Chiều rộng tối thiểu */
+    height: 20px;     /* Chiều cao cố định */
+    padding: 0 4px;   /* Khoảng cách đệm nếu số to (vd: 100) */
+
+    /* Căn giữa số tuyệt đối */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    /* Font chữ */
+    font-size: 11px;
+    font-weight: bold;
+    font-family: Arial, sans-serif;
+
+    /* Tạo viền trắng để tách biệt với icon (giúp dễ nhìn hơn) */
+    border: 2px solid #fff;
+
+    /* Hiệu ứng bóng nhẹ */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+
+    /* Đảm bảo số nằm đè lên trên icon */
+    z-index: 10;
+}
+/* Định nghĩa hiệu ứng nảy */
+@keyframes pop-bounce {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.4); }
+    100% { transform: scale(1); }
+}
+
+/* Class kích hoạt animation */
+.cart-bump {
+    animation: pop-bounce 0.3s ease;
+}
+
+/* --- 1. KHỐI BAO NGOÀI ICON TIM (Để làm mốc toạ độ) --- */
+.wishlist-header {
+    position: relative;       /* Quan trọng: để số đếm bám theo icon này */
+    display: inline-block;
+    color: black;             /* Màu icon mặc định */
+    font-size: 20px;          /* Kích thước icon (bằng với cart) */
+    text-decoration: none;
+    margin-right: 15px;       /* Khoảng cách nếu nó đứng cạnh icon khác */
+    transition: color 0.3s;
+}
+
+.wishlist-header:hover {
+    color: #666; /* Màu khi di chuột */
+}
+
+/* --- 2. SỐ ĐẾM (BADGE) - COPY Y HỆT CART --- */
+.wishlist-count {
+    position: absolute;
+    top: -8px;    /* Treo lên trên */
+    right: -10px; /* Treo sang phải */
+
+    background-color: #d0021b; /* Màu đỏ */
+    color: #ffffff;            /* Chữ trắng */
+    border-radius: 50%;        /* Hình tròn */
+
+    min-width: 20px;
+    height: 20px;
+    padding: 0 4px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-size: 11px;
+    font-weight: bold;
+    font-family: Arial, sans-serif;
+
+    border: 2px solid #fff;    /* Viền trắng tạo khoảng cách */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    z-index: 10;
+}
