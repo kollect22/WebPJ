@@ -13,10 +13,13 @@
 
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/style.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/product-detail.css">
+
 </head>
 <body>
 
-<jsp:include page="header.jsp" /> <nav class="breadcrumbs">
+<jsp:include page="header.jsp" />
+
+<nav class="breadcrumbs">
     <i class="fa-solid fa-house"></i>
     <a href="${pageContext.request.contextPath}/home.jsp">Trang chủ</a> /
     <a href="#">Túi Xách</a> /

@@ -27,7 +27,7 @@ public class HomeController extends HttpServlet {
 //        }
 //        // ----------------------------
 
-        req.setAttribute("productList", list);
+        req.setAttribute("list", list);
         req.getRequestDispatcher("home.jsp").forward(req, resp);
     }
 
