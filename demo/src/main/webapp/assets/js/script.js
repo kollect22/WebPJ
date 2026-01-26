@@ -277,3 +277,69 @@ function decreaseQty() {
     }
 }
 
+function addToCart(productId) {
+    fetch(window.contextPath + '/add-cart', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        body: 'id=' + productId + '&q=1'
+    })
+        .then(res => res.json())
+        .then(data => {
+            document.querySelector('.cart-count').innerText = data.totalQuantity;
+        });
+}
+function updateCart(productId, delta) {
+    fetch(window.contextPath + '/update-cart', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+        body: 'id=' + productId + '&q=' + delta
+    })
+        .then(res => res.json())
+        .then(data => {
+            document.getElementById('qty-' + productId).innerText = data.itemQuantity;
+            document.getElementById('cart-total').innerText =
+                new Intl.NumberFormat().format(data.total) + ' VNĐ';
+
+            if (data.itemQuantity === 0) {
+                document.getElementById('item-' + productId).remove();
+            }
+
+            document.querySelector('.cart-count').innerText = data.totalQuantity;
+        });
+}
+function deleteItem(productId) {
+    fetch(window.contextPath + '/del-cart', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        body: 'id=' + productId
+    })
+        .then(res => res.json())
+        .then(data => {
+
+            // xóa item khỏi UI
+            const item = document.getElementById('item-' + productId);
+            if (item) item.remove();
+
+            // update tổng tiền
+            document.getElementById('cart-total').innerText =
+                new Intl.NumberFormat().format(data.total) + ' VNĐ';
+
+            // update icon cart
+            updateCartIcon(data.totalQty);
+        });
+}
+function updateCartIcon(qty) {
+    const el = document.getElementById('cart-count');
+    if (el) el.innerText = qty;
+}
+
+
+
+
+
+
+
