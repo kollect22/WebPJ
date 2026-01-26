@@ -8,6 +8,8 @@
     <meta charset="UTF-8">
     <title>Giỏ hàng</title>
 
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/style.css">
+
     <link rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"/>
 
@@ -20,10 +22,38 @@
             font-family: "Segoe UI", Arial, sans-serif;
             color: #111;
         }
+        .container-breadcrumbs {
+            margin-top: 110px;
+            padding: 0 40px;
+            margin-bottom: 20px;
+        }
+
+        .breadcrumbs {
+            color: #666;
+            font-size: 14px;
+            margin: 0;
+            padding: 0;
+            border-bottom: none;
+        }
+
+        .breadcrumbs i,
+        .breadcrumbs a {
+            color: #333;
+            text-decoration: none;
+        }
+
+        .breadcrumbs a:hover {
+            text-decoration: underline;
+            color: #000;
+        }
+
+        .breadcrumbs span {
+            color: #999;
+        }
 
         .container {
-            max-width: 1200px;
-            margin: 100px auto;
+            max-width: 1300px;
+            margin: 20px auto;
             display: flex;
             gap: 30px;
             background: #fff;
@@ -182,6 +212,15 @@
 </head>
 
 <body>
+<jsp:include page="header.jsp" />
+
+<div class="container-breadcrumbs">
+    <nav class="breadcrumbs">
+        <i class="fa-solid fa-house"></i>
+        <a href="${pageContext.request.contextPath}/home">Trang chủ</a> /
+        <span>Giỏ hàng</span>
+    </nav>
+</div>
 
 <div class="container">
 
@@ -266,6 +305,9 @@
     </div>
 
 </div>
+
+<jsp:include page="footer.jsp" />
+
 <script>
     window.contextPath = '${pageContext.request.contextPath}';
 </script>
