@@ -38,7 +38,7 @@
             <i class="fa-solid fa-user"></i>
 
             <span class="fw-bold">
-                ${sessionScope.auth.username}
+                ${sessionScope.auth.fullName}
             </span>
         </a>
 

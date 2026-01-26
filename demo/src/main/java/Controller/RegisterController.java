@@ -5,6 +5,7 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.*;
 import services.AuthService;
+import util.Validator;
 
 import java.io.IOException;
 
@@ -23,19 +24,29 @@ public class RegisterController extends HttpServlet {
         String username = req.getParameter("username");
         String password = req.getParameter("password");
 
-        if (username == null || username.trim().isEmpty()) {
-            req.setAttribute("error", "Vui lòng nhập tài khoản!");
+        if (!Validator.isValidUsername(username)) {
+            req.setAttribute("error", "Vui lòng nhập đúng định dạng Email hoặc Số điện thoại (10 số)!");
             req.getRequestDispatcher("register.jsp").forward(req, res);
             return;
         }
 
-        boolean isSuccess = authService.register(username, password, fullName);
+        if (!Validator.isStrongPassword(password)) {
+            req.setAttribute("error", "Mật khẩu phải trên 8 ký tự, bao gồm chữ hoa, chữ thường và số!");
+            req.getRequestDispatcher("register.jsp").forward(req, res);
+            return;
+        }
 
+        if (fullName != null) {
+            fullName = fullName.replaceAll("<", "&lt;").replaceAll(">", "&gt;");
+        }
+        String appUrl = req.getScheme()+"://"+req.getServerName()+":"+req.getServerPort()+ req.getContextPath();
+
+        boolean isSuccess = authService.register(username, password, fullName, appUrl);
         if (isSuccess) {
-            req.getSession().setAttribute("user", username);
-            res.sendRedirect(req.getContextPath() + "/home");
+            req.setAttribute("mess", "Đăng ký thành công! Vui lòng kiểm tra Email để kích hoạt tài khoản.");
+            req.getRequestDispatcher("login.jsp").forward(req, res);
         } else {
-            req.setAttribute("error", "Tài khoản đã tồn tại!");
+            req.setAttribute("error", "Tài khoản (Email/SĐT) đã tồn tại!");
             req.getRequestDispatcher("register.jsp").forward(req, res);
         }
     }
