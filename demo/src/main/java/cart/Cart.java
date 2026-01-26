@@ -22,10 +22,16 @@ public class Cart implements Serializable {
     public void updateProduct(int id, int delta) {
         CartItem item = data.get(id);
         if (item == null) return;
+
         int newQty = item.getQuantity() + delta;
-        if (newQty <= 0) { data.remove(id);
-        } else { item.setQuantity(newQty);}
+
+        if (newQty < 1) {
+            return;
+        }
+
+        item.setQuantity(newQty);
     }
+
     public CartItem deleteProduct(int id) {
         return data.remove(id) ;
     }

@@ -291,6 +291,15 @@ function addToCart(productId) {
         });
 }
 function updateCart(productId, delta) {
+    const qtyEl = document.getElementById('qty-' + productId);
+    const currentQty = parseInt(qtyEl.innerText);
+
+    // 🚫 nếu đang là 1 mà còn trừ nữa
+    if (currentQty === 1 && delta === -1) {
+        alert('⚠️ Số lượng tối thiểu là 1');
+        return;
+    }
+
     fetch(window.contextPath + '/update-cart', {
         method: 'POST',
         headers: {'Content-Type': 'application/x-www-form-urlencoded'},
@@ -298,17 +307,19 @@ function updateCart(productId, delta) {
     })
         .then(res => res.json())
         .then(data => {
-            document.getElementById('qty-' + productId).innerText = data.itemQuantity;
+            qtyEl.innerText = data.itemQuantity;
+
             document.getElementById('cart-total').innerText =
                 new Intl.NumberFormat().format(data.total) + ' VNĐ';
 
-            if (data.itemQuantity === 0) {
-                document.getElementById('item-' + productId).remove();
-            }
-
-            document.querySelector('.cart-count').innerText = data.totalQuantity;
+            document.querySelector('.cart-count').innerText =
+                data.totalQuantity;
+            recalculateTotal();
         });
 }
+
+
+
 function deleteItem(productId) {
     fetch(window.contextPath + '/del-cart', {
         method: 'POST',
@@ -336,6 +347,23 @@ function updateCartIcon(qty) {
     const el = document.getElementById('cart-count');
     if (el) el.innerText = qty;
 }
+function recalculateTotal() {
+    let total = 0;
+
+    document.querySelectorAll('.item-check').forEach(cb => {
+        if (cb.checked) {
+            const price = parseFloat(cb.dataset.price);
+            const qty = parseInt(
+                document.getElementById('qty-' + cb.dataset.id).innerText
+            );
+            total += price * qty;
+        }
+    });
+
+    document.getElementById('cart-total').innerText =
+        new Intl.NumberFormat().format(total) + ' VNĐ';
+}
+
 
 
 
