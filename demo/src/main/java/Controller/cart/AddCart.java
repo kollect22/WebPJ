@@ -36,7 +36,31 @@ public class AddCart extends HttpServlet {
     }
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        super.doPost(req, resp);
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp)
+            throws ServletException, IOException {
+
+        int id = Integer.parseInt(req.getParameter("id"));
+        int q  = Integer.parseInt(req.getParameter("q"));
+
+        ProductService ps = new ProductService();
+        Product product = ps.getProduct(id);
+        if (product == null) return;
+
+        HttpSession session = req.getSession();
+        Cart cart = (Cart) session.getAttribute("cart");
+        if (cart == null) {
+            cart = new Cart();
+        }
+
+        cart.addProduct(product, q);
+        session.setAttribute("cart", cart);
+
+
+        resp.setContentType("application/json");
+        resp.setCharacterEncoding("UTF-8");
+        resp.getWriter().write(
+                "{\"totalQuantity\":" + cart.getTotalQuantity() + "}"
+        );
     }
+
 }

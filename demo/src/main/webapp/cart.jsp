@@ -194,7 +194,8 @@
         </c:if>
 
         <c:forEach items="${sessionScope.cart.list}" var="ci">
-            <div class="cart-item">
+            <div class="cart-item" id="item-${ci.product.id}">
+
 
                 <input type="checkbox" class="item-check" checked>
 
@@ -211,15 +212,24 @@
                     </div>
 
                     <div class="quantity-control">
-                        <a href="update-cart?id=${ci.product.id}&q=-1">-</a>
-                        <span>${ci.quantity}</span>
-                        <a href="update-cart?id=${ci.product.id}&q=1">+</a>
+                        <a href="javascript:void(0)"
+                           onclick="updateCart(${ci.product.id}, -1)">-</a>
+
+                        <span id="qty-${ci.product.id}">
+                            ${ci.quantity}
+                        </span>
+
+                        <a href="javascript:void(0)"
+                           onclick="updateCart(${ci.product.id}, 1)">+</a>
                     </div>
+
                 </div>
 
-               <a href="del-cart?id=${ci.product.id}">
-                   <i class="fa-solid fa-xmark remove-item"></i>
+               <a href="javascript:void(0)"
+                  onclick="deleteItem(${ci.product.id})">
+                   <i class="fa-solid fa-xmark"></i>
                </a>
+
 
 
             </div>
@@ -232,10 +242,10 @@
 
         <p>
             Tổng tiền:<br>
-            <strong>
-                <fmt:formatNumber value="${sessionScope.cart.total}"
-                                  groupingUsed="true"/> VNĐ
+            <strong id="cart-total">
+                <fmt:formatNumber value="${sessionScope.cart.total}" groupingUsed="true"/> VNĐ
             </strong>
+
         </p>
 
         <a href="checkout" class="checkout-btn">
@@ -248,6 +258,10 @@
     </div>
 
 </div>
+<script>
+    window.contextPath = '${pageContext.request.contextPath}';
+</script>
+<script src="${pageContext.request.contextPath}/assets/js/script.js"></script>
 
 </body>
 </html>

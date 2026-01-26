@@ -405,9 +405,12 @@
 
                 <img src="${pageContext.request.contextPath}/${p.img}" alt="${p.name}"/>
                 <object>
-                    <a href="${pageContext.request.contextPath}/add-cart?id=${p.id}&q=1" class="cart-icon" title="Thêm vào giỏ">
+                    <a href="javascript:void(0)"
+                       class="cart-icon"
+                       onclick="addToCart(${p.id});">
                         <i class="fa-solid fa-cart-shopping"></i>
                     </a>
+
                 </object>
 
                 <div class="product-name">${p.name}</div>
@@ -445,6 +448,10 @@
 </aside>
 
 <jsp:include page="footer.jsp" />
+
+<script>
+    window.contextPath = '${pageContext.request.contextPath}';
+</script>
 
 
 <script src="${pageContext.request.contextPath}/assets/js/script.js"></script>
