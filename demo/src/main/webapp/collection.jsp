@@ -13,7 +13,7 @@
       }
 
       body{
-          background: #1A1A1A;
+          background: white;
           padding-top: 90px;
           margin: 0;
           font-family: Arial, sans-serif;
@@ -25,7 +25,6 @@
           padding: 40px 0;
       }
 
-      /* Banner từng mùa */
       .season-block {
           padding: 40px 20px;
           margin-bottom: 60px;

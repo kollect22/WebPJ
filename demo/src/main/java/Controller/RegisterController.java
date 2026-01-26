@@ -1,6 +1,5 @@
 package Controller;
 
-import dao.RegisterDao;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.*;
@@ -26,28 +25,35 @@ public class RegisterController extends HttpServlet {
 
         if (!Validator.isValidUsername(username)) {
             req.setAttribute("error", "Vui lòng nhập đúng định dạng Email hoặc Số điện thoại (10 số)!");
-            req.getRequestDispatcher("register.jsp").forward(req, res);
+            req.getRequestDispatcher("login.jsp").forward(req, res);
             return;
         }
 
         if (!Validator.isStrongPassword(password)) {
             req.setAttribute("error", "Mật khẩu phải trên 8 ký tự, bao gồm chữ hoa, chữ thường và số!");
-            req.getRequestDispatcher("register.jsp").forward(req, res);
+            req.getRequestDispatcher("login.jsp").forward(req, res);
             return;
         }
 
         if (fullName != null) {
             fullName = fullName.replaceAll("<", "&lt;").replaceAll(">", "&gt;");
         }
+
         String appUrl = req.getScheme()+"://"+req.getServerName()+":"+req.getServerPort()+ req.getContextPath();
 
         boolean isSuccess = authService.register(username, password, fullName, appUrl);
+
         if (isSuccess) {
-            req.setAttribute("mess", "Đăng ký thành công! Vui lòng kiểm tra Email để kích hoạt tài khoản.");
+            if (username.contains("@")) {
+                req.setAttribute("mess", "Đăng ký thành công! Vui lòng kiểm tra Email để kích hoạt tài khoản.");
+            } else {
+                req.setAttribute("mess", "Đăng ký thành công! Bạn có thể đăng nhập ngay.");
+            }
+
             req.getRequestDispatcher("login.jsp").forward(req, res);
         } else {
             req.setAttribute("error", "Tài khoản (Email/SĐT) đã tồn tại!");
-            req.getRequestDispatcher("register.jsp").forward(req, res);
+            req.getRequestDispatcher("login.jsp").forward(req, res);
         }
     }
 }

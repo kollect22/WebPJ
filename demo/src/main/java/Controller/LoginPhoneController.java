@@ -36,29 +36,33 @@ public class LoginPhoneController extends HttpServlet {
     }
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String idToken = req.getParameter("token");
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String idToken = req.getParameter("idToken");
         AuthService authService = new AuthService();
 
         try {
             FirebaseToken decodedToken = FirebaseAuth.getInstance().verifyIdToken(idToken);
 
-            String phone = decodedToken.getUid();
-
-            User user = authService.checkLoginByPhone(phone);
+            String phoneRaw = (String) decodedToken.getClaims().get("phone_number");
+            String phone = phoneRaw;
+            if (phoneRaw != null && phoneRaw.startsWith("+84")) {
+                phone = "0" + phoneRaw.substring(3);
+            }
+            User user = authService.checkLoginByUsername(phone);
 
             if (user == null) {
-                authService.register(phone, "123456", "Người dùng mới", "http://...");
-                user = authService.checkLoginByPhone(phone);
+                authService.registerForSocial(phone, "Người dùng " + phone, null);
+                user = authService.checkLoginByUsername(phone);
             }
 
             HttpSession session = req.getSession();
             session.setAttribute("auth", user);
-            resp.sendRedirect("home");
+            resp.sendRedirect(req.getContextPath() + "/home");
 
         } catch (Exception e) {
             e.printStackTrace();
-            resp.sendError(401, "Xác thực thất bại!");
+            req.setAttribute("error", "Lỗi xác thực SĐT: " + e.getMessage());
+            req.getRequestDispatcher("verify-phone.jsp").forward(req, resp);
         }
     }
 }

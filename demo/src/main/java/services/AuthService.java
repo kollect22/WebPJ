@@ -31,20 +31,23 @@ public class AuthService {
 
         int userId = authDao.registerUserReturnId(username, passwordHash, fullName);
 
-        String token = UUID.randomUUID().toString();
+        if (username.contains("@")) {
+            String token = UUID.randomUUID().toString();
+            LocalDateTime expiry = LocalDateTime.now().plusMinutes(15);
+            authDao.saveToken(userId, token, expiry);
 
-        LocalDateTime expiry = LocalDateTime.now().plusMinutes(15);
+            String link = appUrl + "/verify?token=" + token;
+            new Thread(() -> {
+                String content = "<h3>Chào " + fullName + "!</h3>" +
+                        "<p>Bấm vào đây để kích hoạt tài khoản:</p>" +
+                        "<a href='" + link + "'>KÍCH HOẠT NGAY</a>" +
+                        "<p>Link chỉ dùng 1 lần và hết hạn sau 15 phút.</p>";
+                EmailUtil.send(username, "Xác thực tài khoản", content);
+            }).start();
 
-        authDao.saveToken(userId, token, expiry);
-
-        String link = appUrl + "/verify?token=" + token;
-        new Thread(() -> {
-            String content = "<h3>Chào " + fullName + "!</h3>" +
-                    "<p>Bấm vào đây để kích hoạt tài khoản:</p>" +
-                    "<a href='" + link + "'>KÍCH HOẠT NGAY</a>" +
-                    "<p>Link chỉ dùng 1 lần và hết hạn sau 15 phút.</p>";
-            EmailUtil.send(username, "Xác thực tài khoản", content);
-        }).start();
+        } else {
+            authDao.activeUser(userId);
+        }
 
         return true;
     }
@@ -60,14 +63,27 @@ public class AuthService {
         return false;
     }
 
-    public User checkLoginByPhone(String phone) {
-        String normalizedPhone = phone.replace("+84", "0");
+    public User checkLoginByUsername(String username) {
+        if (username == null) return null;
 
-        User u = authDao.getUserByUsername(normalizedPhone);
-
-        if (u != null) {
-            return u;
+        String normalizedUser = username;
+        if (normalizedUser.startsWith("+84")) {
+            normalizedUser = "0" + normalizedUser.substring(3);
         }
-        return null;
+
+        return authDao.getUserByUsername(normalizedUser);
+    }
+    public void registerForSocial(String username, String fullName, String img) {
+        if (username.startsWith("+84")) {
+            username = "0" + username.substring(3);
+        }
+
+        if (authDao.checkExist(username)) return;
+
+        String dummyPass = "";
+
+        int userId = authDao.registerUserReturnId(username, dummyPass, fullName);
+
+        authDao.activeUser(userId);
     }
 }
