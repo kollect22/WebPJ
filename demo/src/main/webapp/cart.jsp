@@ -197,7 +197,14 @@
             <div class="cart-item" id="item-${ci.product.id}">
 
 
-                <input type="checkbox" class="item-check" checked>
+                <input type="checkbox"
+                       class="item-check"
+                       checked
+                       data-id="${ci.product.id}"
+                       data-price="${ci.product.price}"
+                       data-qty="${ci.quantity}"
+                       onchange="recalculateTotal()">
+
 
                 <div class="item-image">
                     <img src="${ci.product.img}" alt="${ci.product.name}">
@@ -213,6 +220,7 @@
 
                     <div class="quantity-control">
                         <a href="javascript:void(0)"
+                           class="minus-btn"
                            onclick="updateCart(${ci.product.id}, -1)">-</a>
 
                         <span id="qty-${ci.product.id}">
