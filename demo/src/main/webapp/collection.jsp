@@ -92,7 +92,7 @@
           margin: 10px 0 5px;
           font-size: 18px;
           font-weight: 600;
-          color: white;
+          color: black;
       }
 
       .price {
