@@ -11,7 +11,7 @@
 
     <nav class="nav-center">
         <ul>
-            <li><a href="${pageContext.request.contextPath}/product-new.jsp">Hàng mới</a></li>
+            <li><a href="${pageContext.request.contextPath}/product-new">Hàng mới</a></li>
 
             <li>
                 <a href="${pageContext.request.contextPath}/list-product">Sản phẩm</a>

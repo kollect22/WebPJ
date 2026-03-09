@@ -117,11 +117,10 @@
             cursor: default;
         }
 
-        /* --- SORT MENU --- */
         .sort-wrapper { position: relative; z-index: 2000; cursor: pointer; user-select: none; }
-        .sort-label{ cursor: pointer; user-select: none; padding: 0 20px; } /* Đã chỉnh lại padding cho gọn */
+        .sort-label{ cursor: pointer; user-select: none; padding: 0 20px; } /
         .sort-menu {
-            position: absolute; top: 105%; right: 0; width: 250px; /* Gọn hơn */
+            position: absolute; top: 105%; right: 0; width: 250px;
             background-color: white; box-shadow: 0 5px 20px rgba(0,0,0,0.15);
             padding: 8px 0; display: none; z-index: 2000; border: 1px solid #eee; list-style: none;
         }
@@ -162,7 +161,7 @@
 
         .product-item img {
             width: 100%;
-            height: 380px; /* Chiều cao ảnh */
+            height: 380px;
             object-fit: cover;
             margin-bottom: 10px;
         }
@@ -215,7 +214,7 @@
             -webkit-box-orient: vertical;
             overflow: hidden;
             text-overflow: ellipsis;
-            height: 40px; /* Chiều cao cố định 2 dòng */
+            height: 40px;
         }
 
 
@@ -224,22 +223,21 @@
             font-size: 15px;
             color: #333;
             text-align: center;
-            display: flex; /* Dùng flex để căn giữa các giá */
+            display: flex;
             justify-content: center;
             align-items: center;
             gap: 8px;
         }
 
         .product-price .sale-price-text {
-            color: #d0021b; /* Màu đỏ */
+            color: #d0021b;
             font-weight: bold;
             font-size: 16px;
         }
 
-        /* Giá gốc khi bị gạch */
         .product-price .old-price {
             text-decoration: line-through;
-            color: #999; /* Màu xám nhạt */
+            color: #999;
             font-size: 14px;
             font-weight: normal;
         }
@@ -265,16 +263,14 @@
             color: #d0021b;
             font-weight: bold;
             font-size: 13px;
-            text-transform: uppercase; /* Chữ in hoa */
+            text-transform: uppercase;
             border: 1px solid #d0021b;
             padding: 3px 12px;
-            /* Để căn giữa trong thẻ cha có text-align: center */
             display: inline-block;
             margin-top: 5px;
         }
 
 
-        /* --- SIDEBAR FILTER (Giữ nguyên) --- */
         .filter-sidebar {
             position: fixed; top: 0; left: 0; width: 350px; max-width: 85%; height: 100%;
             background-color: white; box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
@@ -369,10 +365,9 @@
 
         <c:forEach items="${list}" var="p">
 
-            <%-- Bỏ thẻ div bọc ngoài thừa để grid hoạt động đúng --%>
+
             <a href="detail?id=${p.id}" class="product-item">
 
-                    <%-- Ảnh sản phẩm --%>
                 <c:choose>
                     <c:when test="${fn:startsWith(p.img, 'http')}">
                         <img src="${p.img}" alt="${p.name}" class="product-card-img" />
@@ -384,25 +379,20 @@
                     </c:otherwise>
                 </c:choose>
 
-                    <%-- Nút thêm giỏ hàng (Chặn sự kiện click lan ra thẻ a ngoài cùng) --%>
                 <span class="cart-icon" onclick="event.preventDefault(); addToCart(${p.id});">
                     <i class="fa-solid fa-cart-shopping"></i>
                 </span>
 
-                    <%-- Các chấm màu --%>
                 <div class="color-options">
                     <c:if test="${not empty p.colors}">
                         <c:forEach items="${p.colors}" var="c">
                             <c:set var="bgColor" value="#ccc" />
-                            <%-- (Logic chọn màu giữ nguyên) --%>
                             <c:if test="${fn:containsIgnoreCase(c.colorName, 'Đen')}"><c:set var="bgColor" value="#000000" /></c:if>
                             <c:if test="${fn:containsIgnoreCase(c.colorName, 'Be') || fn:containsIgnoreCase(c.colorName, 'Kem')}"><c:set var="bgColor" value="#f0e6d2" /></c:if>
                             <c:if test="${fn:containsIgnoreCase(c.colorName, 'Đỏ')}"><c:set var="bgColor" value="#d0021b" /></c:if>
                             <c:if test="${fn:containsIgnoreCase(c.colorName, 'Bạc')}"><c:set var="bgColor" value="#c0c0c0" /></c:if>
                             <c:if test="${fn:containsIgnoreCase(c.colorName, 'Xanh')}"><c:set var="bgColor" value="#aaddff" /></c:if>
                             <c:if test="${fn:containsIgnoreCase(c.colorName, 'Trắng')}"><c:set var="bgColor" value="#ffffff" /></c:if>
-
-                            <%-- Chặn sự kiện click để không nhảy trang khi bấm vào màu --%>
                             <span class="color-swatch"
                                   onclick="event.preventDefault(); changeCardImage(this)"
                                   data-src="${pageContext.request.contextPath}/${c.imgThumbnail}"
@@ -413,31 +403,25 @@
                     </c:if>
                 </div>
 
-                    <%-- Tên sản phẩm --%>
+
                 <div class="product-name">
                         ${p.name}
                 </div>
 
-                    <%-- Giá tiền --%>
                 <div class="product-price">
                     <c:choose>
-                        <%-- TRƯỜNG HỢP CÓ GIẢM GIÁ (salePrice > 0) --%>
                         <c:when test="${p.salePrice > 0}">
-                            <%-- Giá mới màu đỏ --%>
                             <span class="sale-price-text">
                                 <fmt:formatNumber value="${p.salePrice}" pattern="#,###"/> đ
                             </span>
-                            <%-- Giá cũ gạch ngang --%>
                             <span class="old-price">
                                 <fmt:formatNumber value="${p.price}" pattern="#,###"/> đ
                             </span>
-                            <%-- Tag phần trăm giảm giá (Nền đỏ chữ trắng) --%>
                             <span class="discount-tag">
                                 -<fmt:formatNumber value="${(1 - p.salePrice/p.price) * 100}" maxFractionDigits="0"/>%
                             </span>
                         </c:when>
 
-                        <%-- TRƯỜNG HỢP KHÔNG GIẢM GIÁ --%>
                         <c:otherwise>
                             <span class="regular-price-text">
                                 <fmt:formatNumber value="${p.price}" pattern="#,###"/> đ
@@ -446,16 +430,14 @@
                     </c:choose>
                 </div>
 
-                    <%-- Nhãn Hot (Nếu có logic check hot thì bọc c:if vào đây) --%>
                 <div class="Special-deal">Hot</div>
 
-            </a> <%-- Kết thúc thẻ a.product-item --%>
+            </a>
 
         </c:forEach>
     </div>
 </div>
 
-<%-- (Phần Sidebar và Footer giữ nguyên) --%>
 <aside class="filter-overlay" id="filter-overlay">
     <div class="filter-sidebar">
         <div class="filter-sidebar-header">
@@ -468,7 +450,7 @@
         <div class="filter-sidebar-body">
             <ul class="categories-list">
                 <li class="${empty activeCid ? 'active' : ''}">
-                    <a href="/FashionStore/list-product">Tất cả sản phẩm</a>
+                    <a href="/list-product">Tất cả sản phẩm</a>
                 </li>
                 <li class="${activeCid == 1 ? 'active' : ''}">
                     <a href="list-product?cid=1">Túi xách</a>
