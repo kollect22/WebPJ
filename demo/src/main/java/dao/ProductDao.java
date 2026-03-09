@@ -127,7 +127,7 @@ public class ProductDao extends BaseDao {
     }
     public List<Product> getNewArrivals() {
         return get().withHandle(h -> {
-            String sql = "SELECT *, is_new AS newProduct FROM products WHERE is_new = 1 ORDER BY id DESC LIMIT 20";
+            String sql = "SELECT * FROM products WHERE new_product = 1 ORDER BY id DESC LIMIT 20";
 
             List<Product> list = h.createQuery(sql)
                     .mapToBean(Product.class)
