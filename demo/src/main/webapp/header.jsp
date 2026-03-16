@@ -32,7 +32,7 @@
             <input type="search" placeholder="Tìm kiếm" class="search-input">
         </div>
 
-        <a href="${empty sessionScope.auth ? pageContext.request.contextPath.concat('/login.jsp') : '#'}"
+        <a href="${pageContext.request.contextPath}${empty sessionScope.auth ? '/login.jsp' : '/user/profile.jsp'}"
            class="d-flex align-items-center gap-2 text-decoration-none text-reset">
 
             <i class="fa-solid fa-user"></i>
