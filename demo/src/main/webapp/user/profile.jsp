@@ -54,8 +54,86 @@
 
         <div class="col-lg-9 col-md-8">
             <div class="bg-white p-4 rounded shadow-sm">
-                <h4 class="mb-4">Hồ sơ của tôi</h4>
-                <p>Khung trắng này là nơi bạn sẽ đặt Form điền Tên, Email, Số điện thoại...</p>
+                <h4 class="mb-4 fw-bold text-black">Hồ sơ của tôi</h4>
+
+                <form action="${pageContext.request.contextPath}/user/update-profile" method="POST">
+
+                    <div class="row mb-3">
+                        <div class="col-md-12">
+                            <label for="fullName" class="form-label fw-bold">Họ và tên <span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" id="fullName" name="fullName" placeholder="Ví dụ: Nguyễn Văn A" value="${sessionScope.auth.fullName}" required>
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label for="phone" class="form-label fw-bold">Số điện thoại <span class="text-danger">*</span></label>
+                            <input type="tel" class="form-control" id="phone" name="phone" pattern="(84|0[3|5|7|8|9])+([0-9]{8})" placeholder="Ví dụ: 0912345678" value="${sessionScope.auth.phone}" required title="Vui lòng nhập đúng số điện thoại 10 số">
+                        </div>
+
+                        <div class="col-md-6 mt-3 mt-md-0">
+                            <label for="email" class="form-label fw-bold">Địa chỉ Email <span class="text-danger">*</span></label>
+                            <input type="email" class="form-control" id="email" name="email" placeholder="email@example.com" value="${sessionScope.auth.email}" required>
+                        </div>
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="form-label fw-bold d-block">Giới tính <span class="text-danger">*</span></label>
+
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="gender" id="genderMale" value="Nam" required
+                            ${empty sessionScope.auth.gender || sessionScope.auth.gender == 'Nam' ? 'checked' : ''}>
+                            <label class="form-check-label" for="genderMale">Nam</label>
+                        </div>
+
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="gender" id="genderFemale" value="Nu" required
+                            ${sessionScope.auth.gender == 'Nu' ? 'checked' : ''}>
+                            <label class="form-check-label" for="genderFemale">Nữ</label>
+                        </div>
+                        <h5 class="mb-3 mt-4 fw-bold text-black border-bottom pb-2">Địa chỉ nhận hàng</h5>
+
+                        <input type="hidden" id="provinceName" name="provinceName" value="${sessionScope.auth.province}">
+                        <input type="hidden" id="districtName" name="districtName" value="${sessionScope.auth.district}">
+                        <input type="hidden" id="wardName" name="wardName" value="${sessionScope.auth.ward}">
+
+                        <div class="row mb-3">
+                            <div class="col-md-4">
+                                <label for="province" class="form-label fw-bold">Tỉnh / Thành phố <span class="text-danger">*</span></label>
+                                <select class="form-select" id="province" name="province" required>
+                                    <option value="" selected disabled>Chọn Tỉnh/Thành</option>
+                                </select>
+                            </div>
+
+                            <div class="col-md-4 mt-3 mt-md-0">
+                                <label for="district" class="form-label fw-bold">Quận / Huyện <span class="text-danger">*</span></label>
+                                <select class="form-select" id="district" name="district" required>
+                                    <option value="" selected disabled>Chọn Quận/Huyện</option>
+                                </select>
+                            </div>
+
+                            <div class="col-md-4 mt-3 mt-md-0">
+                                <label for="ward" class="form-label fw-bold">Phường / Xã <span class="text-danger">*</span></label>
+                                <select class="form-select" id="ward" name="ward" required>
+                                    <option value="" selected disabled>Chọn Phường/Xã</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="mb-4">
+                            <label for="specificAddress" class="form-label fw-bold">Địa chỉ cụ thể (Số nhà, ngõ, tên đường) <span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" id="specificAddress" name="specificAddress"
+                                   placeholder="Ví dụ: 123 Lê Lợi, Tòa nhà Bitexco..."
+                                   value="${sessionScope.auth.specificAddress}" required>
+                        </div>
+
+                    <hr class="mb-4">
+
+                    <div class="d-flex justify-content-end">
+                        <button type="submit" class="btn btn-dark px-4 py-2 fw-bold">Lưu thay đổi</button>
+                    </div>
+
+                </form>
             </div>
         </div>
 
@@ -65,5 +143,6 @@
 <div class="d-flex">
     <jsp:include page="/footer.jsp"></jsp:include>
 </div>
+<script src="${pageContext.request.contextPath}/assets/js/api-tinhthanh.js"></script>
 </body>
 </html>
