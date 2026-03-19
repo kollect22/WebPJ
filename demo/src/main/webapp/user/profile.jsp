@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
 </head>
-<body>
+<body class="d-flex flex-column min-vh-100 bg-light">
 <div class="d-flex" >
     <jsp:include page="/header.jsp"></jsp:include>
 </div>
@@ -91,6 +91,7 @@
                             ${sessionScope.auth.gender == 'Nu' ? 'checked' : ''}>
                             <label class="form-check-label" for="genderFemale">Nữ</label>
                         </div>
+                    </div>
                         <h5 class="mb-3 mt-4 fw-bold text-black border-bottom pb-2">Địa chỉ nhận hàng</h5>
 
                         <input type="hidden" id="provinceName" name="provinceName" value="${sessionScope.auth.province}">
@@ -100,21 +101,21 @@
                         <div class="row mb-3">
                             <div class="col-md-4">
                                 <label for="province" class="form-label fw-bold">Tỉnh / Thành phố <span class="text-danger">*</span></label>
-                                <select class="form-select" id="province" name="province" required>
+                                <select class="form-select" id="province" name="province" required onchange="document.getElementById('provinceName').value = this.options[this.selectedIndex].text;">
                                     <option value="" selected disabled>Chọn Tỉnh/Thành</option>
                                 </select>
                             </div>
 
                             <div class="col-md-4 mt-3 mt-md-0">
                                 <label for="district" class="form-label fw-bold">Quận / Huyện <span class="text-danger">*</span></label>
-                                <select class="form-select" id="district" name="district" required>
+                                <select class="form-select" id="district" name="district" required onchange="document.getElementById('districtName').value = this.options[this.selectedIndex].text;">
                                     <option value="" selected disabled>Chọn Quận/Huyện</option>
                                 </select>
                             </div>
 
                             <div class="col-md-4 mt-3 mt-md-0">
                                 <label for="ward" class="form-label fw-bold">Phường / Xã <span class="text-danger">*</span></label>
-                                <select class="form-select" id="ward" name="ward" required>
+                                <select class="form-select" id="ward" name="ward" required onchange="document.getElementById('wardName').value = this.options[this.selectedIndex].text;">
                                     <option value="" selected disabled>Chọn Phường/Xã</option>
                                 </select>
                             </div>
@@ -129,9 +130,15 @@
 
                     <hr class="mb-4">
 
-                    <div class="d-flex justify-content-end">
-                        <button type="submit" class="btn btn-dark px-4 py-2 fw-bold">Lưu thay đổi</button>
-                    </div>
+                        <div class="d-flex justify-content-end">
+                            <a href="javascript:void(0);"
+                               onclick="if(confirm('Bạn có chắc chắn muốn xóa tài khoản vĩnh viễn không? Mọi dữ liệu sẽ không thể khôi phục!')) { window.location.href='${pageContext.request.contextPath}/user/delete-profile'; }"
+                               class="btn btn-outline-danger px-4 py-2 fw-bold me-3">
+                                Xóa tài khoản
+                            </a>
+
+                            <button type="submit" class="btn btn-dark px-4 py-2 fw-bold">Lưu thay đổi</button>
+                        </div>
 
                 </form>
             </div>
@@ -140,9 +147,62 @@
     </div>
 </div>
 
-<div class="d-flex">
+<div class="mt-auto w-100">
     <jsp:include page="/footer.jsp"></jsp:include>
 </div>
 <script src="${pageContext.request.contextPath}/assets/js/api-tinhthanh.js"></script>
+<script>
+    window.addEventListener('load', function() {
+        let savedProvince = document.getElementById("provinceName").value;
+        let savedDistrict = document.getElementById("districtName").value;
+        let savedWard = document.getElementById("wardName").value;
+
+        function selectOptionByText(selectId, text) {
+            let select = document.getElementById(selectId);
+            if(!select || !text) return false;
+
+            for(let i = 0; i < select.options.length; i++) {
+                if(select.options[i].text === text) {
+                    select.selectedIndex = i;
+                    select.dispatchEvent(new Event('change'));
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        let checkProvince = setInterval(function() {
+            let pSelect = document.getElementById("province");
+            if(pSelect && pSelect.options.length > 1) {
+                clearInterval(checkProvince);
+
+                if(savedProvince) {
+                    selectOptionByText("province", savedProvince);
+
+                    let checkDistrict = setInterval(function() {
+                        let dSelect = document.getElementById("district");
+                        if(dSelect && dSelect.options.length > 1) {
+                            clearInterval(checkDistrict);
+
+                            if(savedDistrict) {
+                                selectOptionByText("district", savedDistrict);
+                                let checkWard = setInterval(function() {
+                                    let wSelect = document.getElementById("ward");
+                                    if(wSelect && wSelect.options.length > 1) {
+                                        clearInterval(checkWard);
+
+                                        if(savedWard) {
+                                            selectOptionByText("ward", savedWard);
+                                        }
+                                    }
+                                }, 200);
+                            }
+                        }
+                    }, 200);
+                }
+            }
+        }, 200);
+    });
+</script>
 </body>
 </html>

@@ -52,5 +52,27 @@ public class AuthDao extends BaseDao {
         get().useHandle(h -> h.createUpdate("DELETE FROM tokens WHERE token = :tk")
                 .bind("tk", token).execute());
     }
-
+    public boolean updateUserProfile(User u) {
+        String sql = "UPDATE users SET full_name = :fn, phone = :p, email = :e, gender = :g, " +
+                "province = :pr, district = :d, ward = :w, specific_address = :sa " +
+                "WHERE id = :id";
+        return get().withHandle(h ->
+                h.createUpdate(sql)
+                        .bind("fn", u.getFullName())
+                        .bind("p", u.getPhone())
+                        .bind("e", u.getEmail())
+                        .bind("g", u.getGender())
+                        .bind("pr", u.getProvince())
+                        .bind("d", u.getDistrict())
+                        .bind("w", u.getWard())
+                        .bind("sa", u.getSpecificAddress())
+                        .bind("id", u.getId())
+                        .execute()
+        ) > 0;
+    }
+    public void deleteUser(int userId) {
+        get().useHandle(h -> h.createUpdate("DELETE FROM users WHERE id = :id")
+                .bind("id", userId)
+                .execute());
+    }
 }
