@@ -31,6 +31,48 @@ public class ProductDao extends BaseDao {
             return list;
         });
     }
+    // 1. Đếm tổng số lượng sản phẩm (Phục vụ cho việc tính ra số trang)
+    public int getTotalProducts(String search) {
+        return get().withHandle(h -> {
+            String sql = "SELECT COUNT(*) FROM products WHERE name LIKE :search";
+            // Nếu search rỗng, LIKE "%%" sẽ tự động lấy toàn bộ sản phẩm
+            String keyword = (search == null) ? "" : search;
+
+            return h.createQuery(sql)
+                    .bind("search", "%" + keyword + "%")
+                    .mapTo(Integer.class)
+                    .one();
+        });
+    }
+
+    public List<Product> getProductsWithPagination(String search, int offset, int limit) {
+        return get().withHandle(h -> {
+            String sql = "SELECT p.*, c.name AS categoryName " +
+                    "FROM products p " +
+                    "LEFT JOIN categories c ON p.category_id = c.id " +
+                    "WHERE p.name LIKE :search " +
+                    "ORDER BY p.id DESC " +
+                    "LIMIT :limit OFFSET :offset";
+
+            String keyword = (search == null) ? "" : search;
+
+            List<Product> list = h.createQuery(sql)
+                    .bind("search", "%" + keyword + "%")
+                    .bind("limit", limit)
+                    .bind("offset", offset)
+                    .mapToBean(Product.class)
+                    .list();
+
+            for (Product p : list) {
+                if (p.getGroupId() > 0) {
+                    List<ColorVariant> colors = getRelatedColors(h, p.getGroupId(), p.getId());
+                    p.setColors(colors);
+                }
+            }
+
+            return list;
+        });
+    }
     public Product getProduct(int id) {
         return get().withHandle(h -> {
 //            return h.createQuery("select * from products where id = :id").bind("id",id).mapToBean(Product.class).first();

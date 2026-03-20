@@ -7,12 +7,10 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import model.Product;
-import services.ProductService;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-
 
 @WebServlet(name = "ListProduct", value = "/list-product")
 public class ListProduct extends HttpServlet {
@@ -25,37 +23,45 @@ public class ListProduct extends HttpServlet {
             ProductDao dao = new ProductDao();
             List<Product> list = new ArrayList<>();
 
-            // 2. Lấy tham số từ URL
-            // Ví dụ: /products?cid=2 (Lấy danh mục 2)
-            // Ví dụ: /products (Lấy tất cả)
             String cidParam = request.getParameter("cid");
             String searchParam = request.getParameter("search");
+            String pageParam = request.getParameter("page");
+
+            int pageSize = 8;
+            int page = 1;
+            if (pageParam != null && !pageParam.isEmpty()) {
+                page = Integer.parseInt(pageParam);
+            }
+            int offset = (page - 1) * pageSize;
+            int totalPages = 0;
 
             String title = "Tất cả sản phẩm";
 
             if (cidParam != null && !cidParam.isEmpty()) {
                 int cid = Integer.parseInt(cidParam);
                 list = dao.getProductsByCategory(cid);
-
                 title = dao.getCategoryName(cid);
+                request.setAttribute("activeCid", cid);
 
-                request.setAttribute("activeCid", cid); // tô màu menu active của JSP
-
-            } else if (searchParam != null && !searchParam.isEmpty()) {
-                // TÌM KIẾM ---
-                // list = dao.searchByName(searchParam);
-                title = "Kết quả tìm kiếm: " + searchParam;
+                totalPages = 0;
 
             } else {
-                // --- TRƯỜNG HỢP: MẶC ĐỊNH (LẤY TẤT CẢ) ---
-                list = dao.getListProduct();
+                if (searchParam != null && !searchParam.isEmpty()) {
+                    title = "Kết quả tìm kiếm: " + searchParam;
+                }
+
+                int totalProducts = dao.getTotalProducts(searchParam);
+                totalPages = (int) Math.ceil((double) totalProducts / pageSize);
+                list = dao.getProductsWithPagination(searchParam, offset, pageSize);
             }
 
-            // 4. Gửi dữ liệu sang JSP
             request.setAttribute("list", list);
             request.setAttribute("pageTitle", title);
 
-            // 5. Điều hướng về 1 file JSP duy nhất
+            request.setAttribute("currentPage", page);
+            request.setAttribute("totalPages", totalPages);
+            request.setAttribute("search", searchParam);
+
             request.getRequestDispatcher("/list-product.jsp").forward(request, response);
 
         } catch (Exception e) {
@@ -65,14 +71,9 @@ public class ListProduct extends HttpServlet {
             e.printStackTrace(response.getWriter());
             response.getWriter().println("</pre>");
         }
-//        ProductService ps = new ProductService();
-//        List<Product> list = ps.getListProduct();
-//        request.setAttribute("list", list);
-//        request.getRequestDispatcher("list-product.jsp").forward(request, response);
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         doGet(request, response);
     }
 }
-

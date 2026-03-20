@@ -7,6 +7,7 @@ public class User implements Serializable {
     private String username;
     private String password;
     private String fullName;
+    private int role;
 
     private String phone;
     private String email;
@@ -30,9 +31,11 @@ public class User implements Serializable {
     public String getPassword() { return password; }
     public void setPassword(String password) { this.password = password; }
 
-    // Getter/Setter cho fullName
     public String getFullName() { return fullName; }
     public void setFullName(String fullName) { this.fullName = fullName; }
+
+    public int getRole() { return role; }
+    public void setRole(int role) { this.role = role; }
 
     public String getPhone() { return phone; }
     public void setPhone(String phone) { this.phone = phone; }

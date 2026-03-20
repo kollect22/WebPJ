@@ -33,9 +33,28 @@ public class AdminController extends HttpServlet {
                 break;
             case "/admin/products":
                 ProductDao productDao = new ProductDao();
-                List<Product> list = productDao.getListProduct();
+
+                String search = req.getParameter("search");
+
+                int page = 1;
+                String pageParam = req.getParameter("page");
+                if (pageParam != null && !pageParam.isEmpty()) {
+                    page = Integer.parseInt(pageParam);
+                }
+
+                int pageSize = 10;
+                int offset = (page - 1) * pageSize;
+
+                int totalProducts = productDao.getTotalProducts(search);
+                int totalPages = (int) Math.ceil((double) totalProducts / pageSize);
+
+                List<Product> list = productDao.getProductsWithPagination(search, offset, pageSize);
 
                 req.setAttribute("productList", list);
+                req.setAttribute("currentPage", page);
+                req.setAttribute("totalPages", totalPages);
+                req.setAttribute("search", search);
+
                 req.setAttribute("activeMenu", "products");
                 targetPage = "/admin/products.jsp";
                 break;

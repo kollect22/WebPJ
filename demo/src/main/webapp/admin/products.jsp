@@ -50,8 +50,16 @@
         <div class="container-fluid px-4 mt-4">
 
             <div class="d-flex justify-content-between align-items-center mb-4">
-                <h3 class="mb-0 text-secondary">Danh sách Sản phẩm</h3>
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addProductModal">
+                <h3 class="mb-0 text-secondary text-nowrap">Danh sách Sản phẩm</h3>
+
+                <form action="${pageContext.request.contextPath}/admin/products" method="GET" class="d-flex w-50 mx-4">
+                    <input type="text" name="search" class="form-control me-2" placeholder="Tìm theo tên sản phẩm..." value="${param.search}">
+                    <button type="submit" class="btn btn-outline-secondary">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </button>
+                </form>
+
+                <button type="button" class="btn btn-primary text-nowrap" data-bs-toggle="modal" data-bs-target="#addProductModal">
                     <i class="fa-solid fa-plus me-1"></i> Thêm Sản phẩm
                 </button>
             </div>
@@ -114,6 +122,29 @@
                         </table>
                     </div>
                 </div>
+                <c:if test="${totalPages > 0}">
+                    <div class="card-footer bg-white border-0 py-3 mt-2">
+                        <nav aria-label="Page navigation">
+                            <ul class="pagination justify-content-end mb-0">
+
+                                <li class="page-item ${currentPage == 1 ? 'disabled' : ''}">
+                                    <a class="page-link" href="?page=${currentPage - 1}&search=${param.search}">Trang trước</a>
+                                </li>
+
+                                <c:forEach begin="1" end="${totalPages}" var="i">
+                                    <li class="page-item ${currentPage == i ? 'active' : ''}">
+                                        <a class="page-link" href="?page=${i}&search=${param.search}">${i}</a>
+                                    </li>
+                                </c:forEach>
+
+                                <li class="page-item ${currentPage == totalPages ? 'disabled' : ''}">
+                                    <a class="page-link" href="?page=${currentPage + 1}&search=${param.search}">Trang sau</a>
+                                </li>
+
+                            </ul>
+                        </nav>
+                    </div>
+                </c:if>
             </div>
 
         </div>
