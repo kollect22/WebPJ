@@ -23,7 +23,12 @@ public class LoginController extends HttpServlet {
 
             HttpSession session = req.getSession();
             session.setAttribute("auth",u);
-            resp.sendRedirect(req.getContextPath() + "/home");
+            if (u.getRole() == 1) {
+                resp.sendRedirect(req.getContextPath() + "/admin/dashboard.jsp");
+            } else {
+                resp.sendRedirect(req.getContextPath() + "/home");
+            }
+
         } else {
             req.setAttribute("error", "Sai username hoặc password");
             req.getRequestDispatcher("login.jsp").forward(req, resp);

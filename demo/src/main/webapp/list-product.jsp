@@ -118,7 +118,7 @@
         }
 
         .sort-wrapper { position: relative; z-index: 2000; cursor: pointer; user-select: none; }
-        .sort-label{ cursor: pointer; user-select: none; padding: 0 20px; } /
+        .sort-label{ cursor: pointer; user-select: none; padding: 0 20px; }
         .sort-menu {
             position: absolute; top: 105%; right: 0; width: 250px;
             background-color: white; box-shadow: 0 5px 20px rgba(0,0,0,0.15);
