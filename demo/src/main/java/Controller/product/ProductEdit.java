@@ -14,16 +14,7 @@ public class ProductEdit extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        try {
-            int id = Integer.parseInt(req.getParameter("id"));
-            ProductDao dao = new ProductDao();
-            Product p = dao.getProduct(id);
-
-            req.setAttribute("p", p);
-            req.getRequestDispatcher("/admin/product-edit.jsp").forward(req, resp);
-        } catch (Exception e) {
-            resp.sendRedirect(req.getContextPath() + "/admin/products");
-        }
+        resp.sendRedirect(req.getContextPath() + "/admin/products");
     }
 
     @Override
@@ -35,25 +26,35 @@ public class ProductEdit extends HttpServlet {
             String strPrice = req.getParameter("price");
             String img = req.getParameter("img");
 
+            int categoryId = Integer.parseInt(req.getParameter("categoryId"));
+            int quantity = Integer.parseInt(req.getParameter("quantity"));
+            String description = req.getParameter("description");
+
             double tempPrice = 0;
-            if (strPrice != null) {
+            if (strPrice != null && !strPrice.isEmpty()) {
                 tempPrice = Double.parseDouble(strPrice.replace(",", "").replace(".", ""));
             }
 
-            Product p = new Product();
-            p.setId(id);
-            p.setName(name);
-            p.setPrice((int) tempPrice);
-            p.setImg(img);
-            p.setSalePrice(0);
-
             ProductDao dao = new ProductDao();
-            dao.update(p);
+
+            Product p = dao.getProduct(id);
+
+            if (p != null) {
+                p.setName(name);
+                p.setPrice((int) tempPrice);
+                p.setImg(img);
+                p.setCategoryId(categoryId);
+                p.setQuantity(quantity);
+                p.setDescription(description);
+
+                dao.update(p);
+            }
 
             resp.sendRedirect(req.getContextPath() + "/admin/products");
 
         } catch (Exception e) {
             e.printStackTrace();
+            resp.sendRedirect(req.getContextPath() + "/admin/products?error=update_failed");
         }
     }
 }

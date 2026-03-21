@@ -12,6 +12,7 @@ public class Product implements Serializable {
     private String img;
     private int price;
     private int salePrice;
+    private int quantity;
 
     private boolean newProduct;
 
@@ -97,6 +98,9 @@ public class Product implements Serializable {
 
     public int getSalePrice() { return salePrice; }
     public void setSalePrice(int salePrice) { this.salePrice = salePrice; }
+
+    public int getQuantity() { return quantity; }
+    public void setQuantity(int quantity) { this.quantity = quantity; }
 
     public String getDescription() { return description; }
     public void setDescription(String description) { this.description = description; }

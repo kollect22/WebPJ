@@ -51,7 +51,7 @@ public class ProductDao extends BaseDao {
                     "FROM products p " +
                     "LEFT JOIN categories c ON p.category_id = c.id " +
                     "WHERE p.name LIKE :search " +
-                    "ORDER BY p.id DESC " +
+                    "ORDER BY p.id ASC " +
                     "LIMIT :limit OFFSET :offset";
 
             String keyword = (search == null) ? "" : search;
@@ -159,7 +159,7 @@ public class ProductDao extends BaseDao {
     // 2. Hàm Sửa (Update)
     public void update(Product p) {
         get().useHandle(h -> {
-            h.createUpdate("UPDATE products SET sku=:sku, name=:name, img=:img, price=:price, sale_price=:salePrice, " +
+            h.createUpdate("UPDATE products SET sku=:sku, name=:name, img=:img, price=:price, quantity=:quantity, sale_price=:salePrice, " +
                             "description=:description, material=:material, width=:width, height=:height, depth=:depth, " +
                             "category_id=:categoryId, group_id=:groupId, color_name=:colorName " +
                             "WHERE id = :id")
