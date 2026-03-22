@@ -37,6 +37,8 @@
             margin-top: 110px;
             padding: 0 20px;
             margin-bottom: 20px;
+            max-width: 1920px;
+            margin: 110px auto 20px auto;
         }
 
         .breadcrumbs {
@@ -61,11 +63,17 @@
         .breadcrumbs span {
             color: #999;
         }
+        .banner{
+            max-width: 1920px;
+            margin: 0 auto;
+        }
 
         /* --- SHOP CONTAINER --- */
         .shop-container {
             padding: 0 0;
             margin-bottom: 50px;
+            max-width: 1920px;
+            margin: 0 auto 50px auto;
         }
 
         .toolbar-container {
@@ -118,11 +126,10 @@
             cursor: default;
         }
 
-        /* --- SORT MENU --- */
         .sort-wrapper { position: relative; z-index: 2000; cursor: pointer; user-select: none; }
-        .sort-label{ cursor: pointer; user-select: none; padding: 0 20px; } /* Đã chỉnh lại padding cho gọn */
+        .sort-label{ cursor: pointer; user-select: none; padding: 0 20px; }
         .sort-menu {
-            position: absolute; top: 105%; right: 0; width: 250px; /* Gọn hơn */
+            position: absolute; top: 105%; right: 0; width: 250px;
             background-color: white; box-shadow: 0 5px 20px rgba(0,0,0,0.15);
             padding: 8px 0; display: none; z-index: 2000; border: 1px solid #eee; list-style: none;
         }
@@ -162,10 +169,12 @@
         }
 
         .product-item img {
-            width: 100%;
-            height: 380px; /* Chiều cao ảnh */
+            width:100%;
+            height: auto;
+            aspect-ratio: 3/4;
             object-fit: cover;
-            margin-bottom: 10px;
+            margin-bottom: 5px;
+            display:block;
         }
 
         .cart-icon {
@@ -216,7 +225,7 @@
             -webkit-box-orient: vertical;
             overflow: hidden;
             text-overflow: ellipsis;
-            height: 40px; /* Chiều cao cố định 2 dòng */
+            height: 40px;
         }
 
 
@@ -225,22 +234,21 @@
             font-size: 15px;
             color: #333;
             text-align: center;
-            display: flex; /* Dùng flex để căn giữa các giá */
+            display: flex;
             justify-content: center;
             align-items: center;
             gap: 8px;
         }
 
         .product-price .sale-price-text {
-            color: #d0021b; /* Màu đỏ */
+            color: #d0021b;
             font-weight: bold;
             font-size: 16px;
         }
 
-        /* Giá gốc khi bị gạch */
         .product-price .old-price {
             text-decoration: line-through;
-            color: #999; /* Màu xám nhạt */
+            color: #999;
             font-size: 14px;
             font-weight: normal;
         }
@@ -266,16 +274,14 @@
             color: #d0021b;
             font-weight: bold;
             font-size: 13px;
-            text-transform: uppercase; /* Chữ in hoa */
+            text-transform: uppercase;
             border: 1px solid #d0021b;
             padding: 3px 12px;
-            /* Để căn giữa trong thẻ cha có text-align: center */
             display: inline-block;
             margin-top: 5px;
         }
 
 
-        /* --- SIDEBAR FILTER (Giữ nguyên) --- */
         .filter-sidebar {
             position: fixed; top: 0; left: 0; width: 350px; max-width: 85%; height: 100%;
             background-color: white; box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);

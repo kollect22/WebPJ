@@ -8,6 +8,14 @@ body {
     background: white;
     color: black;
 }
+.navbar-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 1920px;
+    margin: 0 auto;
+}
 
 .navbar {
     position: fixed;
@@ -169,6 +177,8 @@ body {
 .banner-slider{
     padding-top: 60px;
     width: 100%;
+    max-width: 1920px;
+    margin: 0 auto;
     position: relative;
     overflow: hidden;
 }
@@ -188,7 +198,8 @@ body {
 .slide img{
     width: 100%;
     height: 100%;
-    object-fit: contain;
+    object-fit: cover;
+    /*justify-content: center;*/
     cursor: pointer;
     display: block;
 }
@@ -201,6 +212,9 @@ body {
     margin-top: 5px;       /* Cách phần trên một chút */
     margin-bottom: 40px;
     gap: 0;
+    max-width: 1920px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .cat-box {
@@ -212,8 +226,8 @@ body {
 }
 
 .cat-box img {
-    width: 100%;
-    height: 100%;
+    max-width: 100%;
+    max-height: 100%;
     object-fit: cover;      /* Đảm bảo ảnh phủ kín khung mà không bị méo */
     display: block;
     transition: transform 0.5s ease; /* Hiệu ứng zoom nhẹ khi di chuột */
@@ -256,7 +270,7 @@ body {
     padding: 0;
     height: auto;
     position: relative;
-    max-width: 1400px;
+    max-width: 1920px;
     margin: 0 auto;
     box-sizing: border-box;
     border-bottom: 1px solid #eeeeee;
@@ -478,7 +492,7 @@ h2 {
 }
 
 .collection {
-    max-width: 1400px;
+    max-width: 1920px;
     margin: 0 auto;
     box-sizing: border-box;
 }
@@ -543,7 +557,7 @@ h2 {
 
 .footer-container {
     width: 100%;
-    max-width: 1400px;
+    max-width: 1920px;
     margin: 0 auto;
     display: flex;
     justify-content: space-between;
@@ -743,28 +757,28 @@ h2 {
 
 /* --- 1. KHỐI BAO NGOÀI ICON TIM (Để làm mốc toạ độ) --- */
 .wishlist-header {
-    position: relative;       /* Quan trọng: để số đếm bám theo icon này */
+    position: relative;
     display: inline-block;
-    color: black;             /* Màu icon mặc định */
-    font-size: 20px;          /* Kích thước icon (bằng với cart) */
+    color: black;
+    font-size: 20px;
     text-decoration: none;
-    margin-right: 15px;       /* Khoảng cách nếu nó đứng cạnh icon khác */
+    margin-right: 15px;
     transition: color 0.3s;
 }
 
 .wishlist-header:hover {
-    color: #666; /* Màu khi di chuột */
+    color: #666;
 }
 
-/* --- 2. SỐ ĐẾM (BADGE) - COPY Y HỆT CART --- */
+/* --- 2. SỐ ĐẾM (BADGE)  */
 .wishlist-count {
     position: absolute;
-    top: -8px;    /* Treo lên trên */
-    right: -10px; /* Treo sang phải */
+    top: -8px;
+    right: -10px;
 
-    background-color: #d0021b; /* Màu đỏ */
-    color: #ffffff;            /* Chữ trắng */
-    border-radius: 50%;        /* Hình tròn */
+    background-color: #d0021b;
+    color: #ffffff;
+    border-radius: 50%;
 
     min-width: 20px;
     height: 20px;
@@ -778,7 +792,7 @@ h2 {
     font-weight: bold;
     font-family: Arial, sans-serif;
 
-    border: 2px solid #fff;    /* Viền trắng tạo khoảng cách */
+    border: 2px solid #fff;
     box-shadow: 0 2px 5px rgba(0,0,0,0.2);
     z-index: 10;
 }

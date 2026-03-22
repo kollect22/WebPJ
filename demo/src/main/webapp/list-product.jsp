@@ -36,6 +36,8 @@
             margin-top: 110px;
             padding: 0 20px;
             margin-bottom: 20px;
+            max-width: 1920px;
+            margin: 110px auto 20px auto;
         }
 
         .breadcrumbs {
@@ -60,11 +62,17 @@
         .breadcrumbs span {
             color: #999;
         }
+        .banner{
+            max-width: 1920px;
+            margin: 0 auto;
+        }
 
         /* --- SHOP CONTAINER --- */
         .shop-container {
             padding: 0 0;
             margin-bottom: 50px;
+            max-width: 1920px;
+            margin: 0 auto 50px auto;
         }
 
         .toolbar-container {
@@ -160,10 +168,12 @@
         }
 
         .product-item img {
-            width: 100%;
-            height: 380px;
+            width:100%;
+            height: auto;
+            aspect-ratio: 3/4;
             object-fit: cover;
-            margin-bottom: 10px;
+            margin-bottom: 5px;
+            display:block;
         }
 
         .cart-icon {
