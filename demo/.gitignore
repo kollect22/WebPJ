@@ -2,3 +2,4 @@
 target/
 *.class
 *.war
+**/firebase-key.json

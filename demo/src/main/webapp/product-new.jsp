@@ -1,4 +1,9 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
+<%@ taglib prefix="fmt" uri="jakarta.tags.fmt" %>
+
+<fmt:setLocale value="vi_VN"/>
+
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -6,7 +11,6 @@
     <title>Hàng mới - Fashion Store</title>
 
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/style.css">
-
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
 
     <style>
@@ -15,6 +19,7 @@
             font-family: Arial, sans-serif;
             color: black;
             background-color: white;
+            margin: 0;
         }
 
         a {
@@ -27,31 +32,42 @@
             list-style: none;
         }
 
-        /* --- 2. BREADCRUMBS (Đường dẫn) --- */
+
+        .container-breadcrumbs {
+            margin-top: 110px;
+            padding: 0 20px;
+            margin-bottom: 20px;
+        }
+
         .breadcrumbs {
-            color: grey;
-            margin: 20px 40px 25px 40px;
-            border-bottom: 1px solid black;
-            padding-bottom: 10px;
+            color: #666;
+            font-size: 14px;
+            margin: 0;
+            padding: 0;
+            border-bottom: none;
         }
 
         .breadcrumbs i,
         .breadcrumbs a {
-            color: black;
+            color: #333;
             text-decoration: none;
         }
 
         .breadcrumbs a:hover {
             text-decoration: underline;
+            color: #000;
         }
 
-        /* --- 3. LAYOUT CONTAINER --- */
+        .breadcrumbs span {
+            color: #999;
+        }
+
+        /* --- SHOP CONTAINER --- */
         .shop-container {
-            padding: 0 40px;
+            padding: 0 0;
             margin-bottom: 50px;
         }
 
-        /* --- 4. TOOLBAR (Bộ lọc - Số lượng - Sắp xếp) --- */
         .toolbar-container {
             display: flex;
             justify-content: space-between;
@@ -65,7 +81,6 @@
             position: sticky;
             top:94px;
             z-index: 999;
-            box-shadow: 0 5px 10px rgba(0,0,0,0.05);
         }
 
         .tool-item {
@@ -83,7 +98,6 @@
             font-family: Arial, sans-serif;
         }
 
-        /* Đường kẻ dọc ngăn cách */
         .tool-item:not(:last-child)::after {
             content: "";
             position: absolute;
@@ -91,94 +105,42 @@
             top: 50%;
             transform: translateY(-50%);
             width: 1px;
-            height: 20px;
+            height: 30px;
             background-color: #e5e5e5;
-        }
-
-        /* Nút Bộ lọc */
-        .btn-filter {
-            font-weight: 500;
-            transition: color 0.3s;
         }
 
         .btn-filter:hover {
             color: #000;
         }
 
-        /* Số lượng sản phẩm */
         .product-count {
             color: #666;
             cursor: default;
         }
 
-        /* Phần Sắp xếp */
-        .sort-wrapper {
-            position: relative; /*Để menu con định vị theo cha */
-            z-index: 2000;
-            cursor: pointer;
-            user-select: none;
-        }
-
-        .sort-label{
-            cursor: pointer;
-            user-select: none;
-            padding-right: 170px;
-            padding-left: 170px;
-        }
-        /* Menu xổ xuống */
+        /* --- SORT MENU --- */
+        .sort-wrapper { position: relative; z-index: 2000; cursor: pointer; user-select: none; }
+        .sort-label{ cursor: pointer; user-select: none; padding: 0 20px; } /* Đã chỉnh lại padding cho gọn */
         .sort-menu {
-            position: absolute;
-            top: 105%;
-            right: 0;
-            width: 400px;
-            background-color: white;
-
-            box-shadow: 0 5px 20px rgba(0,0,0,0.15);
-            padding: 8px 0;
-
-            display: none;
-            z-index: 2000;
-            border: 1px solid #eee;
-            list-style: none;
+            position: absolute; top: 105%; right: 0; width: 250px; /* Gọn hơn */
+            background-color: white; box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+            padding: 8px 0; display: none; z-index: 2000; border: 1px solid #eee; list-style: none;
         }
-
-        .sort-menu.show {
-            display: block;
-            animation: fadeIn 0.2s ease;
-        }
-
+        .sort-menu.show { display: block; animation: fadeIn 0.2s ease; }
         .sort-item {
-            padding: 10px 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            color: #333;
-            font-size: 14px;
-            transition: 0.2s;
+            padding: 10px 20px; display: flex; justify-content: space-between;
+            align-items: center; color: #333; font-size: 14px; transition: 0.2s;
         }
-
-        .sort-item:hover {
-            background-color: #f5f5f5;
-            color: #000;
-        }
-
-        .check-icon {
-            opacity: 0;
-            color: #333;
-            font-size: 12px;
-        }
-
-        .sort-item.active .check-icon {
-            opacity: 1;
-        }
+        .sort-item:hover { background-color: #f5f5f5; color: #000; }
+        .check-icon { opacity: 0; color: #333; font-size: 12px; }
+        .sort-item.active .check-icon { opacity: 1; }
 
 
-
-        /* --- 5. PRODUCT GRID (Lưới sản phẩm) --- */
         .product-cat-list {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
             gap: 5px;
+            padding: 10px 20px;
         }
 
         a.product-item {
@@ -188,283 +150,248 @@
             text-decoration: none;
             text-align: center;
             color: inherit;
-            padding-bottom: 20px;
-
+            padding-bottom: 25px;
             border: 1px solid transparent;
             box-sizing: border-box;
             transition: all 0.3s ease;
+            background: #fff;
         }
 
         a.product-item:hover {
-            border: 1px solid #000;
-            border-radius: 0 !important;
-            background-color: #fff;
+            border-color: black;
         }
 
-        /* Ảnh sản phẩm */
         .product-item img {
             width: 100%;
-            height: 400px;
+            height: 380px; /* Chiều cao ảnh */
             object-fit: cover;
-            border-radius: 0;
-            background-color: #f9f9f9;
-            box-sizing: border-box;
-            transition: transform 0.3s ease;
-            margin-bottom: 5px;
-        }
-
-        .product-item:hover img {
-            transform: none;
-        }
-
-        /* Thông tin sản phẩm */
-        .product-name {
-            font-size: 16px;
-            margin-top: 15px;
             margin-bottom: 10px;
+        }
+
+        .cart-icon {
+            position: absolute; top: 15px; right: 15px; font-size: 18px;
+            color: white; background-color: #000; padding: 10px; border-radius: 50%;
+            opacity: 0; transition: all 0.3s ease; z-index: 2;
+        }
+        .product-item:hover .cart-icon { opacity: 1; transform: translateY(5px); }
+        .cart-icon:hover { background-color: #d0021b; }
+
+
+        .color-options {
+            display: flex;
+            gap: 8px;
+            justify-content: center;
+            margin: 15px 0 10px;
+            width: 100%;
+            padding: 0 10px;
+            box-sizing: border-box;
+        }
+        .color-swatch {
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            border: 1px solid #e0e0e0;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .color-swatch:hover {
+            transform: scale(1.1);
+            border-color: #999;
+        }
+
+        .product-name {
+            margin: 5px 0 10px;
+            text-align: center;
+            padding: 0 10px;
+            width:100%;
+            box-sizing: border-box;
+        }
+        .product-name a{
+            color: #333;
+            font-size: 16px;
             font-weight: 500;
             line-height: 1.4;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            height: 40px; /* Chiều cao cố định 2 dòng */
         }
+
 
         .product-price {
-            margin-top: 8px;
-            color: #333131;
-            font-size: 14px;
-        }
-
-        /* Icon giỏ hàng */
-        .cart-icon {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            font-size: 18px;
-            color: white;
-            background-color: #000;
-            padding: 10px;
-            border-radius: 50%;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-            z-index: 2;
-        }
-
-        .product-item:hover .cart-icon {
-            opacity: 1;
-        }
-
-        /* --- 6. SIDEBAR (Thanh bên) --- */
-        .filter-sidebar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 400px;
-            max-width: 85%;
-            height: 100%;
-            background-color: white;
-            box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
-
-            transform: translateX(-100%);
-            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            z-index: 1002;
-        }
-
-        .filter-sidebar-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 25px 30px;
-            border-bottom: 1px solid black;
-        }
-
-        .filter-sidebar-header h2 {
-            margin: 0;
-            font-size: 18px;
-            text-transform: uppercase;
-            font-weight: 600;
-            color: black;
-        }
-
-        .filter-sidebar-header button {
-            background: none;
-            border: none;
-            color: black;
-            font-size: 24px;
-            cursor: pointer;
-            transition: 0.3s;
-        }
-
-        .filter-sidebar-header button:hover {
-            color: black;
-            transform: rotate(90deg);
-        }
-
-        .filter-sidebar-body {
-            padding: 10px 30px;
-        }
-
-        .categories-list {
-            padding-left: 0;
-            margin-top: 10px;
-        }
-
-        .categories-list li {
-            margin-bottom: 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0);
-        }
-
-        .categories-list a {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 18px 0;
-            color: black;
+            margin-bottom: 15px;
             font-size: 15px;
-            transition: all 0.3s ease;
+            color: #333;
+            text-align: center;
+            display: flex; /* Dùng flex để căn giữa các giá */
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
         }
 
-        .categories-list a:hover {
-            color: grey;
-            padding-left: 10px;
+        .product-price .sale-price-text {
+            color: #d0021b; /* Màu đỏ */
+            font-weight: bold;
+            font-size: 16px;
         }
 
+        /* Giá gốc khi bị gạch */
+        .product-price .old-price {
+            text-decoration: line-through;
+            color: #999; /* Màu xám nhạt */
+            font-size: 14px;
+            font-weight: normal;
+        }
+
+        .product-price .regular-price-text {
+            font-weight: bold;
+            color: #000;
+            font-size: 16px;
+        }
+
+        .discount-tag {
+            background-color: #d0021b;
+            color: white;
+            font-size: 11px;
+            font-weight: bold;
+            padding: 2px 5px;
+            border-radius: 3px;
+            display: inline-block;
+        }
+
+
+        .Special-deal {
+            color: #d0021b;
+            font-weight: bold;
+            font-size: 13px;
+            text-transform: uppercase; /* Chữ in hoa */
+            border: 1px solid #d0021b;
+            padding: 3px 12px;
+            /* Để căn giữa trong thẻ cha có text-align: center */
+            display: inline-block;
+            margin-top: 5px;
+        }
+
+
+        /* --- SIDEBAR FILTER (Giữ nguyên) --- */
+        .filter-sidebar {
+            position: fixed; top: 0; left: 0; width: 350px; max-width: 85%; height: 100%;
+            background-color: white; box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+            transform: translateX(-100%); transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1); z-index: 1002;
+        }
+        .filter-sidebar-header {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 25px 30px; border-bottom: 1px solid black;
+        }
+        .filter-sidebar-header h2 {
+            margin: 0; font-size: 18px; text-transform: uppercase; font-weight: 600; color: black;
+        }
+        .filter-sidebar-header button {
+            background: none; border: none; color: black; font-size: 24px; cursor: pointer; transition: 0.3s;
+        }
+        .filter-sidebar-header button:hover { color: black; transform: rotate(90deg); }
+        .filter-sidebar-body { padding: 10px 30px; }
+        .categories-list { padding-left: 0; margin-top: 10px; }
+        .categories-list li { margin-bottom: 0; border-bottom: 1px solid rgba(255, 255, 255, 0); }
+        .categories-list a {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 18px 0; color: black; font-size: 15px; transition: all 0.3s ease;
+        }
+        .categories-list a:hover { color: grey; padding-left: 10px; }
         .categories-list a::after {
-            content: "\f054";
-            font-family: "Font Awesome 5 Free";
-            font-weight: 900;
-            font-size: 12px;
-            color: black;
-            transition: color 0.3s;
+            content: "\f054"; font-family: "Font Awesome 5 Free"; font-weight: 900;
+            font-size: 12px; color: black; transition: color 0.3s;
         }
-
-        .categories-list a:hover::after {
-            color: grey;
-        }
-
+        .categories-list a:hover::after { color: grey; }
         .filter-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.7);
-            z-index: 1001;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s ease;
-            backdrop-filter: blur(2px);
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background-color: rgba(0, 0, 0, 0.7); z-index: 1001; opacity: 0;
+            visibility: hidden; transition: all 0.3s ease; backdrop-filter: blur(2px);
         }
-
-        .filter-overlay.active {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        .filter-overlay.active .filter-sidebar {
-            transform: none;
-        }
+        .filter-overlay.active { opacity: 1; visibility: visible; }
+        .filter-overlay.active .filter-sidebar { transform: none; }
     </style>
-
 </head>
 <body>
+
 <jsp:include page="header.jsp" />
 
+<div class="container-breadcrumbs">
+    <nav class="breadcrumbs">
+        <i class="fa-solid fa-house"></i>
+        <a href="${pageContext.request.contextPath}/home">Trang chủ</a> /
+        <span>${pageTitle}</span>
+    </nav>
+</div>
+
 <section class="banner">
-    <img src="${pageContext.request.contextPath}/img/banners/banner-hlw.jpg" alt="Banner Halloween"/>
-    <div class="banner-text">
-        <h2>Ưu đãi Halloween</h2>
-        <a href="${pageContext.request.contextPath}/halloween-sales.jsp">Xem Ngay</a>
-    </div>
+    <img src="${pageContext.request.contextPath}/img/banners/banner5.jpg" style="width: 100%; object-fit: cover; padding: 0 20px; box-sizing: border-box;" />
 </section>
 
-<nav class="breadcrumbs">
-    <i class="fa-regular fa-house"></i>
-    <a href="${pageContext.request.contextPath}/index.jsp">Trang chủ</a> / <span>Hàng mới</span>
-</nav>
-
 <div class="shop-container">
+
     <div class="toolbar-container">
         <button class="tool-item btn-filter" id="filter-toggle-btn">
             <i class="fa-solid fa-filter"></i> Bộ lọc
         </button>
 
         <div class="tool-item product-count" id ="product-count-display">
-            0 sản phẩm
+            ${listNew != null ? listNew.size() : 0} sản phẩm
         </div>
 
         <div class="tool-item sort-wrapper" id="sortDropdownContainer">
             <div class="sort-label" id="sortToggle">
                 <i class="fa-solid fa-arrow-down-short-wide"></i>
-                <span id="current-sort-text">Sắp xếp</span>
+                <span id="current-sort-text">Mới nhất</span>
             </div>
-
             <ul class="sort-menu" id="sortMenu">
-                <li class="sort-item active" data-value="newest">Mới nhất <i class="fa-solid fa-check check-icon"></i></li>
-                <li class="sort-item" data-value="oldest">Cũ nhất <i class="fa-solid fa-check check-icon"></i></li>
-                <li class="sort-item" data-value="price-asc">Giá tăng dần <i class="fa-solid fa-check check-icon"></i></li>
-                <li class="sort-item" data-value="price-desc">Giá giảm dần <i class="fa-solid fa-check check-icon"></i></li>
+                <li class="sort-item active">Mới nhất <i class="fa-solid fa-check check-icon"></i></li>
+                <li class="sort-item">Cũ nhất <i class="fa-solid fa-check check-icon"></i></li>
             </ul>
-
-            <input type="hidden" id="sort-value" value="newest">
         </div>
-
     </div>
 
     <div class="product-cat-list">
+        <c:forEach items="${listNew}" var="p">
+            <a href="${pageContext.request.contextPath}/product-detail?id=${p.id}" class="product-item">
 
-        <a href="${pageContext.request.contextPath}/pro-details/product-details12.jsp" class="product-item">
-            <img src="${pageContext.request.contextPath}/img/products/tui-dv-adalyn/2025-L7-CK2-20782753-N9-1.webp" alt="Túi Trice"/>
-            <div class="cart-icon"><i class="fa-solid fa-cart-shopping"></i></div>
-            <div class="product-name">Túi đeo vai Adalyn - Hồng</div>
-            <div class="product-price">2.300.000VNĐ</div>
-        </a>
+                <div style="position: relative; overflow: hidden;">
+                    <img src="${pageContext.request.contextPath}/${p.img}" alt="${p.name}"/>
 
-        <a href="${pageContext.request.contextPath}/pro-details/product-details13.jsp" class="product-item">
-            <img src="${pageContext.request.contextPath}/img/products/tui-alva/anh1.webp" alt="Túi Alva"/>
-            <div class="cart-icon"><i class="fa-solid fa-cart-shopping"></i></div>
-            <div class="product-name">Túi xách Alva - Đen</div>
-            <div class="product-price">2.290.000VNĐ</div>
-        </a>
+                    <c:if test="${p.newProduct}">
+                        <span class="badge-new">NEW</span>
+                    </c:if>
 
-        <a href="${pageContext.request.contextPath}/pro-details/product-details16.jsp" class="product-item">
-            <img src="${pageContext.request.contextPath}/img/products/tui-mirabelle/anh1.webp" alt="Túi Mirabelle"/>
-            <div class="cart-icon"><i class="fa-solid fa-cart-shopping"></i></div>
-            <div class="product-name">Túi Mirabelle - Đen</div>
-            <div class="product-price">2.550.000đ</div>
-        </a>
+                    <div class="cart-icon"><i class="fa-solid fa-cart-shopping"></i></div>
+                </div>
 
-        <a href="${pageContext.request.contextPath}/pro-details/product-details17.jsp" class="product-item">
-            <img src="${pageContext.request.contextPath}/img/products/tui-noane/anh1.jpg" alt="Túi Noane"/>
-            <div class="cart-icon"><i class="fa-solid fa-cart-shopping"></i></div>
-            <div class="product-name">Túi Noane - Nâu Cafe</div>
-            <div class="product-price">2.050.000đ</div>
-        </a>
+                <div class="product-name">${p.name}</div>
 
-        <a href="${pageContext.request.contextPath}/pro-details/product-details11.jsp" class="product-item">
-            <img src="${pageContext.request.contextPath}/img/products/tui-clutch/2023-L6-CK2-70160131-01-1.webp" alt="Túi Clutch đen"/>
-            <div class="cart-icon"><i class="fa-solid fa-cart-shopping"></i></div>
-            <div class="product-name">Túi Clutch - Đen</div>
-            <div class="product-price">1.850.000đ</div>
-        </a>
+                <div class="product-price">
+                    <c:choose>
+                        <c:when test="${p.salePrice > 0}">
+                             <span style="text-decoration: line-through; color: #999; font-size: 13px;">
+                                <fmt:formatNumber value="${p.price}" type="currency"/>
+                             </span>
+                            <span style="color: red; font-weight: bold; margin-left: 5px;">
+                                <fmt:formatNumber value="${p.salePrice}" type="currency"/>
+                             </span>
+                        </c:when>
+                        <c:otherwise>
+                            <fmt:formatNumber value="${p.price}" type="currency"/>
+                        </c:otherwise>
+                    </c:choose>
+                </div>
+            </a>
+        </c:forEach>
 
-        <a href="${pageContext.request.contextPath}/pro-details/product-details15.jsp" class="product-item">
-            <img src="${pageContext.request.contextPath}/img/products/tui-double-handle/anh1.webp" alt="Túi Double Handle"/>
-            <div class="cart-icon"><i class="fa-solid fa-cart-shopping"></i></div>
-            <div class="product-name">Túi xách Double Handle - Đen</div>
-            <div class="product-price">2.490.000đ</div>
-        </a>
-
-        <a href="#" class="product-item">
-            <img src="${pageContext.request.contextPath}/img/products/tui-day-rut/anh1.jpg" alt="Túi Bucket"/>
-            <div class="cart-icon"><i class="fa-solid fa-cart-shopping"></i></div>
-            <div class="product-name">Túi Bucket Dây Rút - Be</div>
-            <div class="product-price">980.000đ</div>
-        </a>
-
-        <a href="#" class="product-item">
-            <img src="${pageContext.request.contextPath}/img/products/tui-britton/den1.webp" alt="Túi Britton"/>
-            <div class="cart-icon"><i class="fa-solid fa-cart-shopping"></i></div>
-            <div class="product-name">Túi Britton Khóa Kim Loại</div>
-            <div class="product-price">1.690.000đ</div>
-        </a>
+        <c:if test="${empty listNew}">
+            <div style="grid-column: 1/-1; text-align: center; padding: 50px;">
+                <p>Hiện chưa có sản phẩm mới nào được cập nhật.</p>
+            </div>
+        </c:if>
     </div>
 </div>
 
@@ -479,23 +406,25 @@
 
         <div class="filter-sidebar-body">
             <ul class="categories-list">
-                <li><a href="${pageContext.request.contextPath}/products-category-all.jsp">Tất cả sản phẩm</a></li>
-                <li><a href="${pageContext.request.contextPath}/products-cat-handbag.jsp">Túi xách</a></li>
-                <li><a href="${pageContext.request.contextPath}/products-cat-accessory.jsp">Phụ kiện</a></li>
+                <li class="${empty activeCid ? 'active' : ''}">
+                    <a href="/FashionStore/list-product">Tất cả sản phẩm</a>
+                </li>
+                <li class="${activeCid == 1 ? 'active' : ''}">
+                    <a href="list-product?cid=1">Túi xách</a>
+                </li>
+                <li class="${activeCid == 2 ? 'active' : ''}">
+                    <a href="list-product?cid=2">Phụ kiện</a>
+                </li>
             </ul>
         </div>
     </div>
 </aside>
 
-<div class="scroll-button">
-    <button id="scrollTopBtn" title="Go to top" style="display: none; background-color: grey; position: fixed; border: none; border-radius: 50%; width: 40px; height: 40px; bottom: 20px; right: 20px; cursor: pointer; justify-content: center; align-items: center; z-index: 1000; color:white;">
-        <i class="fa-solid fa-arrow-up"></i>
-    </button>
-</div>
-
 <jsp:include page="footer.jsp" />
 
-
+<script>
+    window.contextPath = '${pageContext.request.contextPath}';
+</script>
 <script src="${pageContext.request.contextPath}/assets/js/script.js"></script>
 
 </body>

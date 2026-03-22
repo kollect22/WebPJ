@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Properties;
 
 public abstract class BaseDao {
-    private static Jdbi jdbi;
+    static Jdbi jdbi;
     public Jdbi get() {
         if(jdbi == null) makeConnect();
         return jdbi;

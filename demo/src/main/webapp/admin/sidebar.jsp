@@ -1,6 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <div class="d-flex flex-column p-3 bg-white" style="width: 280px; height: 100vh;">
-    <a href="${pageContext.request.contextPath}/admin/dashboard" class="...">Admin Shop</a>
+    <a href="${pageContext.request.contextPath}/admin/dashboard" class="text-center fw-bold text-decoration-none text-blue">Admin Shop</a>
     <hr>
 
     <ul class="nav nav-pills flex-column mb-auto">

@@ -1,43 +1,119 @@
 package dao;
 
+import model.ColorVariant;
 import model.Product;
+import org.jdbi.v3.core.Handle;
 import org.jdbi.v3.core.Jdbi;
 import org.jdbi.v3.core.statement.PreparedBatch;
 import org.jdbi.v3.core.statement.Update;
 
+import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 public class ProductDao extends BaseDao {
-    static Map<Integer, Product> data = new HashMap<>();
-    static {
-        data.put(1, new Product(1, "Khăn lụa", "img/accessory/KhanLua.webp", 10000));
-        data.put(2, new Product(2, "Túi da", "img/products/tui-da/a1.jpeg", 100020));
-        data.put(3, new Product(3, "Túi da thật", "img/products/tui-da/a1.jpeg", 100004));
-        data.put(4, new Product(4, "Túi đeo vai", "img/products/tui-deo-vai/anh1.jpg", 100500));
+    public List<Product> getListProduct() {
+        return get().withHandle(h -> {
+            // 1. Lấy danh sách sản phẩm
+            List<Product> list = h.createQuery("SELECT p.*, c.name AS categoryName FROM products p LEFT JOIN categories c ON p.category_id = c.id")
+                    .mapToBean(Product.class)
+                    .list();
+
+            for (Product p : list) {
+                if (p.getGroupId() > 0) {
+                    List<ColorVariant> colors = getRelatedColors(h, p.getGroupId(), p.getId());
+                    p.setColors(colors);
+                }   
+            }
+
+            return list;
+        });
+    }
+    // 1. Đếm tổng số lượng sản phẩm (Phục vụ cho việc tính ra số trang)
+    public int getTotalProducts(String search) {
+        return get().withHandle(h -> {
+            String sql = "SELECT COUNT(*) FROM products WHERE name LIKE :search";
+            // Nếu search rỗng, LIKE "%%" sẽ tự động lấy toàn bộ sản phẩm
+            String keyword = (search == null) ? "" : search;
+
+            return h.createQuery(sql)
+                    .bind("search", "%" + keyword + "%")
+                    .mapTo(Integer.class)
+                    .one();
+        });
     }
 
-    public List<Product> getListProduct() {
-        //return new ArrayList<Product>(data.values());
+    public List<Product> getProductsWithPagination(String search, int offset, int limit) {
         return get().withHandle(h -> {
-            List<Product> list = h.createQuery("select * from products").mapToBean(Product.class).list();
+            String sql = "SELECT p.*, c.name AS categoryName " +
+                    "FROM products p " +
+                    "LEFT JOIN categories c ON p.category_id = c.id " +
+                    "WHERE p.name LIKE :search " +
+                    "ORDER BY p.id ASC " +
+                    "LIMIT :limit OFFSET :offset";
 
-            for(Product p : list){
-                p.setColors(getColorsByProductId(p.getId()));
-            } return list;
+            String keyword = (search == null) ? "" : search;
+
+            List<Product> list = h.createQuery(sql)
+                    .bind("search", "%" + keyword + "%")
+                    .bind("limit", limit)
+                    .bind("offset", offset)
+                    .mapToBean(Product.class)
+                    .list();
+
+            for (Product p : list) {
+                if (p.getGroupId() > 0) {
+                    List<ColorVariant> colors = getRelatedColors(h, p.getGroupId(), p.getId());
+                    p.setColors(colors);
+                }
+            }
+
+            return list;
         });
     }
     public Product getProduct(int id) {
-        return get().withHandle(h ->
-                h.createQuery("SELECT * FROM products WHERE id = :id")
-                        .bind("id", id)
-                        .mapToBean(Product.class)
-                        .findOne()
-                        .orElse(null)
-        );
+        return get().withHandle(h -> {
+//            return h.createQuery("select * from products where id = :id").bind("id",id).mapToBean(Product.class).first();
+            String sql = "SELECT p.*, c.name AS categoryName " +
+                    "FROM products p " +
+                    "LEFT JOIN categories c ON p.category_id = c.id " +
+                    "WHERE p.id = :id";
+            Product product = h.createQuery(sql)
+                    .bind("id", id)
+                    .mapToBean(Product.class)
+                    .findOne().orElse(null);
+
+            if (product != null) {
+                product.setGalleryImages(getGalleryImages(h, id));
+
+                if (product.getGroupId() > 0) {
+                    product.setColors(getRelatedColors(h, product.getGroupId(), id));
+                }
+            }
+            return product;
+        });
     }
+
+    private List<String> getGalleryImages(Handle h,int productId){
+        return h.createQuery("SELECT image_url FROM product_images WHERE product_id = :id")
+                .bind("id", productId)
+                .mapTo(String.class)
+                .list();
+    }
+
+    private List<ColorVariant> getRelatedColors(Handle h, int groupId, int currentProductId) {
+        // Mapping thủ công:
+        // Database: id, color_name, img
+        // Java Class ColorVariant: productid, colorName, imgThumbnail
+        return h.createQuery("SELECT id AS productid, color_name AS colorName, img AS imgThumbnail FROM products WHERE group_id = :group_id AND id != :current_id")
+                .bind("group_id", groupId)
+                .bind("current_id", currentProductId)
+                .mapToBean(ColorVariant.class)
+                .list();
+    }
+
 
     public void insert(List<Product> list) {
         get().useHandle(h -> {
@@ -48,32 +124,100 @@ public class ProductDao extends BaseDao {
 //            });
 //            pb.execute();
             for (Product p : list) {
-                int productId = h.createUpdate("INSERT INTO products(name, img, price, sale_price, description, category) VALUES (:name, :img, :price, :salePrice, :description, :category)")
+                // 1. Insert vào bảng products và lấy ID vừa tạo
+                int productId = h.createUpdate("INSERT INTO products(sku, name, img, price, sale_price, description, material, width, height, depth, category_id, group_id, color_name) " +
+                                "VALUES (:sku, :name, :img, :price, :salePrice, :description, :material, :width, :height, :depth, :categoryId, :groupId, :colorName)")
                         .bindBean(p)
                         .executeAndReturnGeneratedKeys("id")
                         .mapTo(Integer.class)
                         .one();
 
-                if (p.getColors() != null) {
-                    for (String color : p.getColors()) {
-                        h.createUpdate("INSERT INTO product_colors(product_id, color_code) VALUES (:pid, :colorCode)")
+                // 2. Insert vào bảng product_images (Gallery) nếu có
+                if (p.getGalleryImages() != null && !p.getGalleryImages().isEmpty()) {
+                    for (String imgUrl : p.getGalleryImages()) {
+                        h.createUpdate("INSERT INTO product_images(product_id, image_url) VALUES (:pid, :url)")
                                 .bind("pid", productId)
-                                .bind("colorCode", color)
+                                .bind("url", imgUrl)
                                 .execute();
                     }
                 }
             }
         });
     }
+    public void delete(int id) {
+        get().useHandle(h -> {
+            // Xóa ảnh trong gallery trước (product_images thay vì product_colors)
+            h.createUpdate("DELETE FROM product_images WHERE product_id = :id")
+                    .bind("id", id).execute();
 
-    public List<String> getColorsByProductId(int id){
-        return get().withHandle(h->
-                h.createQuery("SELECT color_code FROM product_colors WHERE product_id = :id")
-                        .bind("id", id)
-                        .mapTo(String.class)
-                        .list()
-        );
+            // Sau đó xóa sản phẩm
+            h.createUpdate("DELETE FROM products WHERE id = :id")
+                    .bind("id", id).execute();
+        });
     }
+
+    // 2. Hàm Sửa (Update)
+    public void update(Product p) {
+        get().useHandle(h -> {
+            h.createUpdate("UPDATE products SET sku=:sku, name=:name, img=:img, price=:price, quantity=:quantity, sale_price=:salePrice, " +
+                            "description=:description, material=:material, width=:width, height=:height, depth=:depth, " +
+                            "category_id=:categoryId, group_id=:groupId, color_name=:colorName " +
+                            "WHERE id = :id")
+                    .bindBean(p)
+                    .execute();
+        });
+    }
+    public List<Product> getNewArrivals() {
+        return get().withHandle(h -> {
+            String sql = "SELECT * FROM products WHERE new_product = 1 ORDER BY id DESC LIMIT 20";
+
+            List<Product> list = h.createQuery(sql)
+                    .mapToBean(Product.class)
+                    .list();
+
+            for (Product p : list) {
+                if (p.getGroupId() > 0) {
+                    p.setColors(getRelatedColors(h, p.getGroupId(), p.getId()));
+                }
+            }
+
+            return list;
+        });
+    }
+
+    public List<Product> getProductsByCategory(int cid) {
+        return get().withHandle(h -> {
+            String sql = "SELECT p.id, p.name, p.img, p.price, p.sale_price AS salePrice , p.group_id " +
+                    "FROM products p " +
+                    "WHERE p.category_id = :cid";
+
+            return h.createQuery(sql)
+                    .bind("cid", cid)
+                    .mapToBean(Product.class)
+                    .list();
+        });
+    }
+
+    //lay ten danh muc hien cho dsap
+    public String getCategoryName(int cid) {
+        return get().withHandle(h -> {
+            String sql = "SELECT name FROM categories WHERE id = :id";
+
+            return h.createQuery(sql)
+                    .bind("id", cid)
+                    .mapTo(String.class) // Chỉ lấy 1 giá trị
+                    .findFirst()         // Lấy kết quả đầu tiên tìm thấy
+                    .orElse("Tất cả sản phẩm" +cid);
+        });
+    }
+//    public List<String> getColorsByProductId(int id){
+//        return get().withHandle(h->
+//                h.createQuery("SELECT color_code FROM product_colors WHERE product_id = :id")
+//                        .bind("id", id)
+//                        .mapTo(String.class)
+//                        .list()
+//        );
+//    }
 
 
 //    public static void main(String[] args) {
