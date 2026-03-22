@@ -14,7 +14,6 @@
             <li><a href="${pageContext.request.contextPath}/product-new">Hàng mới</a></li>
 
             <li>
-                <a href="${pageContext.request.contextPath}/list-product.jsp">Sản phẩm</a>
                 <a href="${pageContext.request.contextPath}/list-product">Sản phẩm</a>
                 <ul class="sub-menu">
                     <li><a href="${pageContext.request.contextPath}/list-product?cid=1">Túi xách</a></li>
