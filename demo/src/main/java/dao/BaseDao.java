@@ -9,7 +9,7 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.Properties;
 
-public abstract class BaseDao {
+public abstract class BaseDao  {
     static Jdbi jdbi;
     public Jdbi get() {
         if(jdbi == null) makeConnect();
