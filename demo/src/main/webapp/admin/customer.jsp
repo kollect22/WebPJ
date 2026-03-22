@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
+<%@ taglib prefix="fn" uri="jakarta.tags.functions" %>
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -80,51 +81,50 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <tr>
-                                <td class="ps-4 fw-bold text-muted">#1</td>
-                                <td>
-                                    <div class="d-flex align-items-center">
-                                        <div class="avatar-initial me-2">A</div>
-                                        <span class="fw-bold text-dark">Nguyễn Văn A</span>
-                                    </div>
-                                </td>
-                                <td>vana@gmail.com</td>
-                                <td>0901234567</td>
-                                <td class="text-center">
-                                    <span class="badge bg-info text-dark bg-opacity-25 border border-info px-3">5 đơn</span>
-                                </td>
-                                <td class="text-center">
-                                    <button class="btn btn-sm btn-outline-primary me-1" title="Xem chi tiết">
-                                        <i class="fa-solid fa-eye"></i>
-                                    </button>
-                                    <button class="btn btn-sm btn-outline-success" title="Gửi Email">
-                                        <i class="fa-solid fa-envelope"></i>
-                                    </button>
-                                </td>
-                            </tr>
+                            <c:forEach items="${userList}" var="u">
+                                <tr>
+                                    <td class="ps-4 fw-bold text-muted">#${u.id}</td>
+                                    <td>
+                                        <div class="d-flex align-items-center">
+                                            <div class="avatar-initial me-2 text-uppercase">
+                                                    ${fn:substring(u.fullName, 0, 1)}
+                                            </div>
+                                            <span class="fw-bold text-dark">${u.fullName}</span>
+                                        </div>
+                                    </td>
+                                    <td>${u.email}</td>
 
-                            <tr>
-                                <td class="ps-4 fw-bold text-muted">#2</td>
-                                <td>
-                                    <div class="d-flex align-items-center">
-                                        <div class="avatar-initial me-2">B</div>
-                                        <span class="fw-bold text-dark">Lê Thị B</span>
-                                    </div>
-                                </td>
-                                <td>leb@gmail.com</td>
-                                <td>0987654321</td>
-                                <td class="text-center">
-                                    <span class="badge bg-info text-dark bg-opacity-25 border border-info px-3">12 đơn</span>
-                                </td>
-                                <td class="text-center">
-                                    <button class="btn btn-sm btn-outline-primary me-1" title="Xem chi tiết">
-                                        <i class="fa-solid fa-eye"></i>
-                                    </button>
-                                    <button class="btn btn-sm btn-outline-success" title="Gửi Email">
-                                        <i class="fa-solid fa-envelope"></i>
-                                    </button>
-                                </td>
-                            </tr>
+                                    <td>
+                                        <c:choose>
+                                            <c:when test="${not empty u.phone}">${u.phone}</c:when>
+                                            <c:otherwise><span class="text-muted fst-italic">Chưa cập nhật</span></c:otherwise>
+                                        </c:choose>
+                                    </td>
+
+                                    <td class="text-center">
+                                        <span class="badge bg-info text-dark bg-opacity-25 border border-info px-3">0 đơn</span>
+                                    </td>
+
+                                    <td class="text-center">
+                                        <button class="btn btn-sm btn-outline-primary me-1" title="Xem chi tiết">
+                                            <i class="fa-solid fa-eye"></i>
+                                        </button>
+                                        <button class="btn btn-sm btn-outline-danger" title="Khóa tài khoản"
+                                                onclick="return confirm('Bạn có chắc muốn khóa khách hàng này?');">
+                                            <i class="fa-solid fa-lock"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                            </c:forEach>
+
+                            <c:if test="${empty userList}">
+                                <tr>
+                                    <td colspan="6" class="text-center py-4 text-muted">
+                                        <i class="fa-solid fa-box-open fs-3 mb-2 d-block"></i>
+                                        Không tìm thấy khách hàng nào!
+                                    </td>
+                                </tr>
+                            </c:if>
                             </tbody>
                         </table>
                     </div>

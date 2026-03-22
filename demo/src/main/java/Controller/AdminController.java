@@ -59,11 +59,25 @@ public class AdminController extends HttpServlet {
                 targetPage = "/admin/products.jsp";
                 break;
             case "/admin/coupons":
+                dao.CouponDao couponDao = new dao.CouponDao();
+
+                String searchCoupon = req.getParameter("search");
+
+                List<model.Coupon> couponList = couponDao.getAllCoupons(searchCoupon);
+
+                req.setAttribute("couponList", couponList);
+                req.setAttribute("search", searchCoupon);
+
                 req.setAttribute("activeMenu", "coupons");
                 targetPage = "/admin/coupons.jsp";
                 break;
             case "/admin/customers":
-                req.setAttribute("activeMenu", "customer");
+                dao.UserDao userDao = new dao.UserDao();
+
+                List<model.User> userList = userDao.getAllUsers();
+                req.setAttribute("userList", userList);
+
+                req.setAttribute("activeMenu", "customers");
                 targetPage = "/admin/customer.jsp";
                 break;
             case "/admin/banner":
