@@ -1,14 +1,18 @@
 function loadHTML(id, file) {
+    const element = document.getElementById(id);
+    if (!element) return; // Nếu không tìm thấy ID thì thoát luôn, không chạy fetch nữa
+
     fetch(file)
         .then(response => {
             if (!response.ok) throw new Error("Không thể tải file: " + file);
             return response.text();
         })
         .then(data => {
-            document.getElementById(id).innerHTML = data;
+            element.innerHTML = data;
         })
-        .catch(err => console.error(err));
+        .catch(err => console.error("Lỗi loadHTML:", err));
 }
+
 
 // Gọi hàm khi trang load
 document.addEventListener("DOMContentLoaded", () => {
@@ -19,7 +23,7 @@ document.addEventListener("DOMContentLoaded", () => {
 //scroll top button
 const btn = document.getElementById("scrollTopBtn");
 
-if(btn){
+if (btn) {
     window.onscroll = function () {
         if (document.documentElement.scrollTop > 200) {
             btn.style.display = "flex";
@@ -85,11 +89,11 @@ if (filterBtn && closeBtn && overlay) {
 }
 
 // đếm sản pham
-function countProducts(){
+function countProducts() {
     const products = document.querySelectorAll('.product-item');
     const countDisplay = document.getElementById('product-count-display');
-    if(countDisplay){
-        countDisplay.innerText= products.length + " sản phẩm";
+    if (countDisplay) {
+        countDisplay.innerText = products.length + " sản phẩm";
     }
 }
 
@@ -160,17 +164,17 @@ function changeImage(element) {
     }
 
     var siblings = productCard.querySelectorAll(".color-swatch");
-    siblings.forEach(function(swatch) {
+    siblings.forEach(function (swatch) {
         swatch.style.borderColor = "#ddd";
     });
     element.style.borderColor = "#000";
 }
 
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function () {
 
     const accordionHeaders = document.querySelectorAll(".accordion-header");
     accordionHeaders.forEach(header => {
-        header.addEventListener("click", function() {
+        header.addEventListener("click", function () {
             const accordionItem = this.parentElement;
             accordionItem.classList.toggle("active");
         });
@@ -193,14 +197,14 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 });
 
-document.addEventListener('DOMContentLoaded', function (){
+document.addEventListener('DOMContentLoaded', function () {
     const track = document.querySelector('.slider-track');
 
-    if(!track) return;
+    if (!track) return;
 
     const slides = Array.from(track.children);
     const autoPlayDelay = 3000;
-    let currentIndex =0;
+    let currentIndex = 0;
     let autoPlayInterval;
 
     function setPositionByIndex() {
@@ -220,6 +224,7 @@ document.addEventListener('DOMContentLoaded', function (){
     function startAutoPlay() {
         autoPlayInterval = setInterval(nextSlide, autoPlayDelay);
     }
+
     startAutoPlay();
 
 });
@@ -241,13 +246,14 @@ function increaseQty() {
 
 function decreaseQty() {
     var input = document.getElementById("qtyInput");
-    if(parseInt(input.value) > 1) {
+    if (parseInt(input.value) > 1) {
         input.value = parseInt(input.value) - 1;
         document.getElementById("hiddenQty").value = input.value;
     }
 }
 
-function addToCart(productId) {
+
+function addToCart(productId, redirect = false) {
     fetch(window.contextPath + '/add-cart', {
         method: 'POST',
         headers: {
@@ -256,22 +262,28 @@ function addToCart(productId) {
         body: 'id=' + productId + '&q=1'
     })
         .then(res => res.json())
-
         .then(data => {
-            const cartCountEl = document.querySelector('.cart-count');
+
+            const cartCountEl = document.getElementById('cart-count');
             if (cartCountEl) {
                 cartCountEl.innerText = data.totalQuantity;
+                cartCountEl.style.display = 'flex';
 
+                cartCountEl.classList.remove('cart-bump');
+                void cartCountEl.offsetWidth;
                 cartCountEl.classList.add('cart-bump');
-
-                setTimeout(() => {
-                    cartCountEl.classList.remove('cart-bump');
-                }, 300);
             }
-        });
 
 
+            if (redirect) {
+                window.location.href = window.contextPath + '/cart';
+            } else {
+                alert("Đã thêm vào giỏ hàng!");
+            }
+        })
+        .catch(err => console.error("Lỗi:", err));
 }
+
 function updateCart(productId, delta) {
     const qtyEl = document.getElementById('qty-' + productId);
     const currentQty = parseInt(qtyEl.innerText);
@@ -300,7 +312,6 @@ function updateCart(productId, delta) {
 }
 
 
-
 function deleteItem(productId) {
     fetch(window.contextPath + '/del-cart', {
         method: 'POST',
@@ -323,10 +334,12 @@ function deleteItem(productId) {
             updateCartIcon(data.totalQty);
         });
 }
+
 function updateCartIcon(qty) {
     const el = document.getElementById('cart-count');
     if (el) el.innerText = qty;
 }
+
 function recalculateTotal() {
     let total = 0;
 
@@ -343,13 +356,5 @@ function recalculateTotal() {
     document.getElementById('cart-total').innerText =
         new Intl.NumberFormat().format(total) + ' VNĐ';
 }
-
-
-
-
-
-
-
-
 
 

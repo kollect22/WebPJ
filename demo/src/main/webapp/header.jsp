@@ -42,9 +42,11 @@
             </span>
         </a>
 
-        <a href="${pageContext.request.contextPath}/wishlist" class="wishlist-header">
+        <a href="${pageContext.request.contextPath}/wishlist-add" class="wishlist-header">
             <i class="fa-regular fa-heart"></i>
-            <span class="wishlist-count">0</span>
+            <span class="wishlist-count" id="wishlist-count">
+                ${wishlistSession != null ? wishlistSession.size() : 0}
+            </span>
         </a>
 
 
