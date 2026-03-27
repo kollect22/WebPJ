@@ -366,7 +366,7 @@
         <c:forEach items="${list}" var="p">
 
 
-            <a href="detail?id=${p.id}" class="product-item">
+            <a href="${pageContext.request.contextPath}/detail?id=${p.id}" class="product-item">
 
                 <c:choose>
                     <c:when test="${fn:startsWith(p.img, 'http')}">
@@ -450,13 +450,13 @@
         <div class="filter-sidebar-body">
             <ul class="categories-list">
                 <li class="${empty activeCid ? 'active' : ''}">
-                    <a href="/list-product">Tất cả sản phẩm</a>
+                    <a href="${pageContext.request.contextPath}/list-product">Tất cả sản phẩm</a>
                 </li>
                 <li class="${activeCid == 1 ? 'active' : ''}">
-                    <a href="list-product?cid=1">Túi xách</a>
+                    <a href="${pageContext.request.contextPath}/list-product?cid=1">Túi xách</a>
                 </li>
                 <li class="${activeCid == 2 ? 'active' : ''}">
-                    <a href="list-product?cid=2">Phụ kiện</a>
+                    <a href="${pageContext.request.contextPath}/list-product?cid=2">Phụ kiện</a>
                 </li>
             </ul>
         </div>

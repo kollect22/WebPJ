@@ -38,7 +38,7 @@ public class ProductDetailController extends HttpServlet {
             req.setAttribute("relatedColors", p.getColors());
 
             // Chuyển hướng đến file giao diện
-            req.getRequestDispatcher("product-details.jsp").forward(req, resp);
+            req.getRequestDispatcher("/product-details.jsp").forward(req, resp);
 
         } catch (Exception e) {
             e.printStackTrace();
