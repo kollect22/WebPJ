@@ -31,37 +31,78 @@ public class ProductDao extends BaseDao {
             return list;
         });
     }
-    // 1. Đếm tổng số lượng sản phẩm (Phục vụ cho việc tính ra số trang)
-    public int getTotalProducts(String search) {
-        return get().withHandle(h -> {
-            String sql = "SELECT COUNT(*) FROM products WHERE name LIKE :search";
-            // Nếu search rỗng, LIKE "%%" sẽ tự động lấy toàn bộ sản phẩm
-            String keyword = (search == null) ? "" : search;
 
-            return h.createQuery(sql)
-                    .bind("search", "%" + keyword + "%")
-                    .mapTo(Integer.class)
-                    .one();
+    public int getTotalProducts(){
+        return get().withHandle(h->
+                h.createQuery("SELECT COUNT(*) FROM products")
+                        .mapTo(Integer.class)
+                        .one()
+        );
+    }
+
+    public int getTotalProducts(String search) {
+        return getTotalProducts(search,null);
+    }
+
+    public int getTotalProducts(String search, String cid) {
+        return get().withHandle(h -> {
+            StringBuilder sql = new StringBuilder("SELECT COUNT(*) FROM products WHERE 1=1");
+
+            if (search != null && !search.trim().isEmpty()) {
+                sql.append(" AND name LIKE :search");
+            }
+            if (cid != null && !cid.trim().isEmpty()) {
+                sql.append(" AND category_id = :cid");
+            }
+
+            var query = h.createQuery(sql.toString());
+
+            if (search != null && !search.trim().isEmpty()) {
+                query.bind("search", "%" + search.trim() + "%");
+            }
+            if (cid != null && !cid.trim().isEmpty()) {
+                query.bind("cid", Integer.parseInt(cid));
+            }
+
+            return query.mapTo(Integer.class).one();
         });
     }
 
     public List<Product> getProductsWithPagination(String search, int offset, int limit) {
+        return getProductsWithPagination(search, null, offset, limit);
+    }
+
+    public List<Product> getProductsWithPagination(String search, String cid, int offset, int limit) {
         return get().withHandle(h -> {
-            String sql = "SELECT p.*, c.name AS categoryName " +
-                    "FROM products p " +
-                    "LEFT JOIN categories c ON p.category_id = c.id " +
-                    "WHERE p.name LIKE :search " +
-                    "ORDER BY p.id ASC " +
-                    "LIMIT :limit OFFSET :offset";
+            StringBuilder sql = new StringBuilder(
+                    "SELECT p.*, c.name AS categoryName " +
+                            "FROM products p " +
+                            "LEFT JOIN categories c ON p.category_id = c.id " +
+                            "WHERE 1=1"
+            );
 
-            String keyword = (search == null) ? "" : search;
+            // Nối điều kiện động
+            if (search != null && !search.trim().isEmpty()) {
+                sql.append(" AND p.name LIKE :search");
+            }
+            if (cid != null && !cid.trim().isEmpty()) {
+                sql.append(" AND p.category_id = :cid");
+            }
 
-            List<Product> list = h.createQuery(sql)
-                    .bind("search", "%" + keyword + "%")
-                    .bind("limit", limit)
-                    .bind("offset", offset)
-                    .mapToBean(Product.class)
-                    .list();
+            sql.append(" ORDER BY p.id ASC LIMIT :limit OFFSET :offset");
+
+            var query = h.createQuery(sql.toString());
+
+            if (search != null && !search.trim().isEmpty()) {
+                query.bind("search", "%" + search.trim() + "%");
+            }
+            if (cid != null && !cid.trim().isEmpty()) {
+                query.bind("cid", Integer.parseInt(cid));
+            }
+            query.bind("limit", limit);
+            query.bind("offset", offset);
+
+            List<Product> list = query.mapToBean(Product.class).list();
 
             for (Product p : list) {
                 if (p.getGroupId() > 0) {
