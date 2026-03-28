@@ -12,244 +12,339 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
 
     <style>
-        /* CSS Riêng cho trang Wishlist */
-        .wishlist-page {
-            max-width: 1200px;
-            margin: 40px auto;
-            padding: 0 20px;
-            min-height: 400px; /* Để footer không bị nhảy lên giữa màn hình nếu trống */
+        :root {
+            --primary-color: #000;
+            --accent-color: #d0021b;
+            --bg-gray: #f9f9f9;
+            --border-color: #f1f1f1;
         }
 
-        h2 {
-            margin-bottom: 30px;
+        .wishlist-page {
+            max-width: 1200px;
+            margin: 80px auto; /* Tăng khoảng cách với Header */
+            padding: 0 20px;
+            min-height: 60vh;
+        }
+
+        .wishlist-page h2 {
+            font-family: 'Playfair Display', serif; /* Nếu bạn có font này nhìn sẽ rất sang */
+            font-size: 28px;
+            font-weight: 400;
+            letter-spacing: 3px;
+            margin-bottom: 50px;
             text-align: center;
             text-transform: uppercase;
-            font-size: 24px;
         }
 
         .wishlist-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 25px;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 40px 25px; /* Tăng khoảng cách giữa các hàng */
         }
 
-        /* Tận dụng lại class .product-item của style.css nhưng chỉnh sửa chút */
         .wishlist-item {
-            background: #fff;
-            border: 1px solid #eee;
-            border-radius: 5px;
-            padding: 15px;
-            text-align: center;
             position: relative;
-            transition: box-shadow 0.3s;
+            transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
         }
 
         .wishlist-item:hover {
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transform: translateY(-8px);
+        }
+
+        /* Khung ảnh sản phẩm */
+        .wishlist-item .img-container {
+            position: relative;
+            width: 100%;
+            padding-top: 133%; /* Tỉ lệ 3:4 chuẩn thời trang */
+            overflow: hidden;
+            background: var(--bg-gray);
         }
 
         .wishlist-item img {
+            position: absolute;
+            top: 0;
+            left: 0;
             width: 100%;
-            height: 250px;
+            height: 100%;
             object-fit: cover;
-            border-radius: 4px;
-            margin-bottom: 15px;
+            transition: transform 0.6s ease;
+        }
+
+        .wishlist-item:hover img {
+            transform: scale(1.05);
+        }
+
+        /* Thông tin sản phẩm */
+        .wishlist-item .item-info {
+            padding: 20px 5px;
+            text-align: left; /* Căn lề trái nhìn sẽ sang hơn căn giữa */
         }
 
         .wishlist-item h3 {
-            font-size: 16px;
-            margin: 10px 0;
+            font-size: 14px;
+            font-weight: 500;
+            margin: 0 0 8px;
+            color: #111;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
         }
 
         .wishlist-item .price {
-            font-weight: bold;
-            color: #d0021b;
-            margin-bottom: 15px;
             font-size: 15px;
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 15px;
         }
+
 
         .wishlist-actions {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 10px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
         }
 
-        .wishlist-btn {
-            padding: 10px;
-            border: none;
-            cursor: pointer;
-            font-size: 13px;
-            border-radius: 3px;
+        .btn-action {
+            width: 100%;
+            padding: 12px;
+            font-size: 11px;
             font-weight: bold;
-            transition: 0.2s;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: 0.3s ease;
+            border: 1px solid var(--primary-color);
         }
+
+        /* Style chung cho cả 2 nút */
+        .btn-add-cart, .btn-buy-now {
+            width: 100%;
+            padding: 12px;
+            font-size: 11px;
+            font-weight: bold;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: 0.3s ease;
+            border: 1px solid var(--primary-color);
+            margin-bottom: 5px;
+            display: block;
+        }
+
 
         .btn-add-cart {
-            background: #000;
+            background: var(--primary-color);
             color: #fff;
         }
+
         .btn-add-cart:hover {
-            background-color: #333;
+            background: #333;
+            border-color: #333;
+        }
+
+
+        .btn-buy-now {
+            background: #fff;
+            color: #000;
+        }
+
+        .btn-buy-now:hover {
+            background: #f8f8f8;
+            color: var(--accent-color);
+            border-color: var(--accent-color);
         }
 
         .btn-remove {
-            background: #eee;
-            color: #333;
-        }
-        .btn-remove:hover {
-            background: #ddd;
+            background: transparent;
+            color: #888;
+            border: 1px solid #ddd;
+            font-weight: 400;
         }
 
-        /* Nút xóa nhanh góc trên */
-        .remove-icon-corner {
+        .btn-remove:hover {
+            color: var(--accent-color);
+            border-color: var(--accent-color);
+        }
+
+
+        .remove-corner {
             position: absolute;
-            top: 10px;
-            right: 10px;
+            top: 15px;
+            right: 15px;
             width: 30px;
             height: 30px;
-            background: rgba(255,255,255,0.8);
+            background: rgba(255,255,255,0.9);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             cursor: pointer;
-            color: #666;
-            transition: 0.2s;
+            z-index: 10;
+            transition: 0.3s;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
         }
-        .remove-icon-corner:hover {
-            color: red;
-            background: #fff;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+
+        .remove-corner:hover {
+            background: var(--accent-color);
+            color: white;
         }
+
 
         .empty-state {
             text-align: center;
-            padding: 50px 0;
-            display: none; /* Mặc định ẩn */
+            padding: 100px 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
         }
+
+
         .empty-state i {
-            font-size: 50px;
-            color: #ccc;
-            margin-bottom: 20px;
+            font-size: 80px;
+            color: #f1f1f1;
+            margin-bottom: 10px;
         }
+
+
+        .empty-state p {
+            font-size: 16px;
+            color: #666;
+            letter-spacing: 1px;
+            margin: 0;
+        }
+
+
+        .btn-continue {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 15px 40px;
+            background-color: #000;
+            color: #fff !important;
+            text-decoration: none !important;
+            font-size: 12px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: all 0.3s ease;
+            border: 1px solid #000;
+        }
+
+        .btn-continue:hover {
+            background-color: #fff;
+            color: #000 !important;
+            border-color: #000;
+        }
+
     </style>
 </head>
 <body>
 
-<%-- 1. LOAD HEADER --%>
 <jsp:include page="header.jsp" />
 
 <div class="wishlist-page">
-    <h2><i class="fa-solid fa-heart" style="color: #d0021b;"></i> Sản phẩm yêu thích</h2>
+    <h2><i class="fa-solid fa-heart" style="color: #d0021b;"></i> Danh sách yêu thích</h2>
 
-    <div id="wishlist-grid" class="wishlist-grid">
-    </div>
+    <c:choose>
+        <%-- Kiểm tra danh sách wishlistProducts từ Servlet gửi sang --%>
+        <c:when test="${empty wishlistProducts}">
+            <div class="empty-state">
+                <i class="fa-regular fa-heart"></i>
+                <p>Danh sách yêu thích của bạn đang trống.</p>
 
-    <%-- Thông báo khi trống --%>
-    <div id="empty-msg" class="empty-state">
-        <i class="fa-regular fa-heart"></i>
-        <p>Bạn chưa có sản phẩm yêu thích nào.</p>
-        <a href="${pageContext.request.contextPath}/home" style="color: blue; text-decoration: underline;">Quay lại mua sắm</a>
-    </div>
+                <a href="${pageContext.request.contextPath}/home" class="btn-continue">
+                    Tiếp tục mua sắm
+                </a>
+            </div>
+        </c:when>
+
+        <c:otherwise>
+            <div class="wishlist-grid">
+                <c:forEach items="${wishlistProducts}" var="p">
+                   <div class="wishlist-item" id="product-card-${p.id}">
+                           <div class="remove-corner" onclick="removeWishlist(${p.id})">
+                               <i class="fa-solid fa-xmark"></i>
+                           </div>
+
+                           <a href="detail?id=${p.id}">
+                               <div class="img-container">
+                                   <img src="${pageContext.request.contextPath}/${p.img}" alt="${p.name}">
+                               </div>
+                           </a>
+
+                        <div class="item-info">
+                            <h3>${p.name}</h3>
+                            <div class="price">
+                                <c:choose>
+                                    <c:when test="${p.salePrice > 0}">
+                                        <fmt:formatNumber value="${p.salePrice}" pattern="#,###"/> đ
+                                    </c:when>
+                                    <c:otherwise>
+                                        <fmt:formatNumber value="${p.price}" pattern="#,###"/> đ
+                                    </c:otherwise>
+                                </c:choose>
+                            </div>
+
+                           <div class="wishlist-actions">
+                               <button class="btn-add-cart" onclick="addToCart(${p.id})">
+                                   THÊM VÀO GIỎ
+                               </button>
+
+                               <button class="btn-buy-now" onclick="addToCart(${p.id}, true)">
+                                   MUA NGAY
+                               </button>
+                           </div>
+                        </div>
+                    </div>
+                </c:forEach>
+            </div>
+        </c:otherwise>
+    </c:choose>
 </div>
 
-<%-- 2. LOAD FOOTER --%>
 <jsp:include page="footer.jsp" />
+<script>
+    function removeWishlist(productId) {
+        fetch('${pageContext.request.contextPath}/wishlist-add?id=' + productId)
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === "success" || data.count !== undefined) {
 
-<%-- Khai báo contextPath --%>
+                    const badge = document.getElementById('wishlist-count');
+                    if (badge) {
+                        badge.innerText = data.count;
+
+                        badge.style.display = data.count > 0 ? 'flex' : 'none';
+                    }
+
+                    const productCard = document.getElementById('product-card-' + productId);
+                    if (productCard) {
+                        productCard.style.transition = 'all 0.4s ease';
+                        productCard.style.opacity = '0';
+                        productCard.style.transform = 'scale(0.8)';
+
+                        setTimeout(() => {
+                            productCard.remove();
+
+                            const remainingItems = document.querySelectorAll('.wishlist-item');
+                            if (remainingItems.length === 0) {
+                                location.reload();
+                            }
+                        }, 400);
+                    }
+                }
+            })
+            .catch(err => console.error('Lỗi khi xóa:', err));
+    }
+</script>
 <script>
     window.contextPath = '${pageContext.request.contextPath}';
 </script>
 
 <script src="${pageContext.request.contextPath}/assets/js/script.js"></script>
 
-<script>
-    /* ================================
-       LOGIC HIỂN THỊ WISHLIST
-    ================================ */
-
-    // Hàm format tiền tệ VNĐ
-    function formatCurrency(amount) {
-        return new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(amount);
-    }
-
-    function renderWishlistPage() {
-        // Lấy dữ liệu từ LocalStorage
-        const wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
-        const grid = document.getElementById("wishlist-grid");
-        const empty = document.getElementById("empty-msg");
-
-        grid.innerHTML = "";
-
-        // Nếu trống thì hiện thông báo
-        if (wishlist.length === 0) {
-            empty.style.display = "block";
-            grid.style.display = "none";
-            return;
-        }
-
-        empty.style.display = "none";
-        grid.style.display = "grid";
-
-        // Duyệt qua từng sản phẩm và vẽ HTML
-        wishlist.forEach(item => {
-            // Lưu ý: item.img, item.name, item.price phải được lưu lúc bấm tim
-            grid.innerHTML += `
-            <div class="wishlist-item">
-                <div class="remove-icon-corner" onclick="removeItemFromWishlist(${item.id})" title="Xóa">
-                    <i class="fa-solid fa-xmark"></i>
-                </div>
-
-                <a href="detail?id=${item.id}">
-                    <img src="${item.img}" alt="${item.name}">
-                </a>
-
-                <h3><a href="detail?id=${item.id}" style="text-decoration:none; color:inherit;">${item.name}</a></h3>
-
-                <div class="price">${formatCurrency(item.price)}</div>
-
-                <div class="wishlist-actions">
-                    <button class="wishlist-btn btn-add-cart" onclick="addToCart(${item.id})">
-                        <i class="fa-solid fa-cart-plus"></i> Thêm giỏ
-                    </button>
-
-                    <button class="wishlist-btn btn-remove" onclick="removeItemFromWishlist(${item.id})">
-                        Xóa
-                    </button>
-                </div>
-            </div>
-            `;
-        });
-    }
-
-    /* ================================
-       XÓA KHỎI WISHLIST
-    ================================ */
-    function removeItemFromWishlist(id) {
-        if(!confirm("Bạn có chắc muốn xóa sản phẩm này?")) return;
-
-        let wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
-        // Lọc bỏ sản phẩm có id trùng
-        wishlist = wishlist.filter(item => item.id != id); // dùng != để so sánh cả chuỗi/số
-
-        // Lưu lại
-        localStorage.setItem("wishlist", JSON.stringify(wishlist));
-
-        // Vẽ lại giao diện
-        renderWishlistPage();
-
-        // (Tùy chọn) Cập nhật số lượng trên menu nếu có hàm đó
-        // updateWishlistCountHeader();
-    }
-
-    // Chạy khi trang load xong
-    document.addEventListener("DOMContentLoaded", () => {
-        renderWishlistPage();
-    });
-</script>
 
 </body>
 </html>

@@ -55,7 +55,10 @@
             <aside class="product-info">
                 <div class="title-wrapper">
                     <h1>${product.name}</h1>
-                    <i class="fa-regular fa-heart"></i>
+                    <i class="${wishlistSession != null && wishlistSession.contains(product.id) ? 'fa-solid' : 'fa-regular'} fa-heart"
+                           id="wishlist-icon-${product.id}"
+                           style="cursor: pointer; font-size: 24px; color: ${wishlistSession != null && wishlistSession.contains(product.id) ? '#d0021b' : ''};"
+                           onclick="toggleWishlist('${product.id}')"></i>
                 </div>
 
                 <div class="price">
@@ -201,7 +204,57 @@
 </div>
 
 <jsp:include page="footer.jsp" />
+<script>
+    window.contextPath = '${pageContext.request.contextPath}';
+</script>
+<script>
+function toggleWishlist(productId) {
+    console.log("Đang bấm trái tim cho sản phẩm ID:", productId);
 
+    if (!window.contextPath) {
+        alert("Lỗi: Không tìm thấy ContextPath!");
+        return;
+    }
+    const url = window.contextPath + '/wishlist-add?id=' + productId;
+
+    fetch(url)
+        .then(response => {
+            if (!response.ok) throw new Error('Lỗi Server: ' + response.status);
+            return response.json();
+        })
+        .then(data => {
+            console.log("Kết quả từ Servlet:", data);
+
+            // Tìm icon để đổi màu
+            const icon = document.getElementById('wishlist-icon-' + productId);
+            if (icon) {
+                if (data.status === "success") {
+                    // Đổi sang trái tim đặc, màu đỏ
+                    icon.classList.remove('fa-regular');
+                    icon.classList.add('fa-solid');
+                    icon.style.color = '#d0021b';
+                    alert("Đã thêm vào yêu thích!");
+                } else {
+                    // Đổi về trái tim rỗng, mất màu
+                    icon.classList.remove('fa-solid');
+                    icon.classList.add('fa-regular');
+                    icon.style.color = '';
+                    alert(" Đã xóa khỏi yêu thích!");
+                }
+            }
+
+            // Cập nhật số lượng trên vòng tròn đỏ (nếu bạn có đặt id="wishlist-count")
+            const badge = document.getElementById('wishlist-count');
+                if (badge) {
+                    badge.innerText = data.count;
+                }
+        })
+        .catch(err => {
+            console.error('Lỗi fetch:', err);
+            alert("Có lỗi xảy ra, kiểm tra Console (F12) nhé!");
+        });
+}
+</script>
 <script src="${pageContext.request.contextPath}/assets/js/script.js"></script>
 
 
