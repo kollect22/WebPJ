@@ -21,7 +21,7 @@ public class AuthDao extends BaseDao {
     }
 
     public int registerUserReturnId(String username, String passwordHash, String fullName) {
-        String sql = "INSERT INTO users(username, password, full_name, active) VALUES (:u, :p, :fn, 0)";
+        String sql = "INSERT INTO users(username, password, fullName, active) VALUES (:u, :p, :fn, 0)";
         return get().withHandle(h ->
                 h.createUpdate(sql)
                         .bind("u", username).bind("p", passwordHash).bind("fn", fullName)

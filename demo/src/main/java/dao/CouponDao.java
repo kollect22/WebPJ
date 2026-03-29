@@ -31,4 +31,15 @@ public class CouponDao extends BaseDao {
                     .execute();
         });
     }
+    public Coupon findByCode(String code) {
+        return get().withHandle(h -> {
+            String sql = "SELECT * FROM coupons WHERE code = :code AND quantity > 0 AND status = 1";
+
+            return h.createQuery(sql)
+                    .bind("code", code)
+                    .mapToBean(Coupon.class)
+                    .findOne()
+                    .orElse(null);
+        });
+    }
 }

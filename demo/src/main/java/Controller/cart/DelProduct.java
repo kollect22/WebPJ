@@ -16,12 +16,17 @@ public class DelProduct extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         int id = Integer.parseInt(req.getParameter("id"));
+        String src = req.getParameter("src");
         HttpSession session = req.getSession();
         Cart c = (Cart) session.getAttribute("cart");
         if (c != null) {
             c.deleteProduct(id);
         }
-        resp.sendRedirect("cart");
+        if ("checkout".equals(src)) {
+            resp.sendRedirect("checkout");
+        } else {
+            resp.sendRedirect("cart");
+        }
     }
 
     @Override
