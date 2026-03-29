@@ -1,11 +1,14 @@
 package Controller;
 
+import dao.ProductDao;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import model.Product;
+import model.Review;
+import java.util.List;
 import services.ProductService;
 
 import java.io.IOException;
@@ -21,8 +24,14 @@ public class ProductController extends HttpServlet {
             int idP = Integer.parseInt(id);
             Product p = ps.getProduct(idP);
             if (p != null) {
-                req.setAttribute("detail", p);
-                req.getRequestDispatcher("product-detail.jsp").forward(req, resp);
+                req.setAttribute("product", p);
+
+                ProductDao dao = new ProductDao();
+
+                List<model.Review> reviewList = dao.getReviewByProductId(idP);
+                req.setAttribute("reviews", reviewList);
+
+                req.getRequestDispatcher("product-details.jsp").forward(req, resp);
             } else {
                 resp.sendRedirect("products");
             }

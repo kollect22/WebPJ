@@ -1,9 +1,11 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
 
-<header class="navbar">
-    <div class="navbar-container">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+<header class="navbar fixed-top bg-white shadow-sm" style="z-index: 9999;">
+    <div class="navbar-container ">
         <div class="logo">
             <a href="${pageContext.request.contextPath}/home">
                 Fashion Store
@@ -43,12 +45,12 @@
             </form>
 
             <a href="${pageContext.request.contextPath}${empty sessionScope.auth ? '/login.jsp' : '/user/profile.jsp'}"
-               class="d-flex align-items-center gap-2 text-decoration-none text-reset">
+               class="user-account-btn d-flex align-items-center gap-2 text-decoration-none text-reset text-nowrap">
 
                 <i class="fa-solid fa-user"></i>
 
                 <span class="fw-bold">
-                    ${sessionScope.auth.fullName}
+                    ${empty sessionScope.auth ? 'Đăng nhập' :sessionScope.auth.fullName}
                 </span>
             </a>
 
@@ -82,3 +84,5 @@
         </div>
     </div>
 </header>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmxc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>

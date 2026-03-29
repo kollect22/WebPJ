@@ -2,6 +2,7 @@ package dao;
 
 import model.ColorVariant;
 import model.Product;
+import model.Review;
 import org.jdbi.v3.core.Handle;
 import org.jdbi.v3.core.Jdbi;
 import org.jdbi.v3.core.statement.PreparedBatch;
@@ -266,4 +267,32 @@ public class ProductDao extends BaseDao {
 //        pd.insert(pd.getListProduct());
 //    }
 
+    //Bình luận
+    public boolean insertReview(int productId, int userId, int rating, String comment){
+        return get().withHandle(h->{
+            int rowsAffected = h.createUpdate("INSERT INTO reviews (product_id, user_id, rating, comment) VALUES (:pid, :uid, :rating, :cmt)")
+                    .bind("pid", productId)
+                    .bind("uid", userId)
+                    .bind("rating", rating)
+                    .bind("cmt", comment)
+                    .execute();
+            return rowsAffected >0;
+        });
+    }
+
+    public List<Review> getReviewByProductId(int productId){
+        return get().withHandle(h->{
+            String sql = "SELECT r.id, r.product_id AS productId, r.user_id AS userId, r.rating, r.comment, r.created_at AS createdAt, " +
+                    "u.fullName AS userName " +
+                    "FROM reviews r " +
+                    "JOIN users u ON r.user_id = u.id " +
+                    "WHERE r.product_id = :pid " +
+                    "ORDER BY r.created_at DESC";
+            return h.createQuery(sql)
+                    .bind("pid", productId)
+                    .mapToBean(Review.class)
+                    .list();
+        });
+    }
 }
+
