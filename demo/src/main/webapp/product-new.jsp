@@ -361,7 +361,7 @@
 
     <div class="product-cat-list">
         <c:forEach items="${listNew}" var="p">
-            <a href="${pageContext.request.contextPath}/product-detail?id=${p.id}" class="product-item">
+            <a href="${pageContext.request.contextPath}/detail?id=${p.id}" class="product-item">
 
                 <div style="position: relative; overflow: hidden;">
                     <img src="${pageContext.request.contextPath}/${p.img}" alt="${p.name}"/>

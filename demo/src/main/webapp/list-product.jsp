@@ -541,7 +541,6 @@
                 </div>
             </div>
 
-                <%-- ĐÃ THÊM id="product-container" ĐỂ JAVASCRIPT NHẬN DIỆN KHU VỰC --%>
             <div class="product-cat-list" id="product-container">
                 <c:if test="${empty list}">
                     <p style="grid-column: 1/-1; text-align: center; padding: 50px;">
