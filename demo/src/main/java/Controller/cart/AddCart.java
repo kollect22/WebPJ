@@ -51,7 +51,7 @@ public class AddCart extends HttpServlet {
             session.setAttribute("cart", cart);
 
             if ("buy".equals(action)) {
-                resp.sendRedirect("cart.jsp");
+                resp.sendRedirect("checkout.jsp");
             } else {
                 resp.setContentType("application/json");
                 resp.setCharacterEncoding("UTF-8");

@@ -108,8 +108,13 @@
                     <input type="hidden" name="q" id="hiddenQty" value="1">
 
                     <div class="action-buttons-stack">
-                        <button class="btn-buy-now" type="submit" name="action" value="buy">MUA NGAY</button>
-                        <button class="btn-add-cart" type="button" onclick="addToCart(${product.id})">THÊM VÀO GIỎ HÀNG</button>
+                        <button class="btn-buy-now" type="submit" name="action" value="buy">
+                                    MUA NGAY
+                        </button>
+
+                        <button class="btn-add-cart" type="button" onclick="addToCart(${product.id})">
+                                    THÊM VÀO GIỎ HÀNG
+                        </button>
                     </div>
                 </form>
 

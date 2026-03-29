@@ -254,32 +254,47 @@ function decreaseQty() {
 
 
 function addToCart(productId, redirect = false) {
+    // 1. Lấy số lượng từ input (cho trang chi tiết)
+    const qtyInput = document.getElementById('qtyInput');
+    const quantity = qtyInput ? qtyInput.value : 1;
+
+    // 2. Chuẩn bị dữ liệu gửi đi
+    // Nếu redirect = true (Mua ngay), ta cộng thêm &action=buy
+    let bodyData = 'id=' + productId + '&q=' + quantity;
+    if (redirect) {
+        bodyData += '&action=buy';
+    }
+
     fetch(window.contextPath + '/add-cart', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded'
         },
-        body: 'id=' + productId + '&q=1'
+        body: bodyData
     })
-        .then(res => res.json())
+        .then(res => {
+            // Nếu Servlet thực hiện Redirect (khi có action=buy),
+            // fetch sẽ nhận được phản hồi chuyển hướng.
+            // Ta kiểm tra nếu redirect là true thì chuyển trang luôn.
+            if (redirect) {
+                window.location.href = window.contextPath + '/checkout.jsp';
+                return;
+            }
+            return res.json();
+        })
         .then(data => {
+            if (!data) return; // Nếu đã redirect thì không chạy tiếp phần dưới
 
+            // 3. Cập nhật Badge giỏ hàng (cho trang Yêu thích/Thêm vào giỏ)
             const cartCountEl = document.getElementById('cart-count');
             if (cartCountEl) {
                 cartCountEl.innerText = data.totalQuantity;
                 cartCountEl.style.display = 'flex';
-
                 cartCountEl.classList.remove('cart-bump');
                 void cartCountEl.offsetWidth;
                 cartCountEl.classList.add('cart-bump');
             }
-
-
-            if (redirect) {
-                window.location.href = window.contextPath + '/cart';
-            } else {
-                alert("Đã thêm vào giỏ hàng!");
-            }
+            alert("Đã thêm vào giỏ hàng!");
         })
         .catch(err => console.error("Lỗi:", err));
 }
@@ -303,7 +318,7 @@ function updateCart(productId, delta) {
             qtyEl.innerText = data.itemQuantity;
 
             document.getElementById('cart-total').innerText =
-                new Intl.NumberFormat().format(data.total) + ' VNĐ';
+                new Intl.NumberFormat().format(data.total) + ' đ';
 
             document.querySelector('.cart-count').innerText =
                 data.totalQuantity;

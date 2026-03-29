@@ -21,9 +21,13 @@
 
         .wishlist-page {
             max-width: 1200px;
-            margin: 80px auto; /* Tăng khoảng cách với Header */
-            padding: 0 20px;
-            min-height: 60vh;
+            /* Thay đổi margin và thêm padding-top */
+            margin: 0 auto;
+            padding-top: 150px; /* Tăng con số này lên nếu vẫn bị Header che */
+            padding-left: 20px;
+            padding-right: 20px;
+            padding-bottom: 80px;
+            min-height: 70vh;
         }
 
         .wishlist-page h2 {
@@ -248,7 +252,7 @@
     <h2><i class="fa-solid fa-heart" style="color: #d0021b;"></i> Danh sách yêu thích</h2>
 
     <c:choose>
-        <%-- Kiểm tra danh sách wishlistProducts từ Servlet gửi sang --%>
+
         <c:when test="${empty wishlistProducts}">
             <div class="empty-state">
                 <i class="fa-regular fa-heart"></i>
