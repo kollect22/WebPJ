@@ -9,7 +9,7 @@
     <%-- ========================================================== --%>
     <c:when test="${param.ajax == 'true'}">
         <c:forEach items="${list}" var="p">
-            <a href="${pageContext.request.contextPath}/detail?id=${p.id}" class="product-item">
+            <a href="${pageContext.request.contextPath}/product-detail?id=${p.id}" class="product-item">
                 <c:choose>
                     <c:when test="${fn:startsWith(p.img, 'http')}">
                         <img src="${p.img}" alt="${p.name}" class="product-card-img" />
@@ -96,7 +96,7 @@
                     padding: 0 20px;
                     margin-bottom: 20px;
                     max-width: 1920px;
-                    margin: 110px auto 20px auto;
+                    margin: 100px auto 10px auto;
                 }
                 .breadcrumbs {
                     color: #666;
@@ -142,9 +142,9 @@
                     padding: 15px 0;
                     margin-bottom: 30px;
                     background-color: #fff;
-                    position: sticky;
-                    top: 94px;
-                    z-index: 999;
+                    position: sticky!important;
+                    top: 80px!important;
+                    z-index: 999!important;
                 }
 
                 .tool-item {
@@ -549,7 +549,7 @@
                 </c:if>
 
                 <c:forEach items="${list}" var="p">
-                    <a href="${pageContext.request.contextPath}/detail?id=${p.id}" class="product-item">
+                    <a href="${pageContext.request.contextPath}/product-detail?id=${p.id}" class="product-item">
                         <c:choose>
                             <c:when test="${fn:startsWith(p.img, 'http')}">
                                 <img src="${p.img}" alt="${p.name}" class="product-card-img" />

@@ -272,7 +272,7 @@
                                <i class="fa-solid fa-xmark"></i>
                            </div>
 
-                           <a href="detail?id=${p.id}">
+                           <a href="product-detail?id=${p.id}">
                                <div class="img-container">
                                    <img src="${pageContext.request.contextPath}/${p.img}" alt="${p.name}">
                                </div>

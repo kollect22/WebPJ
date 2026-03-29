@@ -3,7 +3,7 @@
 }
 
 body {
-    font-family: Arial, sans-serif;
+    font-family: Arial, sans-serif!important;
     margin: 0;
     background: white;
     color: black;
@@ -12,23 +12,19 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 100%;
-    max-width: 1920px;
-    margin: 0 auto;
+    width: 100%!important;
+    max-width: 1920px!important;
+    margin: 0 auto!important;
 }
 
 .navbar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 12px 40px;
+    display: flex!important;
+    justify-content: space-between!important;
+    align-items: center!important;
+    padding: 12px 40px!important;
     background-color: #FFFFFF;
-    color: black;
-    z-index: 1000;
+    color: black!important;
+    z-index: 1000!important;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 
@@ -46,6 +42,7 @@ body {
     letter-spacing: 2px;
     text-transform: uppercase;
 }
+
 
 .nav-center {
     display: flex;
@@ -175,7 +172,7 @@ body {
 /*}*/
 
 .banner-slider{
-    padding-top: 60px;
+    /*padding-top: 60px;*/
     width: 100%;
     max-width: 1920px;
     margin: 0 auto;

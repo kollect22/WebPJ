@@ -13,6 +13,7 @@
 
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/style.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/product-detail.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 
 </head>
 <body>
@@ -31,7 +32,7 @@
 
         <section class="product-gallery">
             <div class="thumb-list">
-                <c:forEach var="img" items="${listImages}" varStatus="status">
+                <c:forEach var="img" items="${product.galleryImages}" varStatus="status">
 
                     <img src="${pageContext.request.contextPath}/${img}"
                          onclick="changeGalleryImage(this)"
@@ -42,9 +43,9 @@
             </div>
 
             <div class="main-image-container">
-                    <c:if test="${not empty listImages}">
+                    <c:if test="${not empty product.galleryImages}">
                     <img id="mainImage"
-                         src="${pageContext.request.contextPath}/${listImages[0]}"
+                         src="${pageContext.request.contextPath}/${product.galleryImages[0]}"
                          alt="${product.name}">
                     </c:if>
             </div>
@@ -121,8 +122,8 @@
                 <div class="other-colors">
                     <span>Sản phẩm cùng loại khác màu</span>
                     <div class="colors-container">
-                        <c:forEach var="related" items="${relatedColors}">
-                            <a href="detail?id=${related.productid}" class="related-thumb" title="${related.colorName}">
+                        <c:forEach var="related" items="${product.colors}">
+                            <a href="product-detail?id=${related.productid}" class="related-thumb" title="${related.colorName}">
                                 <img src="${pageContext.request.contextPath}/${related.imgThumbnail}" alt="${related.colorName}">
                             </a>
                         </c:forEach>
@@ -206,12 +207,99 @@
             </aside>
         </div>
     </div>
+
+
+    <div class="product-reviews">
+        <h2>Đánh giá từ khách hàng</h2>
+
+        <c:choose>
+            <c:when test="${not empty sessionScope.auth}">
+                <div class="review-form-container" style="background: #f9f9f9; padding: 20px 0; border-radius: 8px; margin-bottom: 20px;">
+                    <form action="${pageContext.request.contextPath}/submit-review" method="POST">
+                        <input type="hidden" name="productId" value="${product.id}">
+                        <input type="hidden" name="rating" id="rating-value" value="5">
+
+                        <div style="margin-bottom: 15px;">
+                            <label style="font-weight: bold; margin-right: 10px;">Chất lượng sản phẩm:</label>
+                            <span id="star-rating" style="color: #ccc; font-size: 20px; cursor: pointer;">
+                            <i class="fa-solid fa-star star-btn active" data-value="1" style="color: #f1c40f;"></i>
+                            <i class="fa-solid fa-star star-btn active" data-value="2" style="color: #f1c40f;"></i>
+                            <i class="fa-solid fa-star star-btn active" data-value="3" style="color: #f1c40f;"></i>
+                            <i class="fa-solid fa-star star-btn active" data-value="4" style="color: #f1c40f;"></i>
+                            <i class="fa-solid fa-star star-btn active" data-value="5" style="color: #f1c40f;"></i>
+                        </span>
+                        </div>
+
+                        <textarea name="comment" rows="4" style="width: 100%; padding: 10px 10px; border: 1px solid #ccc; border-radius: 4px; resize: vertical;" placeholder="Hãy chia sẻ cảm nhận của bạn về sản phẩm này nhé..." required></textarea>
+
+                        <button type="submit" style="margin-top: 10px; padding: 15px; background: #000; color: #fff; border: none; cursor: pointer; font-weight: bold;">GỬI ĐÁNH GIÁ</button>
+                    </form>
+                </div>
+            </c:when>
+            <c:otherwise>
+                <div style="background: #fdf2f2; padding: 15px; border-left: 4px solid #d0021b; margin-bottom: 30px;">
+                    Vui lòng <a href="${pageContext.request.contextPath}/login.jsp" style="color: #d0021b; font-weight: bold; text-decoration: underline;">Đăng nhập</a> để để lại đánh giá của bạn.
+                </div>
+            </c:otherwise>
+        </c:choose>
+
+        <div class="review-list">
+            <c:if test="${empty reviews}">
+                <p style="color: #666; font-style: italic;">Chưa có đánh giá nào. Hãy là người đầu tiên đánh giá sản phẩm này!</p>
+            </c:if>
+
+            <c:forEach items="${reviews}" var="r">
+                <div class="review-item" style="border-bottom: 1px dashed #eee; padding: 15px 0;">
+                    <div class="review-header" style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+                        <strong style="font-size: 15px;">${r.userName}</strong>
+                        <span style="color: #999; font-size: 12px;">${r.createdAt}</span>
+                    </div>
+
+                    <div class="review-stars" style="color: #f1c40f; font-size: 13px; margin-bottom: 8px;">
+                        <c:forEach begin="1" end="5" var="i">
+                            <i class="fa-solid fa-star" style="${i <= r.rating ? '' : 'color: #ccc;'}"></i>
+                        </c:forEach>
+                    </div>
+
+                    <div class="review-content" style="color: #333; line-height: 1.5;">
+                            ${r.comment}
+                    </div>
+                </div>
+            </c:forEach>
+        </div>
+    </div>
+
+
 </div>
+
 
 <jsp:include page="footer.jsp" />
 <script>
     window.contextPath = '${pageContext.request.contextPath}';
 </script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const stars = document.querySelectorAll(".star-btn");
+        const ratingInput = document.getElementById("rating-value");
+
+        stars.forEach(star => {
+            star.addEventListener("click", function() {
+                let val = parseInt(this.getAttribute("data-value"));
+                ratingInput.value = val;
+
+                stars.forEach(s => {
+                    if (parseInt(s.getAttribute("data-value")) <= val) {
+                        s.style.color = "#f1c40f"; // Màu vàng
+                    } else {
+                        s.style.color = "#ccc";    // Màu xám
+                    }
+                });
+            });
+        });
+    });
+</script>
+
 <script>
 function toggleWishlist(productId) {
     console.log("Đang bấm trái tim cho sản phẩm ID:", productId);
@@ -261,7 +349,7 @@ function toggleWishlist(productId) {
 }
 </script>
 <script src="${pageContext.request.contextPath}/assets/js/script.js"></script>
-
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmxc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 
 </body>
 </html>
