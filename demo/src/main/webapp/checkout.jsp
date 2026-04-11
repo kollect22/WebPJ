@@ -7,311 +7,299 @@
 <head>
     <meta charset="UTF-8">
     <title>Thanh toán - Fashion Store</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
 
-    <style>
-        :root {
-            --primary-color: #000;
-            --bg-gray: #fcfcfc;
-            --gift-color: #28a745;
-        }
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-        .checkout-page {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding-top: 100px; /* Tăng khoảng cách này nếu header vẫn che */
-            padding-bottom: 50px;
-        }
+        <style>
+                :root {
+                    --bg-body: #f7f7f7;
+                    --primary-color: #000;
+                    --border-radius-main: 16px;
+                }
 
-        .option-card {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            border: 1px solid #eee;
-            padding: 12px;
-            margin-bottom: 10px;
-            cursor: pointer;
-            transition: all 0.2s;
-            border-radius: 4px;
-        }
+                body {
+                    font-family: 'Inter', sans-serif;
+                    background-color: var(--bg-body);
+                    /* 1. SỬA LỖI BỊ CHE: Đẩy nội dung xuống dưới Header (Tăng khoảng cách tùy Header bạn) */
+                    padding-top: 130px;
+                }
 
-        .option-card:hover {
-            border-color: #000;
-            background-color: #f9f9f9;
-        }
+                .checkout-card {
+                    background: #fff;
+                    border-radius: var(--border-radius-main);
+                    padding: 30px;
+                    border: 1px solid #f0f0f0;
+                    box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+                    margin-bottom: 25px;
+                }
 
-        .option-card input[type="radio"] {
-            accent-color: #000;
-        }
+                .section-title {
+                    font-size: 17px;
+                    font-weight: 700;
+                    margin-bottom: 25px;
+                    text-transform: uppercase;
+                    letter-spacing: 1px;
+                    display: flex;
+                    align-items: center;
+                    gap: 10px;
+                }
 
-        .option-info {
-            flex-grow: 1;
-        }
+                /* KHUNG CHỨA LOGO THANH TOÁN ĐÃ ĐƯỢC ĐỒNG BỘ */
+                .payment-logo-container {
+                    width: 55px;
+                    height: 55px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    border-radius: 10px;
+                    margin-right: 15px;
+                    border: 1px solid #eee;
+                    background: #fff;
+                    padding: 5px; /* Giúp logo không bị chạm mép */
+                }
 
-        .option-name {
-            display: block;
-            font-size: 13px;
-            font-weight: 600;
-        }
+                /* Đảm bảo ảnh logo vừa khít */
+                .payment-logo-container img {
+                    max-width: 100%;
+                    height: auto;
+                    object-fit: contain;
+                }
 
-        .option-desc {
-            display: block;
-            font-size: 11px;
-            color: #666;
-        }
+                /* Khung chứa Icon cho Vận chuyển */
+                .shipping-icon-container {
+                    width: 55px;
+                    height: 55px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    background: #f9f9f9;
+                    border-radius: 10px;
+                    margin-right: 15px;
+                }
+                .shipping-icon-container i { font-size: 24px; color: #555; }
 
-        .option-price {
-            font-weight: 600;
-            font-size: 13px;
-        }
 
-        .checkout-grid {
-            display: grid;
-            grid-template-columns: 1.1fr 0.9fr;
-            gap: 50px;
-        }
 
-        .section-title {
-            font-size: 15px;
-            text-transform: uppercase;
-            border-bottom: 1px solid #000;
-            padding-bottom: 8px;
-            margin-bottom: 25px;
-            font-weight: 600;
-        }
+                /* Nút xác nhận chuyên nghiệp */
+                .btn-checkout-confirm {
+                    width: 100%;
+                    padding: 18px;
+                    background: var(--primary-color);
+                    color: #fff;
+                    border: none;
+                    border-radius: 50px;
+                    font-weight: 700;
+                    letter-spacing: 1px;
+                    text-transform: uppercase;
+                    transition: 0.3s;
+                }
+                .btn-checkout-confirm:hover { background: #333; transform: translateY(-2px); }
+            /* Định dạng khung chứa Icon để đồng bộ với Giao hàng/Vận chuyển */
+                .method-icon-box {
+                    width: 60px;
+                    height: 60px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    border-radius: 12px;
+                    margin-right: 15px;
+                    background: #f8f9fa; /* Nền xám nhạt tinh tế */
+                    border: 1px solid #eee;
+                    transition: 0.3s;
+                }
 
-        .input-group {
-            margin-bottom: 15px;
-        }
+                .method-icon-box i {
+                    font-size: 26px;
+                    color: #333; /* Màu icon tối để sang trọng */
+                }
 
-        .input-group label {
-            display: block;
-            font-size: 11px;
-            font-weight: bold;
-            text-transform: uppercase;
-            margin-bottom: 6px;
-        }
+                /* Hiệu ứng khi người dùng chọn */
+                input[type="radio"]:checked + .option-card .method-icon-box {
+                    background: #000;
+                    border-color: #000;
+                }
 
-        .input-group input,
-        .input-group textarea {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ddd;
-            outline: none;
-        }
+                input[type="radio"]:checked + .option-card .method-icon-box i {
+                    color: #fff; /* Icon đổi sang trắng khi được chọn */
+                }
 
-        .order-summary {
-            background: var(--bg-gray);
-            padding: 30px;
-            border: 1px solid #eee;
-            position: sticky;
-            top: 20px;
-        }
+                .option-card {
+                    display: flex;
+                    align-items: center;
+                    padding: 20px;
+                    border: 1px solid #eee;
+                    border-radius: 15px;
+                    margin-bottom: 12px;
+                    cursor: pointer;
+                    transition: 0.3s ease;
+                }
 
-        .item-mini {
-            display: flex;
-            gap: 15px;
-            padding: 15px 0;
-            border-bottom: 1px solid #eee;
-        }
-
-        .item-img {
-            width: 70px;
-            height: 90px;
-            position: relative;
-        }
-
-        .item-img img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .qty-badge {
-            position: absolute;
-            top: -8px;
-            right: -8px;
-            background: #000;
-            color: #fff;
-            width: 20px;
-            height: 20px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 10px;
-        }
-
-        .btn-qty {
-            width: 22px;
-            height: 22px;
-            cursor: pointer;
-            border: 1px solid #ccc;
-            background: #fff;
-        }
-
-        .total-row {
-            border-top: 2px solid #000;
-            padding-top: 15px;
-            font-weight: bold;
-            font-size: 18px;
-            display: flex;
-            justify-content: space-between;
-        }
-
-        .btn-submit {
-            width: 100%;
-            padding: 15px;
-            background: #000;
-            color: #fff;
-            border: none;
-            font-weight: bold;
-            cursor: pointer;
-            margin-top: 20px;
-        }
-    </style>
+                input[type="radio"]:checked + .option-card {
+                    border-color: #000;
+                    background-color: #fdfdfd;
+                    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+                }
+                /* Sticky Đơn hàng cho Shop túi xách */
+                .sticky-summary {
+                    position: sticky;
+                    top: 110px; /* Căn chỉnh tùy Header bạn */
+                }
+        </style>
 </head>
 <body>
 
 <jsp:include page="header.jsp" />
 
-<div class="checkout-page">
-    <form action="place-order" method="POST" id="checkoutForm">
-        <div class="checkout-grid">
+<div class="container checkout-page mb-5">
+    <form id="checkoutForm" onsubmit="handleCheckout(event)">
+        <div class="row g-4">
 
-            <div class="checkout-left">
-                <section class="checkout-section">
-                    <h3 class="section-title">01. Thông tin giao hàng</h3>
-                    <div class="input-group">
-                        <label>Họ và tên</label>
-                        <%-- Sửa thành fullName khớp với file User.java --%>
-                        <input type="text" value="${sessionScope.auth.fullName}" readonly>
+            <div class="col-lg-7">
+                <div class="checkout-card">
+                    <h3 class="section-title"><i class="fa-solid fa-location-dot"></i> 01. Thông tin giao hàng</h3>
+                    <div class="row g-3">
+                        <div class="col-md-12 text-muted mb-2 small">
+                            Người nhận: <strong>${sessionScope.auth.fullName}</strong>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="small fw-bold mb-1">Số điện thoại *</label>
+                            <input type="tel" name="phone" class="form-control" required placeholder="Nhập số điện thoại">
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="small fw-bold mb-1">Email</label>
+                            <input type="email" class="form-control" placeholder="Nhận hóa đơn điện tử">
+                        </div>
+                        <div class="col-12">
+                            <label class="small fw-bold mb-1">Địa chỉ chi tiết *</label>
+                            <textarea name="address" class="form-control" rows="2" required placeholder="Số nhà, tên đường, phường/xã..."></textarea>
+                        </div>
                     </div>
-                    <div class="input-group">
-                        <label>Số điện thoại *</label>
-                        <input type="tel" name="phone" required placeholder="09xxx">
-                    </div>
-                    <div class="input-group">
-                        <label>Địa chỉ nhận hàng *</label>
-                        <textarea name="address" rows="3" required placeholder="Số nhà, tên đường..."></textarea>
-                    </div>
-                </section>
+                </div>
 
-                <section class="checkout-section">
-                    <h3 class="section-title">02. Đơn vị vận chuyển</h3>
+                <div class="checkout-card">
+                    <h3 class="section-title"><i class="fa-solid fa-truck-fast"></i> 02. Vận chuyển</h3>
 
-                    <label class="option-card">
-                        <input type="radio" name="shippingMethod" value="50000" onchange="updateTotal()">
-                        <div class="option-info">
-                            <span class="option-name">Giao hàng hỏa tốc (Grab/Ahamove)</span>
-                            <span class="option-desc">Nhận hàng ngay trong 2h</span>
-                        </div>
-                        <span class="option-price">50,000 đ</span>
-                    </label>
-
-                    <label class="option-card">
-                        <input type="radio" name="shippingMethod" value="30000" checked onchange="updateTotal()">
-                        <div class="option-info">
-                            <span class="option-name">Giao hàng nhanh (GHN/GHTK)</span>
-                            <span class="option-desc">Dự kiến nhận hàng sau 1-2 ngày</span>
-                        </div>
-                        <span class="option-price">30,000 đ</span>
-                    </label>
-
-                    <label class="option-card">
-                        <input type="radio" name="shippingMethod" value="15000" onchange="updateTotal()">
-                        <div class="option-info">
-                            <span class="option-name">Giao hàng tiết kiệm</span>
-                            <span class="option-desc">Dự kiến nhận hàng sau 3-5 ngày</span>
-                        </div>
-                        <span class="option-price">15,000 đ</span>
-                    </label>
-
-                    <h3 class="section-title" style="margin-top: 30px;">03. Phương thức thanh toán</h3>
-
-                    <label class="option-card">
-                        <input type="radio" name="paymentMethod" value="COD" checked>
-                        <i class="fa-solid fa-money-bill-1-wave"></i>
-                        <div class="option-info">
-                            <span class="option-name">Thanh toán khi nhận hàng (COD)</span>
+                    <label class="w-100">
+                        <input type="radio" name="shippingMethod" value="30000" class="btn-check" checked onchange="updateTotal()">
+                        <div class="option-card">
+                            <div class="shipping-icon-container"><i class="fa-solid fa-box"></i></div>
+                            <div class="flex-grow-1">
+                                <div class="fw-bold">Giao hàng nhanh (GHN)</div>
+                                <div class="small text-muted">Dự kiến nhận sau 1-2 ngày</div>
+                            </div>
+                            <div class="fw-bold text-dark">30.000đ</div>
                         </div>
                     </label>
 
-                    <label class="option-card">
-                        <input type="radio" name="paymentMethod" value="MOMO">
-                        <i class="fa-solid fa-wallet" style="color: #ae2070;"></i>
-                        <div class="option-info">
-                            <span class="option-name">Ví điện tử MoMo</span>
+                    <label class="w-100">
+                        <input type="radio" name="shippingMethod" value="15000" class="btn-check" onchange="updateTotal()">
+                        <div class="option-card">
+                            <div class="shipping-icon-container"><i class="fa-solid fa-box-open"></i></div>
+                            <div class="flex-grow-1">
+                                <div class="fw-bold">Giao hàng tiết kiệm</div>
+                                <div class="small text-muted">Dự kiến nhận sau 3-5 ngày</div>
+                            </div>
+                            <div class="fw-bold text-dark">15.000đ</div>
                         </div>
                     </label>
+                </div>
 
-                    <label class="option-card">
-                        <input type="radio" name="paymentMethod" value="BANK">
-                        <i class="fa-solid fa-building-columns"></i>
-                        <div class="option-info">
-                            <span class="option-name">Chuyển khoản ngân hàng (QR Code)</span>
-                        </div>
-                    </label>
-                </section>
+               <div class="checkout-card">
+                   <h3 class="section-title"><i class="fa-solid fa-credit-card"></i> 03. Phương thức thanh toán</h3>
+
+                   <label class="w-100">
+                       <input type="radio" name="paymentMethod" value="BANK" class="btn-check" checked>
+                       <div class="option-card">
+                           <div class="method-icon-box">
+                               <i class="fa-solid fa-building-columns"></i>
+                           </div>
+                           <div class="flex-grow-1">
+                               <div class="fw-bold">Chuyển khoản Ngân hàng</div>
+                               <div class="small text-muted">Quét mã VietQR để thanh toán nhanh</div>
+                           </div>
+                       </div>
+                   </label>
+
+                   <label class="w-100">
+                       <input type="radio" name="paymentMethod" value="MOMO" class="btn-check">
+                       <div class="option-card">
+                           <div class="method-icon-box">
+                               <i class="fa-solid fa-wallet"></i>
+                           </div>
+                           <div class="flex-grow-1">
+                               <div class="fw-bold">Ví điện tử (MoMo/ZaloPay)</div>
+                               <div class="small text-muted">Thanh toán qua ứng dụng ví điện tử</div>
+                           </div>
+                       </div>
+                   </label>
+
+                   <label class="w-100">
+                       <input type="radio" name="paymentMethod" value="COD" class="btn-check">
+                       <div class="option-card">
+                           <div class="method-icon-box">
+                               <i class="fa-solid fa-hand-holding-dollar"></i>
+                           </div>
+                           <div class="flex-grow-1">
+                               <div class="fw-bold">Thanh toán khi nhận hàng (COD)</div>
+                               <div class="small text-muted">Nhận hàng, kiểm tra túi rồi mới trả tiền</div>
+                           </div>
+                       </div>
+                   </label>
+               </div>
             </div>
 
-            <div class="checkout-right">
-                <div class="order-summary">
+            <div class="col-lg-5">
+                <div class="checkout-card sticky-summary">
                     <h3 class="section-title" style="border:none;">Đơn hàng của bạn</h3>
 
-                    <div class="summary-item-list">
-                        <%-- Dùng .list để gọi hàm getList() trong Cart.java --%>
+                    <div class="summary-item-list" style="max-height: 380px; overflow-y: auto;">
                         <c:forEach items="${sessionScope.cart.list}" var="item">
-                            <div class="item-mini" id="item-${item.product.id}">
-                                <div class="item-img">
-                                    <img src="${pageContext.request.contextPath}/${item.product.img}">
-                                    <span class="qty-badge" id="badge-${item.product.id}">${item.quantity}</span>
+                            <div class="item-mini d-flex gap-3 mb-3 pb-3 border-bottom">
+                                <div class="item-img" style="width: 70px; height: 85px;">
+                                    <img src="${pageContext.request.contextPath}/${item.product.img}" class="w-100 h-100 object-fit-cover rounded border">
                                 </div>
-                                <div class="item-info">
-                                    <p style="font-size:13px; font-weight:600; margin:0;">${item.product.name}</p>
-                                    <p class="price-text" data-unit-price="${item.price}">
-                                        <fmt:formatNumber value="${item.price}" pattern="#,###"/> đ
-                                    </p>
-                                    <div style="display:flex; align-items:center; gap:10px;">
-                                        <button type="button" class="btn-qty" onclick="changeQty(${item.product.id}, -1)">-</button>
-                                        <span id="qty-text-${item.product.id}">${item.quantity}</span>
-                                        <button type="button" class="btn-qty" onclick="changeQty(${item.product.id}, 1)">+</button>
+                                <div class="flex-grow-1">
+                                    <div class="small fw-bold">${item.product.name}</div>
+                                    <div class="small text-muted">Số lượng: ${item.quantity}</div>
+                                    <div class="fw-bold mt-1 text-danger">
+                                        <fmt:formatNumber value="${item.price}" pattern="#,###"/>đ
                                     </div>
-                                </div>
-                                <div style="text-align: right; min-width:80px;">
-                                    <span id="item-total-${item.product.id}" style="font-weight:bold;">
-                                        <fmt:formatNumber value="${item.price * item.quantity}" pattern="#,###"/> đ
-                                    </span>
                                 </div>
                             </div>
                         </c:forEach>
                     </div>
 
-                    <div class="price-details" style="margin-top:20px;">
-                        <div style="display:flex; justify-content:space-between; margin-bottom:10px;">
-                            <span>Tạm tính</span>
-                            <%-- Dùng .total để gọi hàm getTotal() trong Cart.java --%>
-                            <span id="display-subtotal">
-                                <fmt:formatNumber value="${sessionScope.cart.total}" pattern="#,###"/> đ
+                    <div class="price-details mt-4 border-top pt-3">
+                        <div class="d-flex justify-content-between mb-2">
+                            <span class="text-muted small">Tạm tính</span>
+                            <span id="display-subtotal" class="fw-bold">
+                                <fmt:formatNumber value="${sessionScope.cart.total}" pattern="#,###"/>đ
                             </span>
                         </div>
-                        <div style="display:flex; justify-content:space-between; margin-bottom:10px;">
-                            <span>Phí vận chuyển</span>
-                            <span id="display-shipping">30,000 đ</span>
+                        <div class="d-flex justify-content-between mb-3">
+                            <span class="text-muted small">Phí vận chuyển</span>
+                            <span id="display-shipping" class="fw-bold">30,000đ</span>
                         </div>
-                        <div class="total-row">
-                            <span>TỔNG CỘNG</span>
-                            <span id="display-total">
-                                <fmt:formatNumber value="${sessionScope.cart.total + 30000}" pattern="#,###"/> đ
+                        <div class="total-row d-flex justify-content-between align-items-center pt-3 border-top">
+                            <span class="fw-bold">TỔNG CỘNG</span>
+                            <span id="display-total" class="h4 fw-bold text-danger mb-0">
+                                <fmt:formatNumber value="${sessionScope.cart.total + 30000}" pattern="#,###"/>đ
                             </span>
                         </div>
                     </div>
 
                     <input type="hidden" name="totalPrice" id="input-total" value="${sessionScope.cart.total + 30000}">
-                    <button type="submit" class="btn-submit">HOÀN TẤT ĐẶT HÀNG</button>
+                    <button type="submit" class="btn-checkout-confirm mt-4">HOÀN TẤT ĐẶT HÀNG</button>
+
+                    <p class="text-center text-muted small mt-3 mb-0">
+                        <i class="fa-solid fa-lock me-1"></i> Thông tin được bảo mật
+                    </p>
                 </div>
             </div>
+
         </div>
     </form>
 </div>
@@ -319,75 +307,116 @@
 <jsp:include page="footer.jsp" />
 
 <script>
-   function changeQty(id, delta) {
-       // Tìm thẻ hiển thị số lượng dựa trên ID truyền vào
-       const qtyText = document.getElementById('qty-text-' + id);
-       const badge = document.getElementById('badge-' + id);
+    // GIỮ NGUYÊN TOÀN BỘ LOGIC JAVASCRIPT CỦA BẠN
+    function changeQty(id, delta) {
+        const qtyText = document.getElementById('qty-text-' + id);
+        const badge = document.getElementById('badge-' + id);
 
-       // Nếu không tìm thấy thẻ, dừng lại ngay để không báo lỗi đỏ
-       if (!qtyText) {
-           console.error("Không tìm thấy thẻ với ID: qty-text-" + id);
-           return;
-       }
+        if (!qtyText) {
+            console.error("Không tìm thấy thẻ với ID: qty-text-" + id);
+            return;
+        }
 
-       let currentQty = parseInt(qtyText.innerText);
-       let newQty = currentQty + delta;
+        let currentQty = parseInt(qtyText.innerText);
+        let newQty = currentQty + delta;
 
-       if (newQty <= 0) {
-           if (confirm("Bạn có muốn xóa sản phẩm này khỏi giỏ hàng không?")) {
-               window.location.href = "${pageContext.request.contextPath}/del-cart?id=" + id + "&src=checkout";
-           }
-           return;
-       }
-       const params = new URLSearchParams();
-       params.append('id', id);
-       params.append('q', delta);
+        if (newQty <= 0) {
+            if (confirm("Bạn có muốn xóa sản phẩm này khỏi giỏ hàng không?")) {
+                window.location.href = "${pageContext.request.contextPath}/del-cart?id=" + id + "&src=checkout";
+            }
+            return;
+        }
+        const params = new URLSearchParams();
+        params.append('id', id);
+        params.append('q', delta);
 
-       fetch('update-cart', {
-           method: 'POST',
-           headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-           body: params
-       })
-       .then(response => response.json())
-       .then(data => {
+        fetch('update-cart', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            body: params
+        })
+        .then(response => response.json())
+        .then(data => {
+            qtyText.innerText = data.itemQuantity;
+            if(badge) badge.innerText = data.itemQuantity;
 
-           qtyText.innerText = data.itemQuantity;
-           if(badge) badge.innerText = data.itemQuantity;
+            const itemTotalEl = document.getElementById('item-total-' + id);
+            if(itemTotalEl) {
+                const priceEl = document.querySelector('#item-' + id + ' .price-text');
+                const unitPrice = parseFloat(priceEl.getAttribute('data-unit-price'));
+                itemTotalEl.innerText = (unitPrice * data.itemQuantity).toLocaleString() + " đ";
+            }
 
-           const itemTotalEl = document.getElementById('item-total-' + id);
-           if(itemTotalEl) {
-               const priceEl = document.querySelector('#item-' + id + ' .price-text');
-               const unitPrice = parseFloat(priceEl.getAttribute('data-unit-price'));
-               itemTotalEl.innerText = (unitPrice * data.itemQuantity).toLocaleString() + " đ";
-           }
+            const subtotalEl = document.getElementById('display-subtotal');
+            if(subtotalEl) {
+                subtotalEl.innerText = data.total.toLocaleString() + " đ";
+            }
+            updateTotal();
+        })
+        .catch(err => console.error("Lỗi kết nối Servlet:", err));
+    }
 
-           const subtotalEl = document.getElementById('display-subtotal');
-           if(subtotalEl) {
-               subtotalEl.innerText = data.total.toLocaleString() + " đ";
-           }
+    function updateTotalFinal(subtotal) {
+        const shippingRadio = document.querySelector('input[name="shippingMethod"]:checked');
+        let shipping = shippingRadio ? parseFloat(shippingRadio.value) : 0;
+        const finalTotal = subtotal + shipping;
 
-           // Tính lại phí ship và tổng cộng
-           updateTotal();
-       })
-       .catch(err => console.error("Lỗi kết nối Servlet:", err));
-   }
+        document.getElementById('display-shipping').innerText = shipping.toLocaleString() + " đ";
+        document.getElementById('display-total').innerText = finalTotal.toLocaleString() + " đ";
+        document.getElementById('input-total').value = finalTotal;
+    }
 
-   function updateTotalFinal(subtotal) {
-       const shippingRadio = document.querySelector('input[name="shippingMethod"]:checked');
-       let shipping = shippingRadio ? parseFloat(shippingRadio.value) : 0;
+    function updateTotal() {
+        let subtotalText = document.getElementById('display-subtotal').innerText;
+        let subtotal = parseFloat(subtotalText.replace(/[^\d]/g, ''));
+        updateTotalFinal(subtotal);
+    }
+    function handleCheckout(event) {
+        event.preventDefault(); // Chặn load lại trang
 
-       const finalTotal = subtotal + shipping;
+        const form = document.getElementById('checkoutForm');
+        const paymentMethod = document.querySelector('input[name="paymentMethod"]:checked').value;
+        const totalAmount = document.getElementById('input-total').value;
 
-       document.getElementById('display-shipping').innerText = shipping.toLocaleString() + " đ";
-       document.getElementById('display-total').innerText = finalTotal.toLocaleString() + " đ";
-       document.getElementById('input-total').value = finalTotal;
-   }
+        // Nếu chọn COD (Trả tiền mặt)
+        if (paymentMethod === 'COD') {
+            if(confirm("Xác nhận đặt hàng và thanh toán khi nhận túi xách?")) {
+                form.action = "${pageContext.request.contextPath}/save-order"; // Trang lưu đơn hàng của bạn
+                form.submit();
+            }
+            return;
+        }
 
-   function updateTotal() {
-       let subtotalText = document.getElementById('display-subtotal').innerText;
-       let subtotal = parseFloat(subtotalText.replace(/[^\d]/g, ''));
-       updateTotalFinal(subtotal);
-   }
+        // Nếu chọn BANK hoặc MOMO -> Gọi API
+        const btn = document.querySelector('.btn-checkout-confirm');
+        btn.innerText = "ĐANG TẠO MÃ QR...";
+        btn.disabled = true;
+
+        fetch('${pageContext.request.contextPath}/payment-api', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            body: new URLSearchParams({
+                'amount': totalAmount,
+                'method': paymentMethod
+            })
+        })
+        .then(res => res.json())
+        .then(data => {
+            if (data.checkoutUrl) {
+                // Chuyển hướng khách hàng đến trang quét mã của ngân hàng/MoMo
+                window.location.href = data.checkoutUrl;
+            } else {
+                alert("Lỗi tạo đơn hàng: " + data.message);
+                btn.disabled = false;
+                btn.innerText = "HOÀN TẤT ĐẶT HÀNG";
+            }
+        })
+        .catch(err => {
+            console.error(err);
+            btn.disabled = false;
+            btn.innerText = "HOÀN TẤT ĐẶT HÀNG";
+        });
+    }
 </script>
 
 </body>

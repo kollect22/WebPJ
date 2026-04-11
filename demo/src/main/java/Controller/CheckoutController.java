@@ -1,38 +1,44 @@
 package Controller;
 
+import services.PaymentService;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
-import jakarta.servlet.http.*;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-// Import đúng 2 nơi chứa class của bạn
-import cart.Cart;
-import model.User;
-
-@WebServlet(name = "CheckoutController", value = "/checkout")
+@WebServlet("/xu-ly-thanh-toan")
 public class CheckoutController extends HttpServlet {
+    private final PaymentService paymentService = new PaymentService();
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        HttpSession session = req.getSession();
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        try {
+            // Tạo mã đơn hàng ngẫu nhiên bằng số (dưới 10 chữ số để tránh lỗi long)
+            String orderId = String.valueOf((long) (Math.random() * 100000000));
+            long amount = 10000; // Số tiền demo 10,000 VND
 
-        // 1. Kiểm tra đăng nhập (biến "auth" như bạn đã đặt)
-        User user = (User) session.getAttribute("auth");
-        if (user == null) {
-            resp.sendRedirect("login");
-            return;
+            String jsonRaw = paymentService.createPaymentUrl(amount, orderId);
+
+            // Phân tích dữ liệu JSON nhận được
+            JsonObject jsonObject = JsonParser.parseString(jsonRaw).getAsJsonObject();
+
+            // Kiểm tra nếu API trả về thành công (error = 0)
+            if (jsonObject.get("error").getAsInt() == 0) {
+                String checkoutUrl = jsonObject.get("data").getAsJsonObject().get("checkoutUrl").getAsString();
+                // Chuyển hướng khách sang trang thanh toán của ngân hàng
+                response.sendRedirect(checkoutUrl);
+            } else {
+                response.getWriter().println("Loi API: " + jsonRaw);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            response.getWriter().println("He thong gap loi: " + e.getMessage());
         }
-
-        // 2. Kiểm tra giỏ hàng
-        Cart cart = (Cart) session.getAttribute("cart");
-
-        // Thay vì cart.getItems(), mình check trực tiếp cart
-        if (cart == null) {
-            resp.sendRedirect("home");
-            return;
-        }
-
-        // 3. Đẩy sang giao diện
-        req.getRequestDispatcher("checkout.jsp").forward(req, resp);
     }
 }
