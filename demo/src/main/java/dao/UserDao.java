@@ -14,4 +14,18 @@ public class UserDao extends BaseDao {
                     .list();
         });
     }
+
+    public boolean changePassword(int userId, String oldPassword, String newPassword) {
+        return get().withHandle(h -> {
+            String sql = "UPDATE users SET password = :newPass WHERE id = :id AND password = :oldPass";
+
+            int rowsAffected = h.createUpdate(sql)
+                    .bind("newPass", newPassword)
+                    .bind("id", userId)
+                    .bind("oldPass", oldPassword)
+                    .execute();
+            
+            return rowsAffected >0;
+        });
+    }
 }
