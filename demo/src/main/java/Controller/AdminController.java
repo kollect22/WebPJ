@@ -71,13 +71,13 @@ public class AdminController extends HttpServlet {
                 req.setAttribute("activeMenu", "coupons");
                 targetPage = "/admin/coupons.jsp";
                 break;
-            case "/admin/customers":
+            case "/admin/customer":
                 dao.UserDao userDao = new dao.UserDao();
 
                 List<model.User> userList = userDao.getAllUsers();
                 req.setAttribute("userList", userList);
 
-                req.setAttribute("activeMenu", "customers");
+                req.setAttribute("activeMenu", "customer");
                 targetPage = "/admin/customer.jsp";
                 break;
             case "/admin/banner":

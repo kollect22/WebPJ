@@ -15,20 +15,15 @@ public class AuthService {
         User u = authDao.getUserByUsername(username);
         if (u == null) return null;
 
-//        String passwordHash = MD5.getMd5(passwordRaw);
-//
-//        if (passwordHash.equals(u.getPassword()) && u.isActive()) {
-//            u.setPassword("");
-//            return u;
-//        }
-//        return null;
+        String passwordHash = MD5.getMd5(passwordRaw);
 
-
-        if (passwordRaw.equals(u.getPassword()) && u.isActive()) {
+        if (passwordHash.equals(u.getPassword()) && u.isActive()) {
             u.setPassword("");
             return u;
         }
-        return null;}
+        return null;
+
+}
 
     public boolean register(String username, String passwordRaw, String fullName, String appUrl) {
         if (authDao.checkExist(username)) return false;

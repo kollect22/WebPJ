@@ -1,6 +1,8 @@
 package dao;
 
 import model.User;
+import util.MD5;
+
 import java.util.List;
 
 public class UserDao extends BaseDao {
@@ -15,17 +17,20 @@ public class UserDao extends BaseDao {
         });
     }
 
-    public boolean changePassword(int userId, String oldPassword, String newPassword) {
+    public boolean changePassword(int userId, String oldPasswordRaw, String newPasswordRaw) {
+        String oldPassHash = MD5.getMd5(oldPasswordRaw);
+        String newPassHash = MD5.getMd5(newPasswordRaw);
+
         return get().withHandle(h -> {
             String sql = "UPDATE users SET password = :newPass WHERE id = :id AND password = :oldPass";
 
             int rowsAffected = h.createUpdate(sql)
-                    .bind("newPass", newPassword)
+                    .bind("newPass", newPassHash)
                     .bind("id", userId)
-                    .bind("oldPass", oldPassword)
+                    .bind("oldPass", oldPassHash)
                     .execute();
-            
-            return rowsAffected >0;
+
+            return rowsAffected > 0;
         });
     }
 }

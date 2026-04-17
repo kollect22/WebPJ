@@ -1,18 +1,24 @@
 package Controller.product;
 
 import dao.ProductDao;
+import jakarta.servlet.http.Part;
 import model.Product;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+
+import java.io.File;
 import java.io.IOException;
+import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.ArrayList;
 import java.util.List;
 
 @WebServlet(name = "ProductAddController", value = "/admin/product-add")
+@MultipartConfig(fileSizeThreshold = 1024 * 1024 * 2, maxFileSize = 1024 * 1024 * 10, maxRequestSize = 1024 * 1024 * 50)
 public class ProductAdd extends HttpServlet {
 
     @Override
@@ -20,100 +26,77 @@ public class ProductAdd extends HttpServlet {
         req.setCharacterEncoding("UTF-8");
 
         try {
+            String uploadPath = getServletContext().getRealPath("") + File.separator + "uploads";
+            File uploadDir = new File(uploadPath);
+            if (!uploadDir.exists()) {
+                uploadDir.mkdir();
+            }
+
             String sku = req.getParameter("sku");
             String name = req.getParameter("name");
-            String img = req.getParameter("img"); // Ảnh đại diện
             String description = req.getParameter("description");
             String material = req.getParameter("material");
             String colorName = req.getParameter("colorName");
 
-            int price = 0;
-            int salePrice = 0;
-            int categoryId = 1; // Mặc định nếu lỗi
-            int groupId = 0;
-
-//            String category = req.getParameter("category");
-//            String description = req.getParameter("description");
-//
-//            double price = 0;
-//            if (strPrice != null && !strPrice.isEmpty()) {
-//                price = Double.parseDouble(strPrice);
-//            }
-//
-//            if (img == null || img.trim().isEmpty()) {
-//                img = "https://placehold.co/400x400?text=No+Image";
-//            }
+            int price = 0, salePrice = 0, categoryId = 1, groupId = 0;
 
             try {
-                price = Integer.parseInt(req.getParameter("price"));
+                String strPrice = req.getParameter("price");
+                if (strPrice != null && !strPrice.isEmpty()) price = Integer.parseInt(strPrice);
+
                 String strSale = req.getParameter("salePrice");
-                if (strSale != null && !strSale.isEmpty()) {
-                    salePrice = Integer.parseInt(strSale);
-                }
+                if (strSale != null && !strSale.isEmpty()) salePrice = Integer.parseInt(strSale);
 
                 String strCat = req.getParameter("categoryId");
                 if (strCat != null && !strCat.isEmpty()) categoryId = Integer.parseInt(strCat);
 
                 String strGroup = req.getParameter("groupId");
                 if (strGroup != null && !strGroup.isEmpty()) groupId = Integer.parseInt(strGroup);
-
             } catch (NumberFormatException e) {
                 System.out.println("Lỗi parse số: " + e.getMessage());
             }
 
-            // 3. Xử lý kích thước (Double)
-            double width = 0, height = 0, depth = 0;
-            try {
-                String w = req.getParameter("width");
-                String h = req.getParameter("height");
-                String d = req.getParameter("depth");
-                if(w!=null && !w.isEmpty()) width = Double.parseDouble(w);
-                if(h!=null && !h.isEmpty()) height = Double.parseDouble(h);
-                if(d!=null && !d.isEmpty()) depth = Double.parseDouble(d);
-            } catch (Exception e) {
-                System.out.println("Lỗi parse kích thước");
+            Part mainImgPart = req.getPart("img");
+            String mainImgFileName = "https://placehold.co/400x400?text=No+Image";
+
+            if (mainImgPart != null && mainImgPart.getSize() > 0) {
+                // Lấy tên file gốc
+                String fileName = Paths.get(mainImgPart.getSubmittedFileName()).getFileName().toString();
+                // Lưu file vào thư mục uploads
+                mainImgPart.write(uploadPath + File.separator + fileName);
+                // Gắn link để lưu vào Db
+                mainImgFileName = "uploads/" + fileName;
             }
 
-            // Xử lý ảnh mặc định nếu để trống
-            if (img == null || img.trim().isEmpty()) {
-                img = "https://placehold.co/400x400?text=No+Image";
+            //Xuwr lí nhiều ảnh upload
+            List<String> galleryList = new ArrayList<>();
+            for (Part part : req.getParts()) {
+                if ("productImages".equals(part.getName()) && part.getSize() > 0) {
+                    String fileName = Paths.get(part.getSubmittedFileName()).getFileName().toString();
+                    part.write(uploadPath + File.separator + fileName);
+                    galleryList.add("uploads/" + fileName);
+                }
             }
 
+            //Gắn dữ liệu vào model
             Product newProduct = new Product();
             newProduct.setSku(sku);
             newProduct.setName(name);
-            newProduct.setImg(img);
+            newProduct.setImg(mainImgFileName);
+            newProduct.setGalleryImages(galleryList);
+
             newProduct.setPrice(price);
             newProduct.setSalePrice(salePrice);
             newProduct.setDescription(description);
             newProduct.setMaterial(material);
             newProduct.setCategoryId(categoryId);
-
             newProduct.setGroupId(groupId);
             newProduct.setColorName(colorName);
-//
-//            newProduct.setDescription(description);
-//            newProduct.setCategory(category);
-
-            // Xử lý Gallery (Danh sách ảnh phụ)
-            // Giả sử bên form nhập nhiều link ảnh, mỗi link cách nhau bằng xuống dòng (\n)
-            String galleryText = req.getParameter("gallery");
-            List<String> galleryList = new ArrayList<>();
-            if (galleryText != null && !galleryText.trim().isEmpty()) {
-                // Tách chuỗi theo dòng
-                String[] lines = galleryText.split("\n");
-                for (String line : lines) {
-                    if (!line.trim().isEmpty()) {
-                        galleryList.add(line.trim());
-                    }
-                }
-            }
-
-            newProduct.setGalleryImages(galleryList);
 
             ProductDao dao = new ProductDao();
             dao.insert(Arrays.asList(newProduct));
 
+            // Chuyển hướng về trang danh sách
             resp.sendRedirect(req.getContextPath() + "/admin/products");
 
         } catch (Exception e) {
