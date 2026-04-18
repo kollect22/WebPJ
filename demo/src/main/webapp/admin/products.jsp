@@ -170,7 +170,7 @@
             </div>
 
             <div class="modal-body">
-                <form id="addProductForm" action="${pageContext.request.contextPath}/admin/product-add" method="post">
+                <form id="addProductForm" action="${pageContext.request.contextPath}/admin/product-add" method="post" enctype="multipart/form-data">
 
                     <div class="mb-3">
                         <label for="prodName" class="form-label fw-bold">Tên sản phẩm</label>
@@ -198,15 +198,14 @@
                     </div>
 
                     <div class="mb-3">
-                        <label for="prodImg" class="form-label fw-bold">Link Ảnh (URL)</label>
-                        <input type="text" class="form-control" id="prodImg" name="img"
-                               placeholder="Dán link ảnh online vào đây..."
-                               oninput="document.getElementById('imgPreview').src = this.value || 'https://placehold.co/150x150?text=Xem+Truoc+Anh'">
+                            <label for="prodImg" class="form-label fw-bold">Ảnh đại diện (Bắt buộc chọn 1 ảnh)</label>
+                            <input type="file" class="form-control" id="prodImg" name="img" accept="image/*" required>
+                    </div>
 
-                        <div class="mt-3 text-center bg-light rounded py-2 border">
-                            <img id="imgPreview" src="https://placehold.co/150x150?text=Xem+Truoc+Anh"
-                                 alt="Preview" style="max-width: 150px; max-height: 150px; object-fit: contain;">
-                        </div>
+                    <div class="mb-3">
+                            <label for="prodGallery" class="form-label fw-bold">Thư viện ảnh (Chọn nhiều ảnh)</label>
+                            <input type="file" class="form-control" id="prodGallery" name="productImages" accept="image/*" multiple>
+                            <small class="text-muted"><i class="fa-solid fa-circle-info"></i> Nhấn giữ phím Ctrl để chọn nhiều ảnh cùng lúc.</small>
                     </div>
 
                     <div class="modal-footer border-0 px-0 pb-0">
@@ -226,7 +225,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form action="${pageContext.request.contextPath}/admin/product-edit" method="post">
+                <form action="${pageContext.request.contextPath}/admin/product-edit" method="post" enctype="multipart/form-data">
 
                     <input type="hidden" id="editId" name="id">
 
@@ -256,12 +255,13 @@
                     </div>
 
                     <div class="mb-3">
-                        <label class="form-label fw-bold">Link Ảnh (URL)</label>
-                        <input type="text" class="form-control" id="editImg" name="img"
-                               oninput="document.getElementById('editImgPreview').src = this.value || 'https://placehold.co/150x150?text=Xem+Truoc+Anh'">
-                        <div class="mt-3 text-center bg-light rounded py-2 border">
-                            <img id="editImgPreview" src="" alt="Preview" style="max-width: 150px; max-height: 150px; object-fit: contain;">
-                        </div>
+                        <label for="editImg" class="form-label fw-bold">Ảnh đại diện mới (Bỏ trống nếu muốn giữ ảnh cũ)</label>
+                        <input type="file" class="form-control" id="editImg" name="img" accept="image/*">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="editGallery" class="form-label fw-bold">Thêm ảnh vào thư viện (Bỏ trống nếu không đổi)</label>
+                        <input type="file" class="form-control" id="editGallery" name="productImages" accept="image/*" multiple>
                     </div>
 
                     <div class="modal-footer border-0 px-0 pb-0">
@@ -308,6 +308,23 @@
             preview.src = 'https://placehold.co/150x150?text=Xem+Truoc+Anh';
         }
     }
+    <script src="https://cdn.ckeditor.com/ckeditor5/39.0.1/classic/ckeditor.js"></script>
+
+<script>
+    // Kích hoạt CKEditor cho form thêm sản phẩm
+    ClassicEditor
+        .create(document.querySelector('#prodDesc'))
+        .catch(error => {
+            console.error(error);
+        });
+
+    // Kích hoạt CKEditor cho form sửa sản phẩm
+    ClassicEditor
+        .create(document.querySelector('#editDesc'))
+        .catch(error => {
+            console.error(error);
+        });
+</script>
 </script>
 
 </body>

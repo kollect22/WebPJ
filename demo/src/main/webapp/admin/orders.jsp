@@ -13,7 +13,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
 
 
-
     <style>
         body {
             background-color: #f8f9fa;
@@ -34,7 +33,8 @@
 
                 <div class="ms-auto d-flex align-items-center">
                     <span class="me-3 text-secondary">Xin chào, <strong>Admin!</strong></span>
-                    <div class="rounded-circle bg-light d-flex justify-content-center align-items-center" style="width: 40px; height: 40px;">
+                    <div class="rounded-circle bg-light d-flex justify-content-center align-items-center"
+                         style="width: 40px; height: 40px;">
                         <i class="fa-regular fa-user text-primary"></i>
                     </div>
                 </div>
@@ -45,7 +45,8 @@
 
             <div class="d-flex justify-content-between align-items-center mb-4">
                 <h3 class="mb-0 text-secondary">Danh sách Đơn hàng</h3>
-                <button class="btn btn-outline-success btn-sm"><i class="fa-solid fa-file-excel"></i> Xuất Excel</button>
+                <button class="btn btn-outline-success btn-sm"><i class="fa-solid fa-file-excel"></i> Xuất Excel
+                </button>
             </div>
 
             <div class="card shadow border-0 rounded-3">
@@ -64,59 +65,58 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <tr>
-                                <td class="ps-4 fw-bold text-primary">#1004</td>
-                                <td>
-                                    <div class="d-flex align-items-center">
-                                        <div class="avatar-sm me-2 bg-secondary-subtle rounded-circle d-flex justify-content-center align-items-center" style="width:30px;height:30px">
-                                            <i class="fa-solid fa-user text-secondary" style="font-size: 12px"></i>
-                                        </div>
-                                        <span>Phạm Văn F</span>
-                                    </div>
-                                </td>
-                                <td>19/11/2025</td>
-                                <td class="fw-bold">680.000 VNĐ</td>
-                                <td>
-                                    <span class="badge bg-warning text-dark bg-opacity-75 px-3 py-2 rounded-pill">
-                                        <i class="fa-solid fa-clock me-1"></i> Chờ xử lý
-                                    </span>
-                                </td>
-                                <td class="text-center">
-                                    <button class="btn btn-sm btn-outline-primary" title="Xem chi tiết">
-                                        <i class="fa-solid fa-eye"></i>
-                                    </button>
-                                    <button class="btn btn-sm btn-primary ms-1">
-                                        <i class="fa-solid fa-check"></i> Xác nhận
-                                    </button>
-                                </td>
-                            </tr>
+                            <c:forEach items="${orderList}" var="o">
+                                <tr>
+                                    <td class="ps-4 fw-bold text-primary">${o.orderIdCode}</td>
 
-                            <tr>
-                                <td class="ps-4 fw-bold text-primary">#1003</td>
-                                <td>
-                                    <div class="d-flex align-items-center">
-                                        <div class="avatar-sm me-2 bg-secondary-subtle rounded-circle d-flex justify-content-center align-items-center" style="width:30px;height:30px">
-                                            <i class="fa-solid fa-user text-secondary" style="font-size: 12px"></i>
+                                    <td>
+                                        <div class="d-flex align-items-center">
+                                            <div class="avatar-sm me-2 bg-secondary-subtle rounded-circle d-flex justify-content-center align-items-center" style="width:30px;height:30px">
+                                                <i class="fa-solid fa-user text-secondary" style="font-size: 12px"></i>
+                                            </div>
+                                            <span>${o.fullName}</span>
                                         </div>
-                                        <span>Trần Đình C</span>
-                                    </div>
-                                </td>
-                                <td>18/11/2025</td>
-                                <td class="fw-bold">800.000 VNĐ</td>
-                                <td>
-                                    <span class="badge bg-success px-3 py-2 rounded-pill">
-                                        <i class="fa-solid fa-check-circle me-1"></i> Đã hoàn thành
-                                    </span>
-                                </td>
-                                <td class="text-center">
-                                    <button class="btn btn-sm btn-outline-primary" title="Xem chi tiết">
-                                        <i class="fa-solid fa-eye"></i>
-                                    </button>
-                                </td>
-                            </tr>
+                                    </td>
+
+                                    <td>
+                                            ${o.paymentMethod}
+                                    </td>
+
+                                    <td class="fw-bold">
+                                        <fmt:formatNumber value="${o.totalPrice}" type="currency" currencySymbol="VNĐ" maxFractionDigits="0"/>
+                                    </td>
+
+                                    <td>
+                                        <c:choose>
+                                            <c:when test="${o.status == 0}">
+                                                <span class="badge bg-warning text-dark bg-opacity-75 px-3 py-2 rounded-pill">
+                                                    <i class="fa-solid fa-clock me-1"></i> Chờ xử lý
+                                                </span>
+                                            </c:when>
+                                            <c:when test="${o.status == 1}">
+                                                <span class="badge bg-success px-3 py-2 rounded-pill">
+                                                    <i class="fa-solid fa-check-circle me-1"></i> Đã hoàn thành
+                                                </span>
+                                            </c:when>
+                                            <c:otherwise>
+                                                <span class="badge bg-danger px-3 py-2 rounded-pill">
+                                                    <i class="fa-solid fa-xmark me-1"></i> Đã hủy
+                                                </span>
+                                            </c:otherwise>
+                                        </c:choose>
+                                    </td>
+
+                                    <td class="text-center">
+                                        <a href="${pageContext.request.contextPath}/admin/order-detail?id=${o.id}" class="btn btn-sm btn-outline-primary" title="Xem chi tiết">
+                                            <i class="fa-solid fa-eye"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                            </c:forEach>
                             </tbody>
                         </table>
-                    </div> </div>
+                    </div>
+                </div>
 
                 <div class="card-footer bg-white py-3">
                     <nav aria-label="Page navigation">

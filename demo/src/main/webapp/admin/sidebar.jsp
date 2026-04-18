@@ -31,7 +31,7 @@
             </a>
         </li>
         <li class="nav-item">
-            <a href="${pageContext.request.contextPath}/admin/customer.jsp"
+            <a href="${pageContext.request.contextPath}/admin/customer"
                class="nav-link ${activeMenu == 'customer' ? 'active' : 'link-dark'}">
                 <i class="fa-solid fa-receipt me-2"></i> Khách hàng
             </a>
