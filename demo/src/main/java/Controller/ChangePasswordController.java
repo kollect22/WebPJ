@@ -8,6 +8,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import util.MD5;
 
 import java.io.IOException;
 
@@ -47,13 +48,16 @@ public class ChangePasswordController extends HttpServlet {
             return;
         }
 
+        String oldPassHash = MD5.getMd5(oldPass);
+        String newPassHash = MD5.getMd5(newPass);
+
         UserDao dao = new UserDao();
         boolean isSuccess = dao.changePassword(currentUser.getId(), oldPass, newPass);
 
         if (isSuccess) {
             req.setAttribute("success", "Đổi mật khẩu thành công!");
-            currentUser.setPassword(newPass);
-            session.setAttribute("auth", currentUser);
+            currentUser.setPassword(newPassHash);
+            req.getSession().setAttribute("auth", currentUser);
         } else {
             req.setAttribute("error", "Mật khẩu cũ không chính xác!");
         }

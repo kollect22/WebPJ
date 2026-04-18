@@ -111,6 +111,29 @@
         .link:hover {
             text-decoration: underline;
         }
+
+        .input-group {
+            position: relative;
+        }
+
+        #btnTogglePassword {
+            position: absolute;
+            right: 0;
+            top: 0;
+            height: 100%;
+            z-index: 10;
+            border: none;
+            align-items: center;
+            background: transparent;
+            cursor: pointer;
+        }
+
+        .form-control.is-invalid,
+        .form-control.is-valid {
+            background-image: none !important;
+            padding-right: .75rem !important; /* Trả lại khoảng trống bình thường cho chữ */
+        }
+
     </style>
 </head>
 <body>
@@ -129,7 +152,17 @@
     <div id="loginForm">
         <form action="login" method="POST">
             <input type="text" name="username" class="form-control" placeholder="Email hoặc SĐT" required>
-            <input type="password" name="password" class="form-control" placeholder="Mật khẩu" required>
+<%--            <input type="password" name="password" class="form-control" placeholder="Mật khẩu" required>--%>
+
+            <div class="input-group mb-2">
+                <input type="password" id="password" name="password" class="form-control" placeholder="Mật khẩu" required>
+                <button class="btn btn-outline-secondary" type="button" id="btnTogglePassword" style="border-color: #dee2e6;">
+                    <i class="fa-regular fa-eye" id="eyeIcon"></i>
+                </button>
+            </div>
+
+            <div id="password-hint" class="mt-2 text-danger fw-bold" style="font-size: 0.85rem; display: none;"></div>
+
 
             <div class="text-end mb-3">
                 <a href="forgot-password.jsp" class="link small">Quên mật khẩu?</a>
@@ -155,11 +188,19 @@
     </div>
 
     <div id="registerForm" style="display:none;">
-        <form action="register" method="POST">
+        <form id="frmRegister" action= "register" method="POST">
             <input type="text" name="fullName" class="form-control" placeholder="Họ và tên" required>
             <input type="text" name="username" class="form-control" placeholder="Email hoặc SĐT" required>
-            <input type="password" name="password" class="form-control" placeholder="Mật khẩu" required>
+            <%--            <input type="password" id="password" name="password" class="form-control" placeholder="Mật khẩu" required>--%>
 
+            <div class="input-group mb-2">
+                <input type="password" id="password" name="password" class="form-control" placeholder="Mật khẩu" required>
+                <button class="btn btn-outline-secondary" type="button" id="btnTogglePassword" style="border-color: #dee2e6;">
+                    <i class="fa-regular fa-eye" id="eyeIcon"></i>
+                </button>
+            </div>
+
+            <div id="password-hint" class="mt-2 text-danger fw-bold" style="font-size: 0.85rem; display: none;"></div>
 
             <button type="submit" class="btn btn-black rounded">ĐĂNG KÝ</button>
         </form>
@@ -190,7 +231,24 @@
 
         document.getElementById('tabLogin').className = formId === 'loginForm' ? 'active' : '';
         document.getElementById('tabRegister').className = formId === 'registerForm' ? 'active' : '';
+
+        sessionStorage.setItem('activeTab', formId);
     }
+
+    window.onload = function (){
+        var successMsg = '${mess}';
+        var errorMsg = '${error}';
+
+        if(successMsg && successMsg.trim() !=="") {
+            showForm('loginForm');
+            sessionStorage.removeItem('activeTab')
+        }else if (errorMsg && errorMsg.trim() !== "") {
+            showForm('registerForm');
+        }else {
+            const savedTab = sessionStorage.getItem('activeTab');
+            showForm(savedTab);
+        }
+    };
 </script>
 
 <script type="module">
@@ -231,6 +289,81 @@
                 alert("Lỗi đăng nhập: " + error.message);
             });
     };
+</script>
+
+<script>
+    const password = document.getElementById('password');
+    const passwordHint = document.getElementById('password-hint');
+    const frmRegister = document.getElementById('frmRegister');
+
+
+    password.addEventListener('input', function (){
+        const pwd = this.value;
+        if(pwd.length === 0){
+            passwordHint.style.display='none';
+            password.classList.remove('is-valid', 'is-invalid')
+            return;
+        }
+
+        const isValidLength = pwd.length>=8;
+        const isValidUpper = /[A-Z]/.test(pwd);
+        const isValidLower = /[a-z]/.test(pwd);
+        const isValidNumber = /[0-9]/.test(pwd);
+
+        passwordHint.style.display='block';
+        password.classList.remove('is-valid');
+        password.classList.add('is-invalid');
+
+
+        if(!isValidLength){
+            passwordHint.innerHTML = '<i class="fa-solid me-1"></i> Mật khẩu phải có tối thiểu 8 ký tự';
+        }
+        else if (!isValidUpper) {
+            passwordHint.innerHTML = '<i class="fa-solid me-1"></i> Cần thêm: Ít nhất 1 chữ cái IN HOA';
+        }
+        else if (!isValidLower) {
+            passwordHint.innerHTML = '<i class="fa-solid me-1"></i> Cần thêm: Ít nhất 1 chữ cái thường';
+        }
+        else if (!isValidNumber) {
+            passwordHint.innerHTML = '<i class="fa-solid me-1"></i> Cần thêm: Ít nhất 1 chữ số';
+        }
+        else {
+            passwordHint.style.display='none';
+            password.classList.remove('is-invalid');
+            password.classList.add('is-valid');
+        }
+    });
+
+    document.getElementById('frmRegister').addEventListener('submit', function(event) {
+        const pwd = password.value;
+        const isValid = pwd.length >= 8 && /[A-Z]/.test(pwd) && /[a-z]/.test(pwd) && /[0-9]/.test(pwd);
+
+        if (!isValid) {
+            event.preventDefault();
+            alert('Vui lòng bổ sung đầy đủ các yêu cầu của mật khẩu!');
+            password.focus();
+        }
+    });
+
+    const btnTogglePassword = document.getElementById('btnTogglePassword');
+    const eyeIcon = document.getElementById('eyeIcon');
+
+    if(btnTogglePassword){
+        btnTogglePassword.addEventListener('click', function (){
+            const type = password.getAttribute('type')=== 'password' ? 'text' : 'password';
+
+            password.setAttribute('type', type);
+
+            if(type === 'text'){
+                eyeIcon.classList.remove('fa-eye');
+                eyeIcon.classList.add('fa-eye-slash')
+            }else{
+                eyeIcon.classList.remove('fa-eye-slash');
+                eyeIcon.classList.add('fa-eye');
+            }
+        })
+    }
+
 </script>
 
 </body>
