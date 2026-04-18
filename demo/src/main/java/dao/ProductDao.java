@@ -294,5 +294,15 @@ public class ProductDao extends BaseDao {
                     .list();
         });
     }
+
+    public List<Product> getRecommendedProducts(int limit) {
+        return get().withHandle(h -> {
+            String sql = "SELECT * FROM products ORDER BY RAND() LIMIT :limit";
+            return h.createQuery(sql)
+                    .bind("limit", limit)
+                    .mapToBean(Product.class)
+                    .list();
+        });
+    }
 }
 
