@@ -33,4 +33,14 @@ public class OrderDao extends BaseDao {
             });
         });
     }
+    public List<Order> getAllOrders() {
+        return get().withHandle(h -> {
+            // Lấy tất cả đơn hàng, sắp xếp mới nhất lên đầu
+            String sql = "SELECT * FROM orders ORDER BY id DESC";
+
+            return h.createQuery(sql)
+                    .mapToBean(Order.class)
+                    .list();
+        });
+    }
 }

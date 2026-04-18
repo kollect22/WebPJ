@@ -15,7 +15,7 @@ import java.util.List;
         "/admin/dashboard",
         "/admin/products",
         "/admin/coupons",
-        "/admin/customers",
+        "/admin/customer",
         "/admin/banner",
         "/admin/orders"})
 public class AdminController extends HttpServlet {
@@ -85,6 +85,12 @@ public class AdminController extends HttpServlet {
                 targetPage = "/admin/banner.jsp";
                 break;
             case "/admin/orders":
+                dao.OrderDao orderDao = new dao.OrderDao();
+
+                List<model.Order> orderList = orderDao.getAllOrders();
+
+                req.setAttribute("orderList", orderList);
+
                 req.setAttribute("activeMenu", "orders");
                 targetPage = "/admin/orders.jsp";
                 break;
