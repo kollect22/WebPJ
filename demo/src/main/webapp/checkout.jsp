@@ -47,7 +47,7 @@
                     gap: 10px;
                 }
 
-                /* KHUNG CHỨA LOGO THANH TOÁN ĐÃ ĐƯỢC ĐỒNG BỘ */
+
                 .payment-logo-container {
                     width: 55px;
                     height: 55px;
@@ -58,17 +58,17 @@
                     margin-right: 15px;
                     border: 1px solid #eee;
                     background: #fff;
-                    padding: 5px; /* Giúp logo không bị chạm mép */
+                    padding: 5px;
                 }
 
-                /* Đảm bảo ảnh logo vừa khít */
+
                 .payment-logo-container img {
                     max-width: 100%;
                     height: auto;
                     object-fit: contain;
                 }
 
-                /* Khung chứa Icon cho Vận chuyển */
+
                 .shipping-icon-container {
                     width: 55px;
                     height: 55px;
@@ -83,7 +83,7 @@
 
 
 
-                /* Nút xác nhận chuyên nghiệp */
+
                 .btn-checkout-confirm {
                     width: 100%;
                     padding: 18px;
@@ -97,7 +97,7 @@
                     transition: 0.3s;
                 }
                 .btn-checkout-confirm:hover { background: #333; transform: translateY(-2px); }
-            /* Định dạng khung chứa Icon để đồng bộ với Giao hàng/Vận chuyển */
+
                 .method-icon-box {
                     width: 60px;
                     height: 60px;
@@ -123,7 +123,7 @@
                 }
 
                 input[type="radio"]:checked + .option-card .method-icon-box i {
-                    color: #fff; /* Icon đổi sang trắng khi được chọn */
+                    color: #fff;
                 }
 
                 .option-card {
@@ -378,7 +378,6 @@
         const paymentMethod = document.querySelector('input[name="paymentMethod"]:checked').value;
         const totalAmount = document.getElementById('input-total').value;
 
-        // Nếu chọn COD (Trả tiền mặt)
         if (paymentMethod === 'COD') {
             if(confirm("Xác nhận đặt hàng và thanh toán khi nhận túi xách?")) {
                 form.action = "${pageContext.request.contextPath}/save-order"; // Trang lưu đơn hàng của bạn
@@ -387,7 +386,6 @@
             return;
         }
 
-        // Nếu chọn BANK hoặc MOMO -> Gọi API
         const btn = document.querySelector('.btn-checkout-confirm');
         btn.innerText = "ĐANG TẠO MÃ QR...";
         btn.disabled = true;
@@ -403,8 +401,8 @@
         .then(res => res.json())
         .then(data => {
             if (data.checkoutUrl) {
-                // Chuyển hướng khách hàng đến trang quét mã của ngân hàng/MoMo
-                window.location.href = data.checkoutUrl;
+                alert("Vui lòng quét mã QR để thanh toán, sau đó nhấn OK");
+                window.location.href = "thankyou.jsp";
             } else {
                 alert("Lỗi tạo đơn hàng: " + data.message);
                 btn.disabled = false;
