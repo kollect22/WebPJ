@@ -194,13 +194,13 @@
             <%--            <input type="password" id="password" name="password" class="form-control" placeholder="Mật khẩu" required>--%>
 
             <div class="input-group mb-2">
-                <input type="password" id="password" name="password" class="form-control" placeholder="Mật khẩu" required>
-                <button class="btn btn-outline-secondary" type="button" id="btnTogglePassword" style="border-color: #dee2e6;">
-                    <i class="fa-regular fa-eye" id="eyeIcon"></i>
+                <input type="password" id="reg-password" name="password" class="form-control" placeholder="Mật khẩu" required>
+                <button class="btn btn-outline-secondary" type="button" id="btnToggleRegPassword" style="border-color: #dee2e6;">
+                    <i class="fa-regular fa-eye" id="regEyeIcon"></i>
                 </button>
             </div>
 
-            <div id="password-hint" class="mt-2 text-danger fw-bold" style="font-size: 0.85rem; display: none;"></div>
+            <div id="reg-password-hint" class="mt-2 text-danger fw-bold" style="font-size: 0.85rem; display: none;"></div>
 
             <button type="submit" class="btn btn-black rounded">ĐĂNG KÝ</button>
         </form>
@@ -292,78 +292,72 @@
 </script>
 
 <script>
-    const password = document.getElementById('password');
-    const passwordHint = document.getElementById('password-hint');
+    //logic form đk
+    const regPassword = document.getElementById('reg-password');
+    const regPasswordHint = document.getElementById('reg-password-hint');
     const frmRegister = document.getElementById('frmRegister');
 
-
-    password.addEventListener('input', function (){
-        const pwd = this.value;
-        if(pwd.length === 0){
-            passwordHint.style.display='none';
-            password.classList.remove('is-valid', 'is-invalid')
-            return;
-        }
-
-        const isValidLength = pwd.length>=8;
-        const isValidUpper = /[A-Z]/.test(pwd);
-        const isValidLower = /[a-z]/.test(pwd);
-        const isValidNumber = /[0-9]/.test(pwd);
-
-        passwordHint.style.display='block';
-        password.classList.remove('is-valid');
-        password.classList.add('is-invalid');
-
-
-        if(!isValidLength){
-            passwordHint.innerHTML = '<i class="fa-solid me-1"></i> Mật khẩu phải có tối thiểu 8 ký tự';
-        }
-        else if (!isValidUpper) {
-            passwordHint.innerHTML = '<i class="fa-solid me-1"></i> Cần thêm: Ít nhất 1 chữ cái IN HOA';
-        }
-        else if (!isValidLower) {
-            passwordHint.innerHTML = '<i class="fa-solid me-1"></i> Cần thêm: Ít nhất 1 chữ cái thường';
-        }
-        else if (!isValidNumber) {
-            passwordHint.innerHTML = '<i class="fa-solid me-1"></i> Cần thêm: Ít nhất 1 chữ số';
-        }
-        else {
-            passwordHint.style.display='none';
-            password.classList.remove('is-invalid');
-            password.classList.add('is-valid');
-        }
-    });
-
-    document.getElementById('frmRegister').addEventListener('submit', function(event) {
-        const pwd = password.value;
-        const isValid = pwd.length >= 8 && /[A-Z]/.test(pwd) && /[a-z]/.test(pwd) && /[0-9]/.test(pwd);
-
-        if (!isValid) {
-            event.preventDefault();
-            alert('Vui lòng bổ sung đầy đủ các yêu cầu của mật khẩu!');
-            password.focus();
-        }
-    });
-
-    const btnTogglePassword = document.getElementById('btnTogglePassword');
-    const eyeIcon = document.getElementById('eyeIcon');
-
-    if(btnTogglePassword){
-        btnTogglePassword.addEventListener('click', function (){
-            const type = password.getAttribute('type')=== 'password' ? 'text' : 'password';
-
-            password.setAttribute('type', type);
-
-            if(type === 'text'){
-                eyeIcon.classList.remove('fa-eye');
-                eyeIcon.classList.add('fa-eye-slash')
-            }else{
-                eyeIcon.classList.remove('fa-eye-slash');
-                eyeIcon.classList.add('fa-eye');
+    if(regPassword) {
+        regPassword.addEventListener('input', function (){
+            const pwd = this.value;
+            if(pwd.length === 0){
+                regPasswordHint.style.display='none';
+                regPassword.classList.remove('is-valid', 'is-invalid');
+                return;
             }
-        })
-    }
 
+            const isValidLength = pwd.length >= 8;
+            const isValidUpper = /[A-Z]/.test(pwd);
+            const isValidLower = /[a-z]/.test(pwd);
+            const isValidNumber = /[0-9]/.test(pwd);
+
+            regPasswordHint.style.display = 'block';
+            regPassword.classList.remove('is-valid');
+            regPassword.classList.add('is-invalid');
+
+            if(!isValidLength) regPasswordHint.innerHTML = '<i class="fa-solid me-1"></i> Tối thiểu 8 ký tự';
+            else if (!isValidUpper) regPasswordHint.innerHTML = '<i class="fa-solid me-1"></i> Thêm ít nhất 1 chữ IN HOA';
+            else if (!isValidLower) regPasswordHint.innerHTML = '<i class="fa-solid me-1"></i> Thêm ít nhất 1 chữ thường';
+            else if (!isValidNumber) regPasswordHint.innerHTML = '<i class="fa-solid me-1"></i> Thêm ít nhất 1 chữ số';
+            else {
+                regPasswordHint.style.display = 'none';
+                regPassword.classList.remove('is-invalid');
+                regPassword.classList.add('is-valid');
+            }
+        });
+
+        frmRegister.addEventListener('submit', function(event) {
+            const pwd = regPassword.value;
+            const isValid = pwd.length >= 8 && /[A-Z]/.test(pwd) && /[a-z]/.test(pwd) && /[0-9]/.test(pwd);
+
+            if (!isValid) {
+                event.preventDefault();
+                alert('Vui lòng bổ sung đầy đủ các yêu cầu của mật khẩu!');
+                regPassword.focus();
+            }
+        });
+
+        //Nút con mắt hiện/ẩn pass cho đăng ký
+        const btnToggleRegPassword = document.getElementById('btnToggleRegPassword');
+        const regEyeIcon = document.getElementById('regEyeIcon');
+        btnToggleRegPassword.addEventListener('click', function (){
+            const type = regPassword.getAttribute('type') === 'password' ? 'text' : 'password';
+            regPassword.setAttribute('type', type);
+            regEyeIcon.className = type === 'text' ? 'fa-regular fa-eye-slash' : 'fa-regular fa-eye';
+        });
+    }
+    //Xử lý nút con mắt
+    const loginPassword = document.getElementById('password');
+    const btnToggleLoginPassword = document.getElementById('btnTogglePassword');
+    const loginEyeIcon = document.getElementById('eyeIcon');
+
+    if(btnToggleLoginPassword) {
+        btnToggleLoginPassword.addEventListener('click', function (){
+            const type = loginPassword.getAttribute('type') === 'password' ? 'text' : 'password';
+            loginPassword.setAttribute('type', type);
+            loginEyeIcon.className = type === 'text' ? 'fa-regular fa-eye-slash' : 'fa-regular fa-eye';
+        });
+    }
 </script>
 
 </body>

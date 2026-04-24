@@ -17,7 +17,8 @@ import java.util.List;
         "/admin/coupons",
         "/admin/customer",
         "/admin/banner",
-        "/admin/orders"})
+        "/admin/orders",
+        "/admin/category"})
 public class AdminController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -93,6 +94,14 @@ public class AdminController extends HttpServlet {
 
                 req.setAttribute("activeMenu", "orders");
                 targetPage = "/admin/orders.jsp";
+                break;
+            case "/admin/category":
+                dao.CategoryDao categoryDao = new dao.CategoryDao();
+                List<model.Category> categoryList = categoryDao.getAll();
+
+                req.setAttribute("categoryList", categoryList);
+                req.setAttribute("activeMenu", "category");
+                targetPage = "/admin/category.jsp";
                 break;
             default:
                 req.setAttribute("activeMenu", "dashboard");

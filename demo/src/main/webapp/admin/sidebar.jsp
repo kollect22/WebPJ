@@ -27,19 +27,25 @@
         <li class="nav-item">
             <a href="${pageContext.request.contextPath}/admin/coupons"
                class="nav-link ${activeMenu == 'coupons' ? 'active' : 'link-dark'}">
-                <i class="fa-solid fa-receipt me-2"></i> Khuyến mãi
+                <i class="fa-solid fa-ticket"></i> Khuyến mãi
             </a>
         </li>
         <li class="nav-item">
             <a href="${pageContext.request.contextPath}/admin/customer"
                class="nav-link ${activeMenu == 'customer' ? 'active' : 'link-dark'}">
-                <i class="fa-solid fa-receipt me-2"></i> Khách hàng
+                <i class="fa-solid fa-users"></i> Khách hàng
             </a>
         </li>
         <li class="nav-item">
             <a href="${pageContext.request.contextPath}/admin/banner"
                class="nav-link ${activeMenu == 'banner' ? 'active' : 'link-dark'}">
-                <i class="fa-solid fa-receipt me-2"></i> Banner
+                <i class="fa-solid fa-rectangle-ad"></i> Banner
+            </a>
+        </li>
+        <li class="nav-item">
+            <a href="${pageContext.request.contextPath}/admin/category"
+               class="nav-link ${activeMenu == 'category' ? 'active' : 'link-dark'}">
+                <i class="fa-solid fa-layer-group me-2"></i> Danh mục sản phẩm
             </a>
         </li>
 
