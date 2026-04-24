@@ -42,6 +42,12 @@
                 <i class="fa-solid fa-rectangle-ad"></i> Banner
             </a>
         </li>
+        <li class="nav-item">
+            <a href="${pageContext.request.contextPath}/admin/category"
+               class="nav-link ${activeMenu == 'category' ? 'active' : 'link-dark'}">
+                <i class="fa-solid fa-layer-group me-2"></i> Danh mục sản phẩm
+            </a>
+        </li>
 
     </ul>
 </div>
