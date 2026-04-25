@@ -7,7 +7,7 @@ import java.time.LocalDateTime;
 public class AuthDao extends BaseDao {
     public User getUserByUsername(String username) {
         return get().withHandle(h ->
-                h.createQuery("select * from users where username = :u")
+                h.createQuery("SELECT id, username, password, fullName, role, active FROM users WHERE username = :u")
                         .bind("u",username)
                         .mapToBean(User.class)
                         .findFirst()
@@ -53,7 +53,7 @@ public class AuthDao extends BaseDao {
                 .bind("tk", token).execute());
     }
     public boolean updateUserProfile(User u) {
-        String sql = "UPDATE users SET full_name = :fn, phone = :p, email = :e, gender = :g, " +
+        String sql = "UPDATE users SET fullName = :fn, phone = :p, email = :e, gender = :g, " +
                 "province = :pr, district = :d, ward = :w, specific_address = :sa " +
                 "WHERE id = :id";
         return get().withHandle(h ->

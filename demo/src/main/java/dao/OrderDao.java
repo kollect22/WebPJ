@@ -9,16 +9,20 @@ public class OrderDao extends BaseDao {
 
     public int insertOrder(Order order, List<OrderDetail> details) {
         return get().withHandle(handle -> {
-            // Sử dụng Transaction để đảm bảo an toàn dữ liệu
             return handle.inTransaction(h -> {
-                // 1. Lưu vào bảng orders
                 int newOrderId = h.createUpdate("INSERT INTO orders (order_id_code, user_id, full_name, phone, address, total_price, payment_method, status) " +
-                                "VALUES (:orderIdCode, :userId, :fullName, :phone, :address, :totalPrice, :paymentMethod, :status)")
-                        .bindBean(order)
+                                "VALUES (:code, :uid, :name, :phone, :addr, :price, :method, :status)")
+                        .bind("code", order.getOrderIdCode())
+                        .bind("uid", order.getUserId())
+                        .bind("name", order.getFullName())
+                        .bind("phone", order.getPhone())
+                        .bind("addr", order.getAddress())
+                        .bind("price", order.getTotalPrice())
+                        .bind("method", order.getPaymentMethod())
+                        .bind("status", order.getStatus())
                         .executeAndReturnGeneratedKeys("id")
                         .mapTo(Integer.class)
                         .one();
-
 
                 for (OrderDetail detail : details) {
                     h.createUpdate("INSERT INTO order_details (order_id, product_id, quantity, price) " +
@@ -35,7 +39,7 @@ public class OrderDao extends BaseDao {
     }
     public List<Order> getAllOrders() {
         return get().withHandle(h -> {
-            // Lấy tất cả đơn hàng, sắp xếp mới nhất lên đầu
+
             String sql = "SELECT * FROM orders ORDER BY id DESC";
 
             return h.createQuery(sql)
@@ -43,4 +47,20 @@ public class OrderDao extends BaseDao {
                     .list();
         });
     }
+
+    public List<Order> getOrdersByUserId(int userId) {
+        return get().withHandle(h -> {
+            String sql = "SELECT id, order_id_code as orderIdCode, user_id as userId, " +
+                    "full_name as fullName, phone, address, total_price as totalPrice, " +
+                    "payment_method as paymentMethod, status " +
+                    "FROM orders WHERE user_id = :userId ORDER BY id DESC";
+
+            return h.createQuery(sql)
+                    .bind("userId", userId)
+                    .mapToBean(Order.class)
+                    .list();
+        });
+    }
+
+
 }

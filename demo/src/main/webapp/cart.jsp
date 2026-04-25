@@ -246,11 +246,18 @@
 
 
                 <div class="item-image">
-                    <img src="${ci.product.img}" alt="${ci.product.name}">
+                    <a href="${pageContext.request.contextPath}/product-detail?id=${ci.product.id}">
+                            <img src="${ci.product.img}" alt="${ci.product.name}">
+                    </a>
                 </div>
 
                 <div class="item-details">
-                    <div class="item-name">${ci.product.name}</div>
+                    <div class="item-name">
+                          <a href="${pageContext.request.contextPath}/product-detail?id=${ci.product.id}"
+                                style="text-decoration: none; color: inherit;">
+                                    ${ci.product.name}
+                          </a>
+                    </div>
 
                     <div class="item-price">
                         <fmt:formatNumber value="${ci.product.price * ci.quantity}"
@@ -295,7 +302,7 @@
 
         </p>
 
-        <a href="checkout" class="checkout-btn">
+        <a href="${pageContext.request.contextPath}/checkout" class="checkout-btn">
             THANH TOÁN
         </a>
 

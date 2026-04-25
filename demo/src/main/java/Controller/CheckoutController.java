@@ -1,5 +1,8 @@
 package Controller;
 
+import dao.OrderDao;
+import model.Order;
+import model.User;
 import services.PaymentService;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
@@ -9,28 +12,50 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.ArrayList;
 
-@WebServlet("/xu-ly-thanh-toan")
+@WebServlet("/checkout")
 public class CheckoutController extends HttpServlet {
     private final PaymentService paymentService = new PaymentService();
+    private final OrderDao orderDao = new OrderDao(); // Thêm Dao để lưu
+
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        request.getRequestDispatcher("checkout.jsp").forward(request, response);
+    }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {
-            // Tạo mã đơn hàng ngẫu nhiên bằng số (dưới 10 chữ số để tránh lỗi long)
-            String orderId = String.valueOf((long) (Math.random() * 100000000));
-            long amount = 10000; // Số tiền demo 10,000 VND
+            User auth = (User) request.getSession().getAttribute("auth");
+            if (auth == null) {
+                response.sendRedirect("login.jsp");
+                return;
+            }
 
-            String jsonRaw = paymentService.createPaymentUrl(amount, orderId);
+            String orderIdCode = "ORD" + (long) (Math.random() * 1000000000L);
+            long amount = 10000;
 
-            // Phân tích dữ liệu JSON nhận được
+            Order order = new Order();
+            order.setOrderIdCode(orderIdCode);
+            order.setUserId(auth.getId());
+            order.setFullName(auth.getFullName());
+            order.setPhone(auth.getPhone());
+            order.setAddress(auth.getSpecificAddress());
+            order.setTotalPrice(amount);
+            order.setPaymentMethod("Banking");
+            order.setStatus(0);
+
+            orderDao.insertOrder(order, new ArrayList<>());
+
+            // 4. Gọi API thanh toán
+            String jsonRaw = paymentService.createPaymentUrl(amount, orderIdCode);
             JsonObject jsonObject = JsonParser.parseString(jsonRaw).getAsJsonObject();
 
-            // Kiểm tra nếu API trả về thành công (error = 0)
             if (jsonObject.get("error").getAsInt() == 0) {
                 String checkoutUrl = jsonObject.get("data").getAsJsonObject().get("checkoutUrl").getAsString();
-                // Chuyển hướng khách sang trang thanh toán của ngân hàng
                 response.sendRedirect(checkoutUrl);
             } else {
                 response.getWriter().println("Loi API: " + jsonRaw);
