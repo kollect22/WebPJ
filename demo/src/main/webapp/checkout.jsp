@@ -155,6 +155,7 @@
 
 <div class="container checkout-page mb-5">
     <form id="checkoutForm" onsubmit="handleCheckout(event)">
+        <input type="hidden" name="purchasedIds" value="${selectedIds}">
         <div class="row g-4">
 
             <div class="col-lg-7">
@@ -256,16 +257,18 @@
                     <h3 class="section-title" style="border:none;">Đơn hàng của bạn</h3>
 
                     <div class="summary-item-list" style="max-height: 380px; overflow-y: auto;">
-                        <c:forEach items="${sessionScope.cart.list}" var="item">
+                        <c:forEach items="${selectedItems}" var="item">
                             <div class="item-mini d-flex gap-3 mb-3 pb-3 border-bottom">
                                 <div class="item-img" style="width: 70px; height: 85px;">
-                                    <img src="${pageContext.request.contextPath}/${item.product.img}" class="w-100 h-100 object-fit-cover rounded border">
+                                    <img src="${pageContext.request.contextPath}/${item.product.img}"
+                                         class="w-100 h-100 object-fit-cover rounded border">
                                 </div>
+
                                 <div class="flex-grow-1">
                                     <div class="small fw-bold">${item.product.name}</div>
                                     <div class="small text-muted">Số lượng: ${item.quantity}</div>
                                     <div class="fw-bold mt-1 text-danger">
-                                        <fmt:formatNumber value="${item.price}" pattern="#,###"/>đ
+                                        <fmt:formatNumber value="${item.product.price * item.quantity}" pattern="#,###"/>đ
                                     </div>
                                 </div>
                             </div>
@@ -276,7 +279,7 @@
                         <div class="d-flex justify-content-between mb-2">
                             <span class="text-muted small">Tạm tính</span>
                             <span id="display-subtotal" class="fw-bold">
-                                <fmt:formatNumber value="${sessionScope.cart.total}" pattern="#,###"/>đ
+                                <fmt:formatNumber value="${selectedSubtotal}" pattern="#,###"/>đ
                             </span>
                         </div>
                         <div class="d-flex justify-content-between mb-3">
@@ -286,12 +289,12 @@
                         <div class="total-row d-flex justify-content-between align-items-center pt-3 border-top">
                             <span class="fw-bold">TỔNG CỘNG</span>
                             <span id="display-total" class="h4 fw-bold text-danger mb-0">
-                                <fmt:formatNumber value="${sessionScope.cart.total + 30000}" pattern="#,###"/>đ
+                                <fmt:formatNumber value="${selectedSubtotal + 30000}" pattern="#,###"/>đ
                             </span>
                         </div>
                     </div>
 
-                    <input type="hidden" name="totalPrice" id="input-total" value="${sessionScope.cart.total + 30000}">
+                    <input type="hidden" name="totalPrice" id="input-total" value="${selectedSubtotal + 30000}">
                     <button type="submit" class="btn-checkout-confirm mt-4">HOÀN TẤT ĐẶT HÀNG</button>
 
                     <p class="text-center text-muted small mt-3 mb-0">

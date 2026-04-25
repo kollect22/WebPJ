@@ -302,7 +302,7 @@
 
         </p>
 
-        <a href="${pageContext.request.contextPath}/checkout" class="checkout-btn">
+        <a href="javascript:void(0)" onclick="proceedToCheckout()" class="checkout-btn">
             THANH TOÁN
         </a>
 
@@ -317,6 +317,24 @@
 
 <script>
     window.contextPath = '${pageContext.request.contextPath}';
+</script>
+
+<script>
+   function proceedToCheckout() {
+
+       const selectedCheckboxes = document.querySelectorAll('.item-check:checked');
+
+       if (selectedCheckboxes.length === 0) {
+           alert("Vui lòng chọn ít nhất một sản phẩm để thanh toán!");
+           return;
+       }
+
+       const ids = Array.from(selectedCheckboxes)
+                        .map(cb => cb.getAttribute('data-id'))
+                        .join(',');
+   
+       window.location.href = "${pageContext.request.contextPath}/checkout?ids=" + ids;
+   }
 </script>
 <script src="${pageContext.request.contextPath}/assets/js/script.js"></script>
 
