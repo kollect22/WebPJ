@@ -22,17 +22,17 @@ import java.util.List;
 @WebServlet("/save-order")
 public class SaveOrderServlet extends HttpServlet {
 
-    // Trong doPost của SaveOrderServlet
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
-        Cart cart = (Cart) session.getAttribute("cart"); // Giả sử giỏ hàng của bạn tên là cart
+        Cart cart = (Cart) session.getAttribute("cart");
 
         if (cart == null || cart.getList().isEmpty()) {
             response.sendRedirect("home");
             return;
         }
+        String purchasedIds = request.getParameter("purchasedIds");
+        String[] idsArray = (purchasedIds != null && !purchasedIds.isEmpty()) ? purchasedIds.split(",") : new String[0];
 
-        // 1. Thu thập dữ liệu từ Form
         Order order = new Order();
         order.setOrderIdCode("ORD" + System.currentTimeMillis());
         order.setFullName(((User)session.getAttribute("auth")).getFullName());
@@ -42,14 +42,18 @@ public class SaveOrderServlet extends HttpServlet {
         order.setPaymentMethod("COD");
         order.setStatus(0); // Mới đặt
 
-        // 2. Chuyển đổi từ Giỏ hàng sang danh sách OrderDetail
         List<OrderDetail> details = new ArrayList<>();
         for (CartItem item : cart.getList()) {
-            OrderDetail d = new OrderDetail();
-            d.setProductId(item.getProduct().getId());
-            d.setQuantity(item.getQuantity());
-            d.setPrice(item.getPrice());
-            details.add(d);
+            for (String id : idsArray) {
+                if (String.valueOf(item.getProduct().getId()).equals(id.trim())) {
+                    OrderDetail d = new OrderDetail();
+                    d.setProductId(item.getProduct().getId());
+                    d.setQuantity(item.getQuantity());
+                    d.setPrice(item.getPrice());
+                    details.add(d);
+                    break;
+                }
+            }
         }
 
         OrderDao orderDao = new OrderDao();
@@ -59,8 +63,19 @@ public class SaveOrderServlet extends HttpServlet {
         session.setAttribute("recommendedList", pDao.getRecommendedProducts(3));
         session.setAttribute("orderId", order.getOrderIdCode());
 
+        if (idsArray.length > 0) {
+            for (String idStr : idsArray) {
+                try {
+                    int idToRemove = Integer.parseInt(idStr.trim());
 
-        session.removeAttribute("cart");
+                    cart.deleteProduct(idToRemove);
+
+                } catch (NumberFormatException e) {
+                    e.printStackTrace();
+                }
+            }
+            session.setAttribute("cart", cart);
+        }
         request.getRequestDispatcher("thankyou.jsp").forward(request, response);
     }
     @Override

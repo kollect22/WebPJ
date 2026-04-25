@@ -1,5 +1,7 @@
 package Controller;
 
+import cart.Cart;
+import cart.CartItem;
 import dao.OrderDao;
 import model.Order;
 import model.User;
@@ -13,6 +15,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 @WebServlet("/checkout")
 public class CheckoutController extends HttpServlet {
@@ -22,6 +25,37 @@ public class CheckoutController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+
+        // 1. Lấy chuỗi IDs từ URL (ví dụ: "1,3,5")
+        String idsParam = request.getParameter("ids");
+        Cart cart = (Cart) request.getSession().getAttribute("cart");
+
+        // 2. Nếu giỏ hàng trống hoặc không có ID nào được truyền sang
+        if (cart == null || idsParam == null || idsParam.isEmpty()) {
+            response.sendRedirect("cart.jsp");
+            return;
+        }
+
+        String[] selectedIds = idsParam.split(",");
+        List<CartItem> selectedItems = new ArrayList<>();
+        long subtotal = 0;
+
+        // 3. Lọc danh sách sản phẩm dựa trên ID đã chọn
+        for (CartItem item : cart.getList()) {
+            for (String id : selectedIds) {
+                if (String.valueOf(item.getProduct().getId()).equals(id)) {
+                    selectedItems.add(item);
+                    // Cộng dồn tiền: Đơn giá * Số lượng
+                    subtotal += (item.getProduct().getPrice() * item.getQuantity());
+                    break;
+                }
+            }
+        }
+
+        request.setAttribute("selectedIds", idsParam);
+        request.setAttribute("selectedItems", selectedItems);
+        request.setAttribute("selectedSubtotal", subtotal);
+
         request.getRequestDispatcher("checkout.jsp").forward(request, response);
     }
 
@@ -36,7 +70,7 @@ public class CheckoutController extends HttpServlet {
             }
 
             String orderIdCode = "ORD" + (long) (Math.random() * 1000000000L);
-            long amount = 10000;
+            long amount = Long.parseLong(request.getParameter("totalPrice"));
 
             Order order = new Order();
             order.setOrderIdCode(orderIdCode);
