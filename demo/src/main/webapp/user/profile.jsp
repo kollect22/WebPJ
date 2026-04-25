@@ -34,11 +34,11 @@
                     <i class="fa-regular fa-user me-2"></i> Thông tin tài khoản
                 </a>
 
-                <a href="${pageContext.request.contextPath}/user/orders.jsp" class="list-group-item list-group-item-action text-muted">
+                <a href="${pageContext.request.contextPath}/my-orders" class="list-group-item list-group-item-action text-muted">
                     <i class="fa-solid fa-box me-2"></i> Đơn hàng của tôi
                 </a>
 
-                <a href="${pageContext.request.contextPath}/wishlist" class="list-group-item list-group-item-action text-muted">
+                <a href="${pageContext.request.contextPath}/wishlist-add" class="list-group-item list-group-item-action text-muted">
                     <i class="fa-regular fa-heart me-2"></i> Sản phẩm yêu thích
                 </a>
 
