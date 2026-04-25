@@ -50,7 +50,7 @@ public class AdminController extends HttpServlet {
 
                 List<Product> list = productDao.getProductsWithPagination(search, offset, pageSize);
 
-                req.setAttribute("productList", list);
+                req.setAttribute("prodcd List", list);
                 req.setAttribute("currentPage", page);
                 req.setAttribute("totalPages", totalPages);
                 req.setAttribute("search", search);
