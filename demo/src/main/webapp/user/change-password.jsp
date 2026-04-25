@@ -7,6 +7,34 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
 </head>
+
+<style>
+    .custom-card {
+        background: #fff;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08); /* Đổ bóng mềm */
+        border-radius: 12px;
+        border: none;
+    }
+
+    .form-control {
+        padding: 12px 15px;
+        border-radius: 8px;
+    }
+
+    .input-group .form-control {
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+    }
+
+    .input-group .btn {
+        border-top-right-radius: 8px;
+        border-bottom-right-radius: 8px;
+        padding: 0 15px;
+    }
+
+
+    }
+</style>
 <body class="d-flex flex-column min-vh-100 bg-light">
 
 <div class="d-flex" >
@@ -14,7 +42,7 @@
 </div>
 
 <div class="container">
-    <%-- Breadcrumbs --%>
+
     <nav aria-label="breadcrumb" class="bg-white p-3 rounded mb-4" style="margin-top: 100px">
         <ol class="breadcrumb mb-0">
             <li class="breadcrumb-item">
@@ -29,7 +57,6 @@
     </nav>
 
     <div class="row">
-        <%-- Cột bên trái: Menu điều hướng --%>
         <div class="col-lg-3 mb-4">
             <div class="list-group shadow-sm">
                 <a href="${pageContext.request.contextPath}/user/profile.jsp" class="list-group-item list-group-item-action text-muted">
@@ -44,7 +71,6 @@
                     <i class="fa-regular fa-heart me-2"></i> Sản phẩm yêu thích
                 </a>
 
-                <%-- Đổi class active sang mục này --%>
                 <a href="${pageContext.request.contextPath}/user/change-password.jsp" class="list-group-item list-group-item-action active text-white fw-bold" aria-current="true">
                     <i class="fa-solid fa-lock me-2"></i> Đổi mật khẩu
                 </a>
@@ -55,12 +81,10 @@
             </div>
         </div>
 
-        <%-- Cột bên phải: Form đổi mật khẩu --%>
         <div class="col-lg-9 col-md-8">
-            <div class="bg-white p-4 rounded shadow-sm">
+            <div class="p-4 custom-card">
                 <h4 class="mb-4 fw-bold text-black">Đổi mật khẩu</h4>
 
-                <%-- Vùng hiển thị thông báo lỗi hoặc thành công từ Controller --%>
                 <c:if test="${not empty error}">
                     <div class="alert alert-danger fw-bold"><i class="fa-solid fa-circle-exclamation me-2"></i>${error}</div>
                 </c:if>
@@ -73,21 +97,36 @@
                     <div class="row mb-3">
                         <div class="col-md-12">
                             <label for="oldPassword" class="form-label fw-bold">Mật khẩu hiện tại <span class="text-danger">*</span></label>
-                            <input type="password" class="form-control" id="oldPassword" name="oldPassword" placeholder="Nhập mật khẩu cũ" required>
+                            <div class="input-group">
+                                <input type="password" class="form-control" id="oldPassword" name="oldPassword" placeholder="Nhập mật khẩu cũ" required>
+                                <button class="btn btn-outline-secondary" type="button" onclick="togglePassword('oldPassword', 'eyeOld')" style="border-color: #dee2e6;">
+                                    <i class="fa-regular fa-eye" id="eyeOld"></i>
+                                </button>
+                            </div>
                         </div>
                     </div>
 
                     <div class="row mb-3">
                         <div class="col-md-12">
                             <label for="newPassword" class="form-label fw-bold">Mật khẩu mới <span class="text-danger">*</span></label>
-                            <input type="password" class="form-control" id="newPassword" name="newPassword" placeholder="Nhập mật khẩu mới (tối thiểu 6 ký tự)" required minlength="6">
+                            <div class="input-group">
+                                <input type="password" class="form-control" id="newPassword" name="newPassword" placeholder="Nhập mật khẩu mới (tối thiểu 6 ký tự)" required minlength="6">
+                                <button class="btn btn-outline-secondary" type="button" onclick="togglePassword('newPassword', 'eyeNew')" style="border-color: #dee2e6;">
+                                    <i class="fa-regular fa-eye" id="eyeNew"></i>
+                                </button>
+                            </div>
                         </div>
                     </div>
 
                     <div class="row mb-4">
                         <div class="col-md-12">
                             <label for="confirmPassword" class="form-label fw-bold">Xác nhận mật khẩu mới <span class="text-danger">*</span></label>
-                            <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" placeholder="Nhập lại mật khẩu mới" required>
+                            <div class="input-group">
+                                <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" placeholder="Nhập lại mật khẩu mới" required>
+                                <button class="btn btn-outline-secondary" type="button" onclick="togglePassword('confirmPassword', 'eyeConfirm')" style="border-color: #dee2e6;">
+                                    <i class="fa-regular fa-eye" id="eyeConfirm"></i>
+                                </button>
+                            </div>
                         </div>
                     </div>
 
@@ -107,6 +146,25 @@
 <div class="mt-auto w-100">
     <jsp:include page="/footer.jsp"></jsp:include>
 </div>
+
+<script>
+    function togglePassword(inputId, iconId){
+        const inputField = document.getElementById(inputId);
+        const icon = document.getElementById(iconId);
+
+        const type = inputField.getAttribute('type')=== 'password'? 'text' : 'password'
+
+        inputField.setAttribute('type', type);
+
+        if (type === 'text') {
+            icon.classList.remove('fa-eye');
+            icon.classList.add('fa-eye-slash');
+        } else {
+            icon.classList.remove('fa-eye-slash');
+            icon.classList.add('fa-eye');
+        }
+    }
+</script>
 
 </body>
 </html>
