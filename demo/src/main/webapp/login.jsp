@@ -151,6 +151,7 @@
 
     <div id="loginForm">
         <form action="login" method="POST">
+        <input type="hidden" name="redirect" value="${not empty param.redirect ? param.redirect : redirect}">
             <input type="text" name="username" class="form-control" placeholder="Email hoặc SĐT" required>
 <%--            <input type="password" name="password" class="form-control" placeholder="Mật khẩu" required>--%>
 

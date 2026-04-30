@@ -1,6 +1,7 @@
 package Controller.product;
 
 import dao.ProductDao;
+import model.Coupon;
 import model.Product;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -8,6 +9,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.List;
 
 // Mapping đường dẫn "/detail"
 @WebServlet(name = "ProductDetailController", urlPatterns = "/detail")
@@ -31,12 +33,10 @@ public class ProductDetailController extends HttpServlet {
                 resp.getWriter().print("Sản phẩm không tồn tại");
                 return;
             }
-
             // Gửi dữ liệu sang JSP
             req.setAttribute("product", p);
             req.setAttribute("listImages", p.getGalleryImages());
             req.setAttribute("relatedColors", p.getColors());
-
             // Chuyển hướng đến file giao diện
             req.getRequestDispatcher("/product-details.jsp").forward(req, resp);
 

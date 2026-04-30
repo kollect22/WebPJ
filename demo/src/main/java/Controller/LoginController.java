@@ -17,6 +17,9 @@ public class LoginController extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String username = req.getParameter("username");
         String password = req.getParameter("password");
+
+        String redirectUrl = req.getParameter("redirect");
+
         AuthService as = new AuthService();
         User u = as.checkLogin(username,password);
         if (u != null ) {
@@ -26,11 +29,16 @@ public class LoginController extends HttpServlet {
             if (u.getRole() == 1) {
                 resp.sendRedirect(req.getContextPath() + "/admin/dashboard");
             } else {
-                resp.sendRedirect(req.getContextPath() + "/home");
+                if (redirectUrl != null && !redirectUrl.isEmpty() && !redirectUrl.contains(".jsp")) {
+                    resp.sendRedirect(redirectUrl);
+                } else {
+                    resp.sendRedirect(req.getContextPath() + "/home");
+                }
             }
 
         } else {
             req.setAttribute("error", "Sai username hoặc password");
+            req.setAttribute("redirect", redirectUrl);
             req.getRequestDispatcher("login.jsp").forward(req, resp);
         }
     }

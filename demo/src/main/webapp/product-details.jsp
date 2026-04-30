@@ -137,7 +137,41 @@
                             <i class="fas fa-chevron-down"></i>
                         </div>
                         <div class="accordion-content">
-                            <ul><li>Hãy đăng nhập để nhận ưu đãi của riêng bạn</li></ul>
+                            <c:choose>
+                                <c:when test="${not empty sessionScope.auth}">
+                                    <c:choose>
+                                        <c:when test="${not empty productVouchers}">
+                                            <div class="voucher-container" style="display: flex; flex-direction: column; gap: 10px; padding: 10px 0;">
+                                                <c:forEach var="cp" items="${productVouchers}">
+                                                    <div class="voucher-item" style="border: 1px dashed #d0021b; background: #fff5f5; padding: 12px; border-radius: 6px; display: flex; justify-content: space-between; align-items: center;">
+                                                        <div>
+                                                            <span style="display: block; font-weight: bold; color: #d0021b; font-size: 16px;">${cp.code}</span>
+                                                            <small style="color: #555;">Giảm ${cp.discountPercent}% - Đơn từ <fmt:formatNumber value="${cp.minOrderValue}" type="number"/>đ</small>
+                                                        </div>
+                                                        <button onclick="copyVoucher('${cp.code}')" style="background: #d0021b; color: #fff; border: none; padding: 6px 12px; border-radius: 4px; font-size: 11px; cursor: pointer; font-weight: bold;">
+                                                            ÁP DỤNG
+                                                        </button>
+                                                    </div>
+                                                </c:forEach>
+                                            </div>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <p style="font-style: italic; color: #888;">Hiện không có mã giảm giá nào cho sản phẩm này.</p>
+                                        </c:otherwise>
+                                    </c:choose>
+                                </c:when>
+
+                                <c:otherwise>
+                                   <c:set var="originUrl" value="${pageContext.request.requestURI}?${pageContext.request.queryString}" />
+
+                                   <div style="padding: 15px; border-left: 4px solid #d0021b; margin-bottom: 30px;">
+                                       Vui lòng
+                                       <a href="${pageContext.request.contextPath}/login?redirect=${pageContext.request.contextPath}/product-detail?id=${product.id}">
+                                           Đăng nhập
+                                       </a> để nhận ưu đãi của bạn.
+                                   </div>
+                                </c:otherwise>
+                            </c:choose>
                         </div>
                     </div>
 
@@ -346,6 +380,21 @@ function toggleWishlist(productId) {
             console.error('Lỗi fetch:', err);
             alert("Có lỗi xảy ra, kiểm tra Console (F12) nhé!");
         });
+
+        function copyVoucher(code) {
+            navigator.clipboard.writeText(code).then(() => {
+                alert("Đã sao chép mã: " + code + ". Dán vào bước thanh toán nhé!");
+            }).catch(err => {
+                // Fallback cho trình duyệt cũ
+                const tempInput = document.createElement("input");
+                tempInput.value = code;
+                document.body.appendChild(tempInput);
+                tempInput.select();
+                document.execCommand("copy");
+                document.body.removeChild(tempInput);
+                alert("Đã sao chép mã: " + code);
+            });
+        }
 }
 </script>
 <script src="${pageContext.request.contextPath}/assets/js/script.js"></script>
