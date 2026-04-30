@@ -24,6 +24,8 @@ public class ProductController extends HttpServlet {
             int idP = Integer.parseInt(id);
             Product p = ps.getProduct(idP);
             if (p != null) {
+                dao.CouponDao couponDao = new dao.CouponDao();
+                req.setAttribute("productVouchers", couponDao.getCouponsForProduct(idP));
                 req.setAttribute("product", p);
 
                 ProductDao dao = new ProductDao();

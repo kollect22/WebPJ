@@ -42,4 +42,19 @@ public class CouponDao extends BaseDao {
                     .orElse(null);
         });
     }
+    public List<Coupon> getCouponsForProduct(int productId) {
+        return get().withHandle(h -> {
+            String sql = "SELECT DISTINCT c.* FROM coupons c " +
+                    "LEFT JOIN product_coupons pc ON c.id = pc.coupon_id " +
+                    "WHERE (c.is_global = 1 OR pc.product_id = :productId) " +
+                    "AND c.quantity > 0 AND c.status = 1";
+
+            return h.createQuery(sql)
+                    .bind("productId", productId)
+                    .mapToBean(Coupon.class)
+                    .list();
+        });
+    }
+
+
 }
