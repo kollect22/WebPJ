@@ -104,13 +104,12 @@
                     </div>
                 </div>
 
-                <form action="add-cart" method="POST">
-                    <input type="hidden" name="id" value="${product.id}">
-                    <input type="hidden" name="q" id="hiddenQty" value="1">
+                <form action="checkout" method="GET">
+                    <input type="hidden" name="ids" value="${product.id}">
 
                     <div class="action-buttons-stack">
-                        <button class="btn-buy-now" type="submit" name="action" value="buy">
-                                    MUA NGAY
+                        <button class="btn-buy-now" type="submit">
+                            MUA NGAY
                         </button>
 
                         <button class="btn-add-cart" type="button" onclick="addToCart(${product.id})">
@@ -148,7 +147,7 @@
                                                             <span style="display: block; font-weight: bold; color: #d0021b; font-size: 16px;">${cp.code}</span>
                                                             <small style="color: #555;">Giảm ${cp.discountPercent}% - Đơn từ <fmt:formatNumber value="${cp.minOrderValue}" type="number"/>đ</small>
                                                         </div>
-                                                        <button onclick="copyVoucher('${cp.code}')" style="background: #d0021b; color: #fff; border: none; padding: 6px 12px; border-radius: 4px; font-size: 11px; cursor: pointer; font-weight: bold;">
+                                                        <button onclick="applyVoucherDirect('${cp.code}')" style="background: #d0021b; color: #fff; border: none; padding: 6px 12px; border-radius: 4px; font-size: 11px; cursor: pointer; font-weight: bold;">
                                                             ÁP DỤNG
                                                         </button>
                                                     </div>
@@ -335,67 +334,77 @@
 </script>
 
 <script>
-function toggleWishlist(productId) {
-    console.log("Đang bấm trái tim cho sản phẩm ID:", productId);
+        function toggleWishlist(productId) {
+            console.log("Đang bấm trái tim cho sản phẩm ID:", productId);
 
-    if (!window.contextPath) {
-        alert("Lỗi: Không tìm thấy ContextPath!");
-        return;
-    }
-    const url = window.contextPath + '/wishlist-add?id=' + productId;
-
-    fetch(url)
-        .then(response => {
-            if (!response.ok) throw new Error('Lỗi Server: ' + response.status);
-            return response.json();
-        })
-        .then(data => {
-            console.log("Kết quả từ Servlet:", data);
-
-            // Tìm icon để đổi màu
-            const icon = document.getElementById('wishlist-icon-' + productId);
-            if (icon) {
-                if (data.status === "success") {
-                    // Đổi sang trái tim đặc, màu đỏ
-                    icon.classList.remove('fa-regular');
-                    icon.classList.add('fa-solid');
-                    icon.style.color = '#d0021b';
-                    alert("Đã thêm vào yêu thích!");
-                } else {
-                    // Đổi về trái tim rỗng, mất màu
-                    icon.classList.remove('fa-solid');
-                    icon.classList.add('fa-regular');
-                    icon.style.color = '';
-                    alert(" Đã xóa khỏi yêu thích!");
-                }
+            if (!window.contextPath) {
+                alert("Lỗi: Không tìm thấy ContextPath!");
+                return;
             }
+            const url = window.contextPath + '/wishlist-add?id=' + productId;
 
-            // Cập nhật số lượng trên vòng tròn đỏ (nếu bạn có đặt id="wishlist-count")
-            const badge = document.getElementById('wishlist-count');
-                if (badge) {
-                    badge.innerText = data.count;
+            fetch(url)
+                .then(response => {
+                    if (!response.ok) throw new Error('Lỗi Server: ' + response.status);
+                    return response.json();
+                })
+                .then(data => {
+                    console.log("Kết quả từ Servlet:", data);
+
+                    // Tìm icon để đổi màu
+                    const icon = document.getElementById('wishlist-icon-' + productId);
+                    if (icon) {
+                        if (data.status === "success") {
+                            // Đổi sang trái tim đặc, màu đỏ
+                            icon.classList.remove('fa-regular');
+                            icon.classList.add('fa-solid');
+                            icon.style.color = '#d0021b';
+                            alert("Đã thêm vào yêu thích!");
+                        } else {
+                            // Đổi về trái tim rỗng, mất màu
+                            icon.classList.remove('fa-solid');
+                            icon.classList.add('fa-regular');
+                            icon.style.color = '';
+                            alert(" Đã xóa khỏi yêu thích!");
+                        }
+                    }
+
+                    // Cập nhật số lượng trên vòng tròn đỏ (nếu bạn có đặt id="wishlist-count")
+                    const badge = document.getElementById('wishlist-count');
+                        if (badge) {
+                            badge.innerText = data.count;
+                        }
+                })
+                .catch(err => {
+                    console.error('Lỗi fetch:', err);
+                    alert("Có lỗi xảy ra, kiểm tra Console (F12) nhé!");
+                });
+        }
+
+        function applyVoucherDirect(code) {
+            const url = window.contextPath + '/apply-coupon';
+
+            fetch(url, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                body: new URLSearchParams({ 'code': code })
+            })
+            .then(res => res.json())
+            .then(data => {
+                if (data.success) {
+                    // Thông báo cho người dùng biết mã đã được hệ thống ghi nhận
+                    alert("✅ Áp dụng mã " + code + " thành công!\nGiảm giá sẽ được tính ở bước thanh toán.");
+                } else {
+                    alert("❌ " + data.message);
                 }
-        })
-        .catch(err => {
-            console.error('Lỗi fetch:', err);
-            alert("Có lỗi xảy ra, kiểm tra Console (F12) nhé!");
-        });
-
-        function copyVoucher(code) {
-            navigator.clipboard.writeText(code).then(() => {
-                alert("Đã sao chép mã: " + code + ". Dán vào bước thanh toán nhé!");
-            }).catch(err => {
-                // Fallback cho trình duyệt cũ
-                const tempInput = document.createElement("input");
-                tempInput.value = code;
-                document.body.appendChild(tempInput);
-                tempInput.select();
-                document.execCommand("copy");
-                document.body.removeChild(tempInput);
-                alert("Đã sao chép mã: " + code);
+            })
+            .catch(err => {
+                console.error("Lỗi áp dụng voucher:", err);
+                // Fallback: Nếu lỗi kết nối, vẫn cho copy mã để khách tự dán
+                navigator.clipboard.writeText(code);
+                alert("Đã sao chép mã: " + code + ". Bạn có thể dán mã này ở trang thanh toán.");
             });
         }
-}
 </script>
 <script src="${pageContext.request.contextPath}/assets/js/script.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmxc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>

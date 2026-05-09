@@ -117,11 +117,11 @@ public class ProductDao extends BaseDao {
     }
     public Product getProduct(int id) {
         return get().withHandle(h -> {
-//            return h.createQuery("select * from products where id = :id").bind("id",id).mapToBean(Product.class).first();
             String sql = "SELECT p.*, c.name AS categoryName " +
                     "FROM products p " +
                     "LEFT JOIN categories c ON p.category_id = c.id " +
                     "WHERE p.id = :id";
+
             Product product = h.createQuery(sql)
                     .bind("id", id)
                     .mapToBean(Product.class)
@@ -129,7 +129,6 @@ public class ProductDao extends BaseDao {
 
             if (product != null) {
                 product.setGalleryImages(getGalleryImages(h, id));
-
                 if (product.getGroupId() > 0) {
                     product.setColors(getRelatedColors(h, product.getGroupId(), id));
                 }
@@ -137,7 +136,6 @@ public class ProductDao extends BaseDao {
             return product;
         });
     }
-
     private List<String> getGalleryImages(Handle h,int productId){
         return h.createQuery("SELECT image_url FROM product_images WHERE product_id = :id")
                 .bind("id", productId)

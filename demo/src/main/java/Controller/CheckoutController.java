@@ -4,6 +4,7 @@ import cart.Cart;
 import cart.CartItem;
 import dao.OrderDao;
 import model.Order;
+import model.Product;
 import model.User;
 import services.PaymentService;
 import com.google.gson.JsonObject;
@@ -20,41 +21,65 @@ import java.util.List;
 @WebServlet("/checkout")
 public class CheckoutController extends HttpServlet {
     private final PaymentService paymentService = new PaymentService();
-    private final OrderDao orderDao = new OrderDao(); // Thêm Dao để lưu
-
+    private final OrderDao orderDao = new OrderDao();
+    private final dao.ProductDao productDao = new dao.ProductDao();
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        // 1. Lấy chuỗi IDs từ URL (ví dụ: "1,3,5")
         String idsParam = request.getParameter("ids");
         Cart cart = (Cart) request.getSession().getAttribute("cart");
 
-        // 2. Nếu giỏ hàng trống hoặc không có ID nào được truyền sang
-        if (cart == null || idsParam == null || idsParam.isEmpty()) {
+        if (cart == null) {
+            cart = new Cart();
+            request.getSession().setAttribute("cart", cart);
+        }
+
+        if (idsParam == null || idsParam.isEmpty()) {
             response.sendRedirect("cart.jsp");
             return;
         }
 
         String[] selectedIds = idsParam.split(",");
+
+        for (String idStr : selectedIds) {
+            try {
+                int pid = Integer.parseInt(idStr.trim());
+                boolean exists = cart.getList().stream().anyMatch(item -> item.getProduct().getId() == pid);
+
+                if (!exists) {
+                    model.Product p = productDao.getProduct(pid);
+                    if (p != null) {
+                        cart.addProduct(p, 1);
+                    }
+                }
+            } catch (NumberFormatException e) {
+                continue;
+            }
+        }
+
         List<CartItem> selectedItems = new ArrayList<>();
         long subtotal = 0;
 
-        // 3. Lọc danh sách sản phẩm dựa trên ID đã chọn
         for (CartItem item : cart.getList()) {
             for (String id : selectedIds) {
-                if (String.valueOf(item.getProduct().getId()).equals(id)) {
+                if (String.valueOf(item.getProduct().getId()).equals(id.trim())) {
                     selectedItems.add(item);
-                    // Cộng dồn tiền: Đơn giá * Số lượng
                     subtotal += (item.getProduct().getPrice() * item.getQuantity());
                     break;
                 }
             }
         }
+        model.Coupon appliedCoupon = (model.Coupon) request.getSession().getAttribute("appliedCoupon");
+        long discountAmount = 0;
+        if (appliedCoupon != null && subtotal >= appliedCoupon.getMinOrderValue()) {
+            discountAmount = (long) (subtotal * (appliedCoupon.getDiscountPercent() / 100.0));
+        }
 
         request.setAttribute("selectedIds", idsParam);
         request.setAttribute("selectedItems", selectedItems);
         request.setAttribute("selectedSubtotal", subtotal);
+        request.setAttribute("discountAmount", discountAmount);
 
         request.getRequestDispatcher("checkout.jsp").forward(request, response);
     }
@@ -83,6 +108,8 @@ public class CheckoutController extends HttpServlet {
             order.setStatus(0);
 
             orderDao.insertOrder(order, new ArrayList<>());
+
+            request.getSession().removeAttribute("appliedCoupon");
 
             // 4. Gọi API thanh toán
             String jsonRaw = paymentService.createPaymentUrl(amount, orderIdCode);
