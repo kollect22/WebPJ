@@ -147,6 +147,42 @@
                     position: sticky;
                     top: 110px; /* Căn chỉnh tùy Header bạn */
                 }
+                /* Style cho phần Voucher hài hòa với tổng thể */
+                .voucher-input-group {
+                    display: flex;
+                    gap: 10px;
+                    margin-bottom: 20px;
+                }
+
+                .voucher-input-group input {
+                    border-radius: 50px; /* Bo tròn giống các nút của bạn */
+                    padding: 10px 20px;
+                    border: 1px solid #eee;
+                    flex-grow: 1;
+                    font-size: 14px;
+                }
+
+                .btn-apply-voucher {
+                    background: #f8f9fa;
+                    border: 1px solid #ddd;
+                    border-radius: 50px;
+                    padding: 0 20px;
+                    font-size: 13px;
+                    font-weight: 600;
+                    transition: 0.3s;
+                }
+
+                .btn-apply-voucher:hover {
+                    background: #000;
+                    color: #fff;
+                    border-color: #000;
+                }
+
+                .discount-row {
+                    color: #d0021b; /* Màu đỏ đô sang trọng */
+                    font-size: 0.9rem;
+                    display: none; /* Ẩn đi khi chưa có mã */
+                }
         </style>
 </head>
 <body>
@@ -275,6 +311,16 @@
                         </c:forEach>
                     </div>
 
+                    <div class="voucher-section mt-4">
+                         <label class="small fw-bold mb-2"><i class="fa-solid fa-ticket me-1"></i> Ưu đãi / Mã giảm giá</label>
+                         <div class="voucher-input-group">
+                             <input type="text" id="coupon-code" name="couponCode" placeholder="Nhập mã ưu đãi..."
+                                     value="${sessionScope.appliedCoupon.code}">
+                             <button type="button" class="btn-apply-voucher" onclick="applyCoupon()">ÁP DỤNG</button>
+                         </div>
+                        <div id="coupon-message" class="small mt-1"></div>
+                    </div>
+
                     <div class="price-details mt-4 border-top pt-3">
                         <div class="d-flex justify-content-between mb-2">
                             <span class="text-muted small">Tạm tính</span>
@@ -286,15 +332,24 @@
                             <span class="text-muted small">Phí vận chuyển</span>
                             <span id="display-shipping" class="fw-bold">30,000đ</span>
                         </div>
+
+                    <div id="row-discount" class="discount-row justify-content-between mb-3"
+                         style="${not empty sessionScope.appliedCoupon ? 'display: flex;' : 'display: none;'}">
+                        <span class="small">Giảm giá mã ưu đãi</span>
+                        <span id="display-discount" class="fw-bold">
+                           <fmt:formatNumber value="${discountAmount}" pattern="- #,###"/>đ
+                        </span>
+                    </div>
+
                         <div class="total-row d-flex justify-content-between align-items-center pt-3 border-top">
                             <span class="fw-bold">TỔNG CỘNG</span>
                             <span id="display-total" class="h4 fw-bold text-danger mb-0">
-                                <fmt:formatNumber value="${selectedSubtotal + 30000}" pattern="#,###"/>đ
+                                <fmt:formatNumber value="${selectedSubtotal + 30000 - discountAmount}" pattern="#,###"/>đ
                             </span>
                         </div>
                     </div>
 
-                    <input type="hidden" name="totalPrice" id="input-total" value="${selectedSubtotal + 30000}">
+                    <input type="hidden" name="totalPrice" id="input-total" value="${selectedSubtotal + 30000 - discountAmount}">
                     <button type="submit" class="btn-checkout-confirm mt-4">HOÀN TẤT ĐẶT HÀNG</button>
 
                     <p class="text-center text-muted small mt-3 mb-0">
@@ -310,7 +365,6 @@
 <jsp:include page="footer.jsp" />
 
 <script>
-    // GIỮ NGUYÊN TOÀN BỘ LOGIC JAVASCRIPT CỦA BẠN
     function changeQty(id, delta) {
         const qtyText = document.getElementById('qty-text-' + id);
         const badge = document.getElementById('badge-' + id);
@@ -359,63 +413,59 @@
         .catch(err => console.error("Lỗi kết nối Servlet:", err));
     }
 
-    function updateTotalFinal(subtotal) {
+    function updateTotal() {
+        // 1. Lấy phí vận chuyển từ radio đang chọn
         const shippingRadio = document.querySelector('input[name="shippingMethod"]:checked');
         let shipping = shippingRadio ? parseFloat(shippingRadio.value) : 0;
-        const finalTotal = subtotal + shipping;
 
-        document.getElementById('display-shipping').innerText = shipping.toLocaleString() + " đ";
-        document.getElementById('display-total').innerText = finalTotal.toLocaleString() + " đ";
+        // 2. Lấy số tiền Tạm tính từ giao diện (loại bỏ chữ 'đ' và dấu phẩy/chấm)
+        const subtotalText = document.getElementById('display-subtotal').innerText;
+        let subtotal = parseFloat(subtotalText.replace(/[^\d]/g, '')) || 0;
+
+        // 3. Lấy số tiền giảm giá
+        let discount = 0;
+        const discountEl = document.getElementById('display-discount');
+        if (discountEl) {
+            discount = Math.abs(parseFloat(discountEl.innerText.replace(/[^\d]/g, ''))) || 0;
+        }
+
+        // 4. Tính tổng cuối cùng
+        const finalTotal = subtotal + shipping - discount;
+
+        // 5. Cập nhật lên giao diện
+        document.getElementById('display-shipping').innerText = shipping.toLocaleString('vi-VN') + "đ";
+        document.getElementById('display-total').innerText = finalTotal.toLocaleString('vi-VN') + "đ";
+
+        // 6. Cập nhật vào input hidden để gửi lên Server khi nhấn Hoàn tất
         document.getElementById('input-total').value = finalTotal;
     }
 
-    function updateTotal() {
-        let subtotalText = document.getElementById('display-subtotal').innerText;
-        let subtotal = parseFloat(subtotalText.replace(/[^\d]/g, ''));
-        updateTotalFinal(subtotal);
-    }
-    function handleCheckout(event) {
-        event.preventDefault(); // Chặn load lại trang
+    function applyCoupon() {
+        const code = document.getElementById('coupon-code').value;
+        const msg = document.getElementById('coupon-message');
 
-        const form = document.getElementById('checkoutForm');
-        const paymentMethod = document.querySelector('input[name="paymentMethod"]:checked').value;
-        const totalAmount = document.getElementById('input-total').value;
-
-        if (paymentMethod === 'COD') {
-            if(confirm("Xác nhận đặt hàng và thanh toán khi nhận túi xách?")) {
-                form.action = "${pageContext.request.contextPath}/save-order"; // Trang lưu đơn hàng của bạn
-                form.submit();
-            }
+        if(!code) {
+            msg.innerHTML = "<span class='text-warning'>Vui lòng nhập mã ưu đãi!</span>";
             return;
         }
-
-        const btn = document.querySelector('.btn-checkout-confirm');
-        btn.innerText = "ĐANG TẠO MÃ QR...";
-        btn.disabled = true;
-
-        fetch('${pageContext.request.contextPath}/payment-api', {
+        fetch('${pageContext.request.contextPath}/apply-coupon', {
             method: 'POST',
             headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-            body: new URLSearchParams({
-                'amount': totalAmount,
-                'method': paymentMethod
-            })
+            body: new URLSearchParams({ 'code': code })
         })
         .then(res => res.json())
         .then(data => {
-            if (data.checkoutUrl) {
-                alert("Vui lòng quét mã QR để thanh toán, sau đó nhấn OK");
-                window.location.href = "thankyou.jsp";
+            if(data.success) {
+                msg.innerHTML = "<span class='text-success'>Áp dụng mã thành công!</span>";
+                // Tải lại trang để Controller tính toán lại giá tiền mới
+                location.reload();
             } else {
-                alert("Lỗi tạo đơn hàng: " + data.message);
-                btn.disabled = false;
-                btn.innerText = "HOÀN TẤT ĐẶT HÀNG";
+                msg.innerHTML = "<span class='text-danger'>" + data.message + "</span>";
             }
         })
         .catch(err => {
-            console.error(err);
-            btn.disabled = false;
-            btn.innerText = "HOÀN TẤT ĐẶT HÀNG";
+            console.error("Lỗi áp dụng mã:", err);
+            msg.innerHTML = "<span class='text-danger'>Lỗi hệ thống, vui lòng thử lại!</span>";
         });
     }
 </script>
