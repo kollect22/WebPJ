@@ -43,11 +43,6 @@
 
         <div class="container-fluid px-4 mt-4">
 
-            <div class="d-flex justify-content-between align-items-center mb-4">
-                <h3 class="mb-0 text-secondary">Danh sách Đơn hàng</h3>
-                <button class="btn btn-outline-success btn-sm"><i class="fa-solid fa-file-excel"></i> Xuất Excel
-                </button>
-            </div>
 
             <div class="card shadow border-0 rounded-3">
                 <div class="card-body p-0">

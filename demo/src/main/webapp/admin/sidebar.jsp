@@ -48,6 +48,14 @@
                 <i class="fa-solid fa-layer-group me-2"></i> Danh mục sản phẩm
             </a>
         </li>
+        <hr class="text-secondary">
 
+        <li class="nav-item">
+            <a href="${pageContext.request.contextPath}/logout"
+               class="nav-link text-danger fw-bold"
+               onclick="return confirm('Bạn có chắc chắn muốn đăng xuất khỏi hệ thống?');">
+                <i class="fa-solid fa-right-from-bracket me-2"></i> Đăng xuất
+            </a>
+        </li>
     </ul>
 </div>
