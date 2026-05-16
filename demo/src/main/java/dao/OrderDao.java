@@ -84,4 +84,28 @@ public class OrderDao extends BaseDao {
                     .execute();
         });
     }
+
+    public Order getOrderByCode(String orderIdCode) {
+        return get().withHandle(h -> {
+            return h.createQuery("SELECT * FROM orders WHERE order_id_code = :code")
+                    .bind("code", orderIdCode)
+                    .mapToBean(Order.class)
+                    .findFirst()
+                    .orElse(null);
+        });
+    }
+
+    public List<OrderDetail> getOrderDetails(int orderId) {
+        return get().withHandle(h -> {
+            String sql = "SELECT od.*, p.name AS productName " +
+                    "FROM order_details od " +
+                    "JOIN products p ON od.id = p.id " +
+                    "WHERE od.id = :id";
+
+            return h.createQuery(sql)
+                    .bind("id", orderId)
+                    .mapToBean(OrderDetail.class)
+                    .list();
+        });
+    }
 }
