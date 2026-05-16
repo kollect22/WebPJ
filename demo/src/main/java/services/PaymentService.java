@@ -9,18 +9,15 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class PaymentService {
-    // Lưu ý: Bạn cần thay bằng Key thật từ trang chủ PayOS.vn
     private final String CLIENT_ID = "YOUR_CLIENT_ID";
     private final String API_KEY = "YOUR_API_KEY";
 
     public String createPaymentUrl(long amount, String orderId) throws Exception {
         Map<String, Object> body = new HashMap<>();
-        // Lưu ý: orderCode của PayOS phải là kiểu số (int/long)
         body.put("orderCode", Long.parseLong(orderId));
         body.put("amount", amount);
         body.put("description", "Thanh toan don hang" + orderId);
 
-        // Quan trọng: Thêm /demo_war vào URL để đúng với cấu trúc server của bạn
         body.put("returnUrl", "http://localhost:8080/demo_war/success.jsp");
         body.put("cancelUrl", "http://localhost:8080/demo_war/cancel.jsp");
 

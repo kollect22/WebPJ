@@ -133,7 +133,7 @@ public class CheckoutController extends HttpServlet {
                 if ("COD".equals(paymentMethod)) {
                     response.sendRedirect(request.getContextPath() + "/thankyou.jsp");
                 } else {
-                    String jsonRaw = paymentService.createPaymentUrl(amount, orderIdCode);
+                    String jsonRaw = paymentService.createPaymentUrl(amount, String.valueOf(newOrderId));
                     JsonObject jsonObject = JsonParser.parseString(jsonRaw).getAsJsonObject();
                     if (jsonObject.get("error").getAsInt() == 0) {
                         String checkoutUrl = jsonObject.get("data").getAsJsonObject().get("checkoutUrl").getAsString();
