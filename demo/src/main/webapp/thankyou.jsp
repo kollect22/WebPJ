@@ -70,9 +70,14 @@
                     Chúng mình sẽ sớm liên hệ để giao những món quà xinh xắn này đến bạn.
                 </p>
 
-                <div class="d-flex justify-content-center">
-                    <a href="${pageContext.request.contextPath}/home" class="btn btn-dark px-5 py-3 rounded-pill fw-bold shadow-sm text-uppercase">
+                <div class="d-flex justify-content-center gap-3 mt-4">
+                    <a href="${pageContext.request.contextPath}/home"
+                       class="btn btn-outline-dark px-4 py-3 rounded-pill fw-bold text-uppercase">
                         Tiếp tục mua sắm
+                    </a>
+                    <a href="${pageContext.request.contextPath}/my-orders"
+                       class="btn btn-dark px-4 py-3 rounded-pill fw-bold text-uppercase shadow-sm">
+                        Xem đơn hàng
                     </a>
                 </div>
             </div>

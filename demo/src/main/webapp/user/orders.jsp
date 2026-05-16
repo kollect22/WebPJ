@@ -72,31 +72,28 @@
                                 <thead class="table-light">
                                     <tr>
                                         <th class="py-3">Mã đơn</th>
+                                        <th class="py-3">Ngày đặt</th>
                                         <th class="py-3 text-center">Trạng thái</th>
                                         <th class="py-3">Thanh toán</th>
                                         <th class="py-3 text-end">Tổng tiền</th>
+                                        <th class="py-3 text-center">Chi tiết</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <c:forEach items="${orders}" var="o">
                                         <tr>
-                                            <td class="fw-bold">#${o.orderIdCode}</td>
-                                            <td class="text-center">
-                                                <c:choose>
-                                                    <c:when test="${o.status == 1}">
-                                                        <span class="badge bg-success">Hoàn tất</span>
-                                                    </c:when>
-                                                    <c:when test="${o.status == 2}">
-                                                        <span class="badge bg-danger">Đã hủy</span>
-                                                    </c:when>
-                                                    <c:otherwise>
-                                                        <span class="badge bg-warning text-dark">Chờ xử lý</span>
-                                                    </c:otherwise>
-                                                </c:choose>
-                                            </td>
+                                            <td class="fw-bold text-primary">#${o.orderIdCode}</td>
+                                            <td class="text-muted small">${o.createdAt}</td> <td class="text-center">
+                                                </td>
                                             <td><span class="text-muted small">${o.paymentMethod}</span></td>
                                             <td class="text-end fw-bold text-danger">
                                                 <fmt:formatNumber value="${o.totalPrice}" pattern="#,###"/> đ
+                                            </td>
+                                            <td class="text-center">
+                                                <a href="${pageContext.request.contextPath}/order-detail?id=${o.id}"
+                                                   class="btn btn-sm btn-outline-dark">
+                                                    <i class="fa-solid fa-eye"></i>
+                                                </a>
                                             </td>
                                         </tr>
                                     </c:forEach>

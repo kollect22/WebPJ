@@ -12,6 +12,7 @@ public class Order implements Serializable {
     private double totalPrice;
     private String paymentMethod;
     private int status;
+    private String createdAt;
 
 
     public Order() {}
@@ -43,4 +44,7 @@ public class Order implements Serializable {
 
     public int getStatus() { return status; }
     public void setStatus(int status) { this.status = status; }
+
+    public String getCreatedAt() { return createdAt; }
+    public void setCreatedAt(String createdAt) { this.createdAt = createdAt; }
 }

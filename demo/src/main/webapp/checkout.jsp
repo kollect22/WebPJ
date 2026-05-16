@@ -190,7 +190,7 @@
 <jsp:include page="header.jsp" />
 
 <div class="container checkout-page mb-5">
-    <form id="checkoutForm" onsubmit="handleCheckout(event)">
+   <form id="checkoutForm" action="checkout" method="post">
         <input type="hidden" name="purchasedIds" value="${selectedIds}">
         <div class="row g-4">
 

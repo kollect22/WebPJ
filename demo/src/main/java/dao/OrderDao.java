@@ -4,6 +4,7 @@ import model.Order;
 import model.OrderDetail;
 import org.jdbi.v3.core.Handle;
 import java.util.List;
+import java.util.Map;
 
 public class OrderDao extends BaseDao {
 
@@ -11,48 +12,34 @@ public class OrderDao extends BaseDao {
         return get().withHandle(handle -> {
             return handle.inTransaction(h -> {
                 int newOrderId = h.createUpdate("INSERT INTO orders (order_id_code, user_id, full_name, phone, address, total_price, payment_method, status) " +
-                                "VALUES (:code, :uid, :name, :phone, :addr, :price, :method, :status)")
-                        .bind("code", order.getOrderIdCode())
-                        .bind("uid", order.getUserId())
-                        .bind("name", order.getFullName())
-                        .bind("phone", order.getPhone())
-                        .bind("addr", order.getAddress())
-                        .bind("price", order.getTotalPrice())
-                        .bind("method", order.getPaymentMethod())
-                        .bind("status", order.getStatus())
+                                "VALUES (:orderIdCode, :userId, :fullName, :phone, :address, :totalPrice, :paymentMethod, :status)")
+                        .bindBean(order)
                         .executeAndReturnGeneratedKeys("id")
                         .mapTo(Integer.class)
                         .one();
 
+                var batch = h.prepareBatch("INSERT INTO order_details (order_id, product_id, quantity, price) " +
+                        "VALUES (:orderId, :productId, :quantity, :price)");
                 for (OrderDetail detail : details) {
-                    h.createUpdate("INSERT INTO order_details (order_id, product_id, quantity, price) " +
-                                    "VALUES (:orderId, :productId, :quantity, :price)")
-                            .bind("orderId", newOrderId) // ID lấy từ kết quả insert bảng orders
+                    batch.bind("orderId", newOrderId)
                             .bind("productId", detail.getProductId())
                             .bind("quantity", detail.getQuantity())
                             .bind("price", detail.getPrice())
-                            .execute();
+                            .add();
                 }
+                batch.execute();
+
                 return newOrderId;
             });
-        });
-    }
-    public List<Order> getAllOrders() {
-        return get().withHandle(h -> {
-
-            String sql = "SELECT * FROM orders ORDER BY id DESC";
-
-            return h.createQuery(sql)
-                    .mapToBean(Order.class)
-                    .list();
         });
     }
 
     public List<Order> getOrdersByUserId(int userId) {
         return get().withHandle(h -> {
-            String sql = "SELECT id, order_id_code as orderIdCode, user_id as userId, " +
-                    "full_name as fullName, phone, address, total_price as totalPrice, " +
-                    "payment_method as paymentMethod, status " +
+            String sql = "SELECT id, order_id_code AS orderIdCode, user_id AS userId, " +
+                    "full_name AS fullName, phone, address, total_price AS totalPrice, " +
+                    "payment_method AS paymentMethod, status, " +
+                    "created_at AS createdAt " +
                     "FROM orders WHERE user_id = :userId ORDER BY id DESC";
 
             return h.createQuery(sql)
@@ -62,5 +49,39 @@ public class OrderDao extends BaseDao {
         });
     }
 
+    public List<Order> getAllOrders() {
+        return get().withHandle(h -> {
+            String sql = "SELECT id, order_id_code AS orderIdCode, user_id AS userId, " +
+                    "full_name AS fullName, phone, address, total_price AS totalPrice, " +
+                    "payment_method AS paymentMethod, status " +
+                    "FROM orders ORDER BY id DESC";
 
+            return h.createQuery(sql)
+                    .mapToBean(Order.class)
+                    .list();
+        });
+    }
+
+    public List<Map<String, Object>> getOrderDetailWithProduct(int orderId) {
+        return get().withHandle(h -> {
+            String sql = "SELECT od.*, p.name AS productName, p.image AS productImage " +
+                    "FROM order_details od " +
+                    "JOIN products p ON od.product_id = p.id " +
+                    "WHERE od.order_id = :orderId";
+
+            return h.createQuery(sql)
+                    .bind("orderId", orderId)
+                    .mapToMap()
+                    .list();
+        });
+    }
+
+    public void updateStatus(int orderId, int status) {
+        get().useHandle(h -> {
+            h.createUpdate("UPDATE orders SET status = :status WHERE id = :id")
+                    .bind("status", status)
+                    .bind("id", orderId)
+                    .execute();
+        });
+    }
 }

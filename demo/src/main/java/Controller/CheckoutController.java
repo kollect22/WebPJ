@@ -89,37 +89,59 @@ public class CheckoutController extends HttpServlet {
             throws ServletException, IOException {
         try {
             User auth = (User) request.getSession().getAttribute("auth");
+            Cart cart = (Cart) request.getSession().getAttribute("cart");
+
             if (auth == null) {
                 response.sendRedirect("login.jsp");
                 return;
             }
 
-            String orderIdCode = "ORD" + (long) (Math.random() * 1000000000L);
+            String phone = request.getParameter("phone");
+            String address = request.getParameter("address");
+            String paymentMethod = request.getParameter("paymentMethod");
             long amount = Long.parseLong(request.getParameter("totalPrice"));
+            String orderIdCode = "ORD" + System.currentTimeMillis();
 
             Order order = new Order();
             order.setOrderIdCode(orderIdCode);
             order.setUserId(auth.getId());
             order.setFullName(auth.getFullName());
-            order.setPhone(auth.getPhone());
-            order.setAddress(auth.getSpecificAddress());
+            order.setPhone(phone);
+            order.setAddress(address);
             order.setTotalPrice(amount);
-            order.setPaymentMethod("Banking");
+            order.setPaymentMethod(paymentMethod);
             order.setStatus(0);
 
-            orderDao.insertOrder(order, new ArrayList<>());
+            List<model.OrderDetail> details = new ArrayList<>();
+            if (cart != null) {
+                for (CartItem item : cart.getList()) {
+                    model.OrderDetail detail = new model.OrderDetail();
+                    detail.setProductId(item.getProduct().getId());
+                    detail.setQuantity(item.getQuantity());
+                    detail.setPrice(item.getProduct().getPrice());
+                    details.add(detail);
+                }
+            }
 
-            request.getSession().removeAttribute("appliedCoupon");
+            int newOrderId = orderDao.insertOrder(order, details);
 
-            // 4. Gọi API thanh toán
-            String jsonRaw = paymentService.createPaymentUrl(amount, orderIdCode);
-            JsonObject jsonObject = JsonParser.parseString(jsonRaw).getAsJsonObject();
+            if (newOrderId > 0) {
+                request.getSession().setAttribute("orderId", orderIdCode);
+                request.getSession().removeAttribute("cart");
+                request.getSession().removeAttribute("appliedCoupon");
 
-            if (jsonObject.get("error").getAsInt() == 0) {
-                String checkoutUrl = jsonObject.get("data").getAsJsonObject().get("checkoutUrl").getAsString();
-                response.sendRedirect(checkoutUrl);
-            } else {
-                response.getWriter().println("Loi API: " + jsonRaw);
+                if ("COD".equals(paymentMethod)) {
+                    response.sendRedirect(request.getContextPath() + "/thankyou.jsp");
+                } else {
+                    String jsonRaw = paymentService.createPaymentUrl(amount, orderIdCode);
+                    JsonObject jsonObject = JsonParser.parseString(jsonRaw).getAsJsonObject();
+                    if (jsonObject.get("error").getAsInt() == 0) {
+                        String checkoutUrl = jsonObject.get("data").getAsJsonObject().get("checkoutUrl").getAsString();
+                        response.sendRedirect(checkoutUrl);
+                    } else {
+                        response.sendRedirect(request.getContextPath() + "/my-orders?msg=PaymentError");
+                    }
+                }
             }
 
         } catch (Exception e) {
