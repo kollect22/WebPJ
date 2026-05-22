@@ -22,7 +22,7 @@ public class OrderDetailController extends HttpServlet {
         String orderId = req.getParameter("id");
 
         if (orderId == null || orderId.isEmpty()) {
-            resp.sendRedirect("my-orders.jsp");
+            resp.sendRedirect("my-my-orders.jsp");
             return;
         }
 

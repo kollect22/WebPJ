@@ -108,4 +108,12 @@ public class OrderDao extends BaseDao {
                     .list();
         });
     }
+    public boolean cancelOrder(int orderId, String reason) {
+        return get().withHandle(h -> {
+            return h.createUpdate("UPDATE orders SET status = 2, cancel_reason = :reason WHERE id = :orderId AND status = 0")
+                    .bind("reason", reason)
+                    .bind("orderId", orderId)
+                    .execute() > 0;
+        });
+    }
 }

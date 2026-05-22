@@ -93,7 +93,7 @@ public class AdminController extends HttpServlet {
                 req.setAttribute("orderList", orderList);
 
                 req.setAttribute("activeMenu", "orders");
-                targetPage = "/admin/orders.jsp";
+                targetPage = "/admin/my-orders.jsp";
                 break;
             case "/admin/category":
                 dao.CategoryDao categoryDao = new dao.CategoryDao();
