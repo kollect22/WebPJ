@@ -4,6 +4,114 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 
+<style>
+    .search-overlay-fullscreen {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background: rgba(255, 255, 255, 0.98);
+        z-index: 100000;
+        overflow-y: auto;
+        animation: fadeInDown 0.3s ease-out;
+    }
+
+    @keyframes fadeInDown {
+        from { opacity: 0; transform: translateY(-20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+
+    .close-search-btn {
+        position: absolute;
+        top: 30px;
+        right: 40px;
+        background: none;
+        border: none;
+        font-size: 28px;
+        color: #ccc;
+        cursor: pointer;
+        transition: 0.2s;
+    }
+
+    .close-search-btn:hover {
+        color: #000;
+        transform: rotate(90deg);
+    }
+
+    .search-overlay-container {
+        max-width: 800px;
+        margin: 80px auto 0;
+        padding: 0 20px;
+    }
+
+
+    .mega-search-form {
+        display: flex;
+        align-items: center;
+        border: 2px solid #000;
+        padding: 5px 15px;
+        background: #fff;
+        border-radius: 4px;
+    }
+
+    .mega-search-form input {
+        flex: 1;
+        border: none;
+        outline: none;
+        font-size: 16px;
+        padding: 10px 0;
+        color: #333;
+    }
+
+    .mega-search-form input::placeholder {
+        color: #bbb;
+    }
+
+    .mega-search-form button {
+        background: none;
+        border: none;
+        font-size: 20px;
+        cursor: pointer;
+        color: #000;
+    }
+
+    .mega-search-content {
+        margin-top: 40px;
+        text-align: left;
+    }
+
+    .search-title {
+        font-size: 14px;
+        font-weight: bold;
+        color: #888;
+        margin-bottom: 20px;
+        letter-spacing: 1px;
+    }
+
+    .trending-searches ul {
+        list-style: none;
+        padding: 0;
+    }
+
+    .trending-searches ul li {
+        margin-bottom: 15px;
+    }
+
+    .trending-searches ul li a {
+        text-decoration: none;
+        color: #333;
+        font-size: 15px;
+        transition: 0.2s;
+    }
+
+    .trending-searches ul li a:hover {
+        color: #d0021b;
+        padding-left: 5px;
+    }
+</style>
+
 <header class="navbar fixed-top bg-white shadow-sm" style="z-index: 9999;">
     <div class="navbar-container ">
         <div class="logo">
@@ -34,35 +142,36 @@
 <%--                <i class="fa-solid fa-magnifying-glass"></i>--%>
 <%--                <input type="search" placeholder="Tìm kiếm" class="search-input">--%>
 <%--            </div>--%>
-            <form action="${pageContext.request.contextPath}/list-product" method="GET" class="search-box">
+<%--                <form action="${pageContext.request.contextPath}/list-product" method="GET" class="search-box">--%>
 
-                <button type="submit" style="background: none; border: none; cursor: pointer; padding: 0;">
+<%--                    <button type="submit" style="background: none; border: none; cursor: pointer; padding: 0;">--%>
+<%--                        <i class="fa-solid fa-magnifying-glass"></i>--%>
+<%--                    </button>--%>
+
+<%--                    <input type="search" id="search" name="search" value="${param.search}" placeholder="Tìm kiếm" class="search-input" autocomplete="off">--%>
+
+<%--                </form>--%>
+
+                <button id="openSearchBtn"style="background: none; border: none; cursor: pointer; padding: 0; font-size: 18px; margin-right: 10px;">
                     <i class="fa-solid fa-magnifying-glass"></i>
                 </button>
 
-                <input type="search" id="search" name="search" value="${param.search}" placeholder="Tìm kiếm" class="search-input" autocomplete="off">
+                <a href="${pageContext.request.contextPath}${empty sessionScope.auth ? '/login.jsp' : '/user/profile.jsp'}"
+                   class="user-account-btn d-flex align-items-center gap-2 text-decoration-none text-reset text-nowrap">
 
-                <div id="searchSuggestions" class="suggestions-box" style="display: none;">
-                </div>
+                    <i class="fa-solid fa-user"></i>
 
-            </form>
+                    <span class="fw-bold">
+                        ${empty sessionScope.auth ? 'Đăng nhập' :sessionScope.auth.fullName}
+                    </span>
+                </a>
 
-            <a href="${pageContext.request.contextPath}${empty sessionScope.auth ? '/login.jsp' : '/user/profile.jsp'}"
-               class="user-account-btn d-flex align-items-center gap-2 text-decoration-none text-reset text-nowrap">
-
-                <i class="fa-solid fa-user"></i>
-
-                <span class="fw-bold">
-                    ${empty sessionScope.auth ? 'Đăng nhập' :sessionScope.auth.fullName}
-                </span>
-            </a>
-
-            <a href="${pageContext.request.contextPath}/wishlist-add" class="wishlist-header">
-                <i class="fa-regular fa-heart"></i>
-                <span class="wishlist-count" id="wishlist-count">
-                    ${wishlistSession != null ? wishlistSession.size() : 0}
-                </span>
-            </a>
+                <a href="${pageContext.request.contextPath}/wishlist-add" class="wishlist-header">
+                    <i class="fa-regular fa-heart"></i>
+                    <span class="wishlist-count" id="wishlist-count">
+                        ${wishlistSession != null ? wishlistSession.size() : 0}
+                    </span>
+                </a>
 
 
     <%--        <a href="${pageContext.request.contextPath}/cart.jsp" class="cart-header">--%>
@@ -72,83 +181,133 @@
     <%--            </span>--%>
     <%--        </a>--%>
 
-            <div class="cart-wrapper">
+                <div class="cart-wrapper">
 
-                <a href="cart.jsp" style="color: black; font-size: 20px;">
-                    <i class="fa-solid fa-cart-shopping"></i>
-                </a>
+                    <a href="cart.jsp" style="color: black; font-size: 20px;">
+                        <i class="fa-solid fa-cart-shopping"></i>
+                    </a>
 
-                <span class="cart-count" id="cart-count">
-                    ${sessionScope.cart != null ? sessionScope.cart.totalQuantity : 0}
-                </span>
+                    <span class="cart-count" id="cart-count">
+                        ${sessionScope.cart != null ? sessionScope.cart.totalQuantity : 0}
+                    </span>
 
+                </div>
+
+                <div id="searchSuggestions" class="suggestions-fullwidth" style="display: none;">
+                    <div class="suggestions-title">SẢN PHẨM GỢI Ý KHỚP VỚI TỪ KHÓA</div>
+                    <div class="suggestions-grid">
+                    </div>
+                </div>
+
+        </div>
+    </div>
+
+    <div id="searchOverlay" class="search-overlay-fullscreen" style="display: none;">
+        <button id="closeSearchBtn" class="close-search-btn"><i class="fa-solid fa-xmark"></i></button>
+
+        <div class="search-overlay-container">
+            <form action="${pageContext.request.contextPath}/list-product" method="GET" class="mega-search-form">
+                <input type="search" id="megaSearchInput" name="search" placeholder="Tìm kiếm sản phẩm..." autocomplete="off">
+                <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+            </form>
+
+            <div class="mega-search-content">
+                <div id="trendingSearches" class="trending-searches">
+                    <p class="search-title">TỪ KHÓA ĐƯỢC TÌM KIẾM NH NHẤT</p>
+                    <ul>
+                        <li><a href="#">Bags sale</a></li>
+                        <li><a href="#">Black heels toe</a></li>
+                        <li><a href="#">Blue shoes</a></li>
+                        <li><a href="#">Bowling bag</a></li>
+                        <li><a href="#">Cherry red bags</a></li>
+                    </ul>
+                </div>
+
+                <div id="searchSuggestionsGrid" class="suggestions-grid" style="display: none; margin-top: 30px;">
+                </div>
             </div>
-
         </div>
     </div>
 </header>
 
 <script>
     document.addEventListener("DOMContentLoaded", function() {
-        const searchInput = document.getElementById('search');
-        const suggestionsBox = document.getElementById('searchSuggestions');
+
+        const openBtn = document.getElementById('openSearchBtn');
+        const closeBtn = document.getElementById('closeSearchBtn');
+        const searchOverlay = document.getElementById('searchOverlay');
+        const megaInput = document.getElementById('megaSearchInput');
+        const gridContainer = document.getElementById('searchSuggestionsGrid');
+        const trendingBox = document.getElementById('trendingSearches');
+
+        if (openBtn) {
+            openBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                searchOverlay.style.display = 'block';
+                setTimeout(() => megaInput.focus(), 100);
+                document.body.style.overflow = 'hidden';
+            });
+        }
+
+        if (closeBtn) {
+            closeBtn.addEventListener('click', function() {
+                searchOverlay.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            });
+        }
+
+        if (megaInput) {
+            megaInput.addEventListener('input', function() {
+                const keyword = this.value.trim();
+                gridContainer.innerHTML = '';
+
+                if (keyword.length > 0) {
+                    trendingBox.style.display = 'none';
+                    gridContainer.style.display = 'grid';
 
 
-        const mockProducts = [
-            { id: 1, name: 'Túi Xách Channel Đen', price: '500.000 đ', img: 'img/banners/banner2.webp' },
-            { id: 2, name: 'Túi Xách Dior Trắng', price: '750.000 đ', img: 'img/banners/banner3.jpg' },
-            { id: 3, name: 'Balo Gucci Mini', price: '900.000 đ', img: 'img/banners/banner5.jpg' },
-            { id: 4, name: 'Ví Da Nam Cầm Tay', price: '300.000 đ', img: 'img/banners/banner6.jpg' }
-        ];
+                    const url = (window.contextPath || '') + '/api/search?keyword=' + encodeURIComponent(keyword);
 
+                    fetch(url)
+                        .then(response => {
+                            if (!response.ok) throw new Error('Lỗi kết nối hệ thống');
+                            return response.json();
+                        })
+                        .then(products => {
+                            if (products && products.length > 0) {
+                                products.forEach(item => {
+                                    const formattedPrice = new Intl.NumberFormat('vi-VN', {
+                                        style: 'currency',
+                                        currency: 'VND'
+                                    }).format(item.price || 0);
 
-        searchInput.addEventListener('input', function() {
-            const keyword = this.value.toLowerCase().trim();
-            suggestionsBox.innerHTML = ''; // Xóa kết quả cũ
+                                    const html =
+                                        '<a href="product-detail?id=' + item.id + '" class="suggestion-card">' +
+                                        '<img src="' + (window.contextPath || '') + '/' + item.img + '" alt="' + item.name + '">' +
+                                        '<div class="suggestion-card-info">' +
+                                        '<h4>' + item.name + '</h4>' +
+                                        '<p>' + formattedPrice + '</p>' +
+                                        '</div>' +
+                                        '</a>';
 
-            if (keyword.length > 0) {
-
-                const filtered = mockProducts.filter(item => item.name.toLowerCase().includes(keyword));
-
-                if (filtered.length > 0) {
-
-                    filtered.forEach(item => {
-
-                        const html = `
-                        <a href="product-detail?id=${item.id}" class="suggestion-item">
-                            <img src="${window.contextPath || ''}/${item.img}" alt="${item.name}">
-                            <div class="suggestion-item-info">
-                                <h4>${item.name}</h4>
-                                <p>${item.price}</p>
-                            </div>
-                        </a>
-                    `;
-                        suggestionsBox.insertAdjacentHTML('beforeend', html);
-                    });
-                    suggestionsBox.style.display = 'block';
+                                    gridContainer.insertAdjacentHTML('beforeend', html);
+                                });
+                            } else {
+                                gridContainer.style.display = 'block';
+                                gridContainer.innerHTML = '<div style="padding: 30px; color: #777; font-size: 16px; text-align: center;">Không tìm thấy kết quả nào phù hợp.</div>';
+                            }
+                        })
+                        .catch(error => {
+                            console.error("Lỗi Fetch AJAX:", error);
+                        });
                 } else {
-                    suggestionsBox.innerHTML = '<div style="padding: 15px; color: #777; font-size: 14px; text-align: center;">Không tìm thấy sản phẩm nào phù hợp.</div>';
-                    suggestionsBox.style.display = 'block';
+                    gridContainer.style.display = 'none';
+                    trendingBox.style.display = 'block';
                 }
-            } else {
-                // Ẩn khung nếu khách hàng xóa hết chữ
-                suggestionsBox.style.display = 'none';
-            }
-        });
-
-
-        document.addEventListener('click', function(e) {
-            if (!searchInput.contains(e.target) && !suggestionsBox.contains(e.target)) {
-                suggestionsBox.style.display = 'none'; // Ẩn khi bấm ra ngoài
-            }
-        });
-
-        searchInput.addEventListener('focus', function() {
-            if (this.value.trim().length > 0) {
-                suggestionsBox.style.display = 'block';
-            }
-        });
+            });
+        }
     });
 </script>
+
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmxc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
