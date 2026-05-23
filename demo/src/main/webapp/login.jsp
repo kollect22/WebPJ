@@ -152,8 +152,10 @@
     <div id="loginForm">
         <form action="login" method="POST">
         <input type="hidden" name="redirect" value="${not empty param.redirect ? param.redirect : redirect}">
-            <input type="text" name="username" class="form-control" placeholder="Email hoặc SĐT" required>
-<%--            <input type="password" name="password" class="form-control" placeholder="Mật khẩu" required>--%>
+<%--            <input type="text" name="username" class="form-control" placeholder="Email hoặc SĐT" required>--%>
+            <input type="text" name="username" class="form-control" value="${oldUsername}" placeholder="Email hoặc SĐT" required>
+
+        <%--            <input type="password" name="password" class="form-control" placeholder="Mật khẩu" required>--%>
 
             <div class="input-group mb-2">
                 <input type="password" id="password" name="password" class="form-control" placeholder="Mật khẩu" required>
@@ -236,20 +238,16 @@
         sessionStorage.setItem('activeTab', formId);
     }
 
-    window.onload = function (){
+    document.addEventListener("DOMContentLoaded", function() {
         var successMsg = '${mess}';
-        var errorMsg = '${error}';
 
-        if(successMsg && successMsg.trim() !=="") {
+        if(successMsg && successMsg.trim() !== "") {
             showForm('loginForm');
-            sessionStorage.removeItem('activeTab')
-        }else if (errorMsg && errorMsg.trim() !== "") {
-            showForm('registerForm');
-        }else {
-            const savedTab = sessionStorage.getItem('activeTab');
+        } else {
+            const savedTab = sessionStorage.getItem('activeTab') || 'loginForm';
             showForm(savedTab);
         }
-    };
+    });
 </script>
 
 <script type="module">
@@ -290,6 +288,8 @@
                 alert("Lỗi đăng nhập: " + error.message);
             });
     };
+
+
 </script>
 
 <script>
@@ -360,6 +360,7 @@
         });
     }
 </script>
+
 
 </body>
 </html>
