@@ -302,5 +302,19 @@ public class ProductDao extends BaseDao {
                     .list();
         });
     }
+
+    public List<Product> searchByName(String keyword) {
+        return get().withHandle(h -> {
+            String sql = "SELECT id, name, img, price, sale_price AS salePrice " +
+                    "FROM products " +
+                    "WHERE name LIKE :keyword LIMIT 5";
+
+            return h.createQuery(sql)
+                    .bind("keyword", "%" + keyword + "%")
+                    .mapToBean(Product.class)
+                    .list();
+        });
+    }
+
 }
 
