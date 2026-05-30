@@ -275,6 +275,7 @@
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.ckeditor.com/ckeditor5/39.0.1/classic/ckeditor.js"></script>
 
 <script>
     function confirmDelete(id) {
@@ -308,7 +309,7 @@
             preview.src = 'https://placehold.co/150x150?text=Xem+Truoc+Anh';
         }
     }
-    <script src="https://cdn.ckeditor.com/ckeditor5/39.0.1/classic/ckeditor.js"></script>
+</script>
 
 <script>
     // Kích hoạt CKEditor cho form thêm sản phẩm
@@ -324,7 +325,6 @@
         .catch(error => {
             console.error(error);
         });
-</script>
 </script>
 
 </body>
