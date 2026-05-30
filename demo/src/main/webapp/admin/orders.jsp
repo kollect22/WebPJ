@@ -97,6 +97,9 @@
                                                 <span class="badge bg-danger px-3 py-2 rounded-pill">
                                                     <i class="fa-solid fa-xmark me-1"></i> Đã hủy
                                                 </span>
+                                                <div class="text-danger mt-2" style="font-size: 0.85rem; max-width: 200px; word-wrap: break-word;">
+                                                    <strong>Lý do:</strong> ${o.cancelReason}
+                                                </div>
                                             </c:otherwise>
                                         </c:choose>
                                     </td>
@@ -106,6 +109,7 @@
                                             <i class="fa-solid fa-eye"></i>
                                         </a>
                                     </td>
+
                                 </tr>
                             </c:forEach>
                             </tbody>
