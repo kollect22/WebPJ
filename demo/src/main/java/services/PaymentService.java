@@ -1,38 +1,41 @@
 package services;
 
-import com.google.gson.Gson;
-import java.net.URI;
-import java.net.http.HttpClient;
-import java.net.http.HttpRequest;
-import java.net.http.HttpResponse;
-import java.util.HashMap;
-import java.util.Map;
+import vn.payos.PayOS;
+import vn.payos.type.PaymentData;
+import vn.payos.type.CheckoutResponseData;
 
 public class PaymentService {
-    private final String CLIENT_ID = "YOUR_CLIENT_ID";
-    private final String API_KEY = "YOUR_API_KEY";
+    private final String CLIENT_ID = "af9c7a07-c5bb-40ca-8db9-3cf4f4c5a769";
+    private final String API_KEY = "6ce486ae-3b72-4edc-998c-61a43c14c32d";
+    private final String CHECKSUM_KEY = "543d262c2c15dee67f2bf96dce4e52adb7bdd96ed227b137c7cc73d6b58ff703";
+
+    private final PayOS payOS = new PayOS(CLIENT_ID, API_KEY, CHECKSUM_KEY);
 
     public String createPaymentUrl(long amount, String orderId) throws Exception {
-        Map<String, Object> body = new HashMap<>();
-        body.put("orderCode", Long.parseLong(orderId));
-        body.put("amount", amount);
-        body.put("description", "Thanh toan don hang" + orderId);
+      
+        System.setProperty("com.fasterxml.jackson.deserialization.fail_on_unknown_properties", "false");
+        try {
+           
+            long orderCode = System.currentTimeMillis() / 1000;
 
-        body.put("returnUrl", "http://localhost:8080/demo_war/success.jsp");
-        body.put("cancelUrl", "http://localhost:8080/demo_war/cancel.jsp");
+            String shortDescription = "DH" + (orderCode % 100000);
 
-        String jsonBody = new Gson().toJson(body);
+            PaymentData paymentData = PaymentData.builder()
+                    .orderCode(orderCode)
+                    .amount(2000)
+                    .description(shortDescription)
+                    .returnUrl("http://localhost:8080/demo/thankyou.jsp")
+                    .cancelUrl("http://localhost:8080/demo/checkout.jsp")
+                    .build();
 
-        HttpClient client = HttpClient.newHttpClient();
-        HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create("https://api-payos.vn/v2/payment-requests"))
-                .header("Content-Type", "application/json")
-                .header("x-client-id", CLIENT_ID)
-                .header("x-api-key", API_KEY)
-                .POST(HttpRequest.BodyPublishers.ofString(jsonBody))
-                .build();
+          
+            CheckoutResponseData data = payOS.createPaymentLink(paymentData);
 
-        HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
-        return response.body();
+            return data.getCheckoutUrl();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new Exception("Lỗi tạo link thanh toán: " + e.getMessage());
+        }
     }
 }
