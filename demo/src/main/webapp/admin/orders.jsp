@@ -105,7 +105,7 @@
                                     </td>
 
                                     <td class="text-center">
-                                        <a href="${pageContext.request.contextPath}/admin/order-detail?id=${o.id}" class="btn btn-sm btn-outline-primary" title="Xem chi tiết">
+                                        <a href="${pageContext.request.contextPath}/admin/admin-order-detail?id=${o.id}" class="btn btn-sm btn-outline-primary" title="Xem chi tiết">
                                             <i class="fa-solid fa-eye"></i>
                                         </a>
                                     </td>

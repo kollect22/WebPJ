@@ -116,4 +116,21 @@ public class OrderDao extends BaseDao {
                     .execute() > 0;
         });
     }
+    public Order getOrderById(int id) {
+        return get().withHandle(h -> {
+            return h.createQuery("SELECT * FROM orders WHERE id = :id")
+                    .bind("id", id)
+                    .mapToBean(Order.class)
+                    .findFirst()
+                    .orElse(null);
+        });
+    }
+    public void updateOrderStatus(int orderId, int status) {
+        get().withHandle(h -> {
+            return h.createUpdate("UPDATE orders SET status = :status WHERE id = :id")
+                    .bind("status", status)
+                    .bind("id", orderId)
+                    .execute();
+        });
+    }
 }

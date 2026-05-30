@@ -51,7 +51,7 @@ public class AdminController extends HttpServlet {
 
                 List<Product> list = productDao.getProductsWithPagination(search, offset, pageSize);
 
-                req.setAttribute("prodcd List", list);
+                req.setAttribute("productList", list);
                 req.setAttribute("currentPage", page);
                 req.setAttribute("totalPages", totalPages);
                 req.setAttribute("search", search);
@@ -93,7 +93,7 @@ public class AdminController extends HttpServlet {
                 req.setAttribute("orderList", orderList);
 
                 req.setAttribute("activeMenu", "orders");
-                targetPage = "/admin/my-orders.jsp";
+                targetPage = "/admin/orders.jsp";
                 break;
             case "/admin/category":
                 dao.CategoryDao categoryDao = new dao.CategoryDao();
