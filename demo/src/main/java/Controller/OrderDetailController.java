@@ -18,22 +18,21 @@ public class OrderDetailController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        // Lấy mã đơn hàng từ trên thanh URL xuống
-        String orderId = req.getParameter("id");
+        String orderCode = req.getParameter("id");
 
-        if (orderId == null || orderId.isEmpty()) {
-            resp.sendRedirect("my-my-orders.jsp");
-            return;
+        // Gọi DAO để tìm đơn hàng theo mã chữ
+        Order order = orderDao.getOrderByCode(orderCode);
+
+        if (order != null) {
+            // Nếu có đơn hàng, lấy ID để tìm chi tiết các món hàng
+            List<OrderDetail> orderDetails = orderDao.getOrderDetails(order.getId());
+
+            req.setAttribute("order", order);
+            req.setAttribute("orderDetails", orderDetails);
+            req.getRequestDispatcher("/user/order-detail.jsp").forward(req, resp);
+        } else {
+            // Nếu không tìm thấy, đá về trang danh sách
+            resp.sendRedirect(req.getContextPath() + "/my-orders?msg=OrderNotFound");
         }
-
-        Order order = orderDao.getOrderByCode(orderId);
-        List<OrderDetail> orderDetails = orderDao.getOrderDetails(order.getId());
-
-        // Gửi dữ liệu sang JSP
-        req.setAttribute("order", order);
-        req.setAttribute("orderDetails", orderDetails);
-
-        // Điều hướng sang file JSP
-        req.getRequestDispatcher("order-detail.jsp").forward(req, resp);
     }
 }
