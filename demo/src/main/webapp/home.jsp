@@ -27,18 +27,18 @@
 <%--</section>--%>
 
 <section class="banner-slider">
-    <div class = "slider-track">
-        <div class = "slide">
-            <img src="${pageContext.request.contextPath}/img/banners/banner5.jpg" alt="Banner 1">
-        </div>
+    <div class="slider-track">
+        <c:forEach items="${bannerList}" var="b">
+            <div class="slide">
+                <img src="${pageContext.request.contextPath}/${b.img}" alt="${b.title}">
+            </div>
+        </c:forEach>
 
-        <div class = "slide">
-            <img src="${pageContext.request.contextPath}/img/banners/banner6.jpg" alt="Banner 1">
-        </div>
-
-        <div class = "slide">
-            <img src="${pageContext.request.contextPath}/img/banners/banner10.jpeg" alt="Banner 1">
-        </div>
+        <c:if test="${empty bannerList}">
+            <div class="slide">
+                <img src="${pageContext.request.contextPath}/img/banners/banner5.jpg" alt="Mặc định">
+            </div>
+        </c:if>
     </div>
 </section>
 
