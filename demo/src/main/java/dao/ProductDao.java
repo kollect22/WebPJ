@@ -1,5 +1,6 @@
 package dao;
 
+import model.Banner;
 import model.ColorVariant;
 import model.Product;
 import model.Review;
@@ -186,7 +187,7 @@ public class ProductDao extends BaseDao {
     }
     public void delete(int id) {
         get().useHandle(h -> {
-            // Xóa ảnh trong gallery trước (product_images thay vì product_colors)
+            // Xóa ảnh trong gallery trước
             h.createUpdate("DELETE FROM product_images WHERE product_id = :id")
                     .bind("id", id).execute();
 
@@ -315,6 +316,55 @@ public class ProductDao extends BaseDao {
                     .list();
         });
     }
+    public List<Banner> getActiveBanners() {
+        return get().withHandle(h -> {
+            String sql = "SELECT * FROM banners WHERE status = 1 ORDER BY id DESC";
+            return h.createQuery(sql)
+                    .mapToBean(Banner.class)
+                    .list();
+        });
+    }
+    public List<Banner> getAllBanners() {
+        return get().withHandle(h -> {
+            return h.createQuery("SELECT * FROM banners ORDER BY id DESC")
+                    .mapToBean(Banner.class)
+                    .list();
+        });
+    }
 
+    public void insertBanner(Banner banner) {
+        get().useHandle(h -> {
+            String sql = "INSERT INTO banners (img, title, link, status) " +
+                    "VALUES (:img, :title, :link, :status)";
+            h.createUpdate(sql)
+                    .bindBean(banner)
+                    .execute();
+        });
+    }
+    public void deleteBanner(int id) {
+        get().useHandle(h -> {
+            h.createUpdate("DELETE FROM banners WHERE id = :id")
+                    .bind("id", id)
+                    .execute();
+        });
+    }
+    public Banner getBannerById(int id) {
+        return get().withHandle(h -> {
+            return h.createQuery("SELECT * FROM banners WHERE id = :id")
+                    .bind("id", id)
+                    .mapToBean(Banner.class)
+                    .findFirst()
+                    .orElse(null);
+        });
+    }
+
+    public void updateBanner(Banner banner) {
+        get().useHandle(h -> {
+            String sql = "UPDATE banners SET title = :title, link = :link, img = :img WHERE id = :id";
+            h.createUpdate(sql)
+                    .bindBean(banner)
+                    .execute();
+        });
+    }
 }
 

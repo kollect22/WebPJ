@@ -82,6 +82,12 @@ public class AdminController extends HttpServlet {
                 targetPage = "/admin/customer.jsp";
                 break;
             case "/admin/banner":
+                ProductDao bannerDao = new ProductDao();
+
+                List<model.Banner> allBanners = bannerDao.getAllBanners();
+
+                req.setAttribute("allBanners", allBanners);
+
                 req.setAttribute("activeMenu", "banner");
                 targetPage = "/admin/banner.jsp";
                 break;

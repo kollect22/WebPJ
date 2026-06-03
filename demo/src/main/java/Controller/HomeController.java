@@ -1,10 +1,12 @@
 package Controller;
 
+import dao.ProductDao;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import model.Banner;
 import model.Product;
 import services.ProductService;
 import java.io.IOException;
@@ -16,18 +18,19 @@ public class HomeController extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         ProductService service = new ProductService();
         List<Product> list = service.getListProduct();
-
-
-//        if (list == null || list.isEmpty()) {
-//            System.out.println("Danh sách rỗng.");
-//        } else {
-//            System.out.println("Ok " + list.size() + " sản phẩm.");
-//            // In thử tên sản phẩm đầu tiên để chắc chắn
-//            System.out.println("   -> Sản phẩm 1: " + list.get(0).getName());
-//        }
-//        // ----------------------------
-
         req.setAttribute("list", list);
+
+        try {
+            ProductDao productDao = new ProductDao();
+            List<Banner> bannerList = productDao.getActiveBanners();
+
+            req.setAttribute("bannerList", bannerList);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("Lỗi load banner: " + e.getMessage());
+        }
+
         req.getRequestDispatcher("home.jsp").forward(req, resp);
     }
 

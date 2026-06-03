@@ -8,7 +8,6 @@
     <title>Quản lý Banner</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
 
     <style>
@@ -85,39 +84,41 @@
                                 <th class="py-3 ps-4">Hình ảnh</th>
                                 <th class="py-3">Tiêu đề</th>
                                 <th class="py-3">Liên kết (Link)</th>
-                                <th class="py-3">Vị trí</th>
                                 <th class="py-3 text-center">Hành động</th>
                             </tr>
                             </thead>
                             <tbody id="banner-table-body">
-                            <tr>
-                                <td class="ps-4">
-                                    <img src="${pageContext.request.contextPath}/assets/img/banner-hlw.jpg"
-                                         alt="Banner" class="banner-thumb"
-                                         onerror="this.src='https://placehold.co/120x60?text=No+Img'">
-                                </td>
-                                <td class="fw-bold">Ưu đãi Halloween</td>
-                                <td class="text-primary">/sale/halloween</td>
-                                <td><span class="badge bg-primary">Banner Chính</span></td>
-                                <td class="text-center">
-                                    <button class="btn btn-sm btn-outline-primary me-1"><i class="fa-solid fa-pen-to-square"></i></button>
-                                    <button class="btn btn-sm btn-outline-danger delete-btn"><i class="fa-solid fa-trash"></i></button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="ps-4">
-                                    <img src="${pageContext.request.contextPath}/assets/img/banner-collection.jpg"
-                                         alt="Banner" class="banner-thumb"
-                                         onerror="this.src='https://placehold.co/120x60?text=No+Img'">
-                                </td>
-                                <td class="fw-bold">Bộ sưu tập Túi Xách</td>
-                                <td class="text-primary">/collection/tui-xach</td>
-                                <td><span class="badge bg-info text-dark">Dưới Products</span></td>
-                                <td class="text-center">
-                                    <button class="btn btn-sm btn-outline-primary me-1"><i class="fa-solid fa-pen-to-square"></i></button>
-                                    <button class="btn btn-sm btn-outline-danger delete-btn"><i class="fa-solid fa-trash"></i></button>
-                                </td>
-                            </tr>
+
+                            <c:forEach items="${allBanners}" var="b">
+                                <tr>
+                                    <td class="ps-4">
+                                        <img src="${pageContext.request.contextPath}/${b.img}"
+                                             alt="Banner" class="banner-thumb"
+                                             onerror="this.src='https://placehold.co/120x60?text=No+Img'">
+                                    </td>
+                                    <td class="fw-bold">${b.title}</td>
+                                    <td class="text-primary">${b.link}</td>
+                                    <td class="text-center">
+                                        <button class="btn btn-sm btn-outline-primary me-1 edit-btn"
+                                                data-id="${b.id}"
+                                                data-title="${b.title}"
+                                                data-link="${b.link}"
+                                                data-img="${b.img}">
+                                            <i class="fa-solid fa-pen-to-square"></i>
+                                        </button>
+                                        <button class="btn btn-sm btn-outline-danger delete-btn" data-id="${b.id}"><i class="fa-solid fa-trash"></i></button>
+                                    </td>
+                                </tr>
+                            </c:forEach>
+
+                            <c:if test="${empty allBanners}">
+                                <tr>
+                                    <td colspan="4" class="text-center py-4 text-secondary">
+                                        <i class="fa-solid fa-folder-open me-1"></i> Chưa có banner nào trong hệ thống.
+                                    </td>
+                                </tr>
+                            </c:if>
+
                             </tbody>
                         </table>
                     </div>
@@ -159,18 +160,48 @@
                         <input type="text" class="form-control" name="link" placeholder="/sale/summer" required>
                     </div>
 
+                    <div class="modal-footer border-0 px-0 pb-0">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+                        <button type="submit" class="btn btn-primary px-4">Lưu Banner</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="editBannerModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header bg-white">
+                <h5 class="modal-title text-primary fw-bold">CHỈNH SỬA BANNER</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form action="${pageContext.request.contextPath}/admin/banner-edit" method="post" enctype="multipart/form-data">
+                    <input type="hidden" id="editId" name="id">
+                    <input type="hidden" id="editOldImg" name="oldImg">
+
                     <div class="mb-3">
-                        <label class="form-label fw-bold">Vị trí hiển thị</label>
-                        <select class="form-select" name="position">
-                            <option value="main">Banner Chính (Slider)</option>
-                            <option value="sub">Dưới danh sách sản phẩm</option>
-                            <option value="sidebar">Sidebar bên phải</option>
-                        </select>
+                        <label class="form-label fw-bold">Hình ảnh hiện tại / Thay ảnh mới</label>
+                        <input type="file" class="form-control" name="file" accept="image/*" onchange="previewEditImage(this)">
+                        <div class="preview-container">
+                            <img id="editImgPreview" class="preview-img" style="display: block;" src="" alt="Preview">
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">Tiêu đề Banner</label>
+                        <input type="text" class="form-control" id="editTitle" name="title" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">Đường dẫn (Link)</label>
+                        <input type="text" class="form-control" id="editLink" name="link" required>
                     </div>
 
                     <div class="modal-footer border-0 px-0 pb-0">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
-                        <button type="submit" class="btn btn-primary px-4">Lưu Banner</button>
+                        <button type="submit" class="btn btn-primary px-4">Cập nhật</button>
                     </div>
                 </form>
             </div>
@@ -202,10 +233,47 @@
     }
 
     document.addEventListener('click', function(e) {
-        if (e.target.closest('.delete-btn')) {
-            if(confirm('Bạn có chắc muốn xóa banner này?')) {
-                e.target.closest('tr').remove();
+        const deleteBtn = e.target.closest('.delete-btn');
+        if (deleteBtn) {
+            if(confirm('Bạn có chắc muốn xóa banner này vĩnh viễn?')) {
+                const bannerId = deleteBtn.getAttribute('data-id');
+
+                fetch('${pageContext.request.contextPath}/admin/banner-delete?id=' + bannerId)
+                    .then(response => {
+                        if(response.ok) {
+                            deleteBtn.closest('tr').remove();
+                        } else {
+                            alert('Lỗi! Không thể xóa banner này.');
+                        }
+                    });
             }
+        }
+    });
+    function previewEditImage(input) {
+        const preview = document.getElementById('editImgPreview');
+        if (input.files && input.files[0]) {
+            const reader = new FileReader();
+            reader.onload = function(e) { preview.src = e.target.result; }
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+    document.addEventListener('click', function(e) {
+        const editBtn = e.target.closest('.edit-btn');
+        if (editBtn) {
+            const id = editBtn.getAttribute('data-id');
+            const title = editBtn.getAttribute('data-title');
+            const link = editBtn.getAttribute('data-link');
+            const img = editBtn.getAttribute('data-img');
+
+            document.getElementById('editId').value = id;
+            document.getElementById('editTitle').value = title;
+            document.getElementById('editLink').value = link;
+            document.getElementById('editOldImg').value = img;
+
+            document.getElementById('editImgPreview').src = '${pageContext.request.contextPath}/' + img;
+
+            const editModal = new bootstrap.Modal(document.getElementById('editBannerModal'));
+            editModal.show();
         }
     });
 </script>
