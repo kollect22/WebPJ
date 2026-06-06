@@ -10,27 +10,25 @@ public class PaymentService {
     private final String CHECKSUM_KEY = "543d262c2c15dee67f2bf96dce4e52adb7bdd96ed227b137c7cc73d6b58ff703";
 
     private final PayOS payOS = new PayOS(CLIENT_ID, API_KEY, CHECKSUM_KEY);
+    private PaymentService paymentService;
 
-    public String createPaymentUrl(long amount, String orderId) throws Exception {
-      
+    public String createPaymentUrl(long amount, String orderIdCode, long payosOrderCode) throws Exception {
         System.setProperty("com.fasterxml.jackson.deserialization.fail_on_unknown_properties", "false");
         try {
-           
-            long orderCode = System.currentTimeMillis() / 1000;
-
-            String shortDescription = "DH" + (orderCode % 100000);
+            String description = "Thanh toan " + orderIdCode;
+            if (description.length() > 25) {
+                description = description.substring(0, 25);
+            }
 
             PaymentData paymentData = PaymentData.builder()
-                    .orderCode(orderCode)
-                    .amount(2000)
-                    .description(shortDescription)
-                    .returnUrl("http://localhost:8080/demo/thankyou.jsp")
-                    .cancelUrl("http://localhost:8080/demo/checkout.jsp")
+                    .orderCode(payosOrderCode)
+                    .amount((int) amount)
+                    .description(description)
+                    .returnUrl("http://localhost:8080/demo_war/thankyou.jsp")
+                    .cancelUrl("http://localhost:8080/demo_war/checkout.jsp")
                     .build();
 
-          
             CheckoutResponseData data = payOS.createPaymentLink(paymentData);
-
             return data.getCheckoutUrl();
 
         } catch (Exception e) {

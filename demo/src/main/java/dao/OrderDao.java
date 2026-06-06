@@ -64,9 +64,12 @@ public class OrderDao extends BaseDao {
 
     public List<Map<String, Object>> getOrderDetailWithProduct(int orderId) {
         return get().withHandle(h -> {
-            String sql = "SELECT od.*, p.name AS productName, p.image AS productImage " +
+            String sql = "SELECT od.*, p.name AS productname, " +
+                    "  (SELECT pi.image_url FROM product_images pi WHERE pi.product_id = p.id LIMIT 1) AS productimage, " +
+                    "  o.total_price AS totalprice, o.order_id_code AS orderidcode " +
                     "FROM order_details od " +
                     "JOIN products p ON od.product_id = p.id " +
+                    "JOIN orders o ON od.order_id = o.id " +
                     "WHERE od.order_id = :orderId";
 
             return h.createQuery(sql)
