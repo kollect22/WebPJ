@@ -82,6 +82,58 @@
         text-align: left;
     }
 
+    .suggestions-grid {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        margin-top: 20px;
+    }
+    .suggestion-card {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        gap: 15px;
+        padding: 10px 15px;
+        border-bottom: 1px solid #f0f0f0;
+        text-decoration: none;
+        color: #333;
+        transition: background 0.2s ease;
+        border-radius: 6px;
+    }
+
+    .suggestion-card:hover {
+        background-color: #f9f9f9;
+    }
+
+
+    .suggestion-card img {
+        width: 60px;
+        height: 60px;
+        object-fit: cover;
+        border-radius: 4px;
+        flex-shrink: 0;
+    }
+
+
+    .suggestion-card-info {
+        text-align: left;
+        flex: 1;
+    }
+
+    .suggestion-card-info h4 {
+        font-size: 15px;
+        font-weight: 500;
+        margin: 0 0 5px 0;
+        line-height: 1.4;
+        color: #000;
+    }
+
+    .suggestion-card-info p {
+        font-size: 14px;
+        font-weight: bold;
+        color: #d0021b;
+        margin: 0;
+    }
     .search-title {
         font-size: 14px;
         font-weight: bold;
@@ -207,19 +259,15 @@
 
         <div class="search-overlay-container">
             <form action="${pageContext.request.contextPath}/list-product" method="GET" class="mega-search-form">
-                <input type="search" id="megaSearchInput" name="search" placeholder="Tìm kiếm sản phẩm..." autocomplete="off">
+                <input type="search" id="megaSearchInput" name="search" placeholder="Tìm kiếm sản phẩm...ull" autocomplete="off">
                 <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
             </form>
 
             <div class="mega-search-content">
                 <div id="trendingSearches" class="trending-searches">
-                    <p class="search-title">TỪ KHÓA ĐƯỢC TÌM KIẾM NH NHẤT</p>
-                    <ul>
-                        <li><a href="#">Bags sale</a></li>
-                        <li><a href="#">Black heels toe</a></li>
-                        <li><a href="#">Blue shoes</a></li>
-                        <li><a href="#">Bowling bag</a></li>
-                        <li><a href="#">Cherry red bags</a></li>
+                    <p class="search-title">TỪ KHÓA ĐƯỢC TÌM KIẾM NHỂU NHẤT</p>
+                    <ul
+                        id ="trendingKeywordsList">
                     </ul>
                 </div>
 
@@ -284,10 +332,10 @@
                                     const html =
                                         '<a href="product-detail?id=' + item.id + '" class="suggestion-card">' +
                                         '<img src="' + (window.contextPath || '') + '/' + item.img + '" alt="' + item.name + '">' +
-                                        '<div class="suggestion-card-info">' +
-                                        '<h4>' + item.name + '</h4>' +
-                                        '<p>' + formattedPrice + '</p>' +
-                                        '</div>' +
+                                            '<div class="suggestion-card-info">' +
+                                                '<h4>' + item.name + '</h4>' +
+                                                '<p>' + formattedPrice + '</p>' +
+                                            '</div>' +
                                         '</a>';
 
                                     gridContainer.insertAdjacentHTML('beforeend', html);
