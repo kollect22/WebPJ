@@ -19,10 +19,16 @@ public class SearchAjaxController extends HttpServlet {
         String keyword = req.getParameter("keyword");
 
         ProductService productService = new ProductService();
-        List<Product> realProducts = productService.searchByName(keyword);
+        List<Product> resultList;
+
+        if(keyword==null || keyword.trim().isEmpty()){
+            resultList = productService.getRecommendedProducts(5);
+        }else {
+            resultList = productService.searchByName(keyword);
+        }
 
         Gson gson = new Gson();
-        String jsonResponse = gson.toJson(realProducts);
+        String jsonResponse = gson.toJson(resultList);
 
         resp.setContentType("application/json");
         resp.setCharacterEncoding("UTF-8");

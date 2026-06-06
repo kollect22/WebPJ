@@ -21,4 +21,8 @@ public class ProductService {
         ProductDao dao = new ProductDao();
         return dao.searchByName(keyword);
     }
+
+    public List<Product> getRecommendedProducts(int limit){
+        return productDao.getRecommendedProducts(limit);
+    }
 }
