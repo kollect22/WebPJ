@@ -16,4 +16,9 @@ public class ProductService {
 
         return productDao.getProduct(id);
     }
+
+    public List<Product> searchByName(String keyword) {
+        ProductDao dao = new ProductDao();
+        return dao.searchByName(keyword);
+    }
 }

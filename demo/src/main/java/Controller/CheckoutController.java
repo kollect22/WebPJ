@@ -23,7 +23,6 @@ public class CheckoutController extends HttpServlet {
     private final PaymentService paymentService = new PaymentService();
     private final OrderDao orderDao = new OrderDao();
     private final dao.ProductDao productDao = new dao.ProductDao();
-
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {

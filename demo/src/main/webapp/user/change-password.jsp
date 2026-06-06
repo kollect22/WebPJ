@@ -63,7 +63,7 @@
                     <i class="fa-regular fa-user me-2"></i> Thông tin tài khoản
                 </a>
 
-                <a href="${pageContext.request.contextPath}/user/orders.jsp" class="list-group-item list-group-item-action text-muted">
+                <a href="${pageContext.request.contextPath}/user/my-orders.jsp" class="list-group-item list-group-item-action text-muted">
                     <i class="fa-solid fa-box me-2"></i> Đơn hàng của tôi
                 </a>
 

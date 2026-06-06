@@ -51,7 +51,7 @@ public class AdminController extends HttpServlet {
 
                 List<Product> list = productDao.getProductsWithPagination(search, offset, pageSize);
 
-                req.setAttribute("prodcd List", list);
+                req.setAttribute("productList", list);
                 req.setAttribute("currentPage", page);
                 req.setAttribute("totalPages", totalPages);
                 req.setAttribute("search", search);
@@ -82,6 +82,12 @@ public class AdminController extends HttpServlet {
                 targetPage = "/admin/customer.jsp";
                 break;
             case "/admin/banner":
+                ProductDao bannerDao = new ProductDao();
+
+                List<model.Banner> allBanners = bannerDao.getAllBanners();
+
+                req.setAttribute("allBanners", allBanners);
+
                 req.setAttribute("activeMenu", "banner");
                 targetPage = "/admin/banner.jsp";
                 break;

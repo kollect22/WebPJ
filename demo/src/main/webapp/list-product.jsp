@@ -36,6 +36,7 @@
                             <span class="color-swatch"
                                   onclick="event.preventDefault(); changeCardImage(this)"
                                   data-src="${pageContext.request.contextPath}/${c.imgThumbnail}"
+                                  data-link="product-detail?id=${c.productid}"
                                   title="${c.colorName}"
                                   style="background-color: ${bgColor};">
                             </span>
@@ -574,6 +575,7 @@
                                     <span class="color-swatch"
                                           onclick="event.preventDefault(); changeCardImage(this)"
                                           data-src="${pageContext.request.contextPath}/${c.imgThumbnail}"
+                                          data-link="product-detail?id=${c.productid}"
                                           title="${c.colorName}"
                                           style="background-color: ${bgColor};">
                                     </span>
@@ -685,6 +687,40 @@
                 });
             }
         </script>
+
+        <script>
+            function changeCardImage(element) {
+                const productCard = element.closest('.product-item');
+
+                if(!productCard) return;
+
+                const newImgSrc = element.getAttribute('data-src');
+                const newProductLink = element.getAttribute('data-link');
+
+                const urlParams = new URLSearchParams(newProductLink.split('?')[1]);
+                const newId = urlParams.get('id');
+
+                const img = productCard.querySelector('.product-card-img');
+                if (img && newImgSrc) {
+                    img.style.opacity = 0.5;
+                    setTimeout(() => {
+                        img.src = newImgSrc;
+                        img.style.opacity = 1;
+                    }, 150);
+                }
+
+                const links = productCard.querySelectorAll('a[href^="product-detail"]');
+                links.forEach(link => {
+                    link.setAttribute('href', newProductLink);
+                });
+
+                const cartBtn = productCard.querySelector('.cart-icon');
+                if (cartBtn && newId) {
+                    cartBtn.setAttribute('onclick', 'addToCart(' + newId + ')');
+                }
+            }
+        </script>
+
         <script src="${pageContext.request.contextPath}/assets/js/script.js"></script>
 
         </body>
