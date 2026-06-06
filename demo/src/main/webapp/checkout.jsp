@@ -190,7 +190,7 @@
 <jsp:include page="header.jsp" />
 
 <div class="container checkout-page mb-5">
-   <form id="checkoutForm" action="checkout" method="post">
+   <form id="checkoutForm" method="post">
         <input type="hidden" name="purchasedIds" value="${selectedIds}">
         <div class="row g-4">
 
@@ -350,8 +350,9 @@
                     </div>
 
                     <input type="hidden" name="totalPrice" id="input-total" value="${selectedSubtotal + 30000 - discountAmount}">
-                    <button type="submit" class="btn-checkout-confirm mt-4">HOÀN TẤT ĐẶT HÀNG</button>
-
+                    <button type="button" class="btn-checkout-confirm mt-4" onclick="handleCheckout()">
+                        HOÀN TẤT ĐẶT HÀNG
+                    </button>
                     <p class="text-center text-muted small mt-3 mb-0">
                         <i class="fa-solid fa-lock me-1"></i> Thông tin được bảo mật
                     </p>
@@ -363,6 +364,7 @@
 </div>
 
 <jsp:include page="footer.jsp" />
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
 <script>
     function changeQty(id, delta) {
@@ -411,6 +413,61 @@
             updateTotal();
         })
         .catch(err => console.error("Lỗi kết nối Servlet:", err));
+    }
+    function handleCheckout(event) {
+        if (event) event.preventDefault();
+
+        const form = document.getElementById('checkoutForm');
+        const paymentMethodEl = document.querySelector('input[name="paymentMethod"]:checked');
+
+        if (!paymentMethodEl) {
+            alert("Vui lòng chọn phương thức thanh toán!");
+            return false;
+        }
+        const paymentMethod = paymentMethodEl.value;
+
+        // --- XỬ LÝ COD ---
+        if (paymentMethod === 'COD') {
+            form.action = 'save-order';
+            form.submit();
+            return false;
+        }
+
+        // --- XỬ LÝ BANK ---
+        if (paymentMethod === 'BANK') {
+            const btn = document.querySelector('.btn-checkout-confirm');
+            btn.innerHTML = '<i class="fa fa-spinner fa-spin"></i> ĐANG TẠO MÃ QR...';
+            btn.disabled = true;
+
+            const formData = new URLSearchParams(new FormData(form));
+            // Đẩy kèm 2 tham số quan trọng mà PaymentApiServlet cần bốc dỡ
+            formData.append("amount", document.getElementById('input-total').value);
+            formData.append("method", "BANK");
+
+            fetch('${pageContext.request.contextPath}/payment-api', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                body: formData.toString()
+            })
+            .then(res => res.json())
+            .then(data => {
+                if (data.status === 'success') {
+                    // Đã sửa lỗi chính tả biến hứng 'data' nhảy thẳng sang link QR ngân hàng
+                    window.location.href = data.checkoutUrl;
+                } else {
+                    alert("Lỗi thanh toán: " + data.message);
+                    btn.disabled = false;
+                    btn.innerHTML = 'HOÀN TẤT ĐẶT HÀNG';
+                }
+            })
+            .catch(err => {
+                console.error("Fetch error:", err);
+                alert("Lỗi hệ thống: Không thể kết nối với cổng thanh toán.");
+                btn.disabled = false;
+                btn.innerHTML = 'HOÀN TẤT ĐẶT HÀNG';
+            });
+        }
+        return false;
     }
 
     function updateTotal() {
@@ -469,6 +526,6 @@
         });
     }
 </script>
-
+<script src="https://pay.payos.vn/lib/payos_checkout_sdk.js"></script>
 </body>
 </html>

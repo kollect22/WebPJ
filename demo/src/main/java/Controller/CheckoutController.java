@@ -23,6 +23,7 @@ public class CheckoutController extends HttpServlet {
     private final PaymentService paymentService = new PaymentService();
     private final OrderDao orderDao = new OrderDao();
     private final dao.ProductDao productDao = new dao.ProductDao();
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -99,8 +100,15 @@ public class CheckoutController extends HttpServlet {
             String phone = request.getParameter("phone");
             String address = request.getParameter("address");
             String paymentMethod = request.getParameter("paymentMethod");
-            long amount = Long.parseLong(request.getParameter("totalPrice"));
+
+            String totalPriceRaw = request.getParameter("totalPrice");
+            if (totalPriceRaw != null) {
+                totalPriceRaw = totalPriceRaw.replaceAll("[^\\d]", "");
+            }
+            long amount = (totalPriceRaw != null && !totalPriceRaw.isEmpty()) ? Long.parseLong(totalPriceRaw) : 0;
+
             String orderIdCode = "ORD" + System.currentTimeMillis();
+            long payosOrderCode = System.currentTimeMillis() / 1000;
 
             Order order = new Order();
             order.setOrderIdCode(orderIdCode);
@@ -132,16 +140,23 @@ public class CheckoutController extends HttpServlet {
 
                 if ("COD".equals(paymentMethod)) {
                     response.sendRedirect(request.getContextPath() + "/thankyou.jsp");
-                } else {
-                    String jsonRaw = paymentService.createPaymentUrl(amount, orderIdCode);
+                } else if ("BANK".equals(paymentMethod)) {
+                    String jsonRaw = paymentService.createPaymentUrl(amount, orderIdCode, payosOrderCode);
+
                     JsonObject jsonObject = JsonParser.parseString(jsonRaw).getAsJsonObject();
-                    if (jsonObject.get("error").getAsInt() == 0) {
+                    if (jsonObject.has("error") && jsonObject.get("error").getAsInt() == 0) {
                         String checkoutUrl = jsonObject.get("data").getAsJsonObject().get("checkoutUrl").getAsString();
                         response.sendRedirect(checkoutUrl);
                     } else {
+
                         response.sendRedirect(request.getContextPath() + "/my-orders?msg=PaymentError");
                     }
+                } else {
+
+                    response.sendRedirect(request.getContextPath() + "/thankyou.jsp");
                 }
+            } else {
+                response.getWriter().println("Khong the tao don hang vao Database.");
             }
 
         } catch (Exception e) {

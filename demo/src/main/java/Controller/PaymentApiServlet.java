@@ -6,18 +6,25 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-import dao.ProductDao;
-import model.Product;
-import services.PaymentService; // Nhớ import service của mình vào
-
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.List;
+
+import cart.Cart;
+import cart.CartItem;
+import dao.OrderDao;
+import dao.ProductDao;
+import model.Order;
+import model.OrderDetail;
+import model.User;
+import services.PaymentService;
 
 @WebServlet("/payment-api")
 public class PaymentApiServlet extends HttpServlet {
 
-    // Khởi tạo service
     private final PaymentService paymentService = new PaymentService();
 
     @Override
@@ -28,46 +35,93 @@ public class PaymentApiServlet extends HttpServlet {
         response.setCharacterEncoding("UTF-8");
         PrintWriter out = response.getWriter();
 
-        String amountStr = request.getParameter("amount");
-        String method = request.getParameter("method");
-
-        // Tạo orderId để lưu vào Database/Session (Ví dụ: ORD171654321)
-        String orderId = "ORD" + System.currentTimeMillis();
-
         try {
             HttpSession session = request.getSession();
+            User auth = (User) session.getAttribute("auth");
+            Cart cart = (Cart) session.getAttribute("cart");
 
-            // Xử lý logic sản phẩm gợi ý như cũ của bạn
-            ProductDao pDao = new ProductDao();
-            List<Product> recommendedList = pDao.getRecommendedProducts(3);
-            session.setAttribute("recommendedList", recommendedList);
-            session.setAttribute("orderId", orderId);
-
-            String checkoutUrl = "";
-
-            if ("BANK".equals(method)) {
-                // --- ĐOẠN THAY ĐỔI QUAN TRỌNG ---
-                try {
-                    long amount = Long.parseLong(amountStr);
-                    // Gọi sang PaymentService để lấy link PayOS xịn
-                    checkoutUrl = paymentService.createPaymentUrl(amount, orderId);
-                } catch (Exception e) {
-                    throw new Exception("Lỗi gọi PayOS: " + e.getMessage());
-                }
-                // -------------------------------
-            } else if ("MOMO".equals(method)) {
-                // Nếu bạn chưa làm Momo thì tạm thời để link fake hoặc báo lỗi
-                checkoutUrl = "https://momo.vn/payment/fake-link";
-            } else {
-                checkoutUrl = "http://localhost:8080/demo_war/checkout.jsp"; // Quay về nếu không chọn method
+            if (auth == null) {
+                out.print("{\"status\": \"error\", \"message\": \"Vui lòng đăng nhập!\"}");
+                return;
             }
 
-            // Trả về JSON cho phía Client (File JavaScript của bạn sẽ nhận cái này)
-            out.print("{\"status\": \"success\", \"checkoutUrl\": \"" + checkoutUrl + "\", \"orderCode\": \"" + orderId + "\"}");
+            if (cart == null || cart.getList().isEmpty()) {
+                out.print("{\"status\": \"error\", \"message\": \"Giỏ hàng trống!\"}");
+                return;
+            }
+
+            String amountStr = request.getParameter("amount");
+            String method = request.getParameter("method");
+            String purchasedIds = request.getParameter("purchasedIds");
+
+            String[] idsArray = (purchasedIds != null && !purchasedIds.isEmpty()) ? purchasedIds.split(",") : new String[0];
+
+
+            String orderIdCode = "ORD" + System.currentTimeMillis();
+            long payosOrderCode = System.currentTimeMillis() / 1000;
+
+            Order order = new Order();
+            order.setOrderIdCode(orderIdCode);
+            order.setUserId(auth.getId());
+            order.setFullName(auth.getFullName());
+            order.setPhone(request.getParameter("phone"));
+            order.setAddress(request.getParameter("address"));
+            order.setTotalPrice(Double.parseDouble(amountStr));
+            order.setPaymentMethod(method);
+            order.setStatus(0);
+
+
+            List<OrderDetail> details = new ArrayList<>();
+            for (CartItem item : cart.getList()) {
+                if (idsArray.length == 0) {
+                    OrderDetail d = new OrderDetail();
+                    d.setProductId(item.getProduct().getId());
+                    d.setQuantity(item.getQuantity());
+                    d.setPrice(item.getProduct().getPrice());
+                    details.add(d);
+                } else {
+                    for (String id : idsArray) {
+                        if (String.valueOf(item.getProduct().getId()).equals(id.trim())) {
+                            OrderDetail d = new OrderDetail();
+                            d.setProductId(item.getProduct().getId());
+                            d.setQuantity(item.getQuantity());
+                            d.setPrice(item.getPrice());
+                            details.add(d);
+                            break;
+                        }
+                    }
+                }
+            }
+
+            OrderDao orderDao = new OrderDao();
+            int newOrderId = orderDao.insertOrder(order, details);
+
+            if (newOrderId > 0) {
+                ProductDao pDao = new ProductDao();
+                session.setAttribute("recommendedList", pDao.getRecommendedProducts(3));
+                session.setAttribute("orderId", orderIdCode);
+
+                if (idsArray.length > 0) {
+                    for (String idStr : idsArray) {
+                        cart.deleteProduct(Integer.parseInt(idStr.trim()));
+                    }
+                    session.setAttribute("cart", cart);
+                } else {
+                    session.removeAttribute("cart");
+                }
+
+
+                long amount = Long.parseLong(amountStr);
+                String checkoutUrl = paymentService.createPaymentUrl(amount, orderIdCode, payosOrderCode);
+
+                out.print("{\"status\": \"success\", \"checkoutUrl\": \"" + checkoutUrl + "\"}");
+            } else {
+                out.print("{\"status\": \"error\", \"message\": \"Không thể lưu đơn hàng vào database!\"}");
+            }
 
         } catch (Exception e) {
             e.printStackTrace();
-            out.print("{\"status\": \"error\", \"message\": \"Lỗi: " + e.getMessage() + "\"}");
+            out.print("{\"status\": \"error\", \"message\": \"Lỗi hệ thống: " + e.getMessage() + "\"}");
         } finally {
             out.flush();
             out.close();
