@@ -100,14 +100,16 @@ public class OrderDao extends BaseDao {
 
     public List<OrderDetail> getOrderDetails(int orderId) {
         return get().withHandle(h -> {
-            String sql = "SELECT od.*, p.name AS productName " +
+            String sql = "SELECT od.id, od.order_id AS orderId, od.product_id AS productId, " +
+                    "       od.quantity, od.price, p.name AS productName, " +
+                    "       (SELECT pi.image_url FROM product_images pi WHERE pi.product_id = p.id LIMIT 1) AS productImg " +
                     "FROM order_details od " +
-                    "JOIN products p ON od.id = p.id " +
-                    "WHERE od.id = :id";
+                    "JOIN products p ON od.product_id = p.id " +
+                    "WHERE od.order_id = :orderId";
 
             return h.createQuery(sql)
-                    .bind("id", orderId)
-                    .mapToBean(OrderDetail.class)
+                    .bind("orderId", orderId)
+                    .mapToBean(OrderDetail.class) // Đảm bảo class OrderDetail của bạn có các thuộc tính này đi kèm getter/setter
                     .list();
         });
     }

@@ -8,15 +8,16 @@
     <title>Chi tiết đơn hàng</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/style.css">
     <style>
-        body { background-color: #f8f9fa; }
+        body { background-color: #f8f9fa; padding-top: 100px; }
         .card { border: none; box-shadow: 0 2px 15px rgba(0,0,0,0.05); border-radius: 12px; }
         .table th { background-color: #f8f9fa; border-bottom: 2px solid #dee2e6; }
     </style>
 </head>
 <body>
 
-<%-- <jsp:include page="header.jsp"/> --%>
+<jsp:include page="/header.jsp"/>
 
 <div class="container py-5">
     <div class="mb-4">
@@ -75,17 +76,24 @@
                             </tr>
                             </thead>
                             <tbody>
+                            <c:set var="subTotal" value="0" />
+
                             <c:forEach items="${orderDetails}" var="item">
+                                <c:set var="subTotal" value="${subTotal + (item.price * item.quantity)}" />
                                 <tr>
                                     <td>
-                                        <div class="fw-bold">${item.productName}</div>
+                                        <div class="d-flex align-items-center gap-3">
+                                            <img src="${pageContext.request.contextPath}/${not empty item.productImg ? item.productImg : 'assets/images/default.jpg'}"
+                                                 style="width: 50px; height: 65px; object-fit: cover; border-radius: 6px;" class="border">
+                                            <div class="fw-bold">${item.productName}</div>
+                                        </div>
                                     </td>
                                     <td class="text-center">
-                                        <fmt:formatNumber value="${item.price}" type="currency" currencySymbol="đ" maxFractionDigits="0"/>
+                                        <fmt:formatNumber value="${item.price}" pattern="#,###"/>đ
                                     </td>
                                     <td class="text-center">${item.quantity}</td>
                                     <td class="text-end fw-bold text-danger">
-                                        <fmt:formatNumber value="${item.price * item.quantity}" type="currency" currencySymbol="đ" maxFractionDigits="0"/>
+                                        <fmt:formatNumber value="${item.price * item.quantity}" pattern="#,###"/>đ
                                     </td>
                                 </tr>
                             </c:forEach>
@@ -93,12 +101,51 @@
                         </table>
                     </div>
 
+                    <c:set var="finalShippingFee" value="30000" />
+                    <c:set var="finalDiscount" value="0" />
+                    <c:choose>
+                        <c:when test="${subTotal + 15000 == order.totalPrice}">
+                            <c:set var="finalShippingFee" value="15000" />
+                            <c:set var="finalDiscount" value="0" />
+                        </c:when>
+                        <c:when test="${subTotal + 30000 == order.totalPrice}">
+                            <c:set var="finalShippingFee" value="30000" />
+                            <c:set var="finalDiscount" value="0" />
+                        </c:when>
+                        <c:otherwise>
+                            <c:choose>
+                                <c:when test="${order.totalPrice <= subTotal + 15000}">
+                                    <c:set var="finalShippingFee" value="15000" />
+                                    <c:set var="finalDiscount" value="${(subTotal + 15000) - order.totalPrice}" />
+                                </c:when>
+                                <c:otherwise>
+                                    <c:set var="finalShippingFee" value="30000" />
+                                    <c:set var="finalDiscount" value="${(subTotal + 30000) - order.totalPrice}" />
+                                </c:otherwise>
+                            </c:choose>
+                        </c:otherwise>
+                    </c:choose>
+
                     <div class="d-flex justify-content-end mt-4 pt-3 border-top">
                         <div class="text-end" style="width: 300px;">
-                            <div class="d-flex justify-content-between mb-2 fs-5">
+                            <div class="d-flex justify-content-between mb-2 small text-muted">
+                                <span>Tạm tính:</span>
+                                <span><fmt:formatNumber value="${subTotal}" pattern="#,###"/> đ</span>
+                            </div>
+                            <div class="d-flex justify-content-between mb-2 small text-muted">
+                                <span>Phí vận chuyển:</span>
+                                <span>+<fmt:formatNumber value="${finalShippingFee}" pattern="#,###"/> đ</span>
+                            </div>
+                            <c:if test="${finalDiscount > 0}">
+                                <div class="d-flex justify-content-between mb-2 small text-danger fw-bold">
+                                    <span>Giảm giá mã ưu đãi:</span>
+                                    <span>-<fmt:formatNumber value="${finalDiscount}" pattern="#,###"/> đ</span>
+                                </div>
+                            </c:if>
+                            <div class="d-flex justify-content-between mb-2 fs-5 pt-2 border-top">
                                 <span class="fw-bold">Tổng thanh toán:</span>
                                 <span class="fw-bold text-danger">
-                                    <fmt:formatNumber value="${order.totalPrice}" type="currency" currencySymbol="đ" maxFractionDigits="0"/>
+                                    <fmt:formatNumber value="${order.totalPrice}" pattern="#,###"/>đ
                                 </span>
                             </div>
                         </div>
@@ -110,6 +157,7 @@
     </div>
 </div>
 
+<jsp:include page="/footer.jsp"/>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
