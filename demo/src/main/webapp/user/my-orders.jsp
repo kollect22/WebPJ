@@ -1,22 +1,27 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <%@ taglib prefix="fmt" uri="jakarta.tags.fmt" %>
-
 <!DOCTYPE html>
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
     <title>Đơn hàng của tôi</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+    <style>
+        body { background-color: #f8f9fa; }
+        .list-group-item.active { background-color: #0d6efd !important; border-color: #0d6efd !important; }
+    </style>
 </head>
 <body class="d-flex flex-column min-vh-100 bg-light">
 
-<jsp:include page="/header.jsp" />
+<div class="d-flex">
+    <jsp:include page="/header.jsp"></jsp:include>
+</div>
 
 <div class="container">
-    <nav aria-label="breadcrumb" class="bg-white p-3 rounded shadow-sm mb-4" style="margin-top: 100px">
+    <nav aria-label="breadcrumb" class="bg-white p-3 rounded mb-4" style="margin-top: 100px">
         <ol class="breadcrumb mb-0">
             <li class="breadcrumb-item">
                 <a href="${pageContext.request.contextPath}/index.jsp" class="text-decoration-none text-black">
@@ -24,7 +29,7 @@
                 </a>
             </li>
             <li class="breadcrumb-item active">
-                <a href="#" class="text-decoration-none text-black fw-bold">Đơn hàng của tôi</a>
+                <a href="#" class="text-decoration-none text-black fw-bold">Thông tin</a>
             </li>
         </ol>
     </nav>
@@ -36,7 +41,7 @@
                     <i class="fa-regular fa-user me-2"></i> Thông tin tài khoản
                 </a>
 
-                <a href="${pageContext.request.contextPath}/my-orders" class="list-group-item list-group-item-action active text-white fw-bold bg-primary border-primary">
+                <a href="${pageContext.request.contextPath}/my-orders" class="list-group-item list-group-item-action active text-white fw-bold" aria-current="true">
                     <i class="fa-solid fa-box me-2"></i> Đơn hàng của tôi
                 </a>
 
@@ -56,110 +61,78 @@
 
         <div class="col-lg-9 col-md-8">
             <div class="bg-white p-4 rounded shadow-sm">
-                <h4 class="mb-4 fw-bold text-black border-bottom pb-3">Lịch sử đơn hàng</h4>
+                <h4 class="mb-4 fw-bold text-black">Lịch sử đặt hàng</h4>
 
-                <c:choose>
-                    <c:when test="${empty orders}">
-                        <div class="text-center py-5">
-                            <i class="fa-solid fa-box-open fa-4x text-light mb-3"></i>
-                            <p class="text-muted fs-5">Bạn chưa có đơn hàng nào.</p>
-                            <a href="${pageContext.request.contextPath}/home" class="btn btn-dark px-4 py-2 fw-bold">Tiếp tục mua sắm</a>
-                        </div>
-                    </c:when>
-                    <c:otherwise>
-                        <div class="table-responsive">
-                            <table class="table table-hover align-middle">
-                                <thead class="table-light">
+                <div class="table-responsive">
+                    <table class="table align-middle table-hover">
+                        <thead>
+                            <tr class="table-light">
+                                <th>Mã đơn hàng</th>
+                                <th>Tổng thanh toán</th>
+                                <th class="text-center">Phương thức</th>
+                                <th class="text-center">Trạng thái</th>
+                                <th class="text-end">Hành động</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <c:choose>
+                                <c:when test="${empty orders}">
                                     <tr>
-                                        <th class="py-3">Mã đơn</th>
-                                        <th class="py-3">Ngày đặt</th>
-                                        <th class="py-3 text-center">Trạng thái</th>
-                                        <th class="py-3">Thanh toán</th>
-                                        <th class="py-3 text-end">Tổng tiền</th>
-                                        <th class="py-3 text-center">Chi tiết</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                <c:forEach items="${orders}" var="o">
-                                    <tr>
-                                        <td class="fw-bold text-primary">#${o.orderIdCode}</td>
-                                        <td class="text-muted small">${o.createdAt}</td>
-
-                                        <td class="text-center">
-                                            <c:choose>
-                                                <c:when test="${o.status == 0}">
-                                                    <span class="badge bg-warning text-dark">Chờ xử lý</span>
-                                                </c:when>
-                                                <c:when test="${o.status == 1}">
-                                                    <span class="badge bg-success">Đã thanh toán</span>
-                                                </c:when>
-                                                <c:when test="${o.status == 2}">
-                                                    <span class="badge bg-danger">Đã hủy</span>
-                                                </c:when>
-                                            </c:choose>
-                                        </td>
-
-                                        <td><span class="text-muted small">${o.paymentMethod}</span></td>
-                                        <td class="text-end fw-bold text-danger">
-                                            <fmt:formatNumber value="${o.totalPrice}" pattern="#,###"/> đ
-                                        </td>
-
-                                        <td class="text-center">
-                                            <a href="${pageContext.request.contextPath}/order-detail?id=${o.orderIdCode}"
-                                               class="btn btn-sm btn-outline-dark" title="Xem chi tiết">
-                                                <i class="fa-solid fa-eye"></i>
-                                            </a>
-
-                                            <c:if test="${o.status == 0}">
-                                                <button type="button" class="btn btn-sm btn-outline-danger ms-1"
-                                                        data-bs-toggle="modal" data-bs-target="#cancelModal_${o.id}" title="Hủy đơn hàng">
-                                                    <i class="fa-solid fa-ban"></i>
-                                                </button>
-                                            </c:if>
+                                        <td colspan="5" class="text-center text-muted py-5">
+                                            <i class="fa-regular fa-folder-open d-block fs-2 mb-2 text-secondary"></i>
+                                            Bạn chưa có đơn hàng nào được đặt.
                                         </td>
                                     </tr>
-
-                                    <c:if test="${o.status == 0}">
-                                        <div class="modal fade" id="cancelModal_${o.id}" tabindex="-1" aria-hidden="true">
-                                            <div class="modal-dialog">
-                                                <div class="modal-content text-start">
-                                                    <form action="${pageContext.request.contextPath}/cancel-order" method="POST">
-                                                        <div class="modal-header bg-danger text-white">
-                                                            <h5 class="modal-title"><i class="fa-solid fa-triangle-exclamation me-2"></i>Xác nhận hủy đơn</h5>
-                                                            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
-                                                        </div>
-                                                        <div class="modal-body">
-                                                            <input type="hidden" name="orderId" value="${o.id}">
-                                                            <p>Bạn có chắc chắn muốn hủy đơn hàng <strong class="text-danger">#${o.orderIdCode}</strong> không?</p>
-                                                            <div class="mb-3">
-                                                                <label class="form-label fw-bold">Lý do hủy đơn (Bắt buộc):</label>
-                                                                <textarea class="form-control" name="cancelReason" rows="3" placeholder="Vui lòng cho chúng tôi biết lý do..." required></textarea>
-                                                            </div>
-                                                        </div>
-                                                        <div class="modal-footer">
-                                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
-                                                            <button type="submit" class="btn btn-danger">Xác nhận hủy</button>
-                                                        </div>
-                                                    </form>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </c:if>
-                                </c:forEach>
-                                </tbody>
-                            </table>
-                        </div>
-                    </c:otherwise>
-                </c:choose>
+                                </c:when>
+                                <c:otherwise>
+                                    <c:forEach items="${orders}" var="o">
+                                        <tr>
+                                            <td>
+                                                <a href="${pageContext.request.contextPath}/order-detail?id=${o.orderIdCode}" class="fw-bold text-decoration-none text-primary">
+                                                    #${o.orderIdCode}
+                                                </a>
+                                            </td>
+                                            <td class="fw-bold text-danger">
+                                                <fmt:formatNumber value="${o.totalPrice}" pattern="#,###"/>đ
+                                            </td>
+                                            <td class="text-center">
+                                                <span class="badge bg-light text-dark border px-2 py-1.5">${o.paymentMethod}</span>
+                                            </td>
+                                            <td class="text-center">
+                                                <c:choose>
+                                                    <c:when test="${o.status == 0}">
+                                                        <span class="badge bg-warning text-dark px-2 py-1.5 rounded-pill">Chờ xử lý</span>
+                                                    </c:when>
+                                                    <c:when test="${o.status == 1}">
+                                                        <span class="badge bg-success px-2 py-1.5 rounded-pill">Đã thanh toán</span>
+                                                    </c:when>
+                                                    <c:otherwise>
+                                                        <span class="badge bg-secondary px-2 py-1.5 rounded-pill">Đã hủy</span>
+                                                    </c:otherwise>
+                                                </c:choose>
+                                            </td>
+                                            <td class="text-end">
+                                                <a href="${pageContext.request.contextPath}/order-detail?id=${o.orderIdCode}" class="btn btn-dark btn-sm rounded-pill px-3">
+                                                    Xem chi tiết
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    </c:forEach>
+                                </c:otherwise>
+                            </c:choose>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
+
     </div>
 </div>
 
 <div class="mt-auto w-100">
-    <jsp:include page="/footer.jsp" />
+    <jsp:include page="/footer.jsp"></jsp:include>
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

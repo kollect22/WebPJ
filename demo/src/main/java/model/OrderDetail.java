@@ -9,6 +9,8 @@ public class OrderDetail implements Serializable {
     private int quantity;
     private double price;
     private String productName;
+    // 1. THÊM THUỘC TÍNH NÀY ĐỂ HỨNG ĐƯỜNG DẪN ẢNH SẢN PHẨM
+    private String productImg;
 
     public OrderDetail() {}
 
@@ -33,5 +35,14 @@ public class OrderDetail implements Serializable {
 
     public void setProductName(String productName) {
         this.productName = productName;
+    }
+
+    // 2. THÊM CẶP HÀM GETTER / SETTER CHO PRODUCTIMG
+    public String getProductImg() {
+        return productImg;
+    }
+
+    public void setProductImg(String productImg) {
+        this.productImg = productImg;
     }
 }
