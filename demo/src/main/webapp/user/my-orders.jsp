@@ -12,6 +12,7 @@
     <style>
         body { background-color: #f8f9fa; }
         .list-group-item.active { background-color: #0d6efd !important; border-color: #0d6efd !important; }
+        .table th { background-color: #f8f9fa; }
     </style>
 </head>
 <body class="d-flex flex-column min-vh-100 bg-light">
@@ -61,6 +62,23 @@
 
         <div class="col-lg-9 col-md-8">
             <div class="bg-white p-4 rounded shadow-sm">
+
+                <c:if test="${not empty sessionScope.mess}">
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        <i class="fa-solid fa-circle-check me-2"></i> ${sessionScope.mess}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                    <c:remove var="mess" scope="session" />
+                </c:if>
+
+                <c:if test="${not empty sessionScope.error}">
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        <i class="fa-solid fa-circle-xmark me-2"></i> ${sessionScope.error}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                    <c:remove var="error" scope="session" />
+                </c:if>
+
                 <h4 class="mb-4 fw-bold text-black">Lịch sử đặt hàng</h4>
 
                 <div class="table-responsive">
@@ -112,9 +130,19 @@
                                                 </c:choose>
                                             </td>
                                             <td class="text-end">
-                                                <a href="${pageContext.request.contextPath}/order-detail?id=${o.orderIdCode}" class="btn btn-dark btn-sm rounded-pill px-3">
+                                                <a href="${pageContext.request.contextPath}/order-detail?id=${o.orderIdCode}" class="btn btn-dark btn-sm rounded-pill px-3 me-1">
                                                     Xem chi tiết
                                                 </a>
+
+                                                <c:if test="${o.status == 0}">
+                                                    <button type="button"
+                                                            class="btn btn-outline-danger btn-sm rounded-pill px-3"
+                                                            data-bs-toggle="modal"
+                                                            data-bs-target="#cancelModal"
+                                                            onclick="prepareCancelModal('${o.id}', '${o.orderIdCode}')">
+                                                        Hủy đơn
+                                                    </button>
+                                                </c:if>
                                             </td>
                                         </tr>
                                     </c:forEach>
@@ -129,10 +157,49 @@
     </div>
 </div>
 
+<div class="modal fade" id="cancelModal" tabindex="-1" aria-labelledby="cancelModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content" style="border-radius: 12px;">
+            <div class="modal-header border-bottom-0">
+                <h5 class="modal-title fw-bold" id="cancelModalLabel">Hủy đơn hàng <span id="displayOrderCode" class="text-danger"></span></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+            <form action="${pageContext.request.contextPath}/cancel-order" method="POST">
+                <div class="modal-body">
+                    <input type="hidden" id="cancelOrderId" name="orderId">
+
+                    <div class="mb-3">
+                        <label for="cancelReason" class="form-label fw-bold">Lý do hủy đơn <span class="text-danger">*</span></label>
+                        <select class="form-select mb-2" onchange="document.getElementById('cancelReason').value = this.value;">
+                            <option value="Đổi ý không muốn mua nữa">Đổi ý không muốn mua nữa</option>
+                            <option value="Tìm thấy nơi khác giá rẻ hơn">Tìm thấy nơi khác giá rẻ hơn</option>
+                            <option value="Đặt nhầm sản phẩm/số lượng">Đặt nhầm sản phẩm/số lượng</option>
+                            <option value="">Lý do khác...</option>
+                        </select>
+                        <textarea class="form-control" id="cancelReason" name="cancelReason" rows="3" placeholder="Nhập lý do cụ thể tại đây..." required>Đổi ý không muốn mua nữa</textarea>
+                    </div>
+                </div>
+                <div class="modal-footer border-top-0">
+                    <button type="button" class="btn btn-light rounded-pill px-4" data-bs-dismiss="modal">Đóng</button>
+                    <button type="submit" class="btn btn-danger rounded-pill px-4 fw-bold">Xác nhận hủy</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
 <div class="mt-auto w-100">
     <jsp:include page="/footer.jsp"></jsp:include>
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+    function prepareCancelModal(id, code) {
+        document.getElementById('cancelOrderId').value = id;
+        document.getElementById('displayOrderCode').innerText = '#' + code;
+    }
+</script>
 </body>
 </html>

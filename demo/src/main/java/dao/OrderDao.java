@@ -115,8 +115,7 @@ public class OrderDao extends BaseDao {
     }
     public boolean cancelOrder(int orderId, String reason) {
         return get().withHandle(h -> {
-            return h.createUpdate("UPDATE orders SET status = 2, cancel_reason = :reason WHERE id = :orderId AND status = 0")
-                    .bind("reason", reason)
+            return h.createUpdate("UPDATE orders SET status = 2 WHERE id = :orderId AND status = 0")
                     .bind("orderId", orderId)
                     .execute() > 0;
         });
