@@ -21,7 +21,7 @@ body {
     display: flex!important;
     justify-content: space-between!important;
     align-items: center!important;
-    padding: 12px 40px!important;
+    padding: 8px 40px!important;
     background-color: #FFFFFF;
     color: black!important;
     z-index: 1000!important;
@@ -45,21 +45,26 @@ body {
 
 
 .nav-center {
+    align-items: center;
     display: flex;
     justify-content: center;
     flex: 2;
 }
 
 .nav-center ul {
+    align-items: center;
     list-style: none;
     display: flex;
     gap: 40px;
     padding: 0;
+    margin: 0;
 }
 
 .nav-center ul li {
     position: relative;
     white-space: nowrap;
+    display: flex;
+    align-items: center;
 }
 
 .nav-center ul li a {
@@ -369,13 +374,14 @@ h2 {
 
 .product-item img {
     width: 100%;
-    height: 400px;
+    aspect-ratio: 3/4;
+    height: auto;
     object-fit: cover;
     box-sizing: border-box;
     transition: 0.3s ease;
     display: block;
     margin: 0;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
 }
 
 /*.product-item:hover img {*/
@@ -384,16 +390,25 @@ h2 {
 
 .cart-icon {
     position: absolute;
-    top: 10px;
-    right: 10px;
-    font-size: 20px;
+    top: 15px;
+    right: 15px;
+
+    width: 40px !important;
+    height: 40px !important;
+    display: flex !important; /**/
+    justify-content: center !important;
+    align-items: center !important;
+
+    font-size: 18px;
     color: white;
-    background-color: black;
-    padding: 10px;
-    border-radius: 50%;
+    background-color: #000;
+    border-radius: 50% !important;
     opacity: 0;
-    transition: opacity 0.5s ease;
+    transition: all 0.3s ease;
     z-index: 2;
+    cursor: pointer;
+
+    flex: none !important;
 }
 
 .product-item:hover .cart-icon {
@@ -798,3 +813,277 @@ h2 {
     transition: opacity 0.2s ease-in-out;
 }
 
+/* ==========================================================================
+   CSS CHO HEADER (SIDEBAR DANH MỤC & SEARCH OVERLAY)
+   ========================================================================== */
+
+/* --- SIDEBAR DANH MỤC --- */
+.filter-sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 400px;
+    max-width: 85%;
+    height: 100%;
+    background-color: white;
+    box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+    transform: translateX(-100%);
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 100001;
+}
+
+.filter-sidebar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 30px;
+    border-bottom: 1px solid #888888;
+}
+
+.filter-sidebar-header h2 {
+    margin: 0;
+    font-size: 18px;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: black;
+}
+
+.filter-sidebar-header button {
+    background: none;
+    border: none;
+    color: #999;
+    font-size: 24px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.filter-sidebar-header button:hover {
+    color: black;
+    transform: rotate(90deg);
+}
+
+.filter-sidebar-body {
+    padding: 10px 30px;
+}
+
+.categories-list {
+    padding-left: 0;
+    margin-top: 10px;
+    list-style: none;
+}
+
+.categories-list li {
+    margin-bottom: 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0);
+}
+
+.categories-list a {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 18px 0;
+    color: black;
+    font-size: 15px;
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+
+.categories-list a:hover {
+    color: grey;
+    padding-left: 10px;
+}
+
+.categories-list a::after {
+    content: "\f054";
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    font-size: 12px;
+    color: black;
+    transition: color 0.3s;
+}
+
+.categories-list a:hover::after {
+    color: grey;
+}
+
+.filter-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 100000;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(2px);
+}
+
+.filter-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.filter-overlay.active .filter-sidebar {
+    transform: none;
+}
+
+/* --- SEARCH OVERLAY FULLSCREEN --- */
+.search-overlay-fullscreen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: #ffffff;
+    z-index: 100000;
+    overflow-y: auto;
+    animation: fadeInDown 0.3s ease-out;
+}
+
+@keyframes fadeInDown {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.close-search-btn {
+    position: absolute;
+    top: 10px;
+    right: 40px;
+    background: none;
+    border: none;
+    font-size: 28px;
+    color: #ccc;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.close-search-btn:hover {
+    color: #000;
+    transform: rotate(90deg);
+}
+
+.search-overlay-container {
+    max-width: 800px;
+    margin: 10px auto 0;
+    padding: 0 20px;
+}
+
+.mega-search-form {
+    display: flex;
+    align-items: center;
+    border: 2px solid #000;
+    padding: 5px 15px;
+    background: #fff;
+    border-radius: 4px;
+}
+
+.mega-search-form input {
+    flex: 1;
+    border: none;
+    outline: none;
+    font-size: 16px;
+    padding: 10px 0;
+    color: #333;
+}
+
+.mega-search-form input::placeholder {
+    color: #bbb;
+}
+
+.mega-search-form button {
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    color: #000;
+}
+
+.mega-search-content {
+    margin-top: 40px;
+    text-align: left;
+}
+
+.search-title {
+    font-size: 14px;
+    font-weight: bold;
+    color: #888;
+    margin-bottom: 20px;
+    letter-spacing: 1px;
+}
+
+.trending-searches ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.trending-searches ul li {
+    margin-bottom: 12px;
+}
+
+.trending-searches ul li a {
+    text-decoration: none;
+    color: #333;
+    font-size: 15px;
+    transition: 0.2s;
+}
+
+.trending-searches ul li a:hover {
+    color: #d0021b;
+    padding-left: 5px;
+    text-decoration: underline;
+}
+
+.suggestions-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.suggestion-card {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 15px;
+    padding: 10px 15px;
+    border-bottom: 1px solid #f0f0f0;
+    text-decoration: none;
+    color: #333;
+    transition: background 0.2s ease;
+    border-radius: 6px;
+}
+
+.suggestion-card:hover {
+    background-color: #f9f9f9;
+}
+
+.suggestion-card img {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 4px;
+    flex-shrink: 0;
+}
+
+.suggestion-card-info {
+    text-align: left;
+    flex: 1;
+}
+
+.suggestion-card-info h4 {
+    font-size: 15px;
+    font-weight: 500;
+    margin: 0 0 5px 0;
+    line-height: 1.4;
+    color: #000;
+}
+
+.suggestion-card-info p {
+    font-size: 14px;
+    font-weight: bold;
+    color: #d0021b;
+    margin: 0;
+}

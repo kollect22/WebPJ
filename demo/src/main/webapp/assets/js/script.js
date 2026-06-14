@@ -372,4 +372,123 @@ function recalculateTotal() {
         new Intl.NumberFormat().format(total) + ' VNĐ';
 }
 
+/* ==========================================================================
+   JAVASCRIPT DÙNG CHUNG CHO HEADER (SEARCH & SIDEBAR DANH MỤC)
+   ========================================================================== */
+document.addEventListener("DOMContentLoaded", function() {
+
+    // --- 1. XỬ LÝ KHUNG TÌM KIẾM (SEARCH OVERLAY) ---
+    const openBtn = document.getElementById('openSearchBtn');
+    const closeBtn = document.getElementById('closeSearchBtn');
+    const searchOverlay = document.getElementById('searchOverlay');
+    const megaInput = document.getElementById('megaSearchInput');
+    const gridContainer = document.getElementById('searchSuggestionsGrid');
+    const trendingBox = document.getElementById('trendingSearches');
+
+    if (openBtn) {
+        openBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            searchOverlay.style.display = 'block';
+            setTimeout(() => megaInput.focus(), 100);
+            document.body.style.overflow = 'hidden';
+        });
+    }
+
+    if (closeBtn) {
+        closeBtn.addEventListener('click', function() {
+            searchOverlay.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        });
+    }
+
+    if (megaInput) {
+        megaInput.addEventListener('input', function() {
+            const keyword = this.value.trim();
+            gridContainer.innerHTML = '';
+
+            if (keyword.length > 0) {
+                trendingBox.style.display = 'none';
+                gridContainer.style.display = 'flex';
+
+                const url = (window.contextPath || '') + '/api/search?keyword=' + encodeURIComponent(keyword);
+
+                fetch(url)
+                    .then(response => {
+                        if (!response.ok) throw new Error('Lỗi kết nối hệ thống');
+                        return response.json();
+                    })
+                    .then(products => {
+                        gridContainer.innerHTML='';
+                        if (products && products.length > 0) {
+                            products.forEach(item => {
+                                const formattedPrice = new Intl.NumberFormat('vi-VN', {
+                                    style: 'currency',
+                                    currency: 'VND'
+                                }).format(item.price || 0);
+
+                                const html =
+                                    '<a href="product-detail?id=' + item.id + '" class="suggestion-card">' +
+                                    '<img src="' + (window.contextPath || '') + '/' + item.img + '" alt="' + item.name + '">' +
+                                    '<div class="suggestion-card-info">' +
+                                    '<h4>' + item.name + '</h4>' +
+                                    '<p>' + formattedPrice + '</p>' +
+                                    '</div>' +
+                                    '</a>';
+
+                                gridContainer.insertAdjacentHTML('beforeend', html);
+                            });
+                        } else {
+                            gridContainer.style.display = 'block';
+                            gridContainer.innerHTML = '<div style="padding: 30px; color: #777; font-size: 16px; text-align: center;">Không tìm thấy kết quả nào phù hợp.</div>';
+                        }
+                    })
+                    .catch(error => {
+                        console.error("Lỗi Fetch AJAX:", error);
+                    });
+            } else {
+                gridContainer.style.display = 'none';
+                trendingBox.style.display = 'block';
+            }
+        });
+    }
+
+    // --- 2. XỬ LÝ SIDEBAR DANH MỤC SẢN PHẨM ---
+    const menuSanPhamBtn = document.getElementById("menu-san-pham-btn");
+    const filterOverlay = document.getElementById("filter-overlay");
+    const closeFilterBtn = document.getElementById("filter-close-btn");
+    const listProductFilterBtn = document.getElementById("filter-toggle-btn");
+
+    if (menuSanPhamBtn) {
+        menuSanPhamBtn.addEventListener("click", function(e) {
+            e.preventDefault();
+            filterOverlay.classList.add("active");
+            document.body.style.overflow = "hidden";
+        });
+    }
+
+    if (listProductFilterBtn) {
+        listProductFilterBtn.addEventListener("click", function(e) {
+            e.preventDefault();
+            filterOverlay.classList.add("active");
+            document.body.style.overflow = "hidden";
+        });
+    }
+
+    if (closeFilterBtn) {
+        closeFilterBtn.addEventListener("click", function() {
+            filterOverlay.classList.remove("active");
+            document.body.style.overflow = "auto";
+        });
+    }
+
+    if (filterOverlay) {
+        filterOverlay.addEventListener("click", function(e) {
+            if (e.target === this) {
+                this.classList.remove("active");
+                document.body.style.overflow = "auto";
+            }
+        });
+    }
+});
+
 
