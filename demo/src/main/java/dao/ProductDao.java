@@ -308,7 +308,7 @@ public class ProductDao extends BaseDao {
         return get().withHandle(h -> {
             String sql = "SELECT id, name, img, price, sale_price AS salePrice " +
                     "FROM products " +
-                    "WHERE name LIKE :keyword LIMIT 5";
+                    "WHERE name LIKE :keyword ";
 
             return h.createQuery(sql)
                     .bind("keyword", "%" + keyword + "%")

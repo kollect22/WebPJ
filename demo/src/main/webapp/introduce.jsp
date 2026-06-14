@@ -16,29 +16,27 @@
         }
 
         .about-us{
-            max-width: 1400px;
+            max-width: 1920px;
             margin: 0 auto;
             padding: 12px 40px;
         }
 
-        .breadcrumbs{
+        .breadcrumbs {
+            max-width: 1920px;
             color: grey;
-            margin-top: 10px;
-            margin-bottom: 25px;
-
-            border-bottom: 1px solid black;
-            padding-bottom: 10px;
-        }
-        .breadcrumbs i{
-            color: black;
+            margin: 0 auto;
+            padding: 10px 40px 10px;
         }
 
-        .breadcrumbs a{
+        .breadcrumbs i {
+            color: black; }
+
+        .breadcrumbs a {
             text-decoration: none;
             color: black;
         }
 
-        .breadcrumbs a:hover{
+        .breadcrumbs a:hover {
             text-decoration: underline;
         }
 

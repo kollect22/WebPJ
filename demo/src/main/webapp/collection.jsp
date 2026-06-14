@@ -14,6 +14,7 @@
 
       body{
           background: white;
+          max-width: 1920px;
           padding-top: 90px;
           margin: 0;
           font-family: Arial, sans-serif;
@@ -29,7 +30,6 @@
           padding: 40px 20px;
           margin-bottom: 60px;
           border-radius: 18px;
-          color: white;
       }
       
       .spring {
