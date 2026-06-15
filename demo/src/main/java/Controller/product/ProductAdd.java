@@ -79,7 +79,7 @@ public class ProductAdd extends HttpServlet {
             }
 
             //Gắn dữ liệu vào model
-            Product newProduct = new Product();
+            Product newProduct = new Product(0, name, mainImgFileName, price);
             newProduct.setSku(sku);
             newProduct.setName(name);
             newProduct.setImg(mainImgFileName);

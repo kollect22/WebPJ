@@ -6,6 +6,8 @@ import com.google.firebase.FirebaseOptions;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseToken;
 import services.AuthService;
+import cart.Cart;
+import services.CartService;
 import model.User;
 
 import jakarta.servlet.ServletException;
@@ -56,6 +58,22 @@ public class LoginPhoneController extends HttpServlet {
             }
 
             HttpSession session = req.getSession();
+
+            CartService cartService = new CartService();
+            Cart sessionCart = (Cart) session.getAttribute("cart");
+
+            Cart dbCart = cartService.getCartByUserId(user.getId());
+            if (dbCart == null) dbCart = new Cart();
+
+            if (sessionCart != null) {
+                for (cart.CartItem item : sessionCart.getList()) {
+                    dbCart.addProduct(item.getProduct(), item.getQuantity());
+                }
+                cartService.saveCartToDatabase(user.getId(), dbCart);
+            }
+
+            session.setAttribute("cart", dbCart);
+
             session.setAttribute("auth", user);
             resp.sendRedirect(req.getContextPath() + "/home");
 
