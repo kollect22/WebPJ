@@ -31,7 +31,12 @@ public class Product implements Serializable {
 
     private  int groupId;
     private String colorName;
+
     public Product(){
+
+    }
+
+    public Product(int id, String name, String img, double price){
 
     }
     public Product(int id, String name, String img, int price, int salePrice, boolean newProduct) {

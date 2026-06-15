@@ -26,6 +26,7 @@ public class ListProduct extends HttpServlet {
             String cidParam = request.getParameter("cid");
             String searchParam = request.getParameter("search");
             String pageParam = request.getParameter("page");
+            String sortParam = request.getParameter("sort");
 
             int pageSize = 20;
             int page = 1;
@@ -37,7 +38,9 @@ public class ListProduct extends HttpServlet {
 
             int totalProducts = dao.getTotalProducts(searchParam, cidParam);
             int totalPages = (int) Math.ceil((double) totalProducts/pageSize);
-            List<Product> list = dao.getProductsWithPagination(searchParam, cidParam, offset, pageSize);
+//            List<Product> list = dao.getProductsWithPagination(searchParam, cidParam, offset, pageSize);
+
+            List<Product> list = dao.getProductsWithPagination(searchParam, cidParam, sortParam, offset, pageSize);
 
             String title = "Tất cả sản phẩm";
 
@@ -58,7 +61,7 @@ public class ListProduct extends HttpServlet {
             request.setAttribute("totalPages", totalPages);
             request.setAttribute("search", searchParam);
             request.setAttribute("cid", cidParam);
-
+            request.setAttribute("sort", sortParam);
             request.getRequestDispatcher("/list-product.jsp").forward(request, response);
 
         } catch (Exception e) {

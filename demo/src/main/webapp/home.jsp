@@ -9,6 +9,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Trang chủ</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,300..700;1,300..700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
@@ -36,7 +39,7 @@
 
         <c:if test="${empty bannerList}">
             <div class="slide">
-                <img src="${pageContext.request.contextPath}/img/banners/banner5.jpg" alt="Mặc định">
+                <img src="${pageContext.request.contextPath}/img/banners/summer.jpg" alt="Mặc định">
             </div>
         </c:if>
     </div>
@@ -263,7 +266,10 @@
     <h2 class="collection-title">Bộ sưu tập</h2>
     <div class="collection-box">
         <a href="${pageContext.request.contextPath}/collection.jsp" class="item">
-            <img src="${pageContext.request.contextPath}/img/banners/4-season.jpg"/>
+            <img src="${pageContext.request.contextPath}/img/banners/BST_1.webp"/>
+            <img src="${pageContext.request.contextPath}/img/banners/BST_2.webp"/>
+            <img src="${pageContext.request.contextPath}/img/banners/BST_3.webp"/>
+            <img src="${pageContext.request.contextPath}/img/banners/BST_4.webp"/>
             <h3 class="item-title">BST SEASON</h3>
             <p class="item-link">Xem bộ sưu tập ></p>
         </a>
@@ -291,6 +297,67 @@
 %>
 <script>
     window.contextPath = '${pageContext.request.contextPath}';
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const productSections = document.querySelectorAll('.products');
+
+        productSections.forEach(section => {
+            const scrollLeftBtn = section.querySelector('.scroll-left');
+            const scrollRightBtn = section.querySelector('.scroll-right');
+            const productList = section.querySelector('.product-list');
+
+
+            if (scrollLeftBtn && scrollRightBtn && productList) {
+
+
+                const scrollAmount = 320;
+
+                // Khi click nút mũi tên trái
+                scrollLeftBtn.addEventListener('click', () => {
+                    productList.scrollBy({
+                        left: -scrollAmount,
+                        behavior: 'smooth'
+                    });
+                });
+
+                scrollRightBtn.addEventListener('click', () => {
+                    productList.scrollBy({
+                        left: scrollAmount,
+                        behavior: 'smooth'
+                    });
+                });
+            }
+        });
+    });
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+
+        const scrollTopBtn = document.getElementById("scrollTopBtn");
+
+        if (scrollTopBtn) {
+
+            scrollTopBtn.addEventListener("click", function() {
+                window.scrollTo({
+                    top: 0,
+                    behavior: "smooth"
+                });
+            });
+
+            window.addEventListener("scroll", function() {
+                if (window.scrollY > 300) {
+                    scrollTopBtn.style.opacity = "1";
+                    scrollTopBtn.style.visibility = "visible";
+                } else {
+                    scrollTopBtn.style.opacity = "0";
+                    scrollTopBtn.style.visibility = "hidden";
+                }
+            });
+        }
+    });
 </script>
 
 <script>

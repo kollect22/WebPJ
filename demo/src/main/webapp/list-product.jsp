@@ -80,6 +80,7 @@
 
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
         </head>
+
         <body>
 
         <jsp:include page="header.jsp" />
@@ -105,10 +106,10 @@
                         ${totalProducts != null ? totalProducts : 0} sản phẩm
                 </div>
                 <div class="tool-item sort-wrapper" id="sortDropdownContainer">
-                    <div class="sort-label" id="sortToggle">
+                    <button class="sort-label" id="sortToggle" onclick="console.log('Đã click!'); document.getElementById('sortMenu').classList.toggle('show');">
                         <span id="current-sort-text">Sắp xếp</span>
-                        <i class="fa-solid fa-chevron-down" style="font-size: 12px; margin-left: 8px;"></i>
-                    </div>
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </button>
                     <ul class="sort-menu" id="sortMenu">
                         <li class="sort-item active" data-value="newest">Mới nhất <i class="fa-solid fa-check check-icon"></i></li>
                         <li class="sort-item" data-value="oldest">Cũ nhất <i class="fa-solid fa-check check-icon"></i></li>
@@ -198,86 +199,99 @@
         </script>
 
         <script>
-            const btnLoadMore = document.getElementById("btn-load-more");
-            const productContainer = document.getElementById("product-container");
+            document.addEventListener("DOMContentLoaded", function() {
+                const btnLoadMore = document.getElementById("btn-load-more");
+                const productContainer = document.getElementById("product-container");
+                const toggle = document.getElementById("sortToggle");
+                const menu = document.getElementById("sortMenu");
+                const sortText = document.getElementById('current-sort-text');
 
-            if (btnLoadMore) {
-                let totalPages = parseInt(btnLoadMore.getAttribute("data-totalpages"));
+                // 1. Logic cho Nút "Xem thêm"
+                if (btnLoadMore) {
+                    btnLoadMore.addEventListener("click", function() {
+                        let currentPage = parseInt(this.getAttribute("data-page"));
+                        let nextPage = currentPage + 1;
+                        let search = this.getAttribute("data-search") || "";
+                        let cid = this.getAttribute("data-cid") || "";
+                        // Lấy sort hiện tại từ data-value của item đang active
+                        let sort = document.querySelector('.sort-item.active')?.getAttribute('data-value') || 'newest';
 
-                // Ẩn nút nếu chỉ có 1 trang
-                if (isNaN(totalPages) || totalPages <= 1) {
-                    btnLoadMore.style.display = "none";
+                        this.innerHTML = "ĐANG TẢI...";
+                        let url = `${window.contextPath}/list-product?ajax=true&page=${nextPage}&sort=${sort}&search=${search}&cid=${cid}`;
+
+                        fetch(url)
+                            .then(response => response.text())
+                            .then(html => {
+                                if (html.trim() !== "") {
+                                    productContainer.insertAdjacentHTML("beforeend", html);
+                                    this.setAttribute("data-page", nextPage);
+                                    this.innerHTML = "XEM THÊM SẢN PHẨM";
+                                } else {
+                                    this.style.display = "none";
+                                }
+                            })
+                            .catch(err => {
+                                console.error("Lỗi load more:", err);
+                                this.innerHTML = "LỖI! THỬ LẠI SAU";
+                            });
+                    });
                 }
 
-                btnLoadMore.addEventListener("click", function() {
-                    let currentPage = parseInt(this.getAttribute("data-page"));
-                    let nextPage = currentPage + 1;
+                // 2. Logic cho Menu Sắp xếp (AJAX)
+                if (toggle && menu) {
+                    toggle.addEventListener("click", function(e) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        menu.classList.toggle("show");
+                    });
 
-                    let search = this.getAttribute("data-search") || "";
-                    let cid = this.getAttribute("data-cid") || "";
+                    document.querySelectorAll('.sort-item').forEach(item => {
+                        item.addEventListener('click', function(e) {
+                            e.stopPropagation();
 
-                    this.innerHTML = "ĐANG TẢI...";
+                            // Cập nhật giao diện
+                            sortText.textContent = this.textContent.trim();
+                            document.querySelectorAll('.sort-item').forEach(i => i.classList.remove('active'));
+                            this.classList.add('active');
+                            menu.classList.remove('show');
 
-                    let url = "${pageContext.request.contextPath}/list-product?ajax=true&page=" + nextPage;
-                    if (search) url += "&search=" + search;
-                    if (cid) url += "&cid=" + cid;
+                            let sortVal = this.getAttribute('data-value');
+                            let search = btnLoadMore ? btnLoadMore.getAttribute("data-search") : "";
+                            let cid = btnLoadMore ? btnLoadMore.getAttribute("data-cid") : "";
 
-                    fetch(url)
-                        .then(response => response.text())
-                        .then(html => {
-                            // Chèn thêm sản phẩm mới vào cuối
-                            productContainer.insertAdjacentHTML("beforeend", html);
-
-                            this.setAttribute("data-page", nextPage);
-                            this.innerHTML = "XEM THÊM SẢN PHẨM";
-
-                            if (nextPage >= totalPages) {
-                                this.style.display = "none";
-                            }
-                        })
-                        .catch(err => {
-                            console.error("Lỗi:", err);
-                            this.innerHTML = "LỖI! THỬ LẠI SAU";
+                            // AJAX call
+                            fetch('/FashionStore/list-product?ajax=true&page=1&sort=' + sortVal)
+                                .then(res => res.text())
+                                .then(html => {
+                                    productContainer.innerHTML = html;
+                                    if(btnLoadMore) {
+                                        btnLoadMore.setAttribute("data-page", "1");
+                                        btnLoadMore.style.display = "inline-block";
+                                    }
+                                })
+                                .catch(err => console.error("Lỗi AJAX:", err));
                         });
-                });
-            }
-        </script>
+                    });
+                }
 
-        <script>
+                // Đóng menu khi click ra ngoài
+                document.addEventListener("click", () => menu?.classList.remove("show"));
+            });
+
+            // 3. Logic thay đổi ảnh sản phẩm khi chọn màu
             function changeCardImage(element) {
                 const productCard = element.closest('.product-item');
-
                 if(!productCard) return;
-
                 const newImgSrc = element.getAttribute('data-src');
                 const newProductLink = element.getAttribute('data-link');
-
-                const urlParams = new URLSearchParams(newProductLink.split('?')[1]);
-                const newId = urlParams.get('id');
-
                 const img = productCard.querySelector('.product-card-img');
-                if (img && newImgSrc) {
-                    img.style.opacity = 0.5;
-                    setTimeout(() => {
-                        img.src = newImgSrc;
-                        img.style.opacity = 1;
-                    }, 150);
-                }
-
-                const links = productCard.querySelectorAll('a[href^="product-detail"]');
-                links.forEach(link => {
-                    link.setAttribute('href', newProductLink);
-                });
-
-                const cartBtn = productCard.querySelector('.cart-icon');
-                if (cartBtn && newId) {
-                    cartBtn.setAttribute('onclick', 'addToCart(' + newId + ')');
-                }
+                if (img && newImgSrc) img.src = newImgSrc;
+                productCard.querySelectorAll('a[href^="product-detail"]').forEach(a => a.href = newProductLink);
             }
         </script>
 
         <script src="${pageContext.request.contextPath}/assets/js/script.js"></script>
-
+        <div id="toast-container"></div>
         </body>
         </html>
     </c:otherwise>

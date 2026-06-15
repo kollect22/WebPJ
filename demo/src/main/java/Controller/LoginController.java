@@ -7,6 +7,8 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import model.User;
+import cart.Cart;
+import services.CartService;
 import services.AuthService;
 
 import java.io.IOException;
@@ -25,7 +27,23 @@ public class LoginController extends HttpServlet {
         if (u != null ) {
 
             HttpSession session = req.getSession();
-            session.setAttribute("auth",u);
+
+            CartService cartService = new CartService();
+            Cart sessionCart = (Cart) session.getAttribute("cart");
+
+            Cart dbCart = cartService.getCartByUserId(u.getId());
+            if (dbCart == null) dbCart = new Cart();
+
+            if (sessionCart != null) {
+                for (cart.CartItem item : sessionCart.getList()) {
+                    dbCart.addProduct(item.getProduct(), item.getQuantity());
+                }
+                cartService.saveCartToDatabase(u.getId(), dbCart);
+            }
+
+            session.setAttribute("cart", dbCart);
+
+            session.setAttribute("auth", u);
             if (u.getRole() == 1) {
                 resp.sendRedirect(req.getContextPath() + "/admin/dashboard");
             } else {

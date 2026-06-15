@@ -36,6 +36,8 @@ public class AdminController extends HttpServlet {
                 ProductDao productDao = new ProductDao();
 
                 String search = req.getParameter("search");
+                String cidParam = req.getParameter("cid");
+                String sortParam = req.getParameter("sort");
 
                 int page = 1;
                 String pageParam = req.getParameter("page");
@@ -46,15 +48,19 @@ public class AdminController extends HttpServlet {
                 int pageSize = 10;
                 int offset = (page - 1) * pageSize;
 
-                int totalProducts = productDao.getTotalProducts(search);
+                int totalProducts = productDao.getTotalProducts(search, cidParam);
                 int totalPages = (int) Math.ceil((double) totalProducts / pageSize);
 
-                List<Product> list = productDao.getProductsWithPagination(search, offset, pageSize);
+//                List<Product> list = productDao.getProductsWithPagination(search, offset, pageSize);
+
+                List<Product> list = productDao.getProductsWithPagination(search, cidParam, sortParam, offset, pageSize);
 
                 req.setAttribute("productList", list);
                 req.setAttribute("currentPage", page);
                 req.setAttribute("totalPages", totalPages);
                 req.setAttribute("search", search);
+                req.setAttribute("cid", cidParam);
+                req.setAttribute("sort", sortParam);
 
                 req.setAttribute("activeMenu", "products");
                 targetPage = "/admin/products.jsp";

@@ -9,6 +9,8 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.*;
 import model.User;
+import cart.Cart;
+import services.CartService;
 import services.AuthService;
 
 import java.io.FileInputStream;
@@ -62,6 +64,22 @@ public class LoginSocialController extends HttpServlet {
             }
 
             HttpSession session = req.getSession();
+
+            CartService cartService = new CartService();
+            Cart sessionCart = (Cart) session.getAttribute("cart");
+
+            Cart dbCart = cartService.getCartByUserId(user.getId());
+            if (dbCart == null) dbCart = new Cart();
+
+            if (sessionCart != null) {
+                for (cart.CartItem item : sessionCart.getList()) {
+                    dbCart.addProduct(item.getProduct(), item.getQuantity());
+                }
+                cartService.saveCartToDatabase(user.getId(), dbCart);
+            }
+
+            session.setAttribute("cart", dbCart);
+
             session.setAttribute("auth", user);
             resp.sendRedirect(req.getContextPath() + "/home");
 

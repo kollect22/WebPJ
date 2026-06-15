@@ -18,6 +18,7 @@ public class ProductController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String id = req.getParameter("id");
+        String sort = req.getParameter("sort");
         ProductService ps = new ProductService();
 
         try {
@@ -29,6 +30,9 @@ public class ProductController extends HttpServlet {
                 req.setAttribute("product", p);
 
                 ProductDao dao = new ProductDao();
+
+                List<Product> relatedProducts = dao.getProductsByCategory(p.getCategoryId());
+                req.setAttribute("relatedProducts", relatedProducts);
 
                 List<model.Review> reviewList = dao.getReviewByProductId(idP);
                 req.setAttribute("reviews", reviewList);

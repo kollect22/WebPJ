@@ -89,13 +89,13 @@ if (filterBtn && closeBtn && overlay) {
 }
 
 // đếm sản pham
-function countProducts() {
-    const products = document.querySelectorAll('.product-item');
-    const countDisplay = document.getElementById('product-count-display');
-    if (countDisplay) {
-        countDisplay.innerText = products.length + " sản phẩm";
-    }
-}
+// function countProducts() {
+//     const products = document.querySelectorAll('.product-item');
+//     const countDisplay = document.getElementById('product-count-display');
+//     if (countDisplay) {
+//         countDisplay.innerText = products.length + " sản phẩm";
+//     }
+// }
 
 document.addEventListener("DOMContentLoaded", () => {
     const toggle = document.getElementById("sortToggle");
@@ -127,8 +127,13 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
-    document.addEventListener("click", () => {
-        menu.classList.remove("show");
+    document.addEventListener("click", (e) => {
+        const toggle = document.getElementById("sortToggle");
+        const menu = document.getElementById("sortMenu");
+
+        if (toggle && menu && !toggle.contains(e.target) && !menu.contains(e.target)) {
+            menu.classList.remove("show");
+        }
     });
 });
 
@@ -294,9 +299,23 @@ function addToCart(productId, redirect = false) {
                 void cartCountEl.offsetWidth;
                 cartCountEl.classList.add('cart-bump');
             }
-            alert("Đã thêm vào giỏ hàng!");
+            showToast("Đã thêm vào giỏ hàng thành công!");
         })
         .catch(err => console.error("Lỗi:", err));
+}
+
+function showToast(message) {
+    const container = document.getElementById('toast-container');
+    const toast = document.createElement('div');
+    toast.className = 'toast-msg';
+    toast.innerHTML = `<i class="fa-solid fa-check"></i> <span>${message}</span>`;
+
+    container.appendChild(toast);
+
+    setTimeout(() => {
+        toast.style.opacity = '0';
+        setTimeout(() => toast.remove(), 300);
+    }, 2000);
 }
 
 function updateCart(productId, delta) {

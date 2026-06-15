@@ -123,4 +123,24 @@
 
 </header>
 
+<script>
+    function addToCart(productId) {
+        fetch('${pageContext.request.contextPath}/add-cart?id=' + productId + '&q=1&action=add', {
+            method: 'POST'
+        })
+            .then(response => response.json())
+            .then(data => {
+                const cartCountElement = document.getElementById('cart-count');
+                if (cartCountElement) {
+                    cartCountElement.innerText = data.totalQuantity;
+
+                    cartCountElement.classList.add('cart-bump');
+                    setTimeout(() => cartCountElement.classList.remove('cart-bump'), 300);
+                }
+                alert("Đã thêm vào giỏ hàng!");
+            })
+            .catch(err => console.error("Lỗi:", err));
+    }
+</script>
+
 <script src="${pageContext.request.contextPath}/assets/js/script.js"></script>

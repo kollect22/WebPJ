@@ -27,24 +27,24 @@ public class ProductDao extends BaseDao {
                 if (p.getGroupId() > 0) {
                     List<ColorVariant> colors = getRelatedColors(h, p.getGroupId(), p.getId());
                     p.setColors(colors);
-                }   
+                }
             }
 
             return list;
         });
     }
 
-    public int getTotalProducts(){
-        return get().withHandle(h->
-                h.createQuery("SELECT COUNT(*) FROM products")
-                        .mapTo(Integer.class)
-                        .one()
-        );
-    }
-
-    public int getTotalProducts(String search) {
-        return getTotalProducts(search,null);
-    }
+//    public int getTotalProducts(){
+//        return get().withHandle(h->
+//                h.createQuery("SELECT COUNT(*) FROM products")
+//                        .mapTo(Integer.class)
+//                        .one()
+//        );
+//    }
+//
+//    public int getTotalProducts(String search) {
+//        return getTotalProducts(search,null);
+//    }
 
     public int getTotalProducts(String search, String cid) {
         return get().withHandle(h -> {
@@ -65,16 +65,17 @@ public class ProductDao extends BaseDao {
             if (cid != null && !cid.trim().isEmpty()) {
                 query.bind("cid", Integer.parseInt(cid));
             }
-
-            return query.mapTo(Integer.class).one();
+            int total = query.mapTo(Integer.class).one();
+            System.out.println("DEBUG KẾT QUẢ COUNT: " + total); // Xem kết quả thực tế
+            return total;
         });
     }
 
-    public List<Product> getProductsWithPagination(String search, int offset, int limit) {
-        return getProductsWithPagination(search, null, offset, limit);
-    }
+//    public List<Product> getProductsWithPagination(String search, int offset, int limit) {
+//        return getProductsWithPagination(search, null, offset, limit);
+//    }
 
-    public List<Product> getProductsWithPagination(String search, String cid, int offset, int limit) {
+    public List<Product> getProductsWithPagination(String search, String cid,String sort, int offset, int limit) {
         return get().withHandle(h -> {
             StringBuilder sql = new StringBuilder(
                     "SELECT p.*, c.name AS categoryName " +
@@ -82,6 +83,8 @@ public class ProductDao extends BaseDao {
                             "LEFT JOIN categories c ON p.category_id = c.id " +
                             "WHERE 1=1"
             );
+
+            String finalSort = (sort == null) ? "newest" : sort;
 
             // Nối điều kiện động
             if (search != null && !search.trim().isEmpty()) {
@@ -91,7 +94,14 @@ public class ProductDao extends BaseDao {
                 sql.append(" AND p.category_id = :cid");
             }
 
-            sql.append(" ORDER BY p.id ASC LIMIT :limit OFFSET :offset");
+            switch (finalSort) {
+                case "price-asc":  sql.append(" ORDER BY p.price ASC"); break;
+                case "price-desc": sql.append(" ORDER BY p.price DESC"); break;
+                case "oldest":     sql.append(" ORDER BY p.id ASC"); break;
+                default:           sql.append(" ORDER BY p.id DESC"); break;
+            }
+
+            sql.append(" LIMIT :limit OFFSET :offset");
 
             var query = h.createQuery(sql.toString());
 
@@ -239,6 +249,19 @@ public class ProductDao extends BaseDao {
         });
     }
 
+    public List<Product> getProducts(String sort, String cid, String search) {
+        StringBuilder sql = new StringBuilder("SELECT * FROM products WHERE 1=1");
+
+        if (search != null && !search.trim().isEmpty()) sql.append(" AND name LIKE :search");
+        if (cid != null && !cid.trim().isEmpty()) sql.append(" AND category_id = :cid");
+
+        var query = get().withHandle(h -> h.createQuery(sql.toString()));
+
+        if (search != null && !search.trim().isEmpty()) query.bind("search", "%" + search + "%");
+        if (cid != null && !cid.trim().isEmpty()) query.bind("cid", Integer.parseInt(cid));
+
+        return query.mapToBean(Product.class).list();
+    }
     //lay ten danh muc hien cho dsap
     public String getCategoryName(int cid) {
         return get().withHandle(h -> {
